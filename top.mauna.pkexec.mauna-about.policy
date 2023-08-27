@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+
+<policyconfig>
+
+  <vendor>Mauna Developers</vendor>
+  <vendor_url>http://maunalinux.top/</vendor_url>
+
+  <action id="top.mauna.pkexec.mauna-about">
+    <description>Run system report creator.</description>
+    <message>Authentication is required to create system report</message>
+    <message xml:lang="pt_BR">A autenticação é necessária para criar o relatório do sistema</message>
+    <message xml:lang="pt">A autenticação é necessária para criar o relatório do sistema</message>
+    <message xml:lang="af">Stawing word vereis om stelselverslag te skep</message>
+    <message xml:lang="ar">المصادقة مطلوبة لإنشاء تقرير النظام</message>
+    <message xml:lang="da">Godkendelse er påkrævet for at oprette systemrapport</message>
+    <message xml:lang="de">Zum Erstellen des Systemberichts ist eine Authentifizierung erforderlich</message>
+    <message xml:lang="el">Απαιτείται έλεγχος ταυτότητας για τη δημιουργία αναφοράς συστήματος</message>
+    <message xml:lang="es">Se requiere autenticación para crear un informe del sistema</message>
+    <message xml:lang="fi">Järjestelmäraportin luominen edellyttää todennusta</message>
+    <message xml:lang="fr">L'authentification est requise pour créer un rapport système</message>
+    <message xml:lang="he">נדרש אימות כדי ליצור דוח מערכת</message>
+    <message xml:lang="hi">सिस्टम रिपोर्ट बनाने के लिए प्रमाणीकरण आवश्यक है</message>
+    <message xml:lang="it">L'autenticazione è necessaria per creare report di sistema</message>
+    <message xml:lang="jp_JA">システム レポートの作成には認証が必要です</message>
+    <message xml:lang="ko_KR">시스템 보고서를 생성하려면 인증이 필요합니다.</message>
+    <message xml:lang="nl">Verificatie is vereist om een systeemrapport te maken.</message>
+    <message xml:lang="no">Autentisering kreves for å lage systemrapport</message>
+    <message xml:lang="pl_PL">Do utworzenia raportu systemowego wymagane jest uwierzytelnienie</message>
+    <message xml:lang="ro">Este necesară autentificarea pentru a crea raportul de sistem</message>
+    <message xml:lang="ru">Для создания системного отчета требуется аутентификация</message>    
+    <message xml:lang="sv">Autentisering krävs för att skapa systemrapport</message>
+    <message xml:lang="th">จำเป็นต้องมีการรับรองความถูกต้องเพื่อสร้างรายงานระบบ</message>
+    <message xml:lang="tr">Sistem raporu oluşturmak için yetkilendirme gerekiyor</message>
+    <message xml:lang="uk">Для створення системного звіту потрібна автентифікація</message>
+    <message xml:lang="vi">Yêu cầu xác thực để tạo báo cáo hệ thống</message>
+    <message xml:lang="zh_CN">创建系统报告需要身份验证</message>
+    <message xml:lang="zh_HK">創建系統報告需要身份驗證</message>
+    <message xml:lang="zh_MO">創建系統報告需要身份驗證</message>
+    <message xml:lang="zh_TW">創建系統報告需要身份驗證</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/share/mauna/mauna-about/src/dump_logs.sh</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

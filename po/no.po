@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-25 16:49+0300\n"
+"PO-Revision-Date: 2023-08-14 17:21-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: no\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: ui/MainWindow.glade:7
+msgid "About Mauna About Application"
+msgstr "Om Mauna Om Søknad"
+
+#: ui/MainWindow.glade:13
+msgid "Get info about your Mauna system."
+msgstr "Få informasjon om Mauna-systemet ditt."
+
+#: ui/MainWindow.glade:15
+msgid "Website"
+msgstr "Nettsted"
+
+#: ui/MainWindow.glade:85
+msgid "Export System Report"
+msgstr "Eksporter systemrapport"
+
+#: ui/MainWindow.glade:141
+msgid "About App"
+msgstr "Om søknad"
+
+#: ui/MainWindow.glade:607
+msgid "<b>Public IP:</b>"
+msgstr "<b>Offentlig IP:</b>"
+
+#: ui/MainWindow.glade:649
+msgid "<b>Local IP:</b>"
+msgstr "<b>Lokal IP:</b>"
+
+#: ui/MainWindow.glade:752
+msgid "About this computer"
+msgstr "Om denne datamaskinen"
+
+#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+msgid "Gathering system logs..."
+msgstr "Samler inn systemlogger..."
+
+#: ui/MainWindow.glade:846
+msgid "Your system report has been exported to the desktop."
+msgstr "Systemrapporten din er eksportert til skrivebordet."
+
+#: ui/MainWindow.glade:847
+msgid "~/Desktop/mauna_system_report.tar.gz"
+msgstr "~/Skrivebord/mauna_systemrapport.tar.gz"
+
+#: src/MainWindow.py:94
+msgid "Mauna About"
+msgstr "Mauna Om"
+
+#: src/MainWindow.py:145
+msgid "Physical RAM"
+msgstr "Fysisk RAM"

@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-25 16:49+0300\n"
+"PO-Revision-Date: 2023-08-14 17:14-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: ui/MainWindow.glade:7
+msgid "About Mauna About Application"
+msgstr "マウナについて お申込みについて"
+
+#: ui/MainWindow.glade:13
+msgid "Get info about your Mauna system."
+msgstr "マウナ システムに関する情報を取得します。"
+
+#: ui/MainWindow.glade:15
+msgid "Website"
+msgstr "ウェブサイト"
+
+#: ui/MainWindow.glade:85
+msgid "Export System Report"
+msgstr "システム レポートのエクスポート"
+
+#: ui/MainWindow.glade:141
+msgid "About App"
+msgstr "アプリについて"
+
+#: ui/MainWindow.glade:607
+msgid "<b>Public IP:</b>"
+msgstr "<b>パブリック IP:</b>"
+
+#: ui/MainWindow.glade:649
+msgid "<b>Local IP:</b>"
+msgstr "<b>ローカル IP:</b>"
+
+#: ui/MainWindow.glade:752
+msgid "About this computer"
+msgstr "このコンピュータについて"
+
+#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+msgid "Gathering system logs..."
+msgstr "システム ログを収集しています..."
+
+#: ui/MainWindow.glade:846
+msgid "Your system report has been exported to the desktop."
+msgstr "システム レポートがデスクトップにエクスポートされました。"
+
+#: ui/MainWindow.glade:847
+msgid "~/Desktop/mauna_system_report.tar.gz"
+msgstr "〜/デスクトップ/マウナシステムレポート.tar.gz"
+
+#: src/MainWindow.py:94
+msgid "Mauna About"
+msgstr "マウナについて"
+
+#: src/MainWindow.py:145
+msgid "Physical RAM"
+msgstr "物理 RAM"

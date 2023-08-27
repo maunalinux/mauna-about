@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=About Mauna
+Name[pt_BR]=Sobre o Mauna
+Name[pt]=Acerca do Mauna
+GenericName=About
+GenericName[pt_BR]=Sobre
+GenericName[pt]=Acerca
+Comment=Get info about your Mauna system.
+Comment[pt_BR]=Obtenha informações sobre o seu sistema Mauna.
+Comment[pt]=Obtenha informações acerca do seu sistema Mauna.
+Exec=mauna-about
+Icon=/usr/share/mauna/mauna-about/icon.svg
+Terminal=false
+Type=Application
+Categories=Settings;
+StartupNotify=true
+Keywords=about

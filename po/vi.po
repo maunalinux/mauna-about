@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-25 16:49+0300\n"
+"PO-Revision-Date: 2023-08-14 17:41-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: ui/MainWindow.glade:7
+msgid "About Mauna About Application"
+msgstr "Về Mauna Về ứng dụng"
+
+#: ui/MainWindow.glade:13
+msgid "Get info about your Mauna system."
+msgstr "Nhận thông tin về hệ thống Mauna của bạn."
+
+#: ui/MainWindow.glade:15
+msgid "Website"
+msgstr "Trang mạng"
+
+#: ui/MainWindow.glade:85
+msgid "Export System Report"
+msgstr "Xuất báo cáo hệ thống"
+
+#: ui/MainWindow.glade:141
+msgid "About App"
+msgstr "Giới thiệu về ứng dụng"
+
+#: ui/MainWindow.glade:607
+msgid "<b>Public IP:</b>"
+msgstr "<b>IP công cộng:</b>"
+
+#: ui/MainWindow.glade:649
+msgid "<b>Local IP:</b>"
+msgstr "<b>IP cục bộ:</b>"
+
+#: ui/MainWindow.glade:752
+msgid "About this computer"
+msgstr "Giới thiệu về máy tính này"
+
+#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+msgid "Gathering system logs..."
+msgstr "Đang thu thập nhật ký hệ thống..."
+
+#: ui/MainWindow.glade:846
+msgid "Your system report has been exported to the desktop."
+msgstr "Báo cáo hệ thống của bạn đã được xuất ra màn hình nền."
+
+#: ui/MainWindow.glade:847
+msgid "~/Desktop/mauna_system_report.tar.gz"
+msgstr "~/máy tính để bàn/báo_cáo_hệ_thống_mauna.tar.gz"
+
+#: src/MainWindow.py:94
+msgid "Mauna About"
+msgstr "Giới thiệu về Mauna"
+
+#: src/MainWindow.py:145
+msgid "Physical RAM"
+msgstr "RAM vật lý"

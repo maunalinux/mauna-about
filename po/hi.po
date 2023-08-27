@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-25 16:49+0300\n"
+"PO-Revision-Date: 2023-08-14 16:26-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: ui/MainWindow.glade:7
+msgid "About Mauna About Application"
+msgstr "मौना के बारे में आवेदन के बारे में"
+
+#: ui/MainWindow.glade:13
+msgid "Get info about your Mauna system."
+msgstr "अपने मौना सिस्टम के बारे में जानकारी प्राप्त करें।"
+
+#: ui/MainWindow.glade:15
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: ui/MainWindow.glade:85
+msgid "Export System Report"
+msgstr "निर्यात प्रणाली रिपोर्ट"
+
+#: ui/MainWindow.glade:141
+msgid "About App"
+msgstr "ऐप के बारे में"
+
+#: ui/MainWindow.glade:607
+msgid "<b>Public IP:</b>"
+msgstr "<b>सार्वजनिक आईपी:</b>"
+
+#: ui/MainWindow.glade:649
+msgid "<b>Local IP:</b>"
+msgstr "<b>स्थानीय आईपी:</b>"
+
+#: ui/MainWindow.glade:752
+msgid "About this computer"
+msgstr "इस कंप्यूटर के बारे में"
+
+#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+msgid "Gathering system logs..."
+msgstr "सिस्टम लॉग एकत्रित कर रहा है..."
+
+#: ui/MainWindow.glade:846
+msgid "Your system report has been exported to the desktop."
+msgstr "आपकी सिस्टम रिपोर्ट को डेस्कटॉप पर निर्यात कर दिया गया है।"
+
+#: ui/MainWindow.glade:847
+msgid "~/Desktop/mauna_system_report.tar.gz"
+msgstr "~/डेस्कटॉप/मौना_सिस्टम_रिपोर्टट.tar.gz"
+
+#: src/MainWindow.py:94
+msgid "Mauna About"
+msgstr "मौना के बारे में"
+
+#: src/MainWindow.py:145
+msgid "Physical RAM"
+msgstr "भौतिक रैम"

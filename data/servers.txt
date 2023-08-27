@@ -1,0 +1,2 @@
+https://checkip.amazonaws.com
+https://api.ipify.org
