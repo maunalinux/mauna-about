@@ -15,6 +15,7 @@
     <message xml:lang="pt">A autenticação é necessária para criar o relatório do sistema</message>
     <message xml:lang="af">Stawing word vereis om stelselverslag te skep</message>
     <message xml:lang="ar">المصادقة مطلوبة لإنشاء تقرير النظام</message>
+    <message xml:lang="ca_ES">L'autenticació és necessària per crear un informe del sistema</message>    
     <message xml:lang="da">Godkendelse er påkrævet for at oprette systemrapport</message>
     <message xml:lang="de">Zum Erstellen des Systemberichts ist eine Authentifizierung erforderlich</message>
     <message xml:lang="el">Απαιτείται έλεγχος ταυτότητας για τη δημιουργία αναφοράς συστήματος</message>
@@ -24,7 +25,7 @@
     <message xml:lang="he">נדרש אימות כדי ליצור דוח מערכת</message>
     <message xml:lang="hi">सिस्टम रिपोर्ट बनाने के लिए प्रमाणीकरण आवश्यक है</message>
     <message xml:lang="it">L'autenticazione è necessaria per creare report di sistema</message>
-    <message xml:lang="jp_JA">システム レポートの作成には認証が必要です</message>
+    <message xml:lang="ja_JP">システム レポートの作成には認証が必要です</message>
     <message xml:lang="ko_KR">시스템 보고서를 생성하려면 인증이 필요합니다.</message>
     <message xml:lang="nl">Verificatie is vereist om een systeemrapport te maken.</message>
     <message xml:lang="no">Autentisering kreves for å lage systemrapport</message>
