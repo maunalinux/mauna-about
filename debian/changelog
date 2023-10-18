@@ -1,3 +1,12 @@
+mauna-about (1.0.1) mauna; urgency=medium
+
+  * New upstream release
+  * MainWindow.glade: Fix Typo
+  * Update pci.ids to 2023.09.22
+  * mauna-about.desktop: Add new translations
+
+ -- Mauna Linux <dev@maunalinux.top>  Wed, 18 Oct 2023 19:11:29 -0300
+
 mauna-about (1.0.0) mauna; urgency=medium
 
   * Initial release for Mauna Linux
