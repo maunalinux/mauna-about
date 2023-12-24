@@ -8,7 +8,7 @@ class GPU:
     def __init__(self):
 
         self.system_pci_ids = "/usr/share/misc/pci.ids"
-        self.amarok_pci_ids = "/usr/share/amarok/amarok-about/data/pci.ids"
+        self.mauna_pci_ids = "/usr/share/mauna/mauna-about/data/pci.ids"
         self.udev_hwdb = "/usr/lib/udev/hwdb.d/" if os.path.exists("/usr/lib/udev/hwdb.d/") else "/lib/udev/hwdb.d/"
         self.default_gpu = []
         self.extra_gpu = []
@@ -17,10 +17,10 @@ class GPU:
 
     def get_gpu_name(self, vendor, device):
 
-        device_vendor_name, device_model_name = self.control_pci_ids(vendor, device, self.amarok_pci_ids)
+        device_vendor_name, device_model_name = self.control_pci_ids(vendor, device, self.mauna_pci_ids)
 
         if device_vendor_name == 0 or device_model_name == 0:
-            print("device name not found in {} {}:{}".format(self.amarok_pci_ids, vendor, device))
+            print("device name not found in {} {}:{}".format(self.mauna_pci_ids, vendor, device))
             device_vendor_name, device_model_name = self.control_pci_ids(vendor, device, self.system_pci_ids)
 
         if device_vendor_name == 0 or device_model_name == 0:
