@@ -1,3 +1,11 @@
+mauna-about (1.0.3) mauna; urgency=medium
+
+  * New upstream release
+  * Fix typo
+  * Update pci.ids
+
+ -- Mauna Linux <dev@maunalinux.top>  Sun, 24 Dec 2023 17:40:24 -0300
+
 mauna-about (1.0.2) mauna; urgency=medium
 
   * New upstream version
