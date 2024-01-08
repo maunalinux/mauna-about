@@ -1,11 +1,13 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: amarok-about
+Upstream-Name:  mauna-about
 Source: https://github.com/maunalinux/mauna-about
 
 
 
 Files: *
-Copyright: 2023 Mauna Linux Team <dev@maunalinux.top>
+Copyright: 2020 Emin Fedar <emin.fedar@pardus.org.tr>
+	   2022 Fatih Altun <fatih.altun@pardus.org.tr>
+	   2023-2024 Mauna Linux Team <dev@maunalinux.top>
 License: GPL-3.0+
 
 License: GPL-3.0+
