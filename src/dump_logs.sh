@@ -30,6 +30,10 @@ elif [ $LANG == "af.UTF-8" ]; then
     ZIPNAME="mauna_stelselverslag.tar.gz";    
 elif [ $LANG == "ar.UTF-8" ]; then
     ZIPNAME="تقرير_نظام_ماونا.tar.gz";
+elif [ $LANG == "bg.UTF-8" ]; then
+    ZIPNAME="доклад_за_системата_мауна.tar.gz";
+elif [ $LANG == "ca.UTF-8" ]; then
+    ZIPNAME="informe_del_sistema_mauna.tar.gz";
 elif [ $LANG == "da.UTF-8" ]; then
     ZIPNAME="mauna_system_rapport.tar.gz";    
 elif [ $LANG == "de.UTF-8" ]; then
@@ -38,8 +42,14 @@ elif [ $LANG == "el.UTF-8" ]; then
     ZIPNAME="αναφορά_συστήματος_mauna.tar.gz";    
 elif [ $LANG == "es.UTF-8" ]; then
     ZIPNAME="informe_del_sistema_mauna.tar.gz";
+elif [ $LANG == "et.UTF-8" ]; then
+    ZIPNAME="mauna_süsteemi_aruanne.tar.gz";    
+elif [ $LANG == "eu.UTF-8" ]; then
+    ZIPNAME="mauna_sistemaren_txostena.tar.gz";    
 elif [ $LANG == "fi.UTF-8" ]; then
-    ZIPNAME="mauna_järjestelmäraportti.tar.gz";    
+    ZIPNAME="mauna_järjestelmäraportti.tar.gz";
+elif [ $LANG == "fil.UTF-8" ]; then
+    ZIPNAME="mauna_system_report.tar.gz";        
 elif [ $LANG == "fr.UTF-8" ]; then
     ZIPNAME="rapport_systeme_mauna.tar.gz";
 elif [ $LANG == "he.UTF-8" ]; then
@@ -54,6 +64,8 @@ elif [ $LANG == "ja.UTF-8" ]; then
     ZIPNAME="マウナシステムレポート.tar.gz";   
 elif [ $LANG == "ko.UTF-8" ]; then
     ZIPNAME="마우나_시스템_보고서.tar.gz";
+elif [ $LANG == "ms.UTF-8" ]; then
+    ZIPNAME="laporan_sistem_mauna.tar.gz";    
 elif [ $LANG == "nl.UTF-8" ]; then
     ZIPNAME="mauna_systeemrapport.tar.gz"; 
 elif [ $LANG == "no.UTF-8" ]; then
