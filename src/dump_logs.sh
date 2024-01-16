@@ -78,6 +78,8 @@ elif [ $LANG == "ru.UTF-8" ]; then
     ZIPNAME="системный_отчет_мауна.tar.gz"; 
 elif [ $LANG == "sv.UTF-8" ]; then
     ZIPNAME="mauna_system_rapport.tar.gz"; 
+elif [ $LANG == "sw.UTF-8" ]; then
+    ZIPNAME="ripoti_ya_mfumo_wa_mauna.tar.gz";     
 elif [ $LANG == "th.UTF-8" ]; then
     ZIPNAME="รายงานระบบเมาน่า.tar.gz";                                        
 elif [ $LANG == "tr_TR.UTF-8" ]; then

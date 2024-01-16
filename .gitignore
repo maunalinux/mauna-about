@@ -35,35 +35,8 @@ debian/*.lintian-overrides
 debian/*.substvars
 debian/debhelper-build-stamp
 src/__version__
-po/af/
-po/ar/
-po/da/
-po/de/
-po/el/
-po/es/
-po/fi/
-po/fr/
-po/he/
-po/hi/
-po/id/
-po/it/
-po/ja_JP/
-po/ko_KR/
-po/nl/
-po/no/
-po/pl_PL/
-po/pt/
-po/pt_BR/
-po/ro/
-po/ru/
-po/sv/
-po/th/
-po/tr/
-po/uk/
-po/vi/
-po/zh_CN/
-po/zh_HK/
-po/zh_TW/
+po/*/*/*.mo
+po/*.mo
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

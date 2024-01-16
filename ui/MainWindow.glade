@@ -13,7 +13,8 @@
     <property name="comments" translatable="yes">Get info about your Mauna system.</property>
     <property name="website">https://maunalinux.top/</property>
     <property name="website-label" translatable="yes">Website</property>
-    <property name="authors">Mauna Linux</property>
+    <property name="authors">Emin Fedar
+Fatih Altun</property>
     <property name="translator-credits">Mauna Linux</property>
     <property name="logo">../mauna-about.svg</property>
     <property name="license-type">gpl-3-0</property>
