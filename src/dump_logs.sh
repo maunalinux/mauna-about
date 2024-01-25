@@ -45,7 +45,9 @@ elif [ $LANG == "es.UTF-8" ]; then
 elif [ $LANG == "et.UTF-8" ]; then
     ZIPNAME="mauna_süsteemi_aruanne.tar.gz";    
 elif [ $LANG == "eu.UTF-8" ]; then
-    ZIPNAME="mauna_sistemaren_txostena.tar.gz";    
+    ZIPNAME="mauna_sistemaren_txostena.tar.gz";
+elif [ $LANG == "fa.UTF-8" ]; then
+    ZIPNAME="~/دسکتاپ/گزارش_سیستم_mauna.tar.gz";         
 elif [ $LANG == "fi.UTF-8" ]; then
     ZIPNAME="mauna_järjestelmäraportti.tar.gz";
 elif [ $LANG == "fil.UTF-8" ]; then
