@@ -1,3 +1,10 @@
+mauna-about (1.0.5) mauna; urgency=medium
+
+  * New upstream release
+  * about dialog fix
+
+ -- Mauna Linux <dev@maunalinux.top>  Mon, 26 Feb 2024 23:13:41 -0300
+
 mauna-about (1.0.4) mauna; urgency=medium
 
   * New upstream release
