@@ -98,6 +98,13 @@ class MainWindow:
 
         self.dialog_about = self.builder.get_object("dialog_about")
         self.dialog_about.set_program_name(_("Mauna About"))
+        if self.dialog_about.get_titlebar() is None:
+            about_headerbar = Gtk.HeaderBar.new()
+            about_headerbar.set_show_close_button(True)
+            about_headerbar.set_title(_("About Mauna About"))
+            about_headerbar.pack_start(Gtk.Image.new_from_icon_name("mauna-about", Gtk.IconSize.LARGE_TOOLBAR))
+            about_headerbar.show_all()
+            self.dialog_about.set_titlebar(about_headerbar)        
 
         self.brazil = self.builder.get_object("brazil")
         self.img_brazil = self.builder.get_object("img_brazil")
