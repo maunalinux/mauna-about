@@ -1,3 +1,11 @@
+mauna-about (1.0.6) mauna; urgency=medium
+
+  * New upstream release
+  * Update pci.ids
+  * l10n: update pot and translations
+
+ -- Mauna Linux <dev@maunalinux.top>  Sun, 23 Jun 2024 13:48:05 -0300
+
 mauna-about (1.0.5) mauna; urgency=medium
 
   * New upstream release
