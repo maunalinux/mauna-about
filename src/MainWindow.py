@@ -133,7 +133,7 @@ class MainWindow:
         self.last_click_timestamp = 0
         
         pixbuf = GdkPixbuf.PixbufAnimation.new_from_file(
-            os.path.dirname(os.path.abspath(__file__)) + "/../bayrak.gif"
+            os.path.dirname(os.path.abspath(__file__)) + "/../brazil.gif"
         )
 
         def waving_flag(it):
