@@ -2,50 +2,6 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkAboutDialog" id="dialog_about">
-    <property name="can-focus">False</property>
-    <property name="title" translatable="yes">About Mauna About Application</property>
-    <property name="icon-name">mauna-about</property>
-    <property name="type-hint">dialog</property>
-    <property name="program-name">Mauna About</property>
-    <property name="version">2.0.0</property>
-    <property name="copyright">© 2024 Mauna Linux</property>
-    <property name="comments" translatable="yes">Get info about your Mauna system.</property>
-    <property name="website">https://maunalinux.top/</property>
-    <property name="website-label" translatable="yes">Website</property>
-    <property name="authors">Emin Fedar
-Fatih Altun</property>
-    <property name="translator-credits">Mauna Linux</property>
-    <property name="logo">../mauna-about.svg</property>
-    <property name="license-type">gpl-3-0</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can-focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can-focus">False</property>
-            <property name="layout-style">end</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkPopover" id="popover_menu">
     <property name="can-focus">False</property>
     <child>
@@ -181,7 +137,7 @@ Fatih Altun</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkImage" id="img_background">
                     <property name="width-request">100</property>
                     <property name="height-request">80</property>
                     <property name="visible">True</property>
@@ -200,15 +156,15 @@ Fatih Altun</property>
                     <property name="valign">center</property>
                     <signal name="button-press-event" handler="on_btn_mauna_logo_button_press_event" swapped="no"/>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="img_distro">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">15</property>
                         <property name="margin-end">15</property>
                         <property name="margin-top">15</property>
                         <property name="margin-bottom">15</property>
-                        <property name="pixbuf">../../../../../../usr/share/icons/hicolor/scalable/apps/mauna-about.svg</property>
                         <property name="pixel-size">120</property>
+                        <property name="icon-name">mauna-about-symbolic</property>
                       </object>
                     </child>
                     <style>
@@ -350,7 +306,7 @@ Fatih Altun</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="label">&lt;b&gt;Kernel:&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Kernel:&lt;/b&gt;</property>
                             <property name="use-markup">True</property>
                             <property name="selectable">True</property>
                           </object>
@@ -396,7 +352,7 @@ Fatih Altun</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="label">&lt;b&gt;Desktop:&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Desktop:&lt;/b&gt;</property>
                             <property name="use-markup">True</property>
                             <property name="selectable">True</property>
                           </object>
@@ -441,7 +397,7 @@ Fatih Altun</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="label">&lt;b&gt;CPU:&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;CPU:&lt;/b&gt;</property>
                             <property name="use-markup">True</property>
                             <property name="selectable">True</property>
                           </object>
@@ -486,7 +442,7 @@ Fatih Altun</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="label">&lt;b&gt;GPU:&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;GPU:&lt;/b&gt;</property>
                             <property name="use-markup">True</property>
                             <property name="selectable">True</property>
                           </object>
@@ -510,6 +466,19 @@ Fatih Altun</property>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkImage" id="img_llvm">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="tooltip-text" translatable="yes">GPU running as llvmpipe</property>
+                            <property name="icon-name">emblem-important-symbolic</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>
@@ -546,7 +515,7 @@ Fatih Altun</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="label">&lt;b&gt;RAM:&lt;/b&gt;</property>
+                            <property name="label" translatable="yes">&lt;b&gt;RAM:&lt;/b&gt;</property>
                             <property name="use-markup">True</property>
                             <property name="selectable">True</property>
                           </object>
@@ -582,7 +551,7 @@ Fatih Altun</property>
                               <object class="GtkLabel" id="lbl_ram_phy">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label">( Physcial RAM: .. GB )</property>
+                                <property name="label">(Physcial RAM: .. GB)</property>
                                 <property name="wrap">True</property>
                                 <property name="selectable">True</property>
                                 <property name="max-width-chars">55</property>
@@ -758,12 +727,11 @@ Fatih Altun</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="opacity">0.50196078431372548</property>
                 <property name="margin-top">5</property>
                 <property name="margin-bottom">5</property>
-                <property name="label">MAUNA LINUX | 2024</property>
+                <property name="label">© MAUNA LINUX</property>
                 <attributes>
-                  <attribute name="size" value="10000"/>
+                  <attribute name="weight" value="light"/>
                 </attributes>
               </object>
               <packing>
@@ -786,7 +754,7 @@ Fatih Altun</property>
       <object class="GtkHeaderBar">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="title" translatable="yes">About this computer</property>
+        <property name="title" translatable="yes">About This Computer</property>
         <property name="show-close-button">True</property>
         <child>
           <object class="GtkMenuButton" id="headerbar_menubutton">
@@ -819,7 +787,54 @@ Fatih Altun</property>
         <property name="margin-end">3</property>
         <property name="margin-top">3</property>
         <property name="margin-bottom">3</property>
-        <property name="pixbuf">../../../../../../usr/share/mauna/mauna-about/brazil.gif</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAboutDialog" id="dialog_about">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">About Mauna About Application</property>
+    <property name="window-position">center-on-parent</property>
+    <property name="icon-name">mauna-about</property>
+    <property name="type-hint">dialog</property>
+    <property name="transient-for">window</property>
+    <property name="program-name">Mauna About</property>
+    <property name="version">2.0.0</property>
+    <property name="copyright">© MAUNA LINUX</property>
+    <property name="comments" translatable="yes">Get info about your Mauna system.</property>
+    <property name="website">https://github.com/maunalinux/mauna-about</property>
+    <property name="website-label" translatable="yes">Website</property>
+    <property name="authors">Emin Fedar &lt;emin.fedar@pardus.org.tr&gt;
+Fatih Altun &lt;fatih.altun@pardus.org.tr&gt;
+Osman Coskun &lt;osman.coskun@pardus.org.tr&gt;</property>
+    <property name="translator-credits" translatable="yes" comments="Name Surname &lt;example@examplemail.com&gt;">translator-credits</property>
+    <property name="artists">Yusuf Düzgün &lt;yusuf.duzgun@pardus.org.tr&gt;</property>
+    <property name="logo-icon-name">mauna-about</property>
+    <property name="license-type">gpl-3-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
       </object>
     </child>
   </object>
@@ -831,7 +846,7 @@ Fatih Altun</property>
     <property name="window-position">center-on-parent</property>
     <property name="default-width">350</property>
     <property name="default-height">100</property>
-    <property name="icon-name">dialog-information</property>
+    <property name="icon-name">mauna-about</property>
     <property name="deletable">False</property>
     <property name="transient-for">window</property>
     <child>
@@ -877,7 +892,7 @@ Fatih Altun</property>
     <property name="can-focus">False</property>
     <property name="modal">True</property>
     <property name="window-position">center-on-parent</property>
-    <property name="icon-name">dialog-information</property>
+    <property name="icon-name">mauna-about</property>
     <property name="type-hint">dialog</property>
     <property name="transient-for">window</property>
     <property name="buttons">ok</property>

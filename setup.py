@@ -32,16 +32,34 @@ if os.path.exists(changelog):
     f.close()
 
 data_files = [
-    ("/usr/share/applications/", ["top.mauna.about.desktop"]),
-    ("/usr/share/mauna/mauna-about/", ["mauna-about.svg", "maunaabout.png", "brazil.gif", "icon.svg"]),
+    ("/usr/share/applications/",
+     ["top.mauna.about.desktop"]),
+    ("/usr/share/mauna/mauna-about/",
+     ["mauna-about.svg",
+      "maunaabout.png",
+      "brazil.gif"]),
     ("/usr/share/mauna/mauna-about/src",
-     ["src/main.py", "src/MainWindow.py", "src/GPU.py", "src/dump_system_info.sh", "src/get_system_info.sh",
-      "src/copy_to_desktop.sh", "src/dump_logs.sh", "src/__version__"]),
-    ("/usr/share/mauna/mauna-about/ui", ["ui/MainWindow.glade"]),
-    ("/usr/share/mauna/mauna-about/data", ["data/pci.ids", "data/servers.txt"]),
-    ("/usr/share/polkit-1/actions", ["top.mauna.pkexec.mauna-about.policy"]),
-    ("/usr/bin/", ["mauna-about"]),
-    ("/usr/share/icons/hicolor/scalable/apps/", ["mauna-about.svg"])
+     ["src/cli.py",
+      "src/copy_to_desktop.sh",
+      "src/dump_logs.sh",
+      "src/dump_system_info.sh",
+      "src/get_system_info.sh",
+      "src/Main.py",
+      "src/MainWindow.py",
+      "src/utils.py",
+      "src/__version__"]),
+    ("/usr/share/mauna/mauna-about/ui",
+     ["ui/MainWindow.glade"]),
+    ("/usr/share/mauna/mauna-about/data",
+     ["data/pci.ids",
+      "data/servers.txt"]),
+    ("/usr/share/polkit-1/actions",
+     ["top.mauna.pkexec.mauna-about.policy"]),
+    ("/usr/bin/",
+     ["mauna-about"]),
+    ("/usr/share/icons/hicolor/scalable/apps/",
+     ["mauna-about.svg",
+      "mauna-about-symbolic.svg"])
 ] + create_mo_files()
 
 setup(
@@ -53,7 +71,7 @@ setup(
     data_files=data_files,
     author="Mauna Linux Team",
     author_email="dev@maunalinux.top",
-    description="Get info about your Mauna System.",
+    description="Get info about your Mauna system.",
     license="GPLv3",
     keywords="about",
     url="https://maunalinux.top",
