@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:49+0300\n"
-"PO-Revision-Date: 2023-08-14 17:47-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
+"PO-Revision-Date: 2025-02-07 21:17-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_HK\n"
@@ -16,56 +16,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ui/MainWindow.glade:7
 msgid "About Mauna About Application"
 msgstr "關於 莫納 關於申請"
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr "獲取有關您的莫納系統的信息。"
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr "網站"
 
-#: ui/MainWindow.glade:85
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr "導出系統報告"
 
-#: ui/MainWindow.glade:141
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr "關於應用"
 
-#: ui/MainWindow.glade:607
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr "<b>Kernel:</b>"
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr "<b>桌面:</b>"
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr "<b>CPU:</b>"
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr "<b>GPU:</b>"
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr "GPU 作為 llvmpipe 運行"
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr "<b>RAM:</b>"
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr "<b>公共 IP：</b>"
 
-#: ui/MainWindow.glade:649
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr "<b>本地IP：</b>"
 
-#: ui/MainWindow.glade:752
-msgid "About this computer"
-msgstr "關於這台電腦"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
+msgstr "關於這台計算機"
 
-#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr "收集系統日誌..."
 
-#: ui/MainWindow.glade:846
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr "您的系統報告已導出到桌面。"
 
-#: ui/MainWindow.glade:847
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr "~/桌面/莫納系統報告.tar.gz"
 
-#: src/MainWindow.py:94
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr "關於莫納"
 
-#: src/MainWindow.py:145
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr "關於莫納 關於"
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr "物理內存"

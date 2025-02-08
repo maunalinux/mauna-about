@@ -7,65 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:49+0300\n"
-"PO-Revision-Date: 2023-08-14 16:10-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
+"PO-Revision-Date: 2025-02-06 18:17-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: Poedit 3.3.2\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ui/MainWindow.glade:7
 msgid "About Mauna About Application"
 msgstr "حول مونا عن التطبيق"
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr "احصل على معلومات حول نظام مونا الخاص بك."
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr "موقع إلكتروني"
 
-#: ui/MainWindow.glade:85
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr "ماونا لينكس <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr "تصدير تقرير النظام"
 
-#: ui/MainWindow.glade:141
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr "حول التطبيق"
 
-#: ui/MainWindow.glade:607
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr "<b>Kernel:</b>"
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr "<b>سطح المكتب</b>"
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr "<b>CPU:</b>"
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr "<b>GPU:</b>"
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr "وحدة معالجة الرسوميات تعمل كـ llvmpipe"
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr "<b>RAM:</b>"
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr "<b>IP العام</b>"
 
-#: ui/MainWindow.glade:649
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr "<b>عنوان IP المحلي</b>"
 
-#: ui/MainWindow.glade:752
-msgid "About this computer"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
 msgstr "حول هذا الكمبيوتر"
 
-#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr "جاري تجميع سجلات النظام ..."
 
-#: ui/MainWindow.glade:846
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr "تم تصدير تقرير النظام الخاص بك إلى سطح المكتب."
 
-#: ui/MainWindow.glade:847
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr "~/سطح_المكتب/تقرير_نظام_مونا.tar.gz"
 
-#: src/MainWindow.py:94
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr "ماونا حول"
 
-#: src/MainWindow.py:145
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr "نبذة عن ماونا نبذة عن"
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr "ذاكرة الوصول العشوائي المادية"

@@ -8,64 +8,97 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-08 14:27-0300\n"
-"PO-Revision-Date: 2024-01-08 15:13-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
+"PO-Revision-Date: 2025-02-06 20:42-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ui/MainWindow.glade:7
 msgid "About Mauna About Application"
 msgstr "Maunari buruz aplikazioari buruz"
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr "Lortu zure Mauna sistemari buruzko informazioa."
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr "Webgunea"
 
-#: ui/MainWindow.glade:83
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr "Esportatu sistemaren txostena"
 
-#: ui/MainWindow.glade:139
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr "Aplikazioari buruz"
 
-#: ui/MainWindow.glade:620
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr "<b>Kernel:</b>"
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr "<b>Mahaigaina:</b>"
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr "<b>CPU:</b>"
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr "<b>GPU:</b>"
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr "GPU llvmpipe gisa exekutatzen da"
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr "<b>RAM:</b>"
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr "<b>IP Publikoa:</b>"
 
-#: ui/MainWindow.glade:683
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr "<b>Tokiko IP:</b>"
 
-#: ui/MainWindow.glade:788
-msgid "About this computer"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
 msgstr "Ordenagailu honi buruz"
 
-#: ui/MainWindow.glade:827 ui/MainWindow.glade:849
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr "Sistemaren erregistroak biltzen..."
 
-#: ui/MainWindow.glade:883
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr "Zure sistemaren txostena mahaigainera esportatu da."
 
-#: ui/MainWindow.glade:884
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr "~/Mahaigaina/mauna_sistemaren_txostena.tar.gz"
 
-#: src/MainWindow.py:100
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr "Mauna Buruz"
 
-#: src/MainWindow.py:156
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr "Mauna buruz"
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr "RAM Fisikoa"

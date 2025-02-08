@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:49+0300\n"
-"PO-Revision-Date: 2023-08-14 17:16-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
+"PO-Revision-Date: 2025-02-06 22:12-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -16,56 +16,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ui/MainWindow.glade:7
 msgid "About Mauna About Application"
 msgstr "마우나 소개 지원서 소개"
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr "마우나 시스템에 대한 정보를 얻으십시오."
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr "웹사이트"
 
-#: ui/MainWindow.glade:85
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr "내보내기 시스템 보고서"
 
-#: ui/MainWindow.glade:141
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr "앱 정보"
 
-#: ui/MainWindow.glade:607
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr "<b>Kernel:</b>"
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr "<b>데스크탑:</b>"
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr "<b>CPU:</b>"
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr "<b>GPU:</b>"
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr "llvmpipe로 실행되는 GPU"
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr "<b>RAM:</b>"
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr "<b>공개 IP:</b>"
 
-#: ui/MainWindow.glade:649
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr "<b>로컬 IP:</b>"
 
-#: ui/MainWindow.glade:752
-msgid "About this computer"
-msgstr "이 컴퓨터 정보"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
+msgstr "이 컴퓨터에 관하여"
 
-#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr "시스템 로그 수집 중..."
 
-#: ui/MainWindow.glade:846
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr "시스템 보고서가 데스크톱으로 내보내졌습니다."
 
-#: ui/MainWindow.glade:847
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr "~/데스크톱/마우나_시스템_보고서.tar.gz"
 
-#: src/MainWindow.py:94
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr "마우나 소개"
 
-#: src/MainWindow.py:145
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr "마우나 소개 마우나 소개"
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr "물리적 RAM"

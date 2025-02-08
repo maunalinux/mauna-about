@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:49+0300\n"
-"PO-Revision-Date: 2023-08-14 17:19-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
+"PO-Revision-Date: 2025-02-06 22:19-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,56 +16,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ui/MainWindow.glade:7
 msgid "About Mauna About Application"
 msgstr "Over Mauna Over toepassing"
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr "Krijg informatie over uw Mauna-systeem."
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr "Website"
 
-#: ui/MainWindow.glade:85
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr "Systeemrapport exporteren"
 
-#: ui/MainWindow.glade:141
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr "Over toepassing"
 
-#: ui/MainWindow.glade:607
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr "<b>Kernel:</b>"
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr "<b>Bureaublad:</b>"
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr "<b>CPU:</b>"
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr "<b>GPU:</b>"
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr "GPU draait als llvmpipe"
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr "<b>RAM:</b>"
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr "<b>Openbaar IP:</b>"
 
-#: ui/MainWindow.glade:649
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr "<b>Lokaal IP:</b>"
 
-#: ui/MainWindow.glade:752
-msgid "About this computer"
-msgstr "Over deze pc"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
+msgstr "Over deze computer"
 
-#: ui/MainWindow.glade:790 ui/MainWindow.glade:812
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr "Systeemlogboeken verzamelen..."
 
-#: ui/MainWindow.glade:846
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr "Uw systeemrapport is geëxporteerd naar het bureaublad."
 
-#: ui/MainWindow.glade:847
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr "~/Bureaublad/mauna_systeemrapport.tar.gz"
 
-#: src/MainWindow.py:94
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr "Mauna Over"
 
-#: src/MainWindow.py:145
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr "Over Mauna Over"
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr "Fysiek RAM-geheugen"
