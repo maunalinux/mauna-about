@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-23 13:45-0300\n"
+"POT-Creation-Date: 2025-02-06 17:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,50 +21,83 @@ msgstr ""
 msgid "About Mauna About Application"
 msgstr ""
 
-#: ui/MainWindow.glade:13
+#: ui/MainWindow.glade:14
 msgid "Get info about your Mauna system."
 msgstr ""
 
-#: ui/MainWindow.glade:15
+#: ui/MainWindow.glade:16
 msgid "Website"
 msgstr ""
 
-#: ui/MainWindow.glade:83
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:19
+msgid "translator-credits"
+msgstr ""
+
+#: ui/MainWindow.glade:86
 msgid "Export System Report"
 msgstr ""
 
-#: ui/MainWindow.glade:139
+#: ui/MainWindow.glade:142
 msgid "About App"
 msgstr ""
 
-#: ui/MainWindow.glade:620
+#: ui/MainWindow.glade:355
+msgid "<b>Kernel:</b>"
+msgstr ""
+
+#: ui/MainWindow.glade:401
+msgid "<b>Desktop:</b>"
+msgstr ""
+
+#: ui/MainWindow.glade:446
+msgid "<b>CPU:</b>"
+msgstr ""
+
+#: ui/MainWindow.glade:491
+msgid "<b>GPU:</b>"
+msgstr ""
+
+#: ui/MainWindow.glade:521
+msgid "GPU running as llvmpipe"
+msgstr ""
+
+#: ui/MainWindow.glade:564
+msgid "<b>RAM:</b>"
+msgstr ""
+
+#: ui/MainWindow.glade:636
 msgid "<b>Public IP:</b>"
 msgstr ""
 
-#: ui/MainWindow.glade:683
+#: ui/MainWindow.glade:699
 msgid "<b>Local IP:</b>"
 msgstr ""
 
-#: ui/MainWindow.glade:788
-msgid "About this computer"
+#: ui/MainWindow.glade:803
+msgid "About This Computer"
 msgstr ""
 
-#: ui/MainWindow.glade:827 ui/MainWindow.glade:849
+#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
 msgid "Gathering system logs..."
 msgstr ""
 
-#: ui/MainWindow.glade:883
+#: ui/MainWindow.glade:897
 msgid "Your system report has been exported to the desktop."
 msgstr ""
 
-#: ui/MainWindow.glade:884
+#: ui/MainWindow.glade:898
 msgid "~/Desktop/mauna_system_report.tar.gz"
 msgstr ""
 
-#: src/MainWindow.py:100
+#: src/MainWindow.py:102
 msgid "Mauna About"
 msgstr ""
 
-#: src/MainWindow.py:156
+#: src/MainWindow.py:106
+msgid "About Mauna About"
+msgstr ""
+
+#: src/MainWindow.py:191
 msgid "Physical RAM"
 msgstr ""
