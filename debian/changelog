@@ -1,3 +1,25 @@
+mauna-about (1.0.8) mauna; urgency=medium
+
+  * Update pci.ids
+
+ -- Mauna Linux <dev@maunalinux.top>  Mon, 10 Feb 2025 21:51:07 -0300
+
+mauna-about (1.0.7) mauna; urgency=medium
+
+  * feat: improved retrieving system info
+  * fix: gpu order
+  * feat: cli mode
+  * Add python3-cairosvg to depends
+  * fix(gpu): vendors added
+  * feat(net): interface and ip added on cli mode
+  * fix(net): lo removed from network section
+  * Update bin script and main
+  * Fix setup
+  * l10n: Update POT
+  * l10n: Update translations
+
+ -- Mauna Linux <dev@maunalinux.top>  Wed, 05 Feb 2025 22:42:37 -0300
+
 mauna-about (1.0.6) mauna; urgency=medium
 
   * New upstream release
