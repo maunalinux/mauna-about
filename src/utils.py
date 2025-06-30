@@ -1,11 +1,12 @@
 import os
 import apt
-import json
 import gi
 import socket
 import psutil
+
 gi.require_version("GLib", "2.0")
-from gi.repository import GLib, Gio
+gi.require_version("GUdev", "1.0")
+from gi.repository import GLib, Gio, GUdev
 
 
 cpuinfo_path = "/proc/cpuinfo"
@@ -182,7 +183,7 @@ def get_gpu():
                         devices.append(
                             {
                                 "vendor": vendor,
-                                "vendor_short":vendor_short,
+                                "vendor_short": vendor_short,
                                 "class": cont,
                                 "device": device,
                                 "driver": driver,
@@ -214,41 +215,16 @@ def get_kernel():
 
 
 def get_ram_size():
-    """
-    Get the total physical and total RAM size.
-    """
-    total_ram = 0
-    total_physical_ram = 0
-    # physical ram size
-    try:
-        with open("/sys/devices/system/memory/block_size_bytes") as bsbyte:
-            block_size = int(bsbyte.read().strip(), 16)
-        total_online_mem = 0
-        total_offline_mem = 0
-        m_files = os.listdir("/sys/devices/system/memory/")
-        for file in m_files:
-            if os.path.isdir("/sys/devices/system/memory/" + file) and file.startswith(
-                "memory"
-            ):
-                with open("/sys/devices/system/memory/" + file + "/online") as online:
-                    memory_on_off = online.read().strip()
-                if memory_on_off == "1":
-                    total_online_mem = total_online_mem + block_size
-                if memory_on_off == "0":
-                    total_offline_mem = total_offline_mem + block_size
-        total_physical_ram = total_online_mem + total_offline_mem
-    except Exception as e:
-        print("Exception on /sys/devices/system/memory/block_size_bytes : {}".format(e))
+    client = GUdev.Client.new(["dmi"])
+    device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
 
-    try:
-        with open("/proc/meminfo") as meminfo:
-            meminfo_lines = meminfo.read().split("\n")
-        for line in meminfo_lines:
-            if "MemTotal:" in line:
-                total_ram = int(line.split()[1]) * 1024
-    except Exception as e:
-        print("Exception on /proc/meminfo : {}".format(e))
-    return total_physical_ram, total_ram
+    num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
+    ram_total = 0
+    for i in range(num_ram):
+        ram_size = device.get_property_as_uint64(f"MEMORY_DEVICE_{i}_SIZE")
+        ram_total += ram_size
+
+    return ram_total / 1024 / 1024 / 1024  # e.g.: 16.0
 
 
 def get_credentials():
@@ -338,24 +314,11 @@ def get_wm_theme():
     return "Unknown"
 
 
-def beauty_size(size):
-    if type(size) is int:
-        size = size / 1024
-        if size > 1048576:
-            size = "{:.1f} GiB".format(float(size / 1048576))
-        elif size > 1024:
-            size = "{:.1f} MiB".format(float(size / 1024))
-        else:
-            size = "{:.1f} KiB".format(float(size))
-        return size
-    return "size not found"
-
-
 def local_ip_with_interfaces():
     ip_with_interfaces = {}
     ignore_prefixes = ["lo", "docker", "veth", "br", "virbr"]
 
-    for iface,addrs in psutil.net_if_addrs().items():
+    for iface, addrs in psutil.net_if_addrs().items():
         if iface == "lo":
             continue
         local_ip = None
@@ -368,22 +331,21 @@ def local_ip_with_interfaces():
         for addr in addrs:
             if addr.family == socket.AF_INET:
                 local_ip = addr.address
-    
 
         if local_ip and is_real:
             try:
-                with socket.socket(socket.AF_INET,socket.SOCK_DGRAM)as s:
-                    s.connect(("8.8.8.8",80))
+                with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+                    s.connect(("8.8.8.8", 80))
                     real_ip = s.getsockname()[0]
 
             except OSError:
                 real_ip = None
-    
+
         if local_ip:
             ip_with_interfaces[iface] = {
-                "local_ip":local_ip,
-                "real_ip":real_ip,
-                "is_real":is_real
+                "local_ip": local_ip,
+                "real_ip": real_ip,
+                "is_real": is_real,
             }
 
     return ip_with_interfaces

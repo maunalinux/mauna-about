@@ -84,7 +84,6 @@ class MainWindow:
         self.lbl_gpu = self.builder.get_object("lbl_gpu")
         self.lbl_title_gpu = self.builder.get_object("lbl_title_gpu")
         self.lbl_ram = self.builder.get_object("lbl_ram")
-        self.lbl_ram_phy = self.builder.get_object("lbl_ram_phy")
         self.lbl_ip_public = self.builder.get_object("lbl_ip_public")
         self.lbl_ip_local = self.builder.get_object("lbl_ip_local")
 
@@ -202,20 +201,16 @@ class MainWindow:
         cpu, cores = utils.get_cpu()
         self.lbl_cpu.set_label("{} x{}".format(cpu, cores))
 
-        total_physical_ram, total_ram = utils.get_ram_size()
-        self.lbl_ram.set_label(self.beauty_size(total_ram))
-        if total_physical_ram != 0:
-            self.lbl_ram_phy.set_markup(
-                "({}:  {})".format(
-                    _("Physical RAM"), self.beauty_size(total_physical_ram)
-                )
-            )
-        else:
-            self.lbl_ram_phy.set_label("")
+        total_ram = utils.get_ram_size()
+        self.lbl_ram.set_label(f"{total_ram} GB")
 
     def add_gpus_to_ui(self):
         gpus = utils.get_gpu()
-        self.lbl_gpu.set_markup("{} {} ({})".format(gpus[0]["vendor_short"], gpus[0]["device"], gpus[0]["driver"]))
+        self.lbl_gpu.set_markup(
+            "{} {} ({})".format(
+                gpus[0]["vendor_short"], gpus[0]["device"], gpus[0]["driver"]
+            )
+        )
         try:
             if "llvmpipe" in gpus[0]["driver"].lower():
                 llvm = True
@@ -225,7 +220,11 @@ class MainWindow:
             print("llvmpipe detect err: {}".format(e))
             llvm = False
 
-        self.lbl_gpu.set_markup("{} {} ({})".format(gpus[0]["vendor_short"], gpus[0]["device"], gpus[0]["driver"]))
+        self.lbl_gpu.set_markup(
+            "{} {} ({})".format(
+                gpus[0]["vendor_short"], gpus[0]["device"], gpus[0]["driver"]
+            )
+        )
 
         GLib.idle_add(self.img_llvm.set_visible, llvm)
         if len(gpus) > 1:
@@ -243,7 +242,11 @@ class MainWindow:
                 gpulabel.set_line_wrap_mode(Gtk.WrapMode.WORD)
                 gpulabel.set_max_width_chars(55)
                 gpulabel.set_selectable(True)
-                gpulabel.set_markup("{} {} ({})".format(gpu["vendor_short"], gpu["device"], gpu["driver"]))
+                gpulabel.set_markup(
+                    "{} {} ({})".format(
+                        gpu["vendor_short"], gpu["device"], gpu["driver"]
+                    )
+                )
                 box.pack_start(gputitle, False, True, 0)
                 box.pack_start(gpulabel, False, True, 0)
 
@@ -255,7 +258,6 @@ class MainWindow:
             GLib.idle_add(self.box_extra_gpu.set_visible, False)
 
     def add_ip_to_ui(self, ip):
-
         local, public = ip
         self.lbl_ip_public.set_text("{}".format(len(public.strip()) * "*"))
         lan = ""
@@ -264,18 +266,6 @@ class MainWindow:
                 lan += "{} ({})\n".format(lip[0], lip[1])
         lan = lan.rstrip("\n")
         self.lbl_ip_local.set_markup("{}".format(lan))
-
-    def beauty_size(self, size):
-        if type(size) is int:
-            size = size / 1024
-            if size > 1048576:
-                size = "{:.1f} GiB".format(float(size / 1048576))
-            elif size > 1024:
-                size = "{:.1f} MiB".format(float(size / 1024))
-            else:
-                size = "{:.1f} KiB".format(float(size))
-            return size
-        return "size not found"
 
     def readfile(self, filename):
         if not os.path.exists(filename):
@@ -398,7 +388,6 @@ class MainWindow:
         timestamp = lambda: int(round(time.time() * 1000))  # milliseconds
 
         if event.type == Gdk.EventType._2BUTTON_PRESS:
-
             if timestamp() - self.last_click_timestamp < 800:
                 self.click_count += 1
             else:

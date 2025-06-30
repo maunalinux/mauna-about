@@ -47,7 +47,7 @@ class CLI(object):
                     info_line = info[index]
                 else:
                     info_line = ""
-                print(f"{self.colored_text(img_line,'yellow')} {info_line}")
+                print(f"{self.colored_text(img_line, 'yellow')} {info_line}")
         else:
             for line in info:
                 print(line)
@@ -82,11 +82,11 @@ class CLI(object):
         window_manager = utils.get_window_manager()
         window_manager_theme = utils.get_wm_theme()
         cpu_model, cpu_thread = utils.get_cpu()
-        total_physical_ram, total_ram = utils.get_ram_size()
+        total_ram = utils.get_ram_size()
         gpus = utils.get_gpu()
 
         info.append(
-            f"{self.colored_text(username, 'green')}{self.colored_text('@','red')}{self.colored_text(hostname, 'yellow')}"
+            f"{self.colored_text(username, 'green')}{self.colored_text('@', 'red')}{self.colored_text(hostname, 'yellow')}"
         )
         info.append(self.colored_text(f"----------------", "blue"))
         info.append(self.colored_info("OS", os_pretty))
@@ -104,9 +104,13 @@ class CLI(object):
         info.append(self.colored_info("Theme", window_manager_theme))
         info.append(self.colored_info("CPU", f"{cpu_model} x{cpu_thread}"))
         ip_with_interfaces = utils.local_ip_with_interfaces()
-        max_interface_length = max(len(interface) for interface in ip_with_interfaces.keys())
-        max_ip_length = max(len(details["local_ip"]) for details in ip_with_interfaces.values())
-        for interface,details in ip_with_interfaces.items():
+        max_interface_length = max(
+            len(interface) for interface in ip_with_interfaces.keys()
+        )
+        max_ip_length = max(
+            len(details["local_ip"]) for details in ip_with_interfaces.values()
+        )
+        for interface, details in ip_with_interfaces.items():
             formatted_interface = interface.ljust(max_interface_length)
             formatted_ip = details["local_ip"].ljust(max_ip_length)
             net_info = f"Interface: {formatted_interface}, IP: {formatted_ip}"
@@ -114,11 +118,10 @@ class CLI(object):
                 net_info += f", Real IP: {details['real_ip']}"
             info.append(self.colored_info("NET", net_info))
 
-
         info.append(
             self.colored_info(
                 "RAM",
-                f"{utils.beauty_size(total_ram)} (Physical RAM:{utils.beauty_size(total_physical_ram)})",
+                f"{total_ram} GB",
             )
         )
         for index, gpu in enumerate(gpus):
