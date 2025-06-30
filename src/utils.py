@@ -48,6 +48,18 @@ def get_desktop_environment():
     if desktop_session == "GNOME":
         gnome = cache["gnome-shell"]
         desktop_version = gnome.installed.version.split("-")[0]
+    elif desktop_session == "XFCE":
+        xfce = cache["xfce4"]
+        desktop_version = xfce.installed.version.split("-")[0]
+    elif desktop_session == "CINNAMON":
+        cinnamon = cache["cinnamon-session"]
+        desktop_version = cinnamon.installed.version.split("-")[0]
+    elif desktop_session == "LXQT":
+        lxqt = cache["lxqt"]
+        desktop_version = lxqt.installed.version.split("-")[0]
+    elif desktop_session == "MATE":
+        mate = cache["mate-desktop"]
+        desktop_version = mate.installed.version.split("-")[0]
 
     return desktop_session, desktop_version
 
@@ -61,12 +73,12 @@ def get_cpu():
     with open(cpuinfo_path, "r") as f:
         file_content = f.readlines()
         model = None
-        thread_no = None
+        thread_no = 0
         for line in file_content:
             if "model name" in line:
                 model = line_split(line)
             if "siblings" in line:
-                thread_no = line_split(line)
+                thread_no += 1
 
         return model, thread_no
 
@@ -296,56 +308,12 @@ def get_window_manager():
         return "KWin"
     elif desktop_env == "XFCE":
         return "Xfwm4"
-    elif desktop_env == "LXDE":
-        return "Openbox"
+    elif desktop_env == "LXQT":
+        return "Xfwm4"
     elif desktop_env == "MATE":
         return "Marco"
     elif desktop_env == "Cinnamon":
         return "Muffin"
-    elif desktop_env == "Pantheon":
-        return "Gala"
-    elif desktop_env == "Budgie:GNOME":
-        return "Mutter"
-    elif desktop_env == "Budgie:Pantheon":
-        return "Gala"
-    elif desktop_env == "Budgie:XFCE":
-        return "Xfwm4"
-    elif desktop_env == "Budgie:KDE":
-        return "KWin"
-    elif desktop_env == "Budgie:LXDE":
-        return "Openbox"
-    elif desktop_env == "Budgie:MATE":
-        return "Marco"
-    elif desktop_env == "Budgie:Cinnamon":
-        return "Muffin"
-    elif desktop_env == "Budgie:Deepin":
-        return "KWin"
-    elif desktop_env == "Deepin":
-        return "KWin"
-    elif desktop_env == "Enlightenment":
-        return "Enlightenment"
-    elif desktop_env == "i3":
-        return "i3"
-    elif desktop_env == "Liri":
-        return "KWin"
-    elif desktop_env == "Liri:GNOME":
-        return "Mutter"
-    elif desktop_env == "Liri:Pantheon":
-        return "Gala"
-    elif desktop_env == "Liri:XFCE":
-        return "Xfwm4"
-    elif desktop_env == "Liri:LXDE":
-        return "Openbox"
-    elif desktop_env == "Liri:MATE":
-        return "Marco"
-    elif desktop_env == "Liri:Cinnamon":
-        return "Muffin"
-    elif desktop_env == "Liri:Deepin":
-        return "KWin"
-    elif desktop_env == "Liri:Enlightenment":
-        return "Enlightenment"
-    elif desktop_env == "Liri:i3":
-        return "i3"
     return "Unknown"
 
 
@@ -361,6 +329,12 @@ def get_wm_theme():
         return "Breeze"
     elif desktop_env == "XFCE":
         return "Xfce"
+    elif desktop_env == "CINNAMON":
+        return "Cinnamon"
+    elif desktop_env == "LXQT":
+        return "Lxqt"
+    elif desktop_env == "MATE":
+        return "Mate"
     return "Unknown"
 
 
