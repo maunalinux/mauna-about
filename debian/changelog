@@ -1,3 +1,9 @@
+mauna-about (1.0.9) mauna; urgency=medium
+
+  * Update
+
+ -- Mauna Linux <dev@maunalinux.top>  Sun, 29 Jun 2025 20:43:58 -0300
+
 mauna-about (1.0.8) mauna; urgency=medium
 
   * Update pci.ids
