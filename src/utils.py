@@ -5,8 +5,7 @@ import struct
 import fcntl
 
 gi.require_version("GLib", "2.0")
-gi.require_version("GUdev", "1.0")
-from gi.repository import GLib, Gio, GUdev
+from gi.repository import GLib, Gio
 
 
 is_debian=True
@@ -216,18 +215,12 @@ def get_kernel():
 
 
 def get_ram_size():
-    client = GUdev.Client.new(["dmi"])
-    device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
-    if device == None:
-        return 0
-
-    num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
+    block_size = int(readfile("/sys/devices/system/memory/block_size_bytes").strip(), 16)
     ram_total = 0
-    for i in range(num_ram):
-        ram_size = device.get_property_as_uint64(f"MEMORY_DEVICE_{i}_SIZE")
-        ram_total += ram_size
-
-    return ram_total / 1024 / 1024 / 1024  # e.g.: 16.0
+    for dir in os.listdir("/sys/devices/system/memory/"):
+        if readfile("/sys/devices/system/memory/{}/online".format(dir)).strip() == "1":
+            ram_total += block_size
+    return ram_total / 1024 / 1024 / 1024 # e.g.: 16.0
 
 
 def get_credentials():

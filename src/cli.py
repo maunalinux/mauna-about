@@ -112,10 +112,10 @@ class CLI(object):
         info.append(self.colored_info("CPU", f"{cpu_model} x{cpu_thread}"))
         ip_with_interfaces = utils.get_local_ip()
         max_interface_length = max(
-            len(interface[0]) for interface in ip_with_interfaces
+            len(interface[1]) for interface in ip_with_interfaces
         )
         max_ip_length = max(
-            len(details[1]) for details in ip_with_interfaces
+            len(details[0]) for details in ip_with_interfaces
         )
         for ip, iface in ip_with_interfaces:
             formatted_interface = iface.ljust(max_interface_length)
