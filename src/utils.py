@@ -356,4 +356,5 @@ def get_hardware_name():
 
     if len(hw) > 0:
         hardware = " ".join(hw)
+    hardware += " ({})".format(readfile(dmi_dir+"board_name").strip())
     return hardware
