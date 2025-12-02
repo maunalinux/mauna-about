@@ -5,8 +5,9 @@ import platform
 import gi
 
 gi.require_version('Gtk', '3.0')
-gi.require_version('Soup', '2.4')
-from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf, Soup
+from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
+
+import requests
 
 import locale
 from locale import gettext as _
@@ -48,17 +49,18 @@ class MainWindow:
         self.window.connect("destroy", self.onDestroy)
         self.defineComponents()
 
+        # Show Screen:
+        self.window.show_all()
+
         # self.stack_main.set_visible_child_name("loading")
 
         self.addTurkishFlag()
         self.add_gpus_to_ui()
 
-        thread2 = threading.Thread(target=self.add_ip_to_ui, args=(self.get_ips(),))
+        thread2 = threading.Thread(target=self.add_ip_to_ui)
         thread2.daemon = True
         thread2.start()
 
-        # Show Screen:
-        self.window.show_all()
 
         self.readSystemInfo()
 
@@ -243,10 +245,10 @@ class MainWindow:
             )
         )
 
-        GLib.idle_add(self.img_llvm.set_visible, llvm)
+        self.img_llvm.set_visible(llvm)
         if len(gpus) > 1:
             self.lbl_title_gpu.set_markup("<b>GPU 1:</b>")
-            GLib.idle_add(self.box_extra_gpu.set_visible, True)
+            self.box_extra_gpu.set_visible(True)
             count = 2
             for index, gpu in enumerate(gpus[1:]):
                 box = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 5)
@@ -270,19 +272,20 @@ class MainWindow:
                 self.box_extra_gpu.pack_start(box, False, True, 0)
 
             # self.box_extra_gpu.show_all()
-            GLib.idle_add(self.box_extra_gpu.show_all)
+            self.box_extra_gpu.show_all()
         else:
-            GLib.idle_add(self.box_extra_gpu.set_visible, False)
+            self.box_extra_gpu.set_visible(False)
 
-    def add_ip_to_ui(self, ip):
-        local, public = ip
+    def add_ip_to_ui(self):
+        """async function"""
+        local, public = self.get_ips()
         self.lbl_ip_public.set_text("{}".format(len(public.strip()) * "*"))
         lan = ""
         for lip in local:
             if lip[1] != "lo":
                 lan += "{} ({})\n".format(lip[0], lip[1])
         lan = lan.rstrip("\n")
-        self.lbl_ip_local.set_markup("{}".format(lan))
+        GLib.idle_add(self.lbl_ip_local.set_markup, "{}".format(lan))
 
     def readfile(self, filename):
         if not os.path.exists(filename):
@@ -301,28 +304,12 @@ class MainWindow:
             .split("\n")
         )
         for server in servers:
-            self.urls.put(server)
-        self.process_next()
+            r = requests.get(server)
+            if r.status_code == 200 and self.is_valid_ip(r.text):
+                self.public_ip = r.text
+                break
         return self.public_ip
 
-    def process_next(self):
-        if not self.urls.empty():
-            url = self.urls.get()
-            self.get(url)
-
-    def on_message_finished(self, session, message, user_data):
-        response_body = message.response_body.flatten().get_data()
-        url = response_body.decode("utf-8").strip()
-        if self.is_valid_ip(url):
-            self.public_ip = url
-
-        else:
-            self.process_next()  # Proceed to the next download
-        
-    def get(self, url):
-        session = Soup.Session.new()
-        message = Soup.Message.new("GET", url)
-        session.queue_message(message, self.on_message_finished, None)       
 
     def is_valid_ip(self, address):
         parts = address.split(".")
