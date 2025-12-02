@@ -1,6 +1,8 @@
 import os
 import gi
 import socket
+import struct
+import fcntl
 
 gi.require_version("GLib", "2.0")
 gi.require_version("GUdev", "1.0")
@@ -317,38 +319,48 @@ def get_wm_theme():
     return "Unknown"
 
 
-def local_ip_with_interfaces():
-    ip_with_interfaces = {}
-    ignore_prefixes = ["lo", "docker", "veth", "br", "virbr"]
+# https://stackoverflow.com/questions/24196932/how-can-i-get-the-ip-address-from-a-nic-network-interface-controller-in-python
+def get_local_ip():
+    ret = []
+    for ifname in os.listdir("/sys/class/net"):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        try:
+            ip = socket.inet_ntoa(
+                fcntl.ioctl(
+                    s.fileno(),
+                    0x8915,  # SIOCGIFADDR
+                    struct.pack("256s", ifname[:15].encode("utf-8")),
+                )[20:24]
+            )
+            ret.append((ip, ifname))
+        except Exception as e:
+            print("{}: {}".format(ifname, e))
+    return ret
 
-    for iface, addrs in os.listdir("/sys/class/net"):
-        if iface == "lo":
-            continue
-        local_ip = None
-        real_ip = None
-        is_real = False
+def readfile(filename):
+    if not os.path.exists(filename):
+        return ""
+    file = open(filename, "r")
+    data = file.read()
+    file.close()
+    return data
 
-        if not any(iface.startswith(prefix) for prefix in ignore_prefixes):
-            is_real = True
+def get_hardware_name():
+    # List from https://github.com/systemd/systemd/blob/main/hwdb.d/20-dmi-id.hwdb
+    garbage_list = [
+        "", "Defaultstring", "Default string", "N/A", "O.E.M."
+        "OEM", "TobefilledbyO.E.M.","ToBeFilledByO.E.M.",
+        "To Be Filled By O.E.M."
+    ]
 
-        for addr in addrs:
-            if addr.family == socket.AF_INET:
-                local_ip = addr.address
+    hw = []
+    dmi_dir = "/sys/devices/virtual/dmi/id/"
+    hw.append(readfile(dmi_dir+"sys_vendor").strip())
+    product = readfile(dmi_dir+"product_version").strip()
+    if product in garbage_list:
+        product = readfile(dmi_dir+"product_name").strip()
+    hw.append(product)
 
-        if local_ip and is_real:
-            try:
-                with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-                    s.connect(("8.8.8.8", 80))
-                    real_ip = s.getsockname()[0]
-
-            except OSError:
-                real_ip = None
-
-        if local_ip:
-            ip_with_interfaces[iface] = {
-                "local_ip": local_ip,
-                "real_ip": real_ip,
-                "is_real": is_real,
-            }
-
-    return ip_with_interfaces
+    if len(hw) > 0:
+        hardware = " ".join(hw)
+    return hardware

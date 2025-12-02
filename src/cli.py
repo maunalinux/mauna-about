@@ -9,6 +9,7 @@ try:
 except:
     print("python3-cairosvg not found.")
 
+
 gi.require_version("GLib", "2.0")
 from gi.repository import GLib
 import PIL.Image
@@ -93,7 +94,9 @@ class CLI(object):
             f"{self.colored_text(username, 'green')}{self.colored_text('@', 'red')}{self.colored_text(hostname, 'yellow')}"
         )
         info.append(self.colored_text(f"----------------", "blue"))
+        hardware = utils.get_hardware_name()
         info.append(self.colored_info("OS", os_pretty))
+        info.append(self.colored_info("Hardware", hardware))
         info.append(self.colored_info("Kernel", f"{kernel} {release}"))
         info.append(self.colored_info("Uptime", uptime))
         info.append(self.colored_info("Total Packages", total_packages))
@@ -107,19 +110,17 @@ class CLI(object):
         info.append(self.colored_info("Window Manager", window_manager))
         info.append(self.colored_info("Theme", window_manager_theme))
         info.append(self.colored_info("CPU", f"{cpu_model} x{cpu_thread}"))
-        ip_with_interfaces = utils.local_ip_with_interfaces()
+        ip_with_interfaces = utils.get_local_ip()
         max_interface_length = max(
-            len(interface) for interface in ip_with_interfaces.keys()
+            len(interface[0]) for interface in ip_with_interfaces
         )
         max_ip_length = max(
-            len(details["local_ip"]) for details in ip_with_interfaces.values()
+            len(details[1]) for details in ip_with_interfaces
         )
-        for interface, details in ip_with_interfaces.items():
-            formatted_interface = interface.ljust(max_interface_length)
-            formatted_ip = details["local_ip"].ljust(max_ip_length)
+        for ip, iface in ip_with_interfaces:
+            formatted_interface = iface.ljust(max_interface_length)
+            formatted_ip = ip.ljust(max_ip_length)
             net_info = f"Interface: {formatted_interface}, IP: {formatted_ip}"
-            if details["is_real"]:
-                net_info += f", Real IP: {details['real_ip']}"
             info.append(self.colored_info("NET", net_info))
 
         info.append(

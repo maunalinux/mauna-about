@@ -192,24 +192,8 @@ class MainWindow:
         kernel, release = utils.get_kernel()
         self.lbl_kernel.set_label(f"{kernel} {release}")
 
-        # List from https://github.com/systemd/systemd/blob/main/hwdb.d/20-dmi-id.hwdb
-        garbage_list = [
-            "", "Defaultstring", "Default string", "N/A", "O.E.M."
-            "OEM", "TobefilledbyO.E.M.","ToBeFilledByO.E.M.",
-            "To Be Filled By O.E.M."
-        ]
-
-        hw = []
-        dmi_dir = "/sys/devices/virtual/dmi/id/"
-        hw.append(self.readfile(dmi_dir+"sys_vendor").strip())
-        product = self.readfile(dmi_dir+"product_version").strip()
-        if product in garbage_list:
-            product = self.readfile(dmi_dir+"product_name").strip()
-        hw.append(product)
-
-        if len(hw) > 0:
-            hardware = " ".join(hw)
-            self.lbl_hardware.set_label(f"{hardware}")
+        hardware = utils.get_hardware_name()
+        self.lbl_hardware.set_label(f"{hardware}")
 
         oem_available = os.path.isfile("/sys/firmware/acpi/tables/MSDM")
         self.img_oem.set_visible(oem_available)
@@ -304,13 +288,6 @@ class MainWindow:
         lan = lan.rstrip("\n")
         GLib.idle_add(self.lbl_ip_local.set_markup, "{}".format(lan))
 
-    def readfile(self, filename):
-        if not os.path.exists(filename):
-            return ""
-        file = open(filename, "r")
-        data = file.read()
-        file.close()
-        return data
 
     def get_ip(self):
         servers = (
@@ -341,26 +318,9 @@ class MainWindow:
                 return False
         return True
 
-    # https://stackoverflow.com/questions/24196932/how-can-i-get-the-ip-address-from-a-nic-network-interface-controller-in-python
-    def get_local_ip(self):
-        ret = []
-        for ifname in os.listdir("/sys/class/net"):
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            try:
-                ip = socket.inet_ntoa(
-                    fcntl.ioctl(
-                        s.fileno(),
-                        0x8915,  # SIOCGIFADDR
-                        struct.pack("256s", ifname[:15].encode("utf-8")),
-                    )[20:24]
-                )
-                ret.append((ip, ifname))
-            except Exception as e:
-                print("{}: {}".format(ifname, e))
-        return ret
 
     def get_ips(self):
-        return self.get_local_ip(), self.get_ip()
+        return utils.get_local_ip(), self.get_ip()
 
     # Signals:
     def on_menu_aboutapp_clicked(self, button):
