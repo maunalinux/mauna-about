@@ -1,9 +1,13 @@
 import gi
 import os
-import cairosvg
 import io
 import utils
 
+
+try:
+    import cairosvg
+except:
+    print("python3-cairosvg not found.")
 
 gi.require_version("GLib", "2.0")
 from gi.repository import GLib

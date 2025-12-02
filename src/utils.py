@@ -1,12 +1,18 @@
 import os
-import apt
 import gi
 import socket
-import psutil
 
 gi.require_version("GLib", "2.0")
 gi.require_version("GUdev", "1.0")
 from gi.repository import GLib, Gio, GUdev
+
+
+is_debian=True
+try:
+    import apt
+except:
+    is_debian=False
+    print("python3-apt not found.")
 
 
 cpuinfo_path = "/proc/cpuinfo"
@@ -45,6 +51,7 @@ def get_desktop_environment():
     desktop_session = os.environ.get("XDG_CURRENT_DESKTOP")
     desktop_session = "Unknown" if desktop_session is None else desktop_session
     desktop_version = "Unknown"
+    if is_debian:
     cache = apt.Cache()
     if desktop_session == "GNOME":
         gnome = cache["gnome-shell"]
@@ -52,16 +59,8 @@ def get_desktop_environment():
     elif desktop_session == "XFCE":
         xfce = cache["xfce4"]
         desktop_version = xfce.installed.version.split("-")[0]
-    elif desktop_session == "CINNAMON":
-        cinnamon = cache["cinnamon-session"]
-        desktop_version = cinnamon.installed.version.split("-")[0]
-    elif desktop_session == "LXQT":
-        lxqt = cache["lxqt"]
-        desktop_version = lxqt.installed.version.split("-")[0]
-    elif desktop_session == "MATE":
-        mate = cache["mate-desktop"]
-        desktop_version = mate.installed.version.split("-")[0]
-
+    else:
+        desktop_version = ""
     return desktop_session, desktop_version
 
 
@@ -261,6 +260,8 @@ def get_total_installed_packages():
     """
     Get the total number of installed packages.
     """
+    if not is_debian:
+        return 0
     cache = apt.Cache()
     return len([pkg for pkg in cache if pkg.is_installed])
 
@@ -320,7 +321,7 @@ def local_ip_with_interfaces():
     ip_with_interfaces = {}
     ignore_prefixes = ["lo", "docker", "veth", "br", "virbr"]
 
-    for iface, addrs in psutil.net_if_addrs().items():
+    for iface, addrs in os.listdir("/sys/class/net"):
         if iface == "lo":
             continue
         local_ip = None
