@@ -192,13 +192,14 @@ class MainWindow:
         kernel, release = utils.get_kernel()
         self.lbl_kernel.set_label(f"{kernel} {release}")
 
-        for dmi_file in ["board_name", "product_name"]:
+        hw = []
+        for dmi_file in ["product_name", "board_vendor", "board_name"]:
             dmi_file = f"/sys/devices/virtual/dmi/id/{dmi_file}"
             if os.path.isfile(dmi_file):
-                with open(dmi_file, "r") as f:
-                    hardware = f.read().strip()
-                    self.lbl_hardware.set_label(f"{hardware}")
-                    break
+	              hw.append(self.readfile(dmi_file).strip())
+        if len(hw) > 0:
+            hardware = " ".join(hw)
+            self.lbl_hardware.set_label(f"{hardware}")
 
         oem_available = os.path.isfile("/sys/firmware/acpi/tables/MSDM")
         self.img_oem.set_visible(oem_available)
