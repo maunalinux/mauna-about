@@ -217,6 +217,8 @@ def get_kernel():
 def get_ram_size():
     client = GUdev.Client.new(["dmi"])
     device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
+    if device == None:
+        return 0
 
     num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
     ram_total = 0

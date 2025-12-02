@@ -206,6 +206,8 @@ class MainWindow:
 
     def add_gpus_to_ui(self):
         gpus = utils.get_gpu()
+        if len(gpus) <= 0:
+            return
         self.lbl_gpu.set_markup(
             "{} {} ({})".format(
                 gpus[0]["vendor_short"], gpus[0]["device"], gpus[0]["driver"]
