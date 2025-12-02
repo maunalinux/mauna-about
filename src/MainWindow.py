@@ -192,13 +192,21 @@ class MainWindow:
         kernel, release = utils.get_kernel()
         self.lbl_kernel.set_label(f"{kernel} {release}")
 
+        # List from https://github.com/systemd/systemd/blob/main/hwdb.d/20-dmi-id.hwdb
+        garbage_list = [
+            "", "Defaultstring", "Default string", "N/A", "O.E.M."
+            "OEM", "TobefilledbyO.E.M.","ToBeFilledByO.E.M.",
+            "To Be Filled By O.E.M."
+        ]
+
         hw = []
-        for dmi_file in ["board_vendor", "board_name", "product_name"]:
-            dmi_file = f"/sys/devices/virtual/dmi/id/{dmi_file}"
-            if os.path.isfile(dmi_file):
-                info = self.readfile(dmi_file).strip()
-                if not info in hw:
-	                  hw.append(info)
+        dmi_dir = "/sys/devices/virtual/dmi/id/"
+        hw.append(self.readfile(dmi_dir+"sys_vendor").strip())
+        product = self.readfile(dmi_dir+"product_version").strip()
+        if product in garbage_list:
+            product = self.readfile(dmi_dir+"product_name").strip()
+        hw.append(product)
+
         if len(hw) > 0:
             hardware = " ".join(hw)
             self.lbl_hardware.set_label(f"{hardware}")
