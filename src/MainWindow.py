@@ -57,13 +57,14 @@ class MainWindow:
         thread2.daemon = True
         thread2.start()
 
+        # Show Screen:
+        self.window.show_all()
+
         self.readSystemInfo()
 
         # Set application:
         self.application = application
 
-        # Show Screen:
-        self.window.show_all()
 
     # Window methods:
     def onDestroy(self, action):
@@ -89,6 +90,7 @@ class MainWindow:
         self.lbl_ip_local = self.builder.get_object("lbl_ip_local")
 
         self.img_llvm = self.builder.get_object("img_llvm")
+        self.img_oem = self.builder.get_object("img_oem")
 
         self.img_publicip = self.builder.get_object("img_publicip")
 
@@ -195,6 +197,9 @@ class MainWindow:
                     hardware = f.read().strip()
                     self.lbl_hardware.set_label(f"{hardware}")
                     break
+
+        oem_available = os.path.isfile("/sys/firmware/acpi/tables/MSDM")
+        self.img_oem.set_visible(oem_available)
 
         desktop_environment, desktop_environment_version = (
             utils.get_desktop_environment()
