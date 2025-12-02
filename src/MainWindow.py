@@ -188,10 +188,13 @@ class MainWindow:
         kernel, release = utils.get_kernel()
         self.lbl_kernel.set_label(f"{kernel} {release}")
 
-        if os.path.isfile("/sys/devices/virtual/dmi/id/product_name"):
-            with open("/sys/devices/virtual/dmi/id/product_name", "r") as f:
-                hardware = f.read().strip()
-                self.lbl_hardware.set_label(f"{hardware}")
+        for dmi_file in ["board_name", "product_name"]:
+            dmi_file = f"/sys/devices/virtual/dmi/id/{dmi_file}"
+            if os.path.isfile(dmi_file):
+                with open(dmi_file, "r") as f:
+                    hardware = f.read().strip()
+                    self.lbl_hardware.set_label(f"{hardware}")
+                    break
 
         desktop_environment, desktop_environment_version = (
             utils.get_desktop_environment()
