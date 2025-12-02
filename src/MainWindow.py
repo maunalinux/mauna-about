@@ -193,10 +193,12 @@ class MainWindow:
         self.lbl_kernel.set_label(f"{kernel} {release}")
 
         hw = []
-        for dmi_file in ["product_name", "board_vendor", "board_name"]:
+        for dmi_file in ["board_vendor", "board_name", "product_name"]:
             dmi_file = f"/sys/devices/virtual/dmi/id/{dmi_file}"
             if os.path.isfile(dmi_file):
-	              hw.append(self.readfile(dmi_file).strip())
+                info = self.readfile(dmi_file).strip()
+                if not info in hw:
+	                  hw.append(info)
         if len(hw) > 0:
             hardware = " ".join(hw)
             self.lbl_hardware.set_label(f"{hardware}")
