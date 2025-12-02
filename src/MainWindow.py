@@ -157,26 +157,26 @@ class MainWindow:
 
         self.lbl_distro.set_label(lines[0])
 
-        if lines[0].lower() != "mauna":
+        def try_load_icon(icon_name):
             try:
-                pixbuf = Gtk.IconTheme.get_default().load_icon(
-                    "emblem-{}".format(lines[0].lower()), 120, Gtk.IconLookupFlags(16)
+                return Gtk.IconTheme.get_default().load_icon(
+                    icon_name, 120, Gtk.IconLookupFlags(16)
                 )
             except Exception as e:
-                try:
-                    pixbuf = Gtk.IconTheme.get_default().load_icon(
-                        "distributor-logo", 120, Gtk.IconLookupFlags(16)
-                    )
-                except Exception as e:
-                    try:
-                        pixbuf = Gtk.IconTheme.get_default().load_icon(
-                            "image-missing", 120, Gtk.IconLookupFlags(16)
-                        )
-                    except Exception as e:
-                        pixbuf = None
+                return None
 
-            if pixbuf is not None:
-                self.img_distro.set_from_pixbuf(pixbuf)
+        if lines[0].lower() != "pardus":
+            dist_icon = "emblem-{}".format(lines[0].lower())
+            with open("/etc/os-release", "r") as f:
+                for fline in f.read().split("\n"):
+                    if fline.startswith("LOGO="):
+                        dist_icon = fline[5:]
+                        break
+            for name in [dist_icon, lines[0].lower(), "distributor-logo", "distro", "image-missing"]:
+                pixbuf = try_load_icon(name)
+                if pixbuf is not None:
+                    self.img_distro.set_from_pixbuf(pixbuf)
+                    break
 
         self.lbl_distro_version.set_label(lines[1])
         if lines[2] == "mauna":
