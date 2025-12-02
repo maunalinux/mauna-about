@@ -78,6 +78,7 @@ class MainWindow:
         self.lbl_distro_codename = self.builder.get_object("lbl_distro_codename")
 
         self.lbl_user_host = self.builder.get_object("lbl_user_host")
+        self.lbl_hardware = self.builder.get_object("lbl_hardware")
         self.lbl_kernel = self.builder.get_object("lbl_kernel")
         self.lbl_desktop = self.builder.get_object("lbl_desktop")
         self.lbl_cpu = self.builder.get_object("lbl_cpu")
@@ -186,6 +187,12 @@ class MainWindow:
         self.lbl_user_host.set_label(lines[3])
         kernel, release = utils.get_kernel()
         self.lbl_kernel.set_label(f"{kernel} {release}")
+
+        if os.path.isfile("/sys/devices/virtual/dmi/id/product_name"):
+            with open("/sys/devices/virtual/dmi/id/product_name", "r") as f:
+                hardware = f.read().strip()
+                self.lbl_hardware.set_label(f"{hardware}")
+
         desktop_environment, desktop_environment_version = (
             utils.get_desktop_environment()
         )
