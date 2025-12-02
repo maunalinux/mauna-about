@@ -50,7 +50,7 @@ def get_desktop_environment():
 
     desktop_session = os.environ.get("XDG_CURRENT_DESKTOP")
     desktop_session = "Unknown" if desktop_session is None else desktop_session
-    desktop_version = "Unknown"
+    desktop_version = ""
     if is_debian:
     cache = apt.Cache()
     if desktop_session == "GNOME":

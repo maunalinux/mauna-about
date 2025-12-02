@@ -209,9 +209,15 @@ class MainWindow:
         desktop_environment, desktop_environment_version = (
             utils.get_desktop_environment()
         )
+        desktop_protocol = ""
+        disp_name = str(type(Gdk.Display.get_default()))
+        if "Wayland" in disp_name:
+            desktop_protocol = "(Wayland)"
+        elif "X11" in disp_name:
+            desktop_protocol = "(X11)"
 
         self.lbl_desktop.set_label(
-            f"{desktop_environment} {desktop_environment_version}"
+            f"{desktop_environment} {desktop_environment_version} {desktop_protocol}"
         )
         # if lines[7] == "0":
         #     self.lbl_cpu.set_label(lines[6])
