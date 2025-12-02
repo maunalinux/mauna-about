@@ -339,6 +339,8 @@ def readfile(filename):
     return data
 
 def get_hardware_name():
+    if os.path.isfile("/sys/firmware/devicetree/base/model"):
+        return readfile("/sys/firmware/devicetree/base/model").strip()
     # List from https://github.com/systemd/systemd/blob/main/hwdb.d/20-dmi-id.hwdb
     garbage_list = [
         "", "Defaultstring", "Default string", "N/A", "O.E.M."
@@ -350,8 +352,11 @@ def get_hardware_name():
     dmi_dir = "/sys/devices/virtual/dmi/id/"
     hw.append(readfile(dmi_dir+"sys_vendor").strip())
     product = readfile(dmi_dir+"product_version").strip()
+    product_name = readfile(dmi_dir+"product_name").strip()
     if product in garbage_list:
-        product = readfile(dmi_dir+"product_name").strip()
+        product = product_name
+    elif len(product) < len(product_name):
+        product = product_name
     hw.append(product)
 
     if len(hw) > 0:
