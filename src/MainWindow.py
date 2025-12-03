@@ -18,6 +18,8 @@ import struct
 import threading
 import utils
 
+utils._ = _
+
 # Translation Constants:
 APPNAME = "mauna-about"
 TRANSLATIONS_PATH = "/usr/share/locale"
@@ -197,6 +199,7 @@ class MainWindow:
         self.lbl_hardware.set_label(f"{hardware}")
 
         self.lbl_hw_type.set_label("🖥️")
+        self.lbl_hw_type.set_tooltip_text(utils.get_hardware_type_name())
         if utils.is_laptop():
             self.lbl_hw_type.set_label("💻")
 

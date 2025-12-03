@@ -339,9 +339,54 @@ def readfile(filename):
     return data
 
 
+def get_hardware_type_name():
+    chassis_names = [
+        _("Other"),
+        _("Unknown"),
+        _("Desktop"),
+        _("Low Profile Desktop"),
+        _("Pizza Box"),
+        _("Mini Tower"),
+        _("Tower"),
+        _("Portable"),
+        _("Laptop"),
+        _("Notebook"),
+        _("Hand Held"),
+        _("Docking Station"),
+        _("All in One"),
+        _("Sub Notebook"),
+        _("Space-Saving"),
+        _("Lunch Box"),
+        _("Main System Chassis"),
+        _("Expansion Chassis"),
+        _("SubChassis"),
+        _("Bus Expansion Chassis"),
+        _("Peripheral Chassis"),
+        _("RAID Chassis"),
+        _("Rack Mount Chassis"),
+        _("Sealed-case PC"),
+        _("Multi-system chassis"),
+        _("Compact PCI"),
+        _("Advanced TCA"),
+        _("Blade"),
+        _("Blade Enclosure"),
+        _("Tablet"),
+        _("Convertible"),
+        _("Detachable"),
+        _("IoT Gateway"),
+        _("Embedded PC"),
+        _("Mini PC"),
+        _("Stick PC")
+    ]
+    type = int(readfile("/sys/devices/virtual/dmi/id/chassis_type"))
+    if type < len(chassis_names):
+        return chassis_names[type-1]
+    return chassis_names[1]
+
+
 def is_laptop():
     if os.path.exists("/sys/devices/virtual/dmi/id/chassis_type"):
-        type = readfile("/sys/devices/virtual/dmi/id/chassis_type")
+        type = readfile("/sys/devices/virtual/dmi/id/chassis_type").strip()
         return type in ["8", "9", "10", "11", "12", "14", "18", "21","31"]
     return False
 
