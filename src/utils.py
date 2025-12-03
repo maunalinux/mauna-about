@@ -338,29 +338,25 @@ def readfile(filename):
     file.close()
     return data
 
+
+def is_laptop():
+    if os.path.exists("/sys/devices/virtual/dmi/id/chassis_type"):
+        type = readfile("/sys/devices/virtual/dmi/id/chassis_type")
+        return type in ["8", "9", "10", "11", "12", "14", "18", "21","31"]
+    return False
+
 def get_hardware_name():
     if os.path.isfile("/sys/firmware/devicetree/base/model"):
         return readfile("/sys/firmware/devicetree/base/model").strip()
-    # List from https://github.com/systemd/systemd/blob/main/hwdb.d/20-dmi-id.hwdb
-    #garbage_list = [
-    #    "", "Defaultstring", "Default string", "N/A", "O.E.M."
-    #    "OEM", "TobefilledbyO.E.M.","ToBeFilledByO.E.M.",
-    #    "To Be Filled By O.E.M."
-    #]
+
+    hardware = ""
 
     hw = []
     dmi_dir = "/sys/devices/virtual/dmi/id/"
     hw.append(readfile(dmi_dir+"sys_vendor").strip())
-    #product = readfile(dmi_dir+"product_version").strip()
-    #product_name = readfile(dmi_dir+"product_name").strip()
-    #if product in garbage_list:
-    #    product = product_name
-    #elif len(product) < len(product_name):
-    #    product = product_name
-    #    product = product_name
-    hw.append(product)
+    hw.append(readfile(dmi_dir+"product_name").strip())
+    hw.append("({})".format(readfile(dmi_dir+"board_name").strip()))
 
     if len(hw) > 0:
-        hardware = " ".join(hw)
-    hardware += " ({})".format(readfile(dmi_dir+"board_name").strip())
+        hardware += " ".join(hw)
     return hardware

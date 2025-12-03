@@ -82,6 +82,7 @@ class MainWindow:
 
         self.lbl_user_host = self.builder.get_object("lbl_user_host")
         self.lbl_hardware = self.builder.get_object("lbl_hardware")
+        self.lbl_hw_type = self.builder.get_object("lbl_hw_type")
         self.lbl_kernel = self.builder.get_object("lbl_kernel")
         self.lbl_desktop = self.builder.get_object("lbl_desktop")
         self.lbl_cpu = self.builder.get_object("lbl_cpu")
@@ -194,6 +195,10 @@ class MainWindow:
 
         hardware = utils.get_hardware_name()
         self.lbl_hardware.set_label(f"{hardware}")
+
+        self.lbl_hw_type.set_label("🖥️")
+        if utils.is_laptop():
+            self.lbl_hw_type.set_label("💻")
 
         oem_available = os.path.isfile("/sys/firmware/acpi/tables/MSDM")
         self.img_oem.set_visible(oem_available)
