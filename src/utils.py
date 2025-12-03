@@ -398,12 +398,45 @@ def is_virtual_machine():
     return False
 
 
+def get_hardware_model():
+    try:
+        proxy = Gio.DBusProxy.new_for_bus_sync(
+            Gio.BusType.SYSTEM,
+            Gio.DBusProxyFlags.NONE,
+            None,
+            "org.freedesktop.hostname1",
+            "/org/freedesktop/hostname1",
+            "org.freedesktop.hostname1",
+            None
+        )
+    except GLib.Error as e:
+        print(f"Couldn't get hostnamed to start, bailing: {e.message}")
+        return None
+
+    vendor_variant = proxy.get_cached_property("HardwareVendor")
+    if vendor_variant is None:
+        print("Unable to retrieve org.freedesktop.hostname1.HardwareVendor property")
+        return None
+
+    model_variant = proxy.get_cached_property("HardwareModel")
+    if model_variant is None:
+        print("Unable to retrieve org.freedesktop.hostname1.HardwareModel property")
+        return None
+
+    vendor_string = vendor_variant.get_string()
+    model_string = model_variant.get_string()
+    return f"{vendor_string} {model_string}"
+
 def get_hardware_name():
+    hardware = get_hardware_model()
+    if hardware != None and len(hardware.strip()) > 0:
+        print("hw:",hardware)
+        return hardware
+
     if os.path.isfile("/sys/firmware/devicetree/base/model"):
         return readfile("/sys/firmware/devicetree/base/model").strip()
 
     hardware = ""
-
     hw = []
     dmi_dir = "/sys/devices/virtual/dmi/id/"
     hw.append(readfile(dmi_dir+"sys_vendor").strip())
