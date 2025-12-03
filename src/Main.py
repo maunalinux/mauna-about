@@ -2,38 +2,36 @@
 
 import sys
 import gi
-import cli
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
 
 from MainWindow import MainWindow
 
-
 class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args,
-            application_id="top.mauna.about",
-            flags=Gio.ApplicationFlags.NON_UNIQUE | Gio.ApplicationFlags(8),
-            **kwargs
-        )
+        super().__init__(*args, application_id="tr.org.pardus.about", flags=Gio.ApplicationFlags(8), **kwargs)
+
         self.window = None
-        self.add_main_option(
-            "nogui",
-            ord("n"),
-            GLib.OptionFlags(0),
-            GLib.OptionArg.NONE,  # Adjusted for boolean flag (no argument expected)
-            "No GUI mode",
-            None,
-        )
         GLib.set_prgname("top.mauna.about")
 
+        self.add_main_option(
+            "hardware",
+            ord("h"),
+            GLib.OptionFlags(0),
+            GLib.OptionArg(1),
+            "Hardware information",
+            None,
+        )
+
     def do_activate(self):
-        if not self.args or "nogui" not in self.args:
+        # We only allow a single window and raise any existing ones
+        if not self.window:
+            # Windows are associated with the application
+            # when the last one is closed the application shuts down
             self.window = MainWindow(self)
         else:
-            cli.CLI()
+            self.window.control_args()
+        self.window.ui_main_window.present()
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -41,7 +39,6 @@ class Application(Gtk.Application):
         self.args = options
         self.activate()
         return 0
-
 
 app = Application()
 app.run(sys.argv)

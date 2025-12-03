@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Mauna Hardware Information
+Name[pt_BR]=top.mauna.about-hardware.desktop
+GenericName=Hardware Information Viewer
+GenericName[pt_BR]=Visualizador de informações de hardware
+Comment=Get info about your Mauna system.
+Comment[pt_BR]=Obtenha informações sobre o seu sistema Mauna.
+Exec=mauna-about --hardware true
+Icon=mauna-about
+Terminal=false
+Type=Application
+Categories=Settings;X-XFCE-SettingsDialog;
+StartupNotify=true
+Keywords=about;info;system;hardware;
+Keywords[pt]=sobre;informação;sistema;hardware;
