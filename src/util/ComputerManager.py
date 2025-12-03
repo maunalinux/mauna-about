@@ -1,10 +1,13 @@
 import gi
+import subprocess
+
+from . import DBusManager
+from . import HardwareDetector
 
 gi.require_version("GUdev", "1.0")
 gi.require_version("GLib", "2.0")
 from gi.repository import GUdev, GLib
 
-from . import DBusManager
 
 FILTERED_WORDS = [
     "o.e.m.",
@@ -19,8 +22,10 @@ FILTERED_WORDS = [
     "unknown",
 ]
 
+
 class ComputerManager:
     computer_info = None
+    processor_info = None
     memory_info = None
 
     def __init__(self):
@@ -30,11 +35,15 @@ class ComputerManager:
 
     def prepare_data(self):
         self.computer_info = {}
+        self.processor_info = {}
         self.memory_info = []
 
         # Model
         model = DBusManager.read_string_in_tuple(
-            "org.freedesktop.hostname1", "/org/freedesktop/hostname1", "HardwareModel", 0
+            "org.freedesktop.hostname1",
+            "/org/freedesktop/hostname1",
+            "HardwareModel",
+            0,
         )
         if model:
             self.computer_info["model"] = model
@@ -44,7 +53,10 @@ class ComputerManager:
 
         # Vendor
         vendor = DBusManager.read_string_in_tuple(
-            "org.freedesktop.hostname1", "/org/freedesktop/hostname1", "HardwareVendor", 0
+            "org.freedesktop.hostname1",
+            "/org/freedesktop/hostname1",
+            "HardwareVendor",
+            0,
         )
         if vendor:
             self.computer_info["vendor"] = vendor
@@ -79,6 +91,12 @@ class ComputerManager:
         # Is Live USB?
         self.computer_info["live_boot"] = self.is_live_boot()
 
+        # ACPI:
+        p = subprocess.run(
+            ["pkexec", "/usr/share/mauna/mauna-about/src/Actions.py", "acpi"]
+        )
+        self.computer_info["is_acpi_supported"] = p.returncode == 0
+
     def prepare_cpu_info(self):
         with open("/proc/cpuinfo", "r") as f:
             core_count = 0
@@ -88,10 +106,15 @@ class ComputerManager:
             family = ""
             for line in f.readlines():
                 splitted = line.split(":")
+                if len(splitted) < 2:
+                    continue
+
                 key = splitted[0].strip()
                 value = splitted[1].strip()
 
                 if key == "siblings":
+                    thread_count = int(value)
+                elif key == "cpu cores":
                     core_count = int(value)
                 elif key == "model name":
                     model_name = value
@@ -110,11 +133,16 @@ class ComputerManager:
                 if core_count and model_name and family and vendor and model_id:
                     break
 
-            self.computer_info["cpu_name"] = model_name
-            self.computer_info["cpu_model_id"] = model_id
-            self.computer_info["cpu_vendor"] = vendor
-            self.computer_info["cpu_family_id"] = family
-            self.computer_info["cpu_cores"] = core_count
+            self.processor_info = {
+                "name": model_name,
+                "model_id": model_id,
+                "vendor": vendor,
+                "family_id": family,
+                "core_count": core_count,
+                "thread_count": thread_count,
+            }
+
+            return self.processor_info
 
     def prepare_memory_info(self):
         client = GUdev.Client.new(["dmi"])
@@ -122,20 +150,26 @@ class ComputerManager:
 
         num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
         for i in range(num_ram):
-            vendor = device.get_property_as_strv(f"MEMORY_DEVICE_{i}_MANUFACTURER")[0]
-            size = device.get_property_as_uint64(f"MEMORY_DEVICE_{i}_SIZE") / (1024 * 1024 * 1024)
-            mem_type = device.get_property_as_strv(f"MEMORY_DEVICE_{i}_TYPE")[0]
-            factor = device.get_property_as_strv(f"MEMORY_DEVICE_{i}_FORM_FACTOR")[0]
-            name = f"{size} GB {mem_type} {factor}"
-            serial = device.get_property_as_strv(f"MEMORY_DEVICE_{i}_SERIAL_NUMBER")[0]
+            vendor = device.get_property(f"MEMORY_DEVICE_{i}_MANUFACTURER")
+            size = device.get_property_as_uint64(f"MEMORY_DEVICE_{i}_SIZE") / (
+                1024 * 1024 * 1024
+            )
+            mem_type = device.get_property(f"MEMORY_DEVICE_{i}_TYPE")
+            factor = device.get_property(f"MEMORY_DEVICE_{i}_FORM_FACTOR")
+            # name = f"{size} GB {mem_type} {factor}"
+            serial = device.get_property(f"MEMORY_DEVICE_{i}_SERIAL_NUMBER")
+            ram_speed_mts = device.get_property(f"MEMORY_DEVICE_{i}_SPEED_MTS")
+            part_number = device.get_property(f"MEMORY_DEVICE_{i}_PART_NUMBER")
 
             mem_device = {
-                "name": name,
+                # "name": name,
                 "vendor": vendor,
                 "size": size,
                 "factor": factor,
                 "type": mem_type,
-                "serial_number": serial
+                "serial_number": serial,  # private information
+                "speed": ram_speed_mts,
+                "part_number": part_number,
             }
 
             for k in mem_device.keys():
@@ -155,6 +189,9 @@ class ComputerManager:
 
         return False
 
+    def get_processor_info(self):
+        return self.processor_info
+
     def get_computer_info(self):
         return self.computer_info
 
@@ -165,4 +202,23 @@ class ComputerManager:
         size = 0
         for mem in self.memory_info:
             size += mem["size"]
-        return str(size) + " GB " + self.memory_info[0]["type"] + " " + self.memory_info[0]["factor"]
+        return (
+            str(size)
+            + " GB "
+            + self.memory_info[0]["type"]
+            + " "
+            + self.memory_info[0]["factor"]
+        )
+
+    def get_all_device_info(self):
+        pci_and_usb_devices = HardwareDetector.get_hardware_info()
+
+        computer_info = {
+            "processor": self.processor_info,
+            "memory": self.memory_info,
+            "computer": self.computer_info,
+        }
+
+        computer_info.update(pci_and_usb_devices)
+
+        return computer_info

@@ -1,14 +1,15 @@
 import os
 import gi
+import requests
+import json
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk, Gdk
 
 import locale
 from locale import gettext as _
 
-from util import MaunaInfoManager, ComputerManager
-
-import threading
+from util import OSManager, ComputerManager, HardwareDetector
 
 # Translation Constants:
 APPNAME = "mauna-about"
@@ -18,18 +19,20 @@ TRANSLATIONS_PATH = "/usr/share/locale"
 locale.bindtextdomain(APPNAME, TRANSLATIONS_PATH)
 locale.textdomain(APPNAME)
 
-maunaInfoManager = MaunaInfoManager.MaunaInfoManager()
+osManager = OSManager.OSManager()
 computerManager = None
 pciManager = None
 usbManager = None
 
+HARDWARE_API_DOMAIN = "https://donanim.pardus.org.tr"
+HARDWARE_API = f"{HARDWARE_API_DOMAIN}/api/v1"
+
+
 class MainWindow:
-    is_hardware_loaded = False
     is_hardware_details_visible = False
 
     def __init__(self, application):
         self.computerManager = None
-        self.Application = application
 
         # Gtk Builder
         self.builder = Gtk.Builder()
@@ -40,7 +43,9 @@ class MainWindow:
         self.builder.set_translation_domain(APPNAME)
 
         # Import UI file:
-        self.builder.add_from_file(os.path.dirname(os.path.abspath(__file__)) + "/../ui/MainWindow.glade")
+        self.builder.add_from_file(
+            os.path.dirname(os.path.abspath(__file__)) + "/../ui/MainWindow.glade"
+        )
         self.builder.connect_signals(self)
 
         # Window
@@ -58,9 +63,8 @@ class MainWindow:
 
         self.ui_main_window.set_title(_("About Mauna"))
 
-        thread = threading.Thread(target=self.read_hardware_info)
-        thread.daemon = True
-        thread.start()
+        task = Gio.Task.new(callback=self.on_read_hardware_info_finish)
+        task.run_in_thread(self.read_hardware_info)
 
         # Show Screen:
         self.window.show_all()
@@ -78,9 +82,7 @@ class MainWindow:
         screen = Gdk.Screen.get_default()
 
         Gtk.StyleContext.add_provider_for_screen(
-            screen,
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
     def define_components(self):
@@ -115,41 +117,119 @@ class MainWindow:
         self.ui_private_ip_label = UI("ui_private_ip_label")
         self.ui_public_ip_label = UI("ui_public_ip_label")
 
+        self.ui_message_dialog = UI("ui_message_dialog")
+
+        # Submit
+        self.ui_submit_window = UI("ui_submit_window")
+        # prevent destroying the window on close clicked
+        self.ui_submit_window.connect("delete-event", lambda w, e: w.hide() or True)
+        self.ui_submit_lbl = UI("ui_submit_lbl")
+
     def define_variables(self):
         return
 
     def control_args(self):
-        if "hardware" in self.Application.args.keys():
+        if "hardware" in self.application.args.keys():
             self.is_hardware_details_visible = True
 
         self.ui_main_window.present()
 
     def read_mauna_info(self):
-        mauna_info = maunaInfoManager.get_info()
+        mauna_info = osManager.get_info()
         self.ui_hostname_label.set_text(mauna_info["hostname"])
-        self.ui_mauna_label.set_text(mauna_info["mauna"])
+        self.ui_mauna_label.set_text(mauna_info["os_pretty_name"])
         self.ui_kernel_label.set_text(mauna_info["kernel"])
         return
 
-    def read_hardware_info(self):
+    def read_hardware_info(self, task, source_object, task_data, cancellable):
         # computer info
         self.computerManager = ComputerManager.ComputerManager()
+
+        # Computer
         computer_info = self.computerManager.get_computer_info()
         self.ui_computer_label.set_text(computer_info["model"])
-        self.ui_processor_label.set_text(computer_info["cpu_name"])
 
+        # CPU
+        processor_info = self.computerManager.get_processor_info()
+        self.ui_processor_label.set_text(processor_info["name"])
+
+        # Memory
         memory_summary = self.computerManager.get_memory_summary()
         self.ui_memory_label.set_text(memory_summary)
 
-        # pci info
+        # Lazy Init PCI & USB devices information singleton
+        HardwareDetector.get_hardware_info()
 
+        task.return_boolean(True)
 
-        # usb info
-        # self.usbManager = UsbManager.UsbManager()
-        self.is_hardware_loaded = True
+    # Send Hardware Report Tasks
+    def send_hardware_data(self, task, source_object, task_data, cancellable):
+        try:
+            all_info = self.computerManager.get_all_device_info()
+            response = requests.post(HARDWARE_API, json=all_info, timeout=3)
+
+            task.return_value(response)
+        except requests.Timeout as r:
+            print("timeout!")
+            task.return_value(r)
+        except Exception as e:
+            print("exception:", e)
+            task.return_value(e)
+
+    def send_hardware_data_completed(self, source, task):
+        task_finished, data = task.propagate_value()
+
+        if task_finished:
+            if isinstance(data, requests.Response):
+                if str(data.status_code)[0] == "2":
+                    report_id = data.json()["data"]["link"]
+                    url = f"{HARDWARE_API_DOMAIN}{report_id}"
+                    markup = f'<a href="{url}">{report_id}</a>'
+
+                    self.show_info_dialog(
+                        title=_("Thank you for your contribution."),
+                        subtitle=_("You can find your submission here:")
+                        + "\n"
+                        + markup,
+                    )
+
+                    self.btn_last_submission.set_uri(url)
+                    self.btn_last_submission.set_visible(True)
+
+                    self.gsettings.set_string("latest-submission-id", report_id)
+                    self.is_hardware_data_submitted = True
+                else:
+                    message = data.json()["message"]
+
+                    print("Response:", json.dumps(data.json(), indent=2))
+                    print(data.status_code)
+
+                    self.show_info_dialog(
+                        title=_("An error occured while sending the data."),
+                        subtitle=_("Returned message from the server:")
+                        + f"\n{data.status_code}\n{message}",
+                    )
+
+            else:
+                self.show_info_dialog(
+                    title=_("Connection Failed"),
+                    subtitle=_(
+                        "If you are connected to the internet, then our servers have some problem."
+                    ),
+                )
+
+    def show_info_dialog(self, title, subtitle, use_markup=False):
+        dialog = Gtk.MessageDialog(
+            buttons=Gtk.ButtonsType.OK,
+            text=title,
+            secondary_use_markup=use_markup,
+            secondary_text=subtitle,
+        )
+        dialog.run()
+        dialog.hide()
+
+    def on_read_hardware_info_finish(self, source, task):
         self.toggle_hardware_details_pane()
-
-        return
 
     def on_menu_about_button_clicked(self, btn):
         self.ui_popover_menu.popdown()
@@ -157,14 +237,23 @@ class MainWindow:
         self.ui_about_dialog.hide()
 
     def on_hardware_info_button_clicked(self, btn):
-        #GLib.idle_add(self.ui_main_stack.set_visible_child_name, "page_hardware_info")
-        GLib.idle_add(self.ui_info_stack.set_visible_child_name, "hardware_details")
+        self.ui_info_stack.set_visible_child_name("hardware_details")
 
     def on_close_hardware_info_button(self, btn):
-        GLib.idle_add(self.ui_main_stack.set_visible_child_name, "page_info_box")
+        self.ui_main_stack.set_visible_child_name("page_info_box")
+
+    def on_send_report_button_clicked(self, btn):
+        device_list = self.computerManager.get_all_device_info()
+        print(json.dumps(device_list, indent=2))
+        self.ui_submit_lbl.set_text(json.dumps(device_list, indent=2))
+        self.ui_submit_window.show_all()
+
+    def on_submit_report_btn_clicked(self, btn):
+        task = Gio.Task.new(callback=self.send_hardware_data_completed)
+        task.run_in_thread(self.send_hardware_data)
 
     def toggle_hardware_details_pane(self):
         if self.is_hardware_details_visible:
-            GLib.idle_add(self.ui_info_stack.set_visible_child_name, "hardware_details")
+            self.ui_info_stack.set_visible_child_name("hardware_details")
         else:
-            GLib.idle_add(self.ui_info_stack.set_visible_child_name, "hardware_grid")
+            self.ui_info_stack.set_visible_child_name("hardware_grid")

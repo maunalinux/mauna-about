@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# This file is template/test 
+# This file is template/test
 #
 
 import os
@@ -15,12 +15,20 @@ def create_mo_files():
     mo = []
     for po in os.listdir(podir):
         if po.endswith(".po"):
-            os.makedirs("{}/{}/LC_MESSAGES".format(podir, po.split(".po")[0]), exist_ok=True)
-            mo_file = "{}/{}/LC_MESSAGES/{}".format(podir, po.split(".po")[0], "mauna-python-gtk.mo")
-            msgfmt_cmd = 'msgfmt {} -o {}'.format(podir + "/" + po, mo_file)
+            os.makedirs(
+                "{}/{}/LC_MESSAGES".format(podir, po.split(".po")[0]), exist_ok=True
+            )
+            mo_file = "{}/{}/LC_MESSAGES/{}".format(
+                podir, po.split(".po")[0], "mauna-about.mo"
+            )
+            msgfmt_cmd = "msgfmt {} -o {}".format(podir + "/" + po, mo_file)
             subprocess.call(msgfmt_cmd, shell=True)
-            mo.append(("/usr/share/locale/" + po.split(".po")[0] + "/LC_MESSAGES",
-                       ["po/" + po.split(".po")[0] + "/LC_MESSAGES/mauna-python-gtk.mo"]))
+            mo.append(
+                (
+                    "/usr/share/locale/" + po.split(".po")[0] + "/LC_MESSAGES",
+                    ["po/" + po.split(".po")[0] + "/LC_MESSAGES/mauna-about.mo"],
+                )
+            )
     return mo
 
 
@@ -37,39 +45,50 @@ if os.path.exists(changelog):
     f.close()
 
 data_files = [
-    ("/usr/bin", ["mauna-python-gtk"]),
-    ("/usr/share/applications",
-     ["data/top.mauna.python-gtk.desktop"]),
-    ("/usr/share/mauna/mauna-python-gtk/ui",
-     ["ui/MainWindow.glade"]),
-    ("/usr/share/mauna/mauna-python-gtk/src",
-     ["src/Main.py",
-      "src/MainWindow.py",
-      "src/UserSettings.py",
-      "src/__version__"]),
-    ("/usr/share/mauna/mauna-python-gtk/data",
-     ["data/style.css",
-      "data/top.mauna.python-gtk-autostart.desktop",
-      "data/mauna-python-gtk.svg",
-      "data/mauna-python-gtk-on-symbolic.svg",
-      "data/mauna-python-gtk-off-symbolic.svg"]),
-    ("/usr/share/icons/hicolor/scalable/apps/",
-     ["data/mauna-python-gtk.svg",
-      "data/mauna-python-gtk-on-symbolic.svg",
-      "data/mauna-python-gtk-off-symbolic.svg"])
+    ("/usr/bin", ["mauna-about"]),
+    ("/usr/share/applications", ["data/top.mauna.python-gtk.desktop"]),
+    ("/usr/share/mauna/mauna-about/ui", ["ui/MainWindow.glade"]),
+    (
+        "/usr/share/mauna/mauna-about/src",
+        [
+            "src/Main.py",
+            "src/MainWindow.py",
+            "src/UserSettings.py",
+            "src/Actions.py",
+            "src/__version__",
+        ],
+    ),
+    (
+        "/usr/share/mauna/mauna-about/data",
+        [
+            "data/style.css",
+            "data/top.mauna.python-gtk-autostart.desktop",
+            "data/mauna-about.svg",
+            "data/mauna-about-on-symbolic.svg",
+            "data/mauna-about-off-symbolic.svg",
+        ],
+    ),
+    (
+        "/usr/share/icons/hicolor/scalable/apps/",
+        [
+            "data/mauna-about.svg",
+            "data/mauna-about-on-symbolic.svg",
+            "data/mauna-about-off-symbolic.svg",
+        ],
+    ),
 ] + create_mo_files()
 
 setup(
-    name="mauna-python-gtk",
+    name="mauna-about",
     version=version,
     packages=find_packages(),
-    scripts=["mauna-python-gtk"],
+    scripts=["mauna-about"],
     install_requires=["PyGObject"],
     data_files=data_files,
-    author="Mauna Linux Team",
-    author_email="dev@maunalinux.top",
-    description="Get info about your Mauna system.",
+    author="Yusuf Düzgün",
+    author_email="yusuf.duzgun@pardus.org.tr",
+    description="Mauna Python GTK EXAMPLE",
     license="GPLv3",
-    keywords="about",
-    url="https://maunalinux.top",
+    keywords="mauna-about, example, test",
+    url="https://github.com/mauna/mauna-about",
 )
