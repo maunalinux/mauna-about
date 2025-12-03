@@ -11,10 +11,15 @@ def read_edid(path) -> edid.Edid:
     return None
 
 
-def scan_monitors():
-    # DRM altındaki tüm edid dosyalarını ara
-    monitors = []
+monitors = []
 
+
+def scan_monitors():
+    global monitors
+    if monitors:
+        return monitors
+
+    # Search all edid files under DRM
     drm_paths = "/sys/class/drm"
     for drm_path in os.listdir(drm_paths):
         try:
@@ -23,17 +28,17 @@ def scan_monitors():
             if not os.path.isfile(edid_path):
                 continue
 
-            # Bağlantı noktası adını yoldan çıkar (örn: card0-HDMI-A-1)
-            connector_name = edid_path.split("/")[-2]
-
             edid_info = read_edid(edid_path)
 
             if edid_info:
-                edid_info = edid_info.to_dict()
-                edid_info["system_path"] = edid_path
-                edid_info["connector"] = connector_name
+                summary_dict = {
+                    "name": edid_info.name,
+                    "vendor": edid_info.manufacturer,
+                    "model_id": edid_info.model_id,
+                    "resolution": f"{edid_info.resolution_width}x{edid_info.resolution_height}",
+                }
 
-                monitors.append(edid_info)
+                monitors.append(summary_dict)
 
         except PermissionError:
             print(
