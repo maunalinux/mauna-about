@@ -39,12 +39,16 @@ class ComputerManager:
         self.memory_info = []
 
         # Model
-        model = DBusManager.read_string_in_tuple(
-            "org.freedesktop.hostname1",
-            "/org/freedesktop/hostname1",
-            "HardwareModel",
-            0,
-        )
+        model = None
+        try:
+            model = DBusManager.read_string_in_tuple(
+                "org.freedesktop.hostname1",
+               "/org/freedesktop/hostname1",
+               "HardwareModel",
+                0,
+            )
+        except:
+            pass
         if model:
             self.computer_info["model"] = model
         else:
@@ -52,12 +56,16 @@ class ComputerManager:
                 self.computer_info["model"] = f.readline().strip()
 
         # Vendor
-        vendor = DBusManager.read_string_in_tuple(
-            "org.freedesktop.hostname1",
-            "/org/freedesktop/hostname1",
-            "HardwareVendor",
-            0,
-        )
+        vendor = None
+        try:
+            vendor = DBusManager.read_string_in_tuple(
+                "org.freedesktop.hostname1",
+               "/org/freedesktop/hostname1",
+                "HardwareVendor",
+                0,
+            )
+        except:
+            pass
         if vendor:
             self.computer_info["vendor"] = vendor
         else:
@@ -76,9 +84,13 @@ class ComputerManager:
             self.computer_info["family"] = family
 
         # Chassis
-        chassis = DBusManager.read_string_in_tuple(
-            "org.freedesktop.hostname1", "/org/freedesktop/hostname1", "Chassis", 0
-        )
+        chassis = None
+        try:
+            chassis = DBusManager.read_string_in_tuple(
+                "org.freedesktop.hostname1", "/org/freedesktop/hostname1", "Chassis", 0
+            )
+        except:
+            pass
         if chassis:
             self.computer_info["chassis"] = chassis
         else:
@@ -200,6 +212,8 @@ class ComputerManager:
 
     def get_memory_summary(self):
         size = 0
+        if len(self.memory_info) == 0:
+            return "Unknown"
         for mem in self.memory_info:
             size += mem["size"]
         return (

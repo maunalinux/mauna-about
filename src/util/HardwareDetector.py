@@ -14,6 +14,8 @@ UDEV_HWDB = (
 
 
 def extract_vendor_product(hwdb_file, vendor_text, product_text):
+    if not os.path.isfile(hwdb_file):
+        return "Unknown", "Unknown"
     with open(hwdb_file, encoding="utf-8") as file:
         hwdb_output = file.read()
 
