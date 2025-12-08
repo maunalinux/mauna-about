@@ -142,7 +142,14 @@ def get_hid_input_type(input_path):
     return ""
 
 
+hid_devices = []
+
+
 def get_hid_devices():
+    global hid_devices
+    if hid_devices:
+        return hid_devices
+
     """
     Reads HID device information from keyboards, mouses etc.
     from /sys/bus/hid/devices
@@ -151,10 +158,9 @@ def get_hid_devices():
         list: A list of dictionaries containing name, address etc. of device
     """
     dev_path = "/sys/bus/hid/devices"
-    infos = []
 
     if not os.path.exists(dev_path):
-        return infos  # Return empty list if path doesn't exist
+        return hid_devices  # Return empty list if path doesn't exist
 
     for entry in os.listdir(dev_path):
         device_path = os.path.join(dev_path, entry)
@@ -205,9 +211,9 @@ def get_hid_devices():
                     info_input["input_device"] = input_device
                     # print(info_input["name"], input_device)
 
-                    infos.append(info_input)
+                    hid_devices.append(info_input)
 
-    return infos
+    return hid_devices
 
 
 def match_class_with_category(class_id):
