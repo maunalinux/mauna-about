@@ -20,6 +20,7 @@ Depends: ${misc:Depends},
          gir1.2-glib-2.0,
          gir1.2-soup-2.4,
          python3-cairosvg,
-         python3-cups
+         python3-cups,
+         gir1.2-gudev-1.0
 Description: About Mauna
  Get info about your Mauna System.
