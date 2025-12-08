@@ -72,6 +72,7 @@ data_files = [
         "/usr/share/icons/hicolor/scalable/apps/",
         [
             "data/mauna-about.svg",
+            "data/mauna-hardware-info.svg",
             "data/mauna-about-on-symbolic.svg",
             "data/mauna-about-off-symbolic.svg",
         ],
