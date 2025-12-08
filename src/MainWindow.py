@@ -69,6 +69,11 @@ class MainWindow:
         # Show Screen:
         self.window.show_all()
 
+        # buttons will be visible after hardware info collected
+        self.ui_hardware_info_button.hide()
+        self.ui_display_report_button.hide()
+
+
     @staticmethod
     def load_css(css_file_path):
         css_provider = Gtk.CssProvider()
@@ -94,12 +99,12 @@ class MainWindow:
         self.ui_info_stack = UI("ui_info_stack")
         self.ui_hardware_info_button = UI("ui_hardware_info_button")
         self.ui_display_report_button = UI("ui_display_report_button")
-        self.ui_send_report_button = UI("ui_send_report_button")
-        self.ui_copy_report_link_button = UI("ui_copy_report_link_button")
-        self.ui_close_hardware_info_button = UI("ui_close_hardware_info_button")
+        self.ui_copy_report_btn = UI("ui_copy_report_btn")
+        self.ui_submit_report_btn = UI("ui_submit_report_btn")
 
         self.ui_about_dialog = UI("ui_about_dialog")
         self.ui_popover_menu = UI("ui_popover_menu")
+        self.ui_notification_popover = UI("ui_notification_popover")
 
         self.ui_hostname_label = UI("ui_hostname_label")
         self.ui_mauna_label = UI("ui_mauna_label")
@@ -116,8 +121,6 @@ class MainWindow:
         self.ui_audio_label = UI("ui_audio_label")
         self.ui_private_ip_label = UI("ui_private_ip_label")
         self.ui_public_ip_label = UI("ui_public_ip_label")
-
-        self.ui_message_dialog = UI("ui_message_dialog")
 
         self.ui_hardware_list_computer_revealer = UI("ui_hardware_list_computer_revealer")
         self.ui_hardware_list_computer_revealer_image = UI("ui_hardware_list_computer_revealer_image")
@@ -152,6 +155,20 @@ class MainWindow:
         self.ui_hardware_list_printer_revealer = UI("ui_hardware_list_printer_revealer")
         self.ui_hardware_list_printer_revealer_image = UI("ui_hardware_list_printer_revealer_image")
 
+        self.ui_detail_computer_vendor_label = UI("ui_detail_computer_vendor_label")
+        self.ui_detail_computer_model_label = UI("ui_detail_computer_model_label")
+        self.ui_detail_computer_family_label = UI("ui_detail_computer_family_label")
+        self.ui_detail_os_name_label = UI("ui_detail_os_name_label")
+        self.ui_detail_os_codename_label = UI("ui_detail_os_codename_label")
+        self.ui_detail_os_version_label = UI("ui_detail_os_version_label")
+        self.ui_detail_os_kernel_label = UI("ui_detail_os_kernel_label")
+        self.ui_detail_os_desktop_label = UI("ui_detail_os_desktop_label")
+        self.ui_detail_processor_vendor_label = UI("ui_detail_processor_vendor_label")
+        self.ui_detail_processor_model_label = UI("ui_detail_processor_model_label")
+        self.ui_detail_processor_core_label = UI("ui_detail_processor_core_label")
+
+        self.memory_container = UI("ui_hardware_list_memory_container")
+
         # Submit
         self.ui_submit_window = UI("ui_submit_window")
         # prevent destroying the window on close clicked
@@ -181,17 +198,84 @@ class MainWindow:
         # Computer
         computer_info = self.computerManager.get_computer_info()
         self.ui_computer_label.set_text(computer_info["model"])
+        self.ui_detail_computer_vendor_label.set_text(computer_info["vendor"])
+        self.ui_detail_computer_model_label.set_text(computer_info["model"])
+        self.ui_detail_computer_family_label.set_text(computer_info["family"])
+
+        #OS
+        mauna_info = osManager.get_info()
+        self.ui_detail_os_name_label.set_text(mauna_info["os_name"])
+        self.ui_detail_os_codename_label.set_text(mauna_info["os_codename"])
+        self.ui_detail_os_version_label.set_text(mauna_info["os_version"])
+        self.ui_detail_os_kernel_label.set_text(mauna_info["kernel"])
+        #self.ui_detail_os_desktop_label.set_text(mauna_info["wayland"])
 
         # CPU
         processor_info = self.computerManager.get_processor_info()
         self.ui_processor_label.set_text(processor_info["name"])
+        self.ui_detail_processor_vendor_label.set_text(processor_info["vendor"])
+        self.ui_detail_processor_model_label.set_text(processor_info["name"])
+        self.ui_detail_processor_core_label.set_text(f"{processor_info["core_count"]} / {processor_info['thread_count']}")
 
         # Memory
         memory_summary = self.computerManager.get_memory_summary()
         self.ui_memory_label.set_text(memory_summary)
 
+        memory_info = self.computerManager.get_memory_info()
+        # for _index, memory in enumerate(memory_info):
+        #     MEMORY_ROW_TEMPLATE_ID = "ui_hardware_list_memory_container_row"
+        #     row_builder = Gtk.Builder()
+        #     row_builder.add_from_string(self.memory_template_row_xml)
+        #     new_row = row_builder.get_objects()[0]
+        #     memory_model = f"{memory['size']}GB {memory['type']} {memory['factor']}"
+        #     row_builder.get_object("ui_detail_memory_slot_label").set_text(f"#{_index + 1}")
+        #     row_builder.get_object("ui_detail_memory_vendor_label").set_text(memory["vendor"])
+        #     row_builder.get_object("ui_detail_memory_model_label").set_text(memory_model)
+        #     self.memory_container.pack_start(new_row, False, True, 0)
+        #     new_row.show_all()
+
         # Lazy Init PCI & USB devices information singleton
-        HardwareDetector.get_hardware_info()
+        hardware_info = HardwareDetector.get_hardware_info()
+
+        try:
+            graphics_summary = ""
+            for device in hardware_info["graphics"]:
+                graphics_summary += f"{device["vendor"]} {device["name"]}\n"
+            self.ui_graphics_label.set_text(graphics_summary)
+        except:
+            pass
+
+        try:
+            ethernet_summary = ""
+            for device in hardware_info["ethernet"]:
+                ethernet_summary += f"{device["name"]}\n"
+            self.ui_ethernet_label.set_text(ethernet_summary)
+        except:
+            pass
+
+        try:
+            wifi_summary = ""
+            for device in hardware_info["wifi"]:
+                wifi_summary += f"{device["name"]}\n"
+            self.ui_wifi_label.set_text(wifi_summary)
+        except:
+            pass
+
+        try:
+            bluetooth_summary = ""
+            for device in hardware_info["bluetooth"]:
+                bluetooth_summary += f"{device["vendor"]} {device["name"]}\n"
+            self.ui_bluetooth_label.set_text(bluetooth_summary)
+        except:
+            pass
+
+        try:
+            audio_summary = ""
+            for device in hardware_info["audio"]:
+                audio_summary += f"{device["vendor"]} {device["name"]}\n"
+            self.ui_audio_label.set_text(audio_summary)
+        except:
+            pass
 
         task.return_boolean(True)
 
@@ -262,6 +346,8 @@ class MainWindow:
         dialog.hide()
 
     def on_read_hardware_info_finish(self, source, task):
+        self.ui_hardware_info_button.show()
+        self.ui_display_report_button.show()
         self.toggle_hardware_details_pane()
 
     def on_menu_about_button_clicked(self, btn):
@@ -270,16 +356,19 @@ class MainWindow:
         self.ui_about_dialog.hide()
 
     def on_hardware_info_button_clicked(self, btn):
-        self.ui_info_stack.set_visible_child_name("hardware_details")
+        self.is_hardware_details_visible = not self.is_hardware_details_visible
+        self.toggle_hardware_details_pane()
 
-    def on_close_hardware_info_button(self, btn):
-        self.ui_main_stack.set_visible_child_name("page_info_box")
-
-    def on_send_report_button_clicked(self, btn):
+    def on_display_report_button_clicked(self, btn):
         device_list = self.computerManager.get_all_device_info()
         print(json.dumps(device_list, indent=2))
         self.ui_submit_lbl.set_text(json.dumps(device_list, indent=2))
         self.ui_submit_window.show_all()
+
+    def on_copy_report_btn_clicked(self, btn):
+        clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default())
+        clipboard.set_text(self.ui_submit_lbl.get_text(), -1)
+        self.ui_notification_popover.popup()
 
     def on_submit_report_btn_clicked(self, btn):
         task = Gio.Task.new(callback=self.send_hardware_data_completed)
@@ -288,8 +377,10 @@ class MainWindow:
     def toggle_hardware_details_pane(self):
         if self.is_hardware_details_visible:
             self.ui_info_stack.set_visible_child_name("hardware_details")
+            self.ui_hardware_info_button.set_label(_("Show Summary"))
         else:
             self.ui_info_stack.set_visible_child_name("hardware_grid")
+            self.ui_hardware_info_button.set_label(_("Show Hardware Details"))
 
     def on_ui_hardware_list_computer_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_computer_revealer.get_reveal_child()

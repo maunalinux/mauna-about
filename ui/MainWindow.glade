@@ -2,6 +2,140 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkBox" id="ui_hardware_list_memory_container_row">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">16</property>
+        <property name="margin-right">16</property>
+        <property name="margin-start">16</property>
+        <property name="margin-end">16</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Slot</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ui_detail_memory_slot_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Unknown</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Vendor</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ui_detail_memory_vendor_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Unknown</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Model</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ui_detail_memory_model_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Unknown</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkPopover" id="ui_popover_menu">
     <property name="can-focus">False</property>
     <child>
@@ -198,74 +332,31 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="ui_hardware_info_button">
-                        <property name="label" translatable="yes">Hardware Information</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <signal name="clicked" handler="on_hardware_info_button_clicked" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkBox" id="ui_report_box">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkButton" id="ui_hardware_info_button">
+                            <property name="label" translatable="yes">Show Hardware Details</property>
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">System Report</property>
-                            <attributes>
-                              <attribute name="weight" value="medium"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="ui_copy_report_link_button">
-                            <property name="label" translatable="yes">Copy Link</property>
                             <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="margin-top">8</property>
+                            <property name="receives-default">True</property>
+                            <signal name="clicked" handler="on_hardware_info_button_clicked" swapped="no"/>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="pack-type">end</property>
+                            <property name="expand">True</property>
+                            <property name="fill">False</property>
                             <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="ui_send_report_button">
-                            <property name="label" translatable="yes">Send</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="margin-top">8</property>
-                            <signal name="clicked" handler="on_send_report_button_clicked" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="pack-type">end</property>
-                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkButton" id="ui_display_report_button">
-                            <property name="label" translatable="yes">View</property>
+                            <property name="label" translatable="yes">Show System Report</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="margin-top">8</property>
+                            <signal name="clicked" handler="on_display_report_button_clicked" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -378,8 +469,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/computer.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-computer</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -458,8 +549,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/processor.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-processor</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -538,8 +629,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/memory.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-memory</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -621,8 +712,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/storage.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-storage</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -701,8 +792,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/graphics.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-graphics</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -781,8 +872,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/desktop.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-desktop</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -861,8 +952,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/wifi.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-wifi</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -942,8 +1033,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/pci.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-ethernet</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1023,8 +1114,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/bluetooth.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-bluetooth</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1103,8 +1194,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/audio.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-audio</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1183,8 +1274,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/network-private.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-ethernet</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1264,8 +1355,8 @@
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
-                                    <property name="pixbuf">../data/assets/network-public.png</property>
-                                    <property name="pixel-size">0</property>
+                                    <property name="pixel-size">48</property>
+                                    <property name="icon-name">mauna-about-publicip</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1385,8 +1476,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_computer.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-computer</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -1457,15 +1548,131 @@
                                                   <object class="GtkBox">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="orientation">vertical</property>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Vendor</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_computer_vendor_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Model</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_computer_model_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Family</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_computer_family_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">4</property>
+                                                      </packing>
                                                     </child>
                                                   </object>
                                                   <packing>
@@ -1521,8 +1728,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_os.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-symbolic</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -1578,6 +1785,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="orientation">vertical</property>
+                                                <property name="spacing">12</property>
                                                 <child>
                                                   <object class="GtkSeparator">
                                                     <property name="visible">True</property>
@@ -1593,21 +1801,232 @@
                                                   <object class="GtkBox">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="orientation">vertical</property>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Name</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_os_name_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Codename</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_os_codename_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Version</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_os_version_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">4</property>
+                                                      </packing>
                                                     </child>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
                                                     <property name="fill">True</property>
                                                     <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <child>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Kernel</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_os_kernel_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Desktop</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_os_desktop_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">3</property>
                                                   </packing>
                                                 </child>
                                               </object>
@@ -1657,8 +2076,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_processor.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-processor</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -1729,15 +2148,131 @@
                                                   <object class="GtkBox">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="orientation">vertical</property>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Vendor</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_processor_vendor_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Model</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_processor_model_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
                                                     </child>
                                                     <child>
-                                                      <placeholder/>
+                                                      <object class="GtkBox">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-top">8</property>
+                                                        <property name="margin-bottom">8</property>
+                                                        <property name="orientation">vertical</property>
+                                                        <property name="spacing">6</property>
+                                                        <child>
+                                                          <object class="GtkLabel">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Cores / Threads</property>
+                                                            <attributes>
+                                                            <attribute name="weight" value="bold"/>
+                                                            </attributes>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">0</property>
+                                                          </packing>
+                                                        </child>
+                                                        <child>
+                                                          <object class="GtkLabel" id="ui_detail_processor_core_label">
+                                                            <property name="visible">True</property>
+                                                            <property name="can-focus">False</property>
+                                                            <property name="label" translatable="yes">Unknown</property>
+                                                          </object>
+                                                          <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">True</property>
+                                                            <property name="position">1</property>
+                                                          </packing>
+                                                        </child>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">True</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">4</property>
+                                                      </packing>
                                                     </child>
                                                   </object>
                                                   <packing>
@@ -1793,8 +2328,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_memory.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-memory</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -1862,10 +2397,11 @@
                                                   </packing>
                                                 </child>
                                                 <child>
-                                                  <object class="GtkBox">
+                                                  <object class="GtkBox" id="ui_hardware_list_memory_container">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
                                                     <property name="orientation">vertical</property>
+                                                    <property name="spacing">12</property>
                                                     <child>
                                                       <placeholder/>
                                                     </child>
@@ -1929,8 +2465,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_storage.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-storage</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2065,8 +2601,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_graphics.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-graphics</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2201,8 +2737,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_desktop.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-monitor</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2337,8 +2873,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_pci.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-ethernet</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2473,8 +3009,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_wifi.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-wifi</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2609,8 +3145,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_bluetooth.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-bluetooth</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2745,8 +3281,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_audio.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-audio</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -2881,8 +3417,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_camera.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-camera</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -3017,8 +3553,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_keyboard.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-keyboard</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -3153,8 +3689,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_mouse.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-mouse</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -3289,8 +3825,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_fingerprint.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-fingerprint</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -3425,8 +3961,8 @@
                                                     <property name="margin-start">16</property>
                                                     <property name="margin-top">12</property>
                                                     <property name="margin-bottom">12</property>
-                                                    <property name="pixbuf">../data/assets/sm_printer.png</property>
-                                                    <property name="pixel-size">0</property>
+                                                    <property name="pixel-size">24</property>
+                                                    <property name="icon-name">mauna-about-printers</property>
                                                   </object>
                                                   <packing>
                                                     <property name="expand">False</property>
@@ -3694,8 +4230,8 @@ Mehmet Zahid Berktas &lt;mehmet.berktas@pardus.org.tr&gt;</property>
   <object class="GtkWindow" id="ui_submit_window">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Submit</property>
-    <property name="default-width">600</property>
-    <property name="default-height">400</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -3803,24 +4339,73 @@ Hardware information is not shared with third parties and is only sent once duri
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="ui_submit_report_btn">
-            <property name="label" translatable="yes">Send</property>
-            <property name="width-request">200</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="halign">center</property>
-            <signal name="clicked" handler="on_submit_report_btn_clicked" swapped="no"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
+            <property name="can-focus">False</property>
+            <property name="margin-start">24</property>
+            <property name="margin-end">24</property>
+            <property name="spacing">24</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkButton" id="ui_copy_report_btn">
+                <property name="label" translatable="yes">Copy Report</property>
+                <property name="width-request">200</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">center</property>
+                <signal name="clicked" handler="on_copy_report_btn_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="ui_submit_report_btn">
+                <property name="label" translatable="yes">Send</property>
+                <property name="width-request">200</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">center</property>
+                <signal name="clicked" handler="on_submit_report_btn_clicked" swapped="no"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="ui_notification_popover">
+    <property name="can-focus">False</property>
+    <property name="relative-to">ui_copy_report_btn</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">7</property>
+        <property name="margin-right">7</property>
+        <property name="margin-start">7</property>
+        <property name="margin-end">7</property>
+        <property name="margin-top">7</property>
+        <property name="margin-bottom">7</property>
+        <property name="label" translatable="yes">System Report has been copied to your clipboard!</property>
+        <property name="use-markup">True</property>
       </object>
     </child>
   </object>
