@@ -94,7 +94,7 @@ def get_pci_devices():
             vendor = "Intel"
 
         device = {
-            "id": pci["pci_id"],
+            "device_id": pci["pci_id"],
             "name": name,
             "vendor": vendor,
             "driver": pci["driver"],

@@ -304,7 +304,7 @@ def get_usb_devices():
             vendor = "Intel"
 
         device = {
-            "id": device_id,
+            "device_id": device_id,
             "name": name,
             "vendor": vendor,
             "driver": usb["driver"],
