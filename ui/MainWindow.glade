@@ -107,9 +107,6 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="pixbuf">../maunaabout.png</property>
-                                <style>
-                                  <class name="border-top"/>
-                                </style>
                               </object>
                             </child>
                             <child>
@@ -377,6 +374,7 @@
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
+                                    <property name="margin-left">16</property>
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
@@ -456,6 +454,7 @@
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
+                                    <property name="margin-left">16</property>
                                     <property name="margin-start">16</property>
                                     <property name="margin-top">16</property>
                                     <property name="margin-bottom">16</property>
@@ -1339,73 +1338,106 @@
                       <object class="GtkScrolledWindow" id="ui_hardware_details_box">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="margin-left">16</property>
                         <property name="margin-start">16</property>
-                        <property name="margin-end">16</property>
                         <property name="margin-top">40</property>
                         <property name="margin-bottom">20</property>
                         <property name="hscrollbar-policy">external</property>
-                        <property name="vscrollbar-policy">external</property>
                         <property name="propagate-natural-height">True</property>
                         <child>
                           <object class="GtkViewport">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkBox" id="expander_box">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">13</property>
-                                <property name="margin-right">13</property>
-                                <property name="margin-start">13</property>
-                                <property name="margin-end">13</property>
-                                <property name="margin-top">13</property>
-                                <property name="margin-bottom">13</property>
+                                <property name="margin-right">16</property>
+                                <property name="margin-end">16</property>
                                 <property name="orientation">vertical</property>
-                                <property name="spacing">13</property>
+                                <property name="spacing">8</property>
                                 <child>
-                                  <object class="GtkExpander" id="cpu_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox">
+                                      <object class="GtkBox" id="ui_ad_install_list_box">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkBox">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
                                             <child>
-                                              <object class="GtkImage">
+                                              <object class="GtkBox">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
-                                                <property name="icon-name">emblem-default</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_computer.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Computer Info</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
                                               </object>
-                                              <packing>
-                                                <property name="expand">False</property>
-                                                <property name="fill">True</property>
-                                                <property name="position">0</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <object class="GtkLabel" id="cpu_label">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="halign">start</property>
-                                                <property name="margin-left">13</property>
-                                                <property name="margin-right">13</property>
-                                                <property name="margin-start">13</property>
-                                                <property name="margin-end">13</property>
-                                                <property name="margin-top">13</property>
-                                                <property name="margin-bottom">13</property>
-                                              </object>
-                                              <packing>
-                                                <property name="expand">False</property>
-                                                <property name="fill">True</property>
-                                                <property name="position">1</property>
-                                              </packing>
                                             </child>
                                           </object>
                                           <packing>
@@ -1415,43 +1447,49 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="cpu_info_label">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="icon-name">starred-symbolic</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Processor (CPU)</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="orientation">vertical</property>
+                                                    <child>
+                                                      <placeholder/>
+                                                    </child>
+                                                    <child>
+                                                      <placeholder/>
+                                                    </child>
+                                                    <child>
+                                                      <placeholder/>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1469,34 +1507,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="gpu_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="gpu_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box1">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
-                                        <property name="margin-top">13</property>
-                                        <property name="margin-bottom">13</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
-                                        <property name="spacing">9</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox1">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">system-run-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_os.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Operating System</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image1">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1505,10 +1606,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer1">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">GPU</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1526,67 +1630,112 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="disk_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="disk_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box2">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkLabel" id="disk_info_label">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox2">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="halign">start</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkBox" id="disk_sub_box">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="orientation">vertical</property>
                                             <child>
-                                              <placeholder/>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_processor.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Processor</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image2">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
                                             </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="icon-name">drive-harddisk-symbolic</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer2">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">DISK</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1604,111 +1753,112 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="ram_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox">
+                                      <object class="GtkBox" id="ui_ad_install_list_box3">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkBox" id="ram_box">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox3">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
-                                            <property name="orientation">vertical</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_memory.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Memory</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image3">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer3">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="reveal-child">True</property>
                                             <child>
                                               <placeholder/>
                                             </child>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel" id="ram_info_label">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkStack" id="show_details_stack">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <child>
-                                              <object class="GtkButton">
-                                                <property name="label" translatable="yes">Show Details</property>
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">True</property>
-                                                <property name="receives-default">True</property>
-                                                <property name="halign">start</property>
-                                                <property name="margin-left">26</property>
-                                                <property name="margin-start">26</property>
-                                                <property name="margin-top">6</property>
-                                                <property name="margin-bottom">6</property>
-                                              </object>
-                                              <packing>
-                                                <property name="name">button_page</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <object class="GtkLabel" id="show_details_label">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="halign">start</property>
-                                                <property name="margin-left">26</property>
-                                                <property name="margin-start">26</property>
-                                                <property name="margin-top">6</property>
-                                                <property name="margin-bottom">6</property>
-                                              </object>
-                                              <packing>
-                                                <property name="name">label_page</property>
-                                                <property name="position">1</property>
-                                              </packing>
-                                            </child>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="icon-name">drive-harddisk-symbolic</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Memory</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1726,31 +1876,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="hid_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="hid_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box4">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox4">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">mauna-greeter-suspend-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_storage.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Storage</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image4">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1759,10 +1975,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer4">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Human Interface Devices</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1780,31 +1999,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="multimedia_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="multimedia_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box5">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox5">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">audio-headphones-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_graphics.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Graphics</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image5">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1813,10 +2098,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer5">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Multimedia</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1834,32 +2122,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="display_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkLabel" id="display_label">
+                                      <object class="GtkBox" id="ui_ad_install_list_box6">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="halign">start</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-right">13</property>
-                                        <property name="margin-start">26</property>
-                                        <property name="margin-end">13</property>
-                                        <property name="margin-top">13</property>
-                                        <property name="margin-bottom">13</property>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
+                                        <property name="valign">start</property>
+                                        <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox6">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">computer-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_desktop.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Display</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image6">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1868,10 +2221,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer6">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Display</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1889,69 +2245,112 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="network_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox">
+                                      <object class="GtkBox" id="ui_ad_install_list_box7">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <object class="GtkLabel" id="network_info_label">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox7">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkBox" id="network_box">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="margin-left">26</property>
-                                            <property name="margin-start">26</property>
-                                            <property name="orientation">vertical</property>
                                             <child>
-                                              <placeholder/>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_pci.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Ethernet</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image7">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
                                             </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="icon-name">network-wired-symbolic</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer7">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Network</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1969,32 +2368,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="printers_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="printer_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box8">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
-                                        <property name="orientation">vertical</property>
+                                        <property name="valign">start</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
-                                            <property name="visible">True</property>
+                                          <object class="GtkLabel" id="network_info_label">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox8">
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">printer-symbolic</property>
-                                          </object>
+                                            <property name="halign">start</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_wifi.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Wifi</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image8">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
@@ -2002,10 +2466,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
-                                            <property name="visible">True</property>
+                                          <object class="GtkBox" id="network_box">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer8">
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Printers</property>
+                                            <property name="margin-left">26</property>
+                                            <property name="reveal-child">True</property>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2015,6 +2482,7 @@
                                         </child>
                                       </object>
                                     </child>
+                                    <child type="label">
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -2023,32 +2491,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="keyboard_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="keyboard_box">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
-                                        <property name="orientation">vertical</property>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
+                                      <object class="GtkBox" id="ui_ad_install_list_box9">
                                         <property name="can-focus">False</property>
                                         <property name="spacing">7</property>
-                                        <child>
+                                        <property name="valign">start</property>
+                                        <property name="orientation">vertical</property>
                                           <object class="GtkImage">
-                                            <property name="visible">True</property>
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox9">
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">input-keyboard-symbolic</property>
-                                          </object>
+                                            <property name="icon-name">network-wired-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_bluetooth.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Bluetooth</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image9">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
@@ -2057,10 +2590,13 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel">
-                                            <property name="visible">True</property>
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer9">
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Keyboard</property>
-                                          </object>
+                                            <property name="label" translatable="yes">Network</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
@@ -2073,35 +2609,102 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
+                                    <property name="position">7</property>
                                     <property name="position">9</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="mouse_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="mouse_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box10">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox10">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">input-mouse-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_audio.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Audio</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image10">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2110,10 +2713,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer10">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Mouse</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2131,31 +2737,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="camera_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="camera_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box11">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox11">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">camera-photo-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_camera.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Camera</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image11">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2164,10 +2836,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer11">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Camera</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2185,31 +2860,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="bluetooth_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="bluetooth_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box12">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox12">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">bluetooth-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_keyboard.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Keyboard</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image12">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2218,10 +2959,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer12">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Bluetooth</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2239,31 +2983,97 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkExpander" id="other_expander">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkBox" id="other_dev_box">
+                                      <object class="GtkBox" id="ui_ad_install_list_box13">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="margin-left">26</property>
-                                        <property name="margin-start">26</property>
+                                        <property name="valign">start</property>
                                         <property name="orientation">vertical</property>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child type="label">
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">7</property>
-                                        <child>
-                                          <object class="GtkImage">
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox13">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="icon-name">bluetooth-symbolic</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_mouse.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Mouse</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image13">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2272,10 +3082,13 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel">
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer13">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Other Devices</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2290,6 +3103,252 @@
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">13</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
+                                    <child>
+                                      <object class="GtkBox" id="ui_ad_install_list_box14">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="valign">start</property>
+                                        <property name="orientation">vertical</property>
+                                        <child>
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox14">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_fingerprint.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Fingerprint</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image14">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer14">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">14</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkFrame">
+                                    <property name="can-focus">False</property>
+                                    <property name="label-xalign">0</property>
+                                    <property name="shadow-type">in</property>
+                                    <child>
+                                      <object class="GtkBox" id="ui_ad_install_list_box15">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="valign">start</property>
+                                        <property name="orientation">vertical</property>
+                                        <child>
+                                          <object class="GtkEventBox" id="ui_ad_install_list_eventbox15">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkBox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="spacing">12</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-left">16</property>
+                                                        <property name="margin-start">16</property>
+                                                        <property name="margin-top">12</property>
+                                                        <property name="margin-bottom">12</property>
+                                                        <property name="pixbuf">../data/assets/sm_printer.png</property>
+                                                        <property name="pixel-size">0</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">0</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkLabel">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="label" translatable="yes">Printers</property>
+                                                        <attributes>
+                                                          <attribute name="weight" value="bold"/>
+                                                        </attributes>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="position">1</property>
+                                                      </packing>
+                                                    </child>
+                                                    <child>
+                                                      <object class="GtkImage" id="ui_ad_install_list_image15">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="margin-right">16</property>
+                                                        <property name="margin-end">16</property>
+                                                        <property name="icon-name">go-up-symbolic</property>
+                                                      </object>
+                                                      <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">True</property>
+                                                        <property name="pack-type">end</property>
+                                                        <property name="position">2</property>
+                                                      </packing>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkRevealer" id="ui_ad_install_list_revealer15">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="reveal-child">True</property>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">15</property>
                                   </packing>
                                 </child>
                               </object>
@@ -2366,39 +3425,6 @@
           <packing>
             <property name="name">page_info_box</property>
             <property name="title" translatable="yes">Mauna Info</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="ui_device_manager_box">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkButton" id="ui_close_hardware_info_button">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <signal name="clicked" handler="on_close_hardware_info_button" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="name">page_hardware_info</property>
-            <property name="title" translatable="yes">Hardware Info</property>
-            <property name="position">1</property>
           </packing>
         </child>
       </object>
