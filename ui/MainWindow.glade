@@ -107,6 +107,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="pixbuf">../maunaabout.png</property>
+                                <style>
+                                  <class name="border-top"/>
+                                </style>
                               </object>
                             </child>
                             <child>
@@ -368,21 +371,17 @@
                             <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Computer&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/computer.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -391,13 +390,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_computer_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Computer&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_computer_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -419,21 +450,17 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Processor&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/processor.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -442,13 +469,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_processor_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Processor&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_processor_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -470,21 +529,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Memory&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/memory.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -493,13 +549,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_memory_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Memory&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_memory_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -524,21 +612,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Storage&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/storage.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -547,13 +632,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_storage_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Storage&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_storage_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -575,21 +692,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Graphics&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/graphics.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -598,13 +712,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_graphics_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Graphics&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_graphics_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -626,21 +772,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Desktop&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/desktop.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -649,13 +792,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_desktop_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Desktop&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_desktop_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -677,21 +852,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;WiFi&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/wifi.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -700,14 +872,46 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_wifi_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <property name="wrap">True</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;WiFi&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_wifi_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <property name="wrap">True</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -729,21 +933,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Ethernet&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/pci.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -752,14 +953,46 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_ethernet_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <property name="wrap">True</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Ethernet&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_ethernet_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <property name="wrap">True</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -781,21 +1014,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Bluetooth&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/bluetooth.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -804,13 +1034,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_bluetooth_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Bluetooth&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_bluetooth_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -832,21 +1094,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Audio&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/audio.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -855,13 +1114,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_audio_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Audio&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_audio_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -883,21 +1174,18 @@
                             <property name="label-xalign">0</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-left">8</property>
-                                <property name="margin-right">8</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Private IP&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/network-private.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -906,13 +1194,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_private_ip_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Private IP&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_private_ip_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -935,19 +1255,18 @@
                             <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkBox">
+                                <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-start">8</property>
-                                <property name="margin-end">8</property>
-                                <property name="margin-top">8</property>
-                                <property name="margin-bottom">8</property>
-                                <property name="border-width">8</property>
-                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;Public IP&lt;/span&gt;</property>
-                                    <property name="use-markup">True</property>
+                                    <property name="margin-left">16</property>
+                                    <property name="margin-start">16</property>
+                                    <property name="margin-top">16</property>
+                                    <property name="margin-bottom">16</property>
+                                    <property name="pixbuf">../data/assets/network-public.png</property>
+                                    <property name="pixel-size">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -956,13 +1275,45 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_public_ip_label">
+                                  <object class="GtkBox">
                                     <property name="can-focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Unknown</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">8</property>
+                                    <property name="margin-right">8</property>
+                                    <property name="margin-start">8</property>
+                                    <property name="margin-end">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-bottom">8</property>
+                                    <property name="border-width">8</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">&lt;span size="small"&gt;Public IP&lt;/span&gt;</property>
+                                        <property name="use-markup">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="ui_public_ip_label">
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">Unknown</property>
+                                        <attributes>
+                                          <attribute name="weight" value="bold"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
