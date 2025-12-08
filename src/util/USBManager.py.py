@@ -76,6 +76,140 @@ def get_sys_bus_uevent():
     return infos
 
 
+def get_hid_input_name(input_path):
+    name_path = os.path.join(input_path, "name")
+    if not os.path.exists(name_path):
+        return ""
+
+    with open(name_path, "r") as f:
+        return f.read()
+
+    return ""
+
+
+def get_hid_input_type(input_path):
+    modalias_path = os.path.join(input_path, "modalias")
+    if not os.path.exists(modalias_path):
+        return ""
+
+    with open(modalias_path, "r") as f:
+        data = f.read()
+        capabilities = data.split("-")[1]
+        events = []
+        keys = []
+        others = []
+
+        current_arr = events
+        current_value = ""
+        for c in capabilities:
+            if c == ",":
+                current_arr.append(current_value)
+                current_value = ""
+                continue
+
+            if c.islower() and c.isalpha():
+                if c == "e":
+                    current_arr = events
+                elif c == "k":
+                    current_arr = keys
+                else:
+                    current_arr = others
+            else:
+                current_value += c
+
+        # print("modalias:", modalias_path)
+        # print("events:", events)
+        # print("keys:", keys)
+
+        BTN_TOUCH = "14A" in keys  # touch support
+        BTN_RIGHT = "111" in keys  # mouse right click
+        EV_REL = "2" in events  # mouse, relative movement
+        # EV_ABS = "3" in events # touch, absolute position
+        EV_REP = (
+            "14" in events
+        )  # keyboard detection, repeat key strokes on pressed down
+
+        if BTN_TOUCH:
+            if BTN_RIGHT:
+                return "touchpad"
+            else:
+                return "touchscreen"
+        elif BTN_RIGHT and EV_REL:
+            return "mouse"
+        elif EV_REP:
+            return "keyboard"
+
+    return ""
+
+
+def get_hid_devices():
+    """
+    Reads HID device information from keyboards, mouses etc.
+    from /sys/bus/hid/devices
+
+    Returns:
+        list: A list of dictionaries containing name, address etc. of device
+    """
+    dev_path = "/sys/bus/hid/devices"
+    infos = []
+
+    if not os.path.exists(dev_path):
+        return infos  # Return empty list if path doesn't exist
+
+    for entry in os.listdir(dev_path):
+        device_path = os.path.join(dev_path, entry)
+
+        # Create a fresh dictionary per device
+        info = {
+            "name": "",
+            "driver": "",
+            "vendor_id": "",
+            "product_id": "",
+            "bus_address": "",
+            "type": "",
+            "input_device": "",
+        }
+
+        # Base HID device informations
+        with open(os.path.join(device_path, "uevent"), "r") as f:
+            data = f.read()
+            for line in data.splitlines():
+                key, value = line.split("=")
+                if key == "DRIVER":
+                    info["driver"] = value
+                elif key == "HID_NAME":
+                    info["name"] = value
+                elif key == "HID_ID":
+                    bus, vendor, product = value.split(":")
+                    info["bus_address"] = f"0x{int(bus, base=16):01X}"
+                    info["vendor_id"] = f"0x{int(vendor, base=16):01X}"
+                    info["product_id"] = f"0x{int(product, base=16):01X}"
+
+        # is input device? (mouse, keyboard, touch)
+        input_dir = os.path.join(device_path, "input")
+        if os.path.exists(input_dir):
+            for input_device in os.listdir(input_dir):
+                info_input = info.copy()
+                input_device_path = os.path.join(input_dir, input_device)
+
+                # Get Type and name
+                input_type = get_hid_input_type(input_device_path)
+                input_name = get_hid_input_name(input_device_path).strip()
+
+                if input_name:
+                    info_input["name"] = input_name
+
+                # print("type", info_input["type"])
+                if input_type != "":
+                    info_input["type"] = input_type
+                    info_input["input_device"] = input_device
+                    # print(info_input["name"], input_device)
+
+                    infos.append(info_input)
+
+    return infos
+
+
 def match_class_with_category(class_id):
     device_classes = {
         "e0 01 01": "bluetooth",
