@@ -4,6 +4,8 @@ import subprocess
 
 from . import PCIManager
 from . import USBManager
+from . import DiskManager
+from . import PrinterManager
 
 
 UDEV_HWDB = (
@@ -110,6 +112,15 @@ def get_hardware_info():
 
     pci_dev_info = PCIManager.get_pci_devices()
     usb_dev_info = USBManager.get_usb_devices()
+    disks = DiskManager.get_disks()
+    printers = PrinterManager.get_printers()
+
+    # HID devices
+    hid_devices = USBManager.get_hid_devices()
+    keyboards = [x for x in hid_devices if x["type"] == "keyboard"]
+    mouses = [x for x in hid_devices if x["type"] == "mouse"]
+    touchpads = [x for x in hid_devices if x["type"] == "touchpad"]
+    touchscreens = [x for x in hid_devices if x["type"] == "touchscreen"]
 
     hardware_info = {
         "wifi": [],
@@ -119,6 +130,12 @@ def get_hardware_info():
         "camera": [],
         "audio": [],
         "fingerprint": [],
+        "printer": printers,
+        "storage": disks,
+        "keyboard": keyboards,
+        "mouse": mouses,
+        "touchpad": touchpads,
+        "touchscreen": touchscreens,
     }
 
     hardware_info.update(pci_dev_info)
