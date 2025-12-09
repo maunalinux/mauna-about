@@ -9,8 +9,8 @@ def get_printers():
     for p in printers:
         printer_obj = {
             "name": p,
-            "device-uri": printers[p]["device-uri"],
-            "printer-uri": printers[p]["printer-uri-supported"],
+            # "device-uri": printers[p]["device-uri"],
+            # "printer-uri": printers[p]["printer-uri-supported"],
             "info": printers[p]["printer-make-and-model"],
         }
 
