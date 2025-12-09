@@ -3,6 +3,8 @@ import subprocess
 import socket
 import platform
 
+from util.desktop import get_desktop_version
+
 import gi
 gi.require_versions({'Gdk': '3.0'})
 from gi.repository import GObject, Gdk, GdkX11
@@ -43,19 +45,3 @@ def get_os_info():
 
     return operating_system_info
 
-def get_desktop_version(desktop):
-    de_version_command = {"xfce": ["xfce4-session", "--version"],
-                          "gnome": ["gnome-shell", "--version"],
-                          "cinnamon": ["cinnamon", "--version"],
-                          "mate": ["mate-about", "--version"],
-                          "kde": ["plasmashell", "--version"],
-                          "lxqt": ["lxqt-about", "--version"],
-                          "sway": ["sway", "--version"],
-                          "budgie": ["budgie-desktop", "--version"]}
-
-    if desktop.lower() in de_version_command:
-         return subprocess.run(
-               de_version_command[desktop.lower()],
-               shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-             ).stdout.decode().strip()
-    return "Unknown"
