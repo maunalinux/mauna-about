@@ -252,7 +252,7 @@ class MainWindow:
         self.ui_detail_os_codename_label.set_text(str(mauna_info["os_codename"]))
         self.ui_detail_os_version_label.set_text(str(mauna_info["os_version"]))
         self.ui_detail_os_kernel_label.set_text(mauna_info["kernel"])
-        # self.ui_detail_os_desktop_label.set_text(mauna_info["wayland"])
+        self.ui_detail_os_desktop_label.set_text(mauna_info["desktop"])
 
         # CPU
         processor_info = self.computerManager.get_processor_info()
