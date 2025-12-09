@@ -122,6 +122,19 @@ def get_hardware_info():
     touchpads = [x for x in hid_devices if x["type"] == "touchpad"]
     touchscreens = [x for x in hid_devices if x["type"] == "touchscreen"]
 
+    # Remove unnecessary "type" key:
+    for d in keyboards:
+        d.pop("type", None)
+
+    for d in mouses:
+        d.pop("type", None)
+
+    for d in touchpads:
+        d.pop("type", None)
+
+    for d in touchscreens:
+        d.pop("type", None)
+
     hardware_info = {
         "wifi": [],
         "ethernet": [],
