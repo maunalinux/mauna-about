@@ -49,7 +49,19 @@ def get_sys_bus_uevent():
         # Construct the interface directory name (e.g., 1-8:1.0)
         iface_dir = f"{entry}:1.0"
         driver_link_path = os.path.join(device_path, iface_dir, "driver")
+        # MODALIAS=usb:v048Dp600Bd0003dc00dsc00dp00ic03isc00ip00in01
         modalias_id = read_file(os.path.join(device_path, iface_dir, "modalias"))
+        # Read interface class subclass protocol f exist
+        iface_class = ""
+        iface_subclass = ""
+        iface_protocol = ""
+        print("modalias_id:", modalias_id)
+        if modalias_id:
+            ic_index = modalias_id.index("ic")
+            if ic_index:
+                iface_class = modalias_id[ic_index + 2 :][0:2]
+                iface_subclass = modalias_id[ic_index + 7 :][0:2]
+                iface_protocol = modalias_id[ic_index + 11 :][0:2]
 
         driver = None
         if os.path.exists(driver_link_path):
@@ -65,6 +77,9 @@ def get_sys_bus_uevent():
             "product_id": product_id,
             "modalias_id": modalias_id,
             "class_id": " ".join([dev_class, dev_protocol, dev_subclass]),
+            "interface_id": " ".join(
+                [iface_class, iface_subclass, iface_protocol]
+            ).strip(),
             "product": product,
             "busnum": busnum,
             "devnum": devnum,
@@ -259,11 +274,18 @@ def get_usb_devices():
     for usb in dev_info:
         class_category = match_class_with_category(usb.get("class_id", ""))
         driver_category = match_driver_with_category(usb.get("driver", ""))
+        interface_category = match_class_with_category(usb.get("interface_id", ""))
+
+        print("product:", usb.get("product", ""))
+        print("class_id:", usb.get("class_id", ""))
+        print("interface_id:", usb.get("interface_id", ""))
 
         if driver_category:
             category = driver_category
         elif class_category:
             category = class_category
+        elif interface_category:
+            category = interface_category
         else:
             continue
 
