@@ -19,7 +19,6 @@ TRANSLATIONS_PATH = "/usr/share/locale"
 locale.bindtextdomain(APPNAME, TRANSLATIONS_PATH)
 locale.textdomain(APPNAME)
 
-osManager = OSManager.OSManager()
 computerManager = None
 pciManager = None
 usbManager = None
@@ -72,7 +71,6 @@ class MainWindow:
         # buttons will be visible after hardware info collected
         self.ui_hardware_info_button.hide()
         self.ui_display_report_button.hide()
-
 
     @staticmethod
     def load_css(css_file_path):
@@ -185,7 +183,7 @@ class MainWindow:
         self.ui_main_window.present()
 
     def read_mauna_info(self):
-        mauna_info = osManager.get_info()
+        mauna_info = OSManager.get_os_info()
         self.ui_hostname_label.set_text(mauna_info["hostname"])
         self.ui_mauna_label.set_text(mauna_info["os_pretty_name"])
         self.ui_kernel_label.set_text(mauna_info["kernel"])
@@ -202,8 +200,8 @@ class MainWindow:
         self.ui_detail_computer_model_label.set_text(computer_info["model"])
         self.ui_detail_computer_family_label.set_text(computer_info["family"])
 
-        #OS
-        mauna_info = osManager.get_info()
+        # OS
+        mauna_info = OSManager.get_os_info()
         self.ui_detail_os_name_label.set_text(mauna_info["os_name"])
         self.ui_detail_os_codename_label.set_text(mauna_info["os_codename"])
         self.ui_detail_os_version_label.set_text(mauna_info["os_version"])

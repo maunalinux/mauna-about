@@ -3,6 +3,7 @@ import subprocess
 
 from . import DBusManager
 from . import HardwareDetector
+from . import OSManager
 
 gi.require_version("GUdev", "1.0")
 gi.require_version("GLib", "2.0")
@@ -43,8 +44,8 @@ class ComputerManager:
         try:
             model = DBusManager.read_string_in_tuple(
                 "org.freedesktop.hostname1",
-               "/org/freedesktop/hostname1",
-               "HardwareModel",
+                "/org/freedesktop/hostname1",
+                "HardwareModel",
                 0,
             )
         except:
@@ -60,7 +61,7 @@ class ComputerManager:
         try:
             vendor = DBusManager.read_string_in_tuple(
                 "org.freedesktop.hostname1",
-               "/org/freedesktop/hostname1",
+                "/org/freedesktop/hostname1",
                 "HardwareVendor",
                 0,
             )
@@ -231,6 +232,7 @@ class ComputerManager:
             "processor": self.processor_info,
             "memory": self.memory_info,
             "computer": self.computer_info,
+            "os": OSManager.get_os_info(),
         }
 
         computer_info.update(pci_and_usb_devices)

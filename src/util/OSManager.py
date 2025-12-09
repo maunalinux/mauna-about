@@ -1,26 +1,25 @@
 import socket
 import platform
 
+operating_system_info = None
 
-class OSManager:
-    os_info = None
 
-    def __init__(self):
-        self.prepare_data()
+def get_os_info():
+    global operating_system_info
+    if operating_system_info:
+        return operating_system_info
 
-    def prepare_data(self):
-        self.os_info = {}
-        hostname = socket.gethostname()
-        self.os_info["hostname"] = hostname.capitalize()
+    operating_system_info = {}
 
-        os_info = platform.freedesktop_os_release()
-        self.os_info["os_pretty_name"] = os_info.get("PRETTY_NAME")
-        self.os_info["os_name"] = os_info.get("NAME")
-        self.os_info["os_version"] = os_info.get("VERSION")
-        self.os_info["os_codename"] = os_info.get("VERSION_CODENAME")
+    hostname = socket.gethostname()
+    operating_system_info["hostname"] = hostname.capitalize()
 
-        self.os_info["kernel"] = platform.release()
-        self.os_info["architecture"] = platform.machine()
+    os_info = platform.freedesktop_os_release()
+    operating_system_info["os_pretty_name"] = os_info.get("PRETTY_NAME")
+    operating_system_info["os_name"] = os_info.get("NAME")
+    operating_system_info["os_version"] = os_info.get("VERSION")
+    operating_system_info["os_codename"] = os_info.get("VERSION_CODENAME")
+    operating_system_info["kernel"] = platform.release()
+    operating_system_info["architecture"] = platform.machine()
 
-    def get_info(self):
-        return self.os_info
+    return operating_system_info
