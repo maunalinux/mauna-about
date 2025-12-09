@@ -2,19 +2,26 @@ import cups
 
 
 def get_printers():
-    conn = cups.Connection()
-    printers = conn.getPrinters()
-
     printers_list = []
-    for p in printers:
-        printer_obj = {
-            "name": p,
-            # "device-uri": printers[p]["device-uri"],
-            # "printer-uri": printers[p]["printer-uri-supported"],
-            "info": printers[p]["printer-make-and-model"],
-        }
+    try:
+        conn = cups.Connection()
+        printers = conn.getPrinters()
 
-        printers_list.append(printer_obj)
+        for p in printers:
+            printer_obj = {
+                "device_id": "",
+                "name": printers[p]["printer-make-and-model"],
+                "vendor": "",
+                "driver": "",
+                "available_drivers": [],
+                "bus": "cups",
+                "bus_address": "",
+            }
+
+            printers_list.append(printer_obj)
+    except Exception as e:
+        print("Exception on get_printers():", e)
+        return []
 
     return printers_list
 
