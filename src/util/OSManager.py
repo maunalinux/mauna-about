@@ -37,6 +37,8 @@ def get_os_info():
     operating_system_info["desktop"] = "Unknown"
     operating_system_info["desktop_version"] = "Unknown"
     operating_system_info["display"] = "x11"
+    if "LANG" in os.environ:
+        operating_system_info["language"] = os.environ["LANG"]
     if "XDG_CURRENT_DESKTOP" in os.environ:
         operating_system_info["desktop"] = os.environ["XDG_CURRENT_DESKTOP"]
         operating_system_info["desktop_version"] = get_desktop_version(os.environ["XDG_CURRENT_DESKTOP"])
