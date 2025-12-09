@@ -11,7 +11,7 @@ def get_disks():
         return disks
 
     p = subprocess.run(
-        ["lsblk", "-bdJ", "-o", "MODEL,SIZE,TRAN,TYPE,SERIAL"],
+        ["lsblk", "-bdJ", "-o", "MODEL,SIZE,TRAN,TYPE,SERIAL,RM"],
         capture_output=True,
         text=True,
     )
@@ -19,6 +19,10 @@ def get_disks():
         output = json.loads(p.stdout)
         for d in output["blockdevices"]:
             if d["type"] != "disk":
+                continue
+
+            # Removable device, dont add to list
+            if d["rm"]:
                 continue
 
             size = int(d["size"]) / 1000 / 1000 / 1000
