@@ -170,9 +170,10 @@ class ComputerManager:
             return self.processor_info
 
     def prepare_memory_info(self):
-        return self.memory_info
         client = GUdev.Client.new(["dmi"])
         device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
+        if device == None:
+            return self.memory_info
 
         num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
         for i in range(num_ram):
