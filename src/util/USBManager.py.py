@@ -264,7 +264,7 @@ def get_usb_devices():
         elif class_category:
             category = class_category
         else:
-            continue
+            category = "---WE DIDN'T ADD A CATEGORY---"
 
         if category not in data:
             data[category] = []
@@ -289,6 +289,10 @@ def get_usb_devices():
 
         if name is None:
             name = usb["product"]
+
+        print("name:", name)
+        print("class_id:", usb.get("class_id", ""))
+        print("driver:", usb.get("driver", ""))
 
         device_id = f"{vendor_upper}:{product_upper}"
 
