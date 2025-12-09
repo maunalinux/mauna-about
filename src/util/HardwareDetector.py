@@ -151,7 +151,15 @@ def get_hardware_info():
         "touchscreen": touchscreens,
     }
 
-    hardware_info.update(pci_dev_info)
-    hardware_info.update(usb_dev_info)
+    # Add devices from pci and usb to the categories
+    for c in hardware_info:
+        print(c)
+        if c in pci_dev_info:
+            print(" - ", c, "found in pci")
+            hardware_info[c] += pci_dev_info[c]
+
+        if c in usb_dev_info:
+            print(" - ", c, "found in usb")
+            hardware_info[c] += usb_dev_info[c]
 
     return hardware_info
