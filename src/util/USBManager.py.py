@@ -224,6 +224,7 @@ def match_class_with_category(class_id):
         "ff ff": "fingerprint",
         "e0 02": "wifi",
         "2c 06": "ethernet",
+        "07": "printer",
     }
 
     for key, value in device_classes.items():
@@ -264,7 +265,7 @@ def get_usb_devices():
         elif class_category:
             category = class_category
         else:
-            category = "---WE DIDN'T ADD A CATEGORY---"
+            continue
 
         if category not in data:
             data[category] = []
