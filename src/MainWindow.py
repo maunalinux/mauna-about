@@ -249,8 +249,8 @@ class MainWindow:
         # OS
         mauna_info = OSManager.get_os_info()
         self.ui_detail_os_name_label.set_text(mauna_info["os_name"])
-        self.ui_detail_os_codename_label.set_text(mauna_info["os_codename"])
-        self.ui_detail_os_version_label.set_text(mauna_info["os_version"])
+        self.ui_detail_os_codename_label.set_text(str(mauna_info["os_codename"]))
+        self.ui_detail_os_version_label.set_text(str(mauna_info["os_version"]))
         self.ui_detail_os_kernel_label.set_text(mauna_info["kernel"])
         # self.ui_detail_os_desktop_label.set_text(mauna_info["wayland"])
 

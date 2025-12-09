@@ -1,3 +1,4 @@
+import os
 import gi
 import subprocess
 
@@ -53,8 +54,10 @@ class ComputerManager:
         if model:
             self.computer_info["model"] = model
         else:
-            with open("/sys/devices/virtual/dmi/id/product_name", "r") as f:
-                self.computer_info["model"] = f.readline().strip()
+            self.computer_info["model"] = "Unknown"
+            if os.path.isfile("/sys/devices/virtual/dmi/id/product_name"):
+                with open("/sys/devices/virtual/dmi/id/product_name", "r") as f:
+                    self.computer_info["model"] = f.readline().strip()
 
         # Vendor
         vendor = None
@@ -70,19 +73,23 @@ class ComputerManager:
         if vendor:
             self.computer_info["vendor"] = vendor
         else:
-            with open("/sys/devices/virtual/dmi/id/sys_vendor", "r") as f:
-                self.computer_info["vendor"] = f.readline().strip()
+            self.computer_info["vendor"] = "Unknown"
+            if os.path.isfile("/sys/devices/virtual/dmi/id/sys_vendor"):
+                with open("/sys/devices/virtual/dmi/id/sys_vendor", "r") as f:
+                    self.computer_info["vendor"] = f.readline().strip()
 
         # Family
-        with open("/sys/devices/virtual/dmi/id/product_family", "r") as f:
-            family = f.readline().strip()
+        self.computer_info["family"] = "Unknown"
+        if os.path.isfile("/sys/devices/virtual/dmi/id/product_family"):
+            with open("/sys/devices/virtual/dmi/id/product_family", "r") as f:
+                family = f.readline().strip()
 
-            for f in FILTERED_WORDS:
-                if f.lower() in family.lower():
-                    family = ""
-                    break
+                for f in FILTERED_WORDS:
+                    if f.lower() in family.lower():
+                        family = ""
+                        break
 
-            self.computer_info["family"] = family
+                self.computer_info["family"] = family
 
         # Chassis
         chassis = None
@@ -95,11 +102,16 @@ class ComputerManager:
         if chassis:
             self.computer_info["chassis"] = chassis
         else:
-            self.computer_info["chassis"] = ""
+            self.computer_info["chassis"] = "0"
+            if os.path.isfile("/sys/devices/virtual/dmi/id/chassis_type"):
+                with open("/sys/devices/virtual/dmi/id/chassis_type", "r") as f:
+                    self.computer_info["chassis"] = f.readline().strip()
 
         # Bios Date
-        with open("/sys/devices/virtual/dmi/id/bios_date", "r") as f:
-            self.computer_info["bios_date"] = f.readline().strip()
+        self.computer_info["bios_date"] = "Unknown"
+        if os.path.isfile("/sys/devices/virtual/dmi/id/bios_date"):
+            with open("/sys/devices/virtual/dmi/id/bios_date", "r") as f:
+                self.computer_info["bios_date"] = f.readline().strip()
 
         # Is Live USB?
         self.computer_info["live_boot"] = self.is_live_boot()
@@ -158,6 +170,7 @@ class ComputerManager:
             return self.processor_info
 
     def prepare_memory_info(self):
+        return self.memory_info
         client = GUdev.Client.new(["dmi"])
         device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
 
