@@ -120,38 +120,84 @@ class MainWindow:
         self.ui_private_ip_label = UI("ui_private_ip_label")
         self.ui_public_ip_label = UI("ui_public_ip_label")
 
-        self.ui_hardware_list_computer_revealer = UI("ui_hardware_list_computer_revealer")
-        self.ui_hardware_list_computer_revealer_image = UI("ui_hardware_list_computer_revealer_image")
+        self.ui_hardware_list_computer_revealer = UI(
+            "ui_hardware_list_computer_revealer"
+        )
+        self.ui_hardware_list_computer_revealer_image = UI(
+            "ui_hardware_list_computer_revealer_image"
+        )
         self.ui_hardware_list_os_revealer = UI("ui_hardware_list_os_revealer")
-        self.ui_hardware_list_os_revealer_image = UI("ui_hardware_list_os_revealer_image")
-        self.ui_hardware_list_processor_revealer = UI("ui_hardware_list_processor_revealer")
-        self.ui_hardware_list_processor_revealer_image = UI("ui_hardware_list_processor_revealer_image")
+        self.ui_hardware_list_os_revealer_image = UI(
+            "ui_hardware_list_os_revealer_image"
+        )
+        self.ui_hardware_list_processor_revealer = UI(
+            "ui_hardware_list_processor_revealer"
+        )
+        self.ui_hardware_list_processor_revealer_image = UI(
+            "ui_hardware_list_processor_revealer_image"
+        )
         self.ui_hardware_list_memory_revealer = UI("ui_hardware_list_memory_revealer")
-        self.ui_hardware_list_memory_revealer_image = UI("ui_hardware_list_memory_revealer_image")
+        self.ui_hardware_list_memory_revealer_image = UI(
+            "ui_hardware_list_memory_revealer_image"
+        )
         self.ui_hardware_list_storage_revealer = UI("ui_hardware_list_storage_revealer")
-        self.ui_hardware_list_storage_revealer_image = UI("ui_hardware_list_storage_revealer_image")
-        self.ui_hardware_list_graphics_revealer = UI("ui_hardware_list_graphics_revealer")
-        self.ui_hardware_list_graphics_revealer_image = UI("ui_hardware_list_graphics_revealer_image")
+        self.ui_hardware_list_storage_revealer_image = UI(
+            "ui_hardware_list_storage_revealer_image"
+        )
+        self.ui_hardware_list_graphics_revealer = UI(
+            "ui_hardware_list_graphics_revealer"
+        )
+        self.ui_hardware_list_graphics_revealer_image = UI(
+            "ui_hardware_list_graphics_revealer_image"
+        )
         self.ui_hardware_list_display_revealer = UI("ui_hardware_list_display_revealer")
-        self.ui_hardware_list_display_revealer_image = UI("ui_hardware_list_display_revealer_image")
-        self.ui_hardware_list_ethernet_revealer = UI("ui_hardware_list_ethernet_revealer")
-        self.ui_hardware_list_ethernet_revealer_image = UI("ui_hardware_list_ethernet_revealer_image")
+        self.ui_hardware_list_display_revealer_image = UI(
+            "ui_hardware_list_display_revealer_image"
+        )
+        self.ui_hardware_list_ethernet_revealer = UI(
+            "ui_hardware_list_ethernet_revealer"
+        )
+        self.ui_hardware_list_ethernet_revealer_image = UI(
+            "ui_hardware_list_ethernet_revealer_image"
+        )
         self.ui_hardware_list_wifi_revealer = UI("ui_hardware_list_wifi_revealer")
-        self.ui_hardware_list_wifi_revealer_image = UI("ui_hardware_list_wifi_revealer_image")
-        self.ui_hardware_list_bluetooth_revealer = UI("ui_hardware_list_bluetooth_revealer")
-        self.ui_hardware_list_bluetooth_revealer_image = UI("ui_hardware_list_bluetooth_revealer_image")
+        self.ui_hardware_list_wifi_revealer_image = UI(
+            "ui_hardware_list_wifi_revealer_image"
+        )
+        self.ui_hardware_list_bluetooth_revealer = UI(
+            "ui_hardware_list_bluetooth_revealer"
+        )
+        self.ui_hardware_list_bluetooth_revealer_image = UI(
+            "ui_hardware_list_bluetooth_revealer_image"
+        )
         self.ui_hardware_list_audio_revealer = UI("ui_hardware_list_audio_revealer")
-        self.ui_hardware_list_audio_revealer_image = UI("ui_hardware_list_audio_revealer_image")
+        self.ui_hardware_list_audio_revealer_image = UI(
+            "ui_hardware_list_audio_revealer_image"
+        )
         self.ui_hardware_list_camera_revealer = UI("ui_hardware_list_camera_revealer")
-        self.ui_hardware_list_camera_revealer_image = UI("ui_hardware_list_camera_revealer_image")
-        self.ui_hardware_list_keyboard_revealer = UI("ui_hardware_list_keyboard_revealer")
-        self.ui_hardware_list_keyboard_revealer_image = UI("ui_hardware_list_keyboard_revealer_image")
+        self.ui_hardware_list_camera_revealer_image = UI(
+            "ui_hardware_list_camera_revealer_image"
+        )
+        self.ui_hardware_list_keyboard_revealer = UI(
+            "ui_hardware_list_keyboard_revealer"
+        )
+        self.ui_hardware_list_keyboard_revealer_image = UI(
+            "ui_hardware_list_keyboard_revealer_image"
+        )
         self.ui_hardware_list_mouse_revealer = UI("ui_hardware_list_mouse_revealer")
-        self.ui_hardware_list_mouse_revealer_image = UI("ui_hardware_list_mouse_revealer_image")
-        self.ui_hardware_list_fingerprint_revealer = UI("ui_hardware_list_fingerprint_revealer")
-        self.ui_hardware_list_fingerprint_revealer_image = UI("ui_hardware_list_fingerprint_revealer_image")
+        self.ui_hardware_list_mouse_revealer_image = UI(
+            "ui_hardware_list_mouse_revealer_image"
+        )
+        self.ui_hardware_list_fingerprint_revealer = UI(
+            "ui_hardware_list_fingerprint_revealer"
+        )
+        self.ui_hardware_list_fingerprint_revealer_image = UI(
+            "ui_hardware_list_fingerprint_revealer_image"
+        )
         self.ui_hardware_list_printer_revealer = UI("ui_hardware_list_printer_revealer")
-        self.ui_hardware_list_printer_revealer_image = UI("ui_hardware_list_printer_revealer_image")
+        self.ui_hardware_list_printer_revealer_image = UI(
+            "ui_hardware_list_printer_revealer_image"
+        )
 
         self.ui_detail_computer_vendor_label = UI("ui_detail_computer_vendor_label")
         self.ui_detail_computer_model_label = UI("ui_detail_computer_model_label")
@@ -206,14 +252,16 @@ class MainWindow:
         self.ui_detail_os_codename_label.set_text(mauna_info["os_codename"])
         self.ui_detail_os_version_label.set_text(mauna_info["os_version"])
         self.ui_detail_os_kernel_label.set_text(mauna_info["kernel"])
-        #self.ui_detail_os_desktop_label.set_text(mauna_info["wayland"])
+        # self.ui_detail_os_desktop_label.set_text(mauna_info["wayland"])
 
         # CPU
         processor_info = self.computerManager.get_processor_info()
         self.ui_processor_label.set_text(processor_info["name"])
         self.ui_detail_processor_vendor_label.set_text(processor_info["vendor"])
         self.ui_detail_processor_model_label.set_text(processor_info["name"])
-        self.ui_detail_processor_core_label.set_text(f"{processor_info["core_count"]} / {processor_info['thread_count']}")
+        self.ui_detail_processor_core_label.set_text(
+            f"{processor_info['core_count']} / {processor_info['thread_count']}"
+        )
 
         # Memory
         memory_summary = self.computerManager.get_memory_summary()
@@ -238,7 +286,7 @@ class MainWindow:
         try:
             graphics_summary = ""
             for device in hardware_info["graphics"]:
-                graphics_summary += f"{device["vendor"]} {device["name"]}\n"
+                graphics_summary += f"{device['vendor']} {device['name']}\n"
             self.ui_graphics_label.set_text(graphics_summary)
         except:
             pass
@@ -246,7 +294,7 @@ class MainWindow:
         try:
             ethernet_summary = ""
             for device in hardware_info["ethernet"]:
-                ethernet_summary += f"{device["name"]}\n"
+                ethernet_summary += f"{device['name']}\n"
             self.ui_ethernet_label.set_text(ethernet_summary)
         except:
             pass
@@ -254,7 +302,7 @@ class MainWindow:
         try:
             wifi_summary = ""
             for device in hardware_info["wifi"]:
-                wifi_summary += f"{device["name"]}\n"
+                wifi_summary += f"{device['name']}\n"
             self.ui_wifi_label.set_text(wifi_summary)
         except:
             pass
@@ -262,7 +310,7 @@ class MainWindow:
         try:
             bluetooth_summary = ""
             for device in hardware_info["bluetooth"]:
-                bluetooth_summary += f"{device["vendor"]} {device["name"]}\n"
+                bluetooth_summary += f"{device['vendor']} {device['name']}\n"
             self.ui_bluetooth_label.set_text(bluetooth_summary)
         except:
             pass
@@ -270,7 +318,7 @@ class MainWindow:
         try:
             audio_summary = ""
             for device in hardware_info["audio"]:
-                audio_summary += f"{device["vendor"]} {device["name"]}\n"
+                audio_summary += f"{device['vendor']} {device['name']}\n"
             self.ui_audio_label.set_text(audio_summary)
         except:
             pass
@@ -384,94 +432,128 @@ class MainWindow:
         state = not self.ui_hardware_list_computer_revealer.get_reveal_child()
         self.ui_hardware_list_computer_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_computer_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_computer_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_os_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_os_revealer.get_reveal_child()
         self.ui_hardware_list_os_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_os_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_os_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_processor_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_processor_revealer.get_reveal_child()
         self.ui_hardware_list_processor_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_processor_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_processor_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_memory_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_memory_revealer.get_reveal_child()
         self.ui_hardware_list_memory_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_memory_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_memory_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_storage_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_storage_revealer.get_reveal_child()
         self.ui_hardware_list_storage_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_storage_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_storage_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_graphics_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_graphics_revealer.get_reveal_child()
         self.ui_hardware_list_graphics_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_graphics_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_graphics_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_display_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_display_revealer.get_reveal_child()
         self.ui_hardware_list_display_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_display_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_display_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_ethernet_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_ethernet_revealer.get_reveal_child()
         self.ui_hardware_list_ethernet_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_ethernet_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_ethernet_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_wifi_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_wifi_revealer.get_reveal_child()
         self.ui_hardware_list_wifi_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_wifi_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_wifi_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_bluetooth_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_bluetooth_revealer.get_reveal_child()
         self.ui_hardware_list_bluetooth_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_bluetooth_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_bluetooth_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_audio_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_audio_revealer.get_reveal_child()
         self.ui_hardware_list_audio_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_audio_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_audio_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_camera_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_camera_revealer.get_reveal_child()
         self.ui_hardware_list_camera_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_camera_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_camera_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_keyboard_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_keyboard_revealer.get_reveal_child()
         self.ui_hardware_list_keyboard_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_keyboard_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_keyboard_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_mouse_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_mouse_revealer.get_reveal_child()
         self.ui_hardware_list_mouse_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_mouse_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_mouse_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
-    def on_ui_hardware_list_fingerprint_eventbox_button_press_event(self, widget, event):
+    def on_ui_hardware_list_fingerprint_eventbox_button_press_event(
+        self, widget, event
+    ):
         state = not self.ui_hardware_list_fingerprint_revealer.get_reveal_child()
         self.ui_hardware_list_fingerprint_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_fingerprint_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_fingerprint_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
 
     def on_ui_hardware_list_printer_eventbox_button_press_event(self, widget, event):
         state = not self.ui_hardware_list_printer_revealer.get_reveal_child()
         self.ui_hardware_list_printer_revealer.set_reveal_child(state)
         icon = "go-up-symbolic" if state else "go-down-symbolic"
-        self.ui_hardware_list_printer_revealer_image.set_from_icon_name(icon, Gtk.IconSize.BUTTON)
+        self.ui_hardware_list_printer_revealer_image.set_from_icon_name(
+            icon, Gtk.IconSize.BUTTON
+        )
