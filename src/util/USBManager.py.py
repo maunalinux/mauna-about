@@ -253,6 +253,7 @@ def get_hid_devices():
 
 def match_class_with_category(class_id):
     device_classes = {
+        "02": "ethernet",
         "01": "audio",
         "e0 01 01": "bluetooth",
         "ef 01": "camera",
