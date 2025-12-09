@@ -91,9 +91,6 @@ def get_sys_bus_uevent():
             except OSError as e:
                 print(f"Failed to read symlink: {driver_link_path} → {e}")
 
-        if dev_class != "09":
-            print(product, entry, driver, interface_info)
-
         # Create a fresh dictionary per device
         info = {
             "driver": driver,
@@ -154,9 +151,10 @@ def get_hid_input_type(input_path):
             else:
                 current_value += c
 
-        # print("modalias:", modalias_path)
-        # print("events:", events)
-        # print("keys:", keys)
+        print("---hid---")
+        print("modalias:", modalias_path)
+        print("events:", events)
+        print("keys:", keys)
 
         BTN_TOUCH = "14A" in keys  # touch support
         BTN_RIGHT = "111" in keys  # mouse right click
@@ -302,10 +300,10 @@ def get_usb_devices():
         driver_category = match_driver_with_category(usb.get("driver", ""))
         interface_category = match_class_with_category(usb.get("interface_id", ""))
 
-        print("---------")
-        print("product:", usb.get("product", ""))
-        print("class_id:", usb.get("class_id", ""))
-        print("interface_id:", usb.get("interface_id", ""))
+        # print("---------")
+        # print("product:", usb.get("product", ""))
+        # print("class_id:", usb.get("class_id", ""))
+        # print("interface_id:", usb.get("interface_id", ""))
 
         if driver_category:
             category = driver_category

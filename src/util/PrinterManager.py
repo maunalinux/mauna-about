@@ -24,6 +24,3 @@ def get_printers():
         return []
 
     return printers_list
-
-
-print(get_printers())
