@@ -70,7 +70,7 @@ def lookup_ids_file(file_path):
 
 def get_vendor_product_name(key, vendor, product):
     file_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), f"/usr/share/misc/{key}.ids"
+        os.path.dirname(os.path.abspath(__file__)), f"/usr/share/misc/{key}.ids", f"/usr/share/hwdata/{key}.ids"
     )
     ids_lib = lookup_ids_file(file_path)
 
