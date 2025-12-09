@@ -291,10 +291,6 @@ def get_usb_devices():
         if name is None:
             name = usb["product"]
 
-        print("name:", name)
-        print("class_id:", usb.get("class_id", ""))
-        print("driver:", usb.get("driver", ""))
-
         device_id = f"{vendor_upper}:{product_upper}"
 
         busnum = f"{int(usb['busnum']):04}"
