@@ -11,7 +11,7 @@ def get_disks():
         return disks
 
     p = subprocess.run(
-        ["lsblk", "-bdJ", "-o", "MODEL,SIZE,TRAN,TYPE,VENDOR,SERIAL"],
+        ["lsblk", "-bdJ", "-o", "MODEL,SIZE,TRAN,TYPE,SERIAL"],
         capture_output=True,
         text=True,
     )
@@ -35,7 +35,6 @@ def get_disks():
             disk = {
                 "model": d["model"],
                 "serial": d["serial"],  # private
-                "vendor": d["vendor"],
                 "type": d["tran"],
                 "size": f"{size} {size_name}",
             }
