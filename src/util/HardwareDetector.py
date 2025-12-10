@@ -48,6 +48,10 @@ def lookup_ids_file(file_path):
     temp_vendor = ""
     ids_lib = {}
 
+    print(file_path)
+    if not os.path.isfile(file_path):
+        return ids_lib
+
     try:
         with open(file_path, "r", encoding="utf-8") as file_ids:
             for line in file_ids:
@@ -71,12 +75,15 @@ def lookup_ids_file(file_path):
 
 
 def get_vendor_product_name(key, vendor, product):
-    file_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)),
+    files_path = [
+        os.path.dirname(os.path.abspath(__file__))+f"/../data/{key}.ids",
         f"/usr/share/misc/{key}.ids",
         f"/usr/share/hwdata/{key}.ids",
-    )
-    ids_lib = lookup_ids_file(file_path)
+    ]
+    for file_path in files_path:
+        ids_lib = lookup_ids_file(file_path)
+        if ids_lib != {}:
+            break
 
     if not ids_lib:
         return None, None
