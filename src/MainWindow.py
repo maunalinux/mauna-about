@@ -105,6 +105,8 @@ class MainWindow:
         self.ui_notification_popover = UI("ui_notification_popover")
 
         self.ui_hostname_label = UI("ui_hostname_label")
+        self.ui_distro_label = UI("ui_distro_label")
+        self.ui_distro_version_label = UI("ui_distro_version_label")
         self.ui_mauna_label = UI("ui_mauna_label")
         self.ui_kernel_label = UI("ui_kernel_label")
         self.ui_computer_label = UI("ui_computer_label")
@@ -233,6 +235,8 @@ class MainWindow:
         self.ui_hostname_label.set_text(mauna_info["hostname"])
         self.ui_mauna_label.set_text(mauna_info["os_pretty_name"])
         self.ui_kernel_label.set_text(mauna_info["kernel"])
+        self.ui_distro_label.set_text(mauna_info["os_id"].title())
+        self.ui_distro_version_label.set_text(mauna_info["os_version_id"])
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
