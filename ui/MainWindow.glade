@@ -194,8 +194,6 @@
   <object class="GtkWindow" id="ui_main_window">
     <property name="can-focus">False</property>
     <property name="window-position">center</property>
-    <property name="default-width">1071</property>
-    <property name="default-height">750</property>
     <property name="icon-name">mauna-about</property>
     <child>
       <object class="GtkStack" id="ui_main_stack">
@@ -205,23 +203,21 @@
           <object class="GtkBox" id="ui_info_box">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-start">20</property>
-            <property name="margin-end">20</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkBox" id="ui_info_container_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="spacing">20</property>
+                <property name="margin-start">13</property>
+                <property name="margin-end">13</property>
+                <property name="margin-top">13</property>
                 <child>
                   <object class="GtkBox" id="ui_sidebar_box">
-                    <property name="width-request">300</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="margin-start">16</property>
-                    <property name="margin-top">40</property>
-                    <property name="margin-bottom">20</property>
+                    <property name="margin-start">13</property>
+                    <property name="margin-end">13</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox" id="ui_avatar_box">
@@ -233,47 +229,17 @@
                             <property name="height-request">32</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="halign">center</property>
                             <property name="margin-bottom">16</property>
                             <child>
                               <object class="GtkImage" id="img_background">
-                                <property name="width-request">100</property>
-                                <property name="height-request">80</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="pixbuf">../maunaabout.png</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_mauna_logo">
-                                <property name="width-request">100</property>
-                                <property name="height-request">80</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">False</property>
-                                <property name="halign">start</property>
+                                <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <child>
-                                  <object class="GtkImage" id="img_distro">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-right">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-end">16</property>
-                                    <property name="margin-top">20</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">120</property>
-                                    <property name="icon-name">mauna-about-symbolic</property>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="circular"/>
-                                </style>
+                                <property name="pixel-size">160</property>
+                                <property name="icon-name">mauna-about-main</property>
                               </object>
-                              <packing>
-                                <property name="x">70</property>
-                                <property name="y">60</property>
-                              </packing>
                             </child>
                           </object>
                           <packing>
@@ -384,19 +350,12 @@
                   <object class="GtkStack" id="ui_info_stack">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
+                    <property name="margin-start">13</property>
                     <property name="transition-type">crossfade</property>
                     <child>
                       <object class="GtkBox" id="ui_loading_box">
-                        <property name="width-request">728</property>
-                        <property name="height-request">638</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="hexpand">False</property>
-                        <property name="vexpand">False</property>
                         <property name="orientation">vertical</property>
                         <property name="homogeneous">True</property>
                         <child>
@@ -438,38 +397,33 @@
                     <child>
                       <!-- n-columns=2 n-rows=6 -->
                       <object class="GtkGrid" id="ui_hardware_grid">
-                        <property name="width-request">100</property>
-                        <property name="height-request">80</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-start">16</property>
-                        <property name="margin-end">16</property>
-                        <property name="margin-top">40</property>
-                        <property name="margin-bottom">20</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="row-spacing">16</property>
-                        <property name="column-spacing">16</property>
+                        <property name="row-spacing">8</property>
+                        <property name="column-spacing">8</property>
                         <property name="row-homogeneous">True</property>
                         <property name="column-homogeneous">True</property>
                         <child>
                           <object class="GtkFrame">
                             <property name="can-focus">False</property>
                             <property name="label-xalign">0</property>
-                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-computer</property>
                                   </object>
                                   <packing>
@@ -482,13 +436,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -541,15 +490,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-processor</property>
                                   </object>
                                   <packing>
@@ -562,13 +515,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -621,15 +569,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-memory</property>
                                   </object>
                                   <packing>
@@ -642,13 +594,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -704,15 +651,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-storage</property>
                                   </object>
                                   <packing>
@@ -725,13 +676,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -784,15 +730,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-graphics</property>
                                   </object>
                                   <packing>
@@ -805,13 +755,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -864,15 +809,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-desktop</property>
                                   </object>
                                   <packing>
@@ -885,13 +834,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -944,15 +888,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-wifi</property>
                                   </object>
                                   <packing>
@@ -965,13 +913,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1025,15 +968,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-ethernet</property>
                                   </object>
                                   <packing>
@@ -1046,13 +993,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1106,15 +1048,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-bluetooth</property>
                                   </object>
                                   <packing>
@@ -1127,13 +1073,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1186,15 +1127,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-audio</property>
                                   </object>
                                   <packing>
@@ -1207,13 +1152,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1266,15 +1206,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-ethernet</property>
                                   </object>
                                   <packing>
@@ -1287,13 +1231,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1347,15 +1286,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="margin-start">13</property>
+                                <property name="margin-end">8</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="margin-left">16</property>
-                                    <property name="margin-start">16</property>
-                                    <property name="margin-top">16</property>
-                                    <property name="margin-bottom">16</property>
-                                    <property name="pixel-size">48</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="pixel-size">42</property>
                                     <property name="icon-name">mauna-about-publicip</property>
                                   </object>
                                   <packing>
@@ -1368,13 +1311,8 @@
                                   <object class="GtkBox">
                                     <property name="can-focus">False</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">8</property>
-                                    <property name="margin-right">8</property>
                                     <property name="margin-start">8</property>
                                     <property name="margin-end">8</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="margin-bottom">8</property>
-                                    <property name="border-width">8</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -1429,10 +1367,6 @@
                       <object class="GtkScrolledWindow" id="ui_hardware_details_box">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="margin-left">16</property>
-                        <property name="margin-start">16</property>
-                        <property name="margin-top">40</property>
-                        <property name="margin-bottom">20</property>
                         <property name="hscrollbar-policy">external</property>
                         <property name="propagate-natural-height">True</property>
                         <child>
@@ -1443,7 +1377,6 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-right">16</property>
                                 <property name="margin-end">16</property>
                                 <property name="orientation">vertical</property>
                                 <property name="spacing">8</property>
@@ -1472,10 +1405,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-computer</property>
                                                   </object>
@@ -1504,7 +1436,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_computer_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -1724,10 +1655,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-symbolic</property>
                                                   </object>
@@ -1756,7 +1686,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_os_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2072,10 +2001,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-processor</property>
                                                   </object>
@@ -2104,7 +2032,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_processor_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2324,10 +2251,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-memory</property>
                                                   </object>
@@ -2356,7 +2282,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_memory_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2461,10 +2386,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-storage</property>
                                                   </object>
@@ -2493,7 +2417,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_storage_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2597,10 +2520,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-graphics</property>
                                                   </object>
@@ -2629,7 +2551,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_graphics_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2733,10 +2654,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-monitor</property>
                                                   </object>
@@ -2765,7 +2685,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_display_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -2869,10 +2788,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-ethernet</property>
                                                   </object>
@@ -2901,7 +2819,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_ethernet_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3005,10 +2922,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-wifi</property>
                                                   </object>
@@ -3037,7 +2953,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_wifi_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3141,10 +3056,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-bluetooth</property>
                                                   </object>
@@ -3173,7 +3087,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_bluetooth_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3277,10 +3190,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-audio</property>
                                                   </object>
@@ -3309,7 +3221,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_audio_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3413,10 +3324,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-camera</property>
                                                   </object>
@@ -3445,7 +3355,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_camera_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3549,10 +3458,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-keyboard</property>
                                                   </object>
@@ -3581,7 +3489,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_keyboard_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3685,10 +3592,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-mouse</property>
                                                   </object>
@@ -3717,7 +3623,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_mouse_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3821,10 +3726,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-fingerprint</property>
                                                   </object>
@@ -3853,7 +3757,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_fingerprint_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -3957,10 +3860,9 @@
                                                   <object class="GtkImage">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-left">16</property>
-                                                    <property name="margin-start">16</property>
-                                                    <property name="margin-top">12</property>
-                                                    <property name="margin-bottom">12</property>
+                                                    <property name="margin-start">13</property>
+                                                    <property name="margin-top">8</property>
+                                                    <property name="margin-bottom">8</property>
                                                     <property name="pixel-size">24</property>
                                                     <property name="icon-name">mauna-about-printers</property>
                                                   </object>
@@ -3989,7 +3891,6 @@
                                                   <object class="GtkImage" id="ui_hardware_list_printer_revealer_image">
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="margin-right">16</property>
                                                     <property name="margin-end">16</property>
                                                     <property name="icon-name">go-down-symbolic</property>
                                                   </object>
@@ -4097,14 +3998,13 @@
               <object class="GtkBox" id="ui_copyright_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="valign">end</property>
+                <property name="margin-top">13</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkSeparator">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-start">16</property>
-                    <property name="margin-end">16</property>
-                    <property name="margin-top">8</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -4116,9 +4016,9 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">16</property>
-                    <property name="margin-bottom">16</property>
-                    <property name="label">© TÜBİTAK BİLGEM</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label">MAUNA LINUX</property>
                     <attributes>
                       <attribute name="weight" value="light"/>
                     </attributes>
@@ -4181,7 +4081,7 @@
     <property name="transient-for">ui_main_window</property>
     <property name="program-name">Mauna About</property>
     <property name="version">0.7.0</property>
-    <property name="copyright">© TÜBİTAK BİLGEM</property>
+    <property name="copyright">MAUNA LINUX</property>
     <property name="comments" translatable="yes">Get info about your Mauna system.</property>
     <property name="website">https://github.com/maunalinux/mauna-about</property>
     <property name="website-label" translatable="yes">Website</property>
