@@ -91,7 +91,10 @@ data_files = [
             "data/assets/mauna-about-publicip.svg",
             "data/assets/mauna-about-storage.svg",
             "data/assets/mauna-about-touchpad.svg",
-            "data/assets/mauna-about-wifi.svg"
+            "data/assets/mauna-about-wifi.svg",
+            "data/assets/mauna-about-bios.svg",
+            "data/assets/mauna-about-main.svg",
+            "data/assets/mauna-about-network-card.svg"
         ],
     ),
 ] + create_mo_files()
