@@ -226,23 +226,15 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
+                        <property name="spacing">3</property>
                         <child>
                           <object class="GtkFixed">
                             <property name="height-request">32</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="halign">center</property>
-                            <property name="margin-bottom">16</property>
-                            <child>
-                              <object class="GtkImage" id="img_background">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="pixel-size">160</property>
-                                <property name="icon-name">mauna-about-main</property>
-                              </object>
-                            </child>
+                            <property name="valign">center</property>
+                            <property name="margin-start">30</property>
+                            <property name="margin-end">30</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -257,7 +249,7 @@
                             <property name="halign">center</property>
                             <property name="spacing">5</property>
                             <child>
-                              <object class="GtkLabel" id="ui_distro_label">
+                              <object class="GtkLabel" id="ui_distro_id_label">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
@@ -298,15 +290,10 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="ui_hostname_label">
+                          <object class="GtkLabel" id="ui_distro_codename_label">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-bottom">8</property>
-                            <property name="label" translatable="yes">Unknown</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                              <attribute name="size" value="15360"/>
-                            </attributes>
+                            <property name="label">Polaris</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -315,11 +302,11 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="ui_mauna_label">
+                          <object class="GtkSeparator">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label" translatable="yes">Unknown</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -328,10 +315,95 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="ui_kernel_label">
+                          <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Unknown</property>
+                            <property name="margin-start">25</property>
+                            <property name="margin-end">25</property>
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">8</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Username</property>
+                                    <attributes>
+                                      <attribute name="weight" value="bold"/>
+                                    </attributes>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="ui_username_label">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label">mauna</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="max-width-chars">11</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Hostname</property>
+                                    <attributes>
+                                      <attribute name="weight" value="bold"/>
+                                    </attributes>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="ui_hostname_label">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label">mauna</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="max-width-chars">11</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -360,8 +432,8 @@
                             <signal name="clicked" handler="on_hardware_info_button_clicked" swapped="no"/>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">False</property>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
@@ -376,7 +448,6 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="pack-type">end</property>
                             <property name="position">2</property>
                           </packing>
                         </child>
@@ -608,8 +679,8 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">0</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">1</property>
                           </packing>
                         </child>
                         <child>
@@ -692,7 +763,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
+                            <property name="top-attach">2</property>
                           </packing>
                         </child>
                         <child>
@@ -772,7 +843,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
+                            <property name="top-attach">2</property>
                           </packing>
                         </child>
                         <child>
@@ -851,8 +922,8 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">1</property>
                           </packing>
                         </child>
                         <child>
@@ -932,7 +1003,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">2</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>

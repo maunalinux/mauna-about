@@ -104,11 +104,11 @@ class MainWindow:
         self.ui_popover_menu = UI("ui_popover_menu")
         self.ui_notification_popover = UI("ui_notification_popover")
 
-        self.ui_hostname_label = UI("ui_hostname_label")
-        self.ui_distro_label = UI("ui_distro_label")
+        self.ui_distro_id_label = UI("ui_distro_id_label")
         self.ui_distro_version_label = UI("ui_distro_version_label")
-        self.ui_mauna_label = UI("ui_mauna_label")
-        self.ui_kernel_label = UI("ui_kernel_label")
+        self.ui_distro_codename_label = UI("ui_distro_codename_label")
+        self.ui_username_label = UI("ui_username_label")
+        self.ui_hostname_label = UI("ui_hostname_label")
         self.ui_computer_label = UI("ui_computer_label")
         self.ui_processor_label = UI("ui_processor_label")
         self.ui_memory_label = UI("ui_memory_label")
@@ -232,11 +232,18 @@ class MainWindow:
 
     def read_mauna_info(self):
         mauna_info = OSManager.get_os_info()
-        self.ui_hostname_label.set_text(mauna_info["hostname"])
-        self.ui_mauna_label.set_text(mauna_info["os_pretty_name"])
-        self.ui_kernel_label.set_text(mauna_info["kernel"])
-        self.ui_distro_label.set_text(mauna_info["os_id"].title())
+        self.ui_distro_id_label.set_text(pardus_info["os_id"].title())
         self.ui_distro_version_label.set_text(mauna_info["os_version_id"])
+        codename_map = {
+            "mauna": "Sirius",
+            "polaris": "Polaris",
+            # "orion": "Orion"
+        }
+        raw_name = mauna_info.get("os_codename", "")
+        display_name = codename_map.get(raw_name, raw_name)
+        self.ui_distro_codename_label.set_text(f"{display_name}")
+        self.ui_username_label.set_text(f"{GLib.get_user_name()}")
+        self.ui_hostname_label.set_text(pardus_info["hostname"].lower())
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
