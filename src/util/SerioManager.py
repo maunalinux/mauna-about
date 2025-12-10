@@ -21,14 +21,13 @@ def get_serio_devices():
             if not finput.startswith("input"):
                 continue
             info = {
-                "device_id": "",
                 "name": _read_file(f"{dev}/input/{finput}/name"),
-                "vendor": _read_file(f"{dev}/input/{finput}/id/vendor"),
-                "product": _read_file(f"{dev}/input/{finput}/id/product"),
+                "vendor_id": _read_file(f"{dev}/input/{finput}/id/vendor"),
+                "product_id": _read_file(f"{dev}/input/{finput}/id/product"),
                 "driver": driver,
-                "available_drivers": [],
                 "bus":"serio",
-                "bus_adress": dev_name
+                "bus_adress": dev_name,
+                "input_device": finput
             }
             if driver == "psmouse":
                 data["mouse"].append(info)

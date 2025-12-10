@@ -206,6 +206,7 @@ def get_hid_devices():
             "driver": "",
             "vendor_id": "",
             "product_id": "",
+            "bus": "usb",
             "bus_address": "",
             "type": "",
             "input_device": "",

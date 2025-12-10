@@ -6,6 +6,7 @@ from . import PCIManager
 from . import USBManager
 from . import DiskManager
 from . import PrinterManager
+from . import SerioManager
 
 
 UDEV_HWDB = (
@@ -112,6 +113,7 @@ def get_hardware_info():
 
     pci_dev_info = PCIManager.get_pci_devices()
     usb_dev_info = USBManager.get_usb_devices()
+    serio_dev_info = SerioManager.get_serio_devices()
     disks = DiskManager.get_disks()
     printers = PrinterManager.get_printers()
 
@@ -158,5 +160,8 @@ def get_hardware_info():
 
         if c in usb_dev_info:
             hardware_info[c] += usb_dev_info[c]
+
+        if c in serio_dev_info:
+            hardware_info[c] += serio_dev_info[c]
 
     return hardware_info
