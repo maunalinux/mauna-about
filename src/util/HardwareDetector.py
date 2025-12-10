@@ -7,6 +7,7 @@ from . import USBManager
 from . import DiskManager
 from . import PrinterManager
 from . import SerioManager
+from . import MonitorManager
 
 
 UDEV_HWDB = (
@@ -71,7 +72,9 @@ def lookup_ids_file(file_path):
 
 def get_vendor_product_name(key, vendor, product):
     file_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), f"/usr/share/misc/{key}.ids", f"/usr/share/hwdata/{key}.ids"
+        os.path.dirname(os.path.abspath(__file__)),
+        f"/usr/share/misc/{key}.ids",
+        f"/usr/share/hwdata/{key}.ids",
     )
     ids_lib = lookup_ids_file(file_path)
 
@@ -116,6 +119,7 @@ def get_hardware_info():
     serio_dev_info = SerioManager.get_serio_devices()
     disks = DiskManager.get_disks()
     printers = PrinterManager.get_printers()
+    displays = MonitorManager.scan_monitors()
 
     # HID devices
     hid_devices = USBManager.get_hid_devices()
@@ -145,6 +149,7 @@ def get_hardware_info():
         "camera": [],
         "audio": [],
         "fingerprint": [],
+        "display": displays,
         "printer": printers,
         "storage": disks,
         "keyboard": keyboards,

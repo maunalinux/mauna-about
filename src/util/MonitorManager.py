@@ -1,5 +1,5 @@
 import os
-import edid
+from . import edid
 
 
 def read_edid(path) -> edid.Edid:
