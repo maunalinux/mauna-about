@@ -206,7 +206,7 @@ def get_hid_devices():
             "driver": "",
             "vendor_id": "",
             "product_id": "",
-            "bus": "usb",
+            "bus": "",
             "bus_address": "",
             "type": "",
             "input_device": "",
@@ -226,6 +226,16 @@ def get_hid_devices():
                     info["bus_address"] = f"0x{int(bus, base=16):01X}"
                     info["vendor_id"] = f"0x{int(vendor, base=16):01X}"
                     info["product_id"] = f"0x{int(product, base=16):01X}"
+                elif key == "HID_PHYS":
+                    if "usb-" in value:
+                        # example data: usb-0000:00:14.0-6.2.5/input0
+                        info["bus"] = "usb"
+                    elif "i2c-" in value:
+                        # example data: i2c-UNIW0001:00
+                        info["bus"] = "i2c"
+                    elif len(value.split(":")) == 6 and len(value) == 17:
+                        # example bluetooth address: 64:6c:80:3f:d6:ae
+                        info["bus"] = "bluetooth"
 
         # is input device? (mouse, keyboard, touch)
         input_dir = os.path.join(device_path, "input")
