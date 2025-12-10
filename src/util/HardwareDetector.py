@@ -48,7 +48,6 @@ def lookup_ids_file(file_path):
     temp_vendor = ""
     ids_lib = {}
 
-    print(file_path)
     if not os.path.isfile(file_path):
         return ids_lib
 
