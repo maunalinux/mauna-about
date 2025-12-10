@@ -44,6 +44,11 @@ def get_os_info():
         operating_system_info["desktop_version"] = get_desktop_version(os.environ["XDG_CURRENT_DESKTOP"])
     if is_wayland():
         operating_system_info["display"] = "wayland"
+    with open("/proc/mounts","r") as f:
+        for line in f.read().strip().split("\n"):
+            if line.split(" ")[1] == "/":
+                operating_system_info["fstype"] = line.split(" ")[2]
+                break
 
     return operating_system_info
 
