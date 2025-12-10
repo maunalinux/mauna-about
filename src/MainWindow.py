@@ -282,7 +282,9 @@ class MainWindow:
 
         # Memory
         memory_summary = self.computerManager.get_memory_summary()
-        self.ui_memory_label.set_text(memory_summary)
+        # memory_summary = "32.0 GB Unknown Unknown"
+        # TODO FIXME
+        self.ui_memory_label.set_text(memory_summary.replace("Unknown", ""))
 
         memory_info = self.computerManager.get_memory_info()
         # for _index, memory in enumerate(memory_info):
@@ -300,23 +302,47 @@ class MainWindow:
         # Lazy Init PCI & USB devices information singleton
         hardware_info = HardwareDetector.get_hardware_info()
 
-        def set_list_label(label, devices, fields):
+        def set_list_label(label, devices, fields, skip_if_type_none=False):
             """Builds text safely without trailing newline."""
             try:
+                if not devices:
+                    label.set_text(_("Device not found"))
+                    return
+
                 items = []
+
                 for device in devices:
-                    text = " ".join(device.get(f, "") for f in fields).strip()
+
+                    if skip_if_type_none and device.get("type") is None:
+                        continue
+
+                    values = []
+                    for f in fields:
+                        val = device.get(f)
+                        if val:
+                            values.append(str(val))
+
+                    text = " ".join(values).strip()
                     if text:
                         items.append(text)
+
+                if not items:
+                    label.set_text(_("Device not found"))
+                    return
+
                 label.set_text("\n".join(items))
-            except Exception:
-                pass
+
+            except Exception as e:
+                print("device summary error:", e)
+                label.set_text(_("Device not found"))
 
         set_list_label(self.ui_graphics_label, hardware_info.get("graphics", []), ["vendor", "name"])
         set_list_label(self.ui_ethernet_label, hardware_info.get("ethernet", []), ["name"])
         set_list_label(self.ui_wifi_label, hardware_info.get("wifi", []), ["name"])
         set_list_label(self.ui_bluetooth_label, hardware_info.get("bluetooth", []), ["vendor", "name"])
         set_list_label(self.ui_audio_label, hardware_info.get("audio", []), ["vendor", "name"])
+
+        set_list_label(self.ui_storage_label, hardware_info.get("storage", []),["size", "model"], skip_if_type_none=True)
 
         task.return_boolean(True)
 

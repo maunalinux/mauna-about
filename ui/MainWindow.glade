@@ -235,6 +235,8 @@
                             <property name="valign">center</property>
                             <property name="margin-start">30</property>
                             <property name="margin-end">30</property>
+                            <property name="pixel-size">160</property>
+                            <property name="icon-name">mauna-about-main</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -256,7 +258,7 @@
                                 <property name="label">Mauna</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
-                                  <attribute name="size" value="15360"/>
+                                  <attribute name="size" value="17408"/>
                                 </attributes>
                               </object>
                               <packing>
@@ -273,7 +275,7 @@
                                 <property name="label">25.0</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
-                                  <attribute name="size" value="15360"/>
+                                  <attribute name="size" value="17408"/>
                                 </attributes>
                               </object>
                               <packing>
