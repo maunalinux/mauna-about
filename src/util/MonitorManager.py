@@ -44,6 +44,8 @@ def scan_monitors():
             print(
                 f"Permission denied: {drm_path}.",
             )
+        except ValueError:
+            pass
         except Exception as e:
             print(f"Error reading {drm_path}: {e}")
 
