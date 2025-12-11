@@ -8,6 +8,7 @@ install_subdir('src', install_dir : '/usr/share/mauna/mauna-about')
 install_subdir('data', install_dir : '/usr/share/mauna/mauna-about')
 install_subdir('ui', install_dir : '/usr/share/mauna/mauna-about')
 install_subdir('css', install_dir : '/usr/share/mauna/mauna-about')
+install_subdir('data/icons', install_dir : '/usr/share/icons/hicolor/scalable/devices', strip_directory: true)
 
 # icons
 install_data('mauna-hardware-info.svg', install_dir : '/usr/share/icons/hicolor/scalable/apps')
