@@ -206,11 +206,6 @@ class MainWindow:
         self.ui_detail_computer_vendor_label = UI("ui_detail_computer_vendor_label")
         self.ui_detail_computer_model_label = UI("ui_detail_computer_model_label")
         self.ui_detail_computer_family_label = UI("ui_detail_computer_family_label")
-        self.ui_detail_os_name_label = UI("ui_detail_os_name_label")
-        self.ui_detail_os_codename_label = UI("ui_detail_os_codename_label")
-        self.ui_detail_os_version_label = UI("ui_detail_os_version_label")
-        self.ui_detail_os_kernel_label = UI("ui_detail_os_kernel_label")
-        self.ui_detail_os_desktop_label = UI("ui_detail_os_desktop_label")
         self.ui_detail_processor_vendor_label = UI("ui_detail_processor_vendor_label")
         self.ui_detail_processor_model_label = UI("ui_detail_processor_model_label")
         self.ui_detail_processor_core_label = UI("ui_detail_processor_core_label")
@@ -230,6 +225,7 @@ class MainWindow:
         self.ui_hardware_list_mouse_container = UI("ui_hardware_list_mouse_container")
         self.ui_hardware_list_fingerprint_container = UI("ui_hardware_list_fingerprint_container")
         self.ui_hardware_list_printer_container = UI("ui_hardware_list_printer_container")
+        self.ui_hardware_list_os_container = UI("ui_hardware_list_os_container")
 
         # Submit
         self.ui_submit_window = UI("ui_submit_window")
@@ -275,16 +271,11 @@ class MainWindow:
 
         # OS
         mauna_info = OSManager.get_os_info()
-        self.ui_detail_os_name_label.set_text(mauna_info["os_name"])
-        self.ui_detail_os_codename_label.set_text(str(mauna_info["os_codename"]))
-        self.ui_detail_os_version_label.set_text(str(mauna_info["os_version"]))
-        self.ui_detail_os_kernel_label.set_text(mauna_info["kernel"])
         desktop_info = "{} {} ({})".format(
             mauna_info["desktop"],
             mauna_info["desktop_version"],
             mauna_info["display"],
         )
-        self.ui_detail_os_desktop_label.set_text(desktop_info)
         self.ui_desktop_label.set_text(desktop_info)
 
         # CPU
@@ -1129,6 +1120,70 @@ class MainWindow:
             hardware_info.get("printer", [])
         )
         # hardware details -printer screen END
+
+
+        # hardware details -os screen START
+        def populate_os_list(container, os_info):
+            """Populate the given GTK container with operating system information using Gtk.Grid."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Create grid
+            grid = Gtk.Grid()
+            grid.set_row_spacing(6)
+            grid.set_column_spacing(20)
+            grid.set_column_homogeneous(False)
+            grid.set_hexpand(True)
+
+            container.pack_start(grid, True, True, 0)
+
+            # Helper: left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                label.set_hexpand(True)
+                return label
+
+            # Header row (codename removed)
+            grid.attach(make_label("Name", bold=True), 0, 0, 1, 1)
+            grid.attach(make_label("Version", bold=True), 1, 0, 1, 1)
+            grid.attach(make_label("Kernel", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label("Desktop", bold=True), 3, 0, 1, 1)
+            grid.attach(make_label("Display", bold=True), 4, 0, 1, 1)
+
+            # Empty case
+            if not os_info:
+                grid.attach(make_label(_("Device not found")), 0, 1, 5, 1)
+                container.show_all()
+                return
+
+            # Extract OS fields (codename removed)
+            name = os_info.get("os_name", "")
+            version = os_info.get("os_version", "")
+            kernel = os_info.get("kernel", "")
+            desktop = f"{os_info.get('desktop', '')} {os_info.get('desktop_version', '')}".strip()
+            display = os_info.get("display", "")
+
+            # Row
+            grid.attach(make_label(name), 0, 1, 1, 1)
+            grid.attach(make_label(version), 1, 1, 1, 1)
+            grid.attach(make_label(kernel), 2, 1, 1, 1)
+            grid.attach(make_label(desktop), 3, 1, 1, 1)
+            grid.attach(make_label(display), 4, 1, 1, 1)
+
+            container.show_all()
+
+        populate_os_list(self.ui_hardware_list_os_container, OSManager.get_os_info())
+
+        # hardware details -os screen END
+
 
 
         def set_list_label(label, devices, fields, skip_if_type_none=False):
