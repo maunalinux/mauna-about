@@ -3,13 +3,13 @@ import gi
 import requests
 import json
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gio, Gtk, Gdk
 
 import locale
 from locale import gettext as _
 
-from util import OSManager, ComputerManager, HardwareDetector
+from util import OSManager, ComputerManager, HardwareDetector, network
 
 # Translation Constants:
 APPNAME = "mauna-about"
@@ -64,6 +64,8 @@ class MainWindow:
 
         task = Gio.Task.new(callback=self.on_read_hardware_info_finish)
         task.run_in_thread(self.read_hardware_info)
+
+        self.control_args()
 
         # Show Screen:
         self.window.show_all()
@@ -215,6 +217,8 @@ class MainWindow:
 
         self.memory_container = UI("ui_hardware_list_memory_container")
 
+        self.ui_hardware_list_memory_container = UI("ui_hardware_list_memory_container")
+
         # Submit
         self.ui_submit_window = UI("ui_submit_window")
         # prevent destroying the window on close clicked
@@ -228,22 +232,22 @@ class MainWindow:
         if "hardware" in self.application.args.keys():
             self.is_hardware_details_visible = True
 
-        self.ui_main_window.present()
+        self.window.present()
 
     def read_mauna_info(self):
         mauna_info = OSManager.get_os_info()
-        self.ui_distro_id_label.set_text(pardus_info["os_id"].title())
+        self.ui_distro_id_label.set_text(mauna_info["os_id"].title())
         self.ui_distro_version_label.set_text(mauna_info["os_version_id"])
         codename_map = {
             "mauna": "Sirius",
             "polaris": "Polaris",
-            # "orion": "Orion"
+            # "orion": "Orion",
         }
         raw_name = mauna_info.get("os_codename", "")
         display_name = codename_map.get(raw_name, raw_name)
         self.ui_distro_codename_label.set_text(f"{display_name}")
         self.ui_username_label.set_text(f"{GLib.get_user_name()}")
-        self.ui_hostname_label.set_text(pardus_info["hostname"].lower())
+        self.ui_hostname_label.set_text(mauna_info["hostname"].lower())
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
@@ -266,7 +270,7 @@ class MainWindow:
         desktop_info = "{} {} ({})".format(
             mauna_info["desktop"],
             mauna_info["desktop_version"],
-            mauna_info["display"]
+            mauna_info["display"],
         )
         self.ui_detail_os_desktop_label.set_text(desktop_info)
         self.ui_desktop_label.set_text(desktop_info)
@@ -285,6 +289,97 @@ class MainWindow:
         # memory_summary = "32.0 GB Unknown Unknown"
         # TODO FIXME
         self.ui_memory_label.set_text(memory_summary.replace("Unknown", ""))
+
+        # hardware details -memory screen START
+
+        def populate_memory_list(self, memory_slots):
+            """Populate ui_hardware_list_memory_container with memory slot information."""
+            # Clear previous children
+            for child in self.ui_hardware_list_memory_container.get_children():
+                self.ui_hardware_list_memory_container.remove(child)
+
+            # Helper to create a left-aligned label
+            def make_label(text, bold=False):
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{Gtk.utils.escape(text)}</b>") if hasattr(
+                        Gtk, "utils"
+                    ) else label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label(_("Slot"), bold=True), True, True, 0)
+            header_box.pack_start(make_label(_("Vendor"), bold=True), True, True, 0)
+            header_box.pack_start(make_label(_("Size"), bold=True), True, True, 0)
+            header_box.pack_start(make_label(_("Type"), bold=True), True, True, 0)
+            header_box.pack_start(make_label(_("Speed"), bold=True), True, True, 0)
+
+            self.ui_hardware_list_memory_container.pack_start(
+                header_box, False, False, 0
+            )
+
+            # If no slots at all
+            if not memory_slots:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(
+                    make_label(_("No memory information")), True, True, 0
+                )
+                self.ui_hardware_list_memory_container.pack_start(
+                    empty_box, False, False, 0
+                )
+                self.ui_hardware_list_memory_container.show_all()
+                return
+
+            # Slot rows
+            for index, slot in enumerate(memory_slots, start=1):
+                size = slot.get("size", 0.0)
+                mem_type = slot.get("type", "Unknown")
+                vendor = slot.get("vendor", _("Unknown")) or _("Unknown")
+                speed = slot.get("speed", "") or ""
+
+                # Decide if this is an "empty" slot
+                is_empty = (not size) or size == 0.0 or mem_type == "Unknown"
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+
+                # Slot number
+                row_box.pack_start(make_label(str(index)), True, True, 0)
+
+                if is_empty:
+                    # Show "boş" for empty slots
+                    row_box.pack_start(make_label(_("empty")), True, True, 0)
+                    row_box.pack_start(make_label(""), True, True, 0)
+                    row_box.pack_start(make_label(""), True, True, 0)
+                    row_box.pack_start(make_label(""), True, True, 0)
+                else:
+                    # Pretty size (e.g. 16.0 -> "16 GB")
+                    if isinstance(size, (int, float)):
+                        if float(size).is_integer():
+                            size_text = f"{int(size)} GB"
+                        else:
+                            size_text = f"{size} GB"
+                    else:
+                        size_text = str(size)
+
+                    row_box.pack_start(make_label(vendor), True, True, 0)
+                    row_box.pack_start(make_label(size_text), True, True, 0)
+                    row_box.pack_start(make_label(mem_type), True, True, 0)
+                    row_box.pack_start(make_label(speed), True, True, 0)
+
+                self.ui_hardware_list_memory_container.pack_start(
+                    row_box, False, False, 0
+                )
+
+            self.ui_hardware_list_memory_container.show_all()
+
+        # hardware details -memory screen END
+
+        memory_info = self.computerManager.get_memory_info()
+        populate_memory_list(self, memory_info)
 
         memory_info = self.computerManager.get_memory_info()
         # for _index, memory in enumerate(memory_info):
@@ -312,7 +407,6 @@ class MainWindow:
                 items = []
 
                 for device in devices:
-
                     if skip_if_type_none and device.get("type") is None:
                         continue
 
@@ -336,13 +430,65 @@ class MainWindow:
                 print("device summary error:", e)
                 label.set_text(_("Device not found"))
 
-        set_list_label(self.ui_graphics_label, hardware_info.get("graphics", []), ["vendor", "name"])
-        set_list_label(self.ui_ethernet_label, hardware_info.get("ethernet", []), ["name"])
+        set_list_label(
+            self.ui_graphics_label,
+            hardware_info.get("graphics", []),
+            ["vendor", "name"],
+        )
+        set_list_label(
+            self.ui_ethernet_label, hardware_info.get("ethernet", []), ["name"]
+        )
         set_list_label(self.ui_wifi_label, hardware_info.get("wifi", []), ["name"])
-        set_list_label(self.ui_bluetooth_label, hardware_info.get("bluetooth", []), ["vendor", "name"])
-        set_list_label(self.ui_audio_label, hardware_info.get("audio", []), ["vendor", "name"])
+        set_list_label(
+            self.ui_bluetooth_label,
+            hardware_info.get("bluetooth", []),
+            ["vendor", "name"],
+        )
+        set_list_label(
+            self.ui_audio_label, hardware_info.get("audio", []), ["vendor", "name"]
+        )
 
-        set_list_label(self.ui_storage_label, hardware_info.get("storage", []),["size", "model"], skip_if_type_none=True)
+        set_list_label(
+            self.ui_storage_label,
+            hardware_info.get("storage", []),
+            ["size", "model"],
+            skip_if_type_none=True,
+        )
+
+        def set_ip_list_label(label, ip_list):
+            """Formats list of (ip, iface) tuples and sets into label."""
+            try:
+                if not ip_list:
+                    label.set_text(_("Unknown"))
+                    return
+
+                items = []
+                for ip, iface in ip_list:
+                    # Skip loopback
+                    if iface == "lo":
+                        continue
+
+                    iface_str = str(iface) if iface else ""
+                    ip_str = str(ip) if ip else ""
+
+                    line = f"{iface_str} {ip_str}".strip()
+                    if line:
+                        items.append(line)
+
+                # If everything was filtered out → not found
+                if not items:
+                    label.set_text(_("Unknown"))
+                    return
+
+                label.set_text("\n".join(items))
+
+            except Exception as e:
+                print("ip list error:", e)
+                label.set_text(_("Unknown"))
+
+        set_ip_list_label(self.ui_private_ip_label, network.get_local_ip())
+
+        self.ui_public_ip_label.set_text(network.get_wan_ip())
 
         task.return_boolean(True)
 

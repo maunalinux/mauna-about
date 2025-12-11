@@ -2,14 +2,21 @@
 
 import sys
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
 
 from MainWindow import MainWindow
 
+
 class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="tr.org.pardus.about", flags=Gio.ApplicationFlags(8), **kwargs)
+        super().__init__(
+            *args,
+            application_id="top.mauna.about",
+            flags=Gio.ApplicationFlags(8),
+            **kwargs,
+        )
 
         self.window = None
         GLib.set_prgname("top.mauna.about")
@@ -18,8 +25,8 @@ class Application(Gtk.Application):
             "hardware",
             ord("h"),
             GLib.OptionFlags(0),
-            GLib.OptionArg(1),
-            "Hardware information",
+            GLib.OptionArg(0),
+            "Show Hardware Information",
             None,
         )
 
@@ -31,6 +38,7 @@ class Application(Gtk.Application):
             self.window = MainWindow(self)
         else:
             self.window.control_args()
+
         self.window.ui_main_window.present()
 
     def do_command_line(self, command_line):
@@ -39,6 +47,7 @@ class Application(Gtk.Application):
         self.args = options
         self.activate()
         return 0
+
 
 app = Application()
 app.run(sys.argv)
