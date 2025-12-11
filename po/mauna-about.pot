@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 15:47-0300\n"
+"POT-Creation-Date: 2025-12-11 15:56-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,16 @@ msgid "Unknown"
 msgstr ""
 
 #: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
-#: src/MainWindow.py:336
+#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
+#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
+#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
 msgid "Vendor"
 msgstr ""
 
 #: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
+#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
+#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
+#: src/MainWindow.py:791 src/MainWindow.py:855
 msgid "Model"
 msgstr ""
 
@@ -146,7 +151,7 @@ msgstr ""
 msgid "Graphics"
 msgstr ""
 
-#: ui/MainWindow.glade:2614
+#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
 msgid "Display"
 msgstr ""
 
@@ -257,11 +262,11 @@ msgstr ""
 msgid "About Mauna"
 msgstr ""
 
-#: src/MainWindow.py:337
+#: src/MainWindow.py:337 src/MainWindow.py:421
 msgid "Size"
 msgstr ""
 
-#: src/MainWindow.py:338
+#: src/MainWindow.py:338 src/MainWindow.py:422
 msgid "Type"
 msgstr ""
 
@@ -284,6 +289,37 @@ msgstr ""
 #: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
 #: src/MainWindow.py:1220
 msgid "Device not found"
+msgstr ""
+
+#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
+#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
+#: src/MainWindow.py:916 src/MainWindow.py:978
+msgid "Driver"
+msgstr ""
+
+#: src/MainWindow.py:546
+msgid "Resolution"
+msgstr ""
+
+#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
+#: src/MainWindow.py:1096 src/MainWindow.py:1155
+msgid "Name"
+msgstr ""
+
+#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
+msgid "Connection"
+msgstr ""
+
+#: src/MainWindow.py:1156
+msgid "Version"
+msgstr ""
+
+#: src/MainWindow.py:1157
+msgid "Kernel"
+msgstr ""
+
+#: src/MainWindow.py:1158
+msgid "Desktop"
 msgstr ""
 
 #: src/MainWindow.py:1309
