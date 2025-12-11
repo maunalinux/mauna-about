@@ -418,9 +418,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Size", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Type", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Size"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Type"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # Filter valid storage devices
             valid_storage = [dev for dev in storage_list if dev.get("type")]
@@ -482,9 +482,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # No devices
             if not graphics_list:
@@ -542,9 +542,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Resolution", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Resolution"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # No displays
             if not display_list:
@@ -600,9 +600,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # No Ethernet devices
             if not ethernet_list:
@@ -662,9 +662,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # No WiFi adapters
             if not wifi_list:
@@ -723,9 +723,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # No Bluetooth adapters
             if not bluetooth_list:
@@ -786,9 +786,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # Empty case
             if not audio_list:
@@ -850,9 +850,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Model", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
 
             # Empty case
             if not camera_list:
@@ -912,9 +912,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Name", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Connection", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Connection"), bold=True), 2, 0, 1, 1)
 
             # Empty case
             if not keyboard_list:
@@ -974,9 +974,9 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Name", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Driver", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Connection", bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Connection"), bold=True), 2, 0, 1, 1)
 
             # Empty case
             if not mouse_list:
@@ -1036,8 +1036,8 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Vendor", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Name", bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Name"), bold=True), 1, 0, 1, 1)
 
             # Empty case
             if not fp_list:
@@ -1093,8 +1093,8 @@ class MainWindow:
                 return label
 
             # Header row
-            grid.attach(make_label("Name", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Connection", bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Connection"), bold=True), 1, 0, 1, 1)
 
             # Empty case
             if not printer_list:
@@ -1152,11 +1152,11 @@ class MainWindow:
                 return label
 
             # Header row (codename removed)
-            grid.attach(make_label("Name", bold=True), 0, 0, 1, 1)
-            grid.attach(make_label("Version", bold=True), 1, 0, 1, 1)
-            grid.attach(make_label("Kernel", bold=True), 2, 0, 1, 1)
-            grid.attach(make_label("Desktop", bold=True), 3, 0, 1, 1)
-            grid.attach(make_label("Display", bold=True), 4, 0, 1, 1)
+            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
+            grid.attach(make_label(_("Version"), bold=True), 1, 0, 1, 1)
+            grid.attach(make_label(_("Kernel"), bold=True), 2, 0, 1, 1)
+            grid.attach(make_label(_("Desktop"), bold=True), 3, 0, 1, 1)
+            grid.attach(make_label(_("Display"), bold=True), 4, 0, 1, 1)
 
             # Empty case
             if not os_info:
