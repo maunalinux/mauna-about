@@ -218,6 +218,18 @@ class MainWindow:
         self.memory_container = UI("ui_hardware_list_memory_container")
 
         self.ui_hardware_list_memory_container = UI("ui_hardware_list_memory_container")
+        self.ui_hardware_list_storage_container = UI("ui_hardware_list_storage_container")
+        self.ui_hardware_list_graphics_container = UI("ui_hardware_list_graphics_container")
+        self.ui_hardware_list_display_container = UI("ui_hardware_list_display_container")
+        self.ui_hardware_list_ethernet_container = UI("ui_hardware_list_ethernet_container")
+        self.ui_hardware_list_wifi_container = UI("ui_hardware_list_wifi_container")
+        self.ui_hardware_list_bluetooth_container = UI("ui_hardware_list_bluetooth_container")
+        self.ui_hardware_list_audio_container = UI("ui_hardware_list_audio_container")
+        self.ui_hardware_list_camera_container = UI("ui_hardware_list_camera_container")
+        self.ui_hardware_list_keyboard_container = UI("ui_hardware_list_keyboard_container")
+        self.ui_hardware_list_mouse_container = UI("ui_hardware_list_mouse_container")
+        self.ui_hardware_list_fingerprint_container = UI("ui_hardware_list_fingerprint_container")
+        self.ui_hardware_list_printer_container = UI("ui_hardware_list_printer_container")
 
         # Submit
         self.ui_submit_window = UI("ui_submit_window")
@@ -290,9 +302,13 @@ class MainWindow:
         # TODO FIXME
         self.ui_memory_label.set_text(memory_summary.replace("Unknown", ""))
 
-        # hardware details -memory screen START
 
-        def populate_memory_list(self, memory_slots):
+        # Lazy Init PCI & USB devices information singleton
+        hardware_info = HardwareDetector.get_hardware_info()
+
+
+        # hardware details -memory screen START
+        def populate_memory_list(memory_slots):
             """Populate ui_hardware_list_memory_container with memory slot information."""
             # Clear previous children
             for child in self.ui_hardware_list_memory_container.get_children():
@@ -376,23 +392,661 @@ class MainWindow:
 
             self.ui_hardware_list_memory_container.show_all()
 
+        populate_memory_list(self.computerManager.get_memory_info())
         # hardware details -memory screen END
 
-        memory_info = self.computerManager.get_memory_info()
-        populate_memory_list(self, memory_info)
+        # hardware details -storage screen START
+        def populate_storage_list(storage_list):
+            """Populate ui_storage_list_storage_container with storage device information."""
 
-        memory_info = self.computerManager.get_memory_info()
-        # for _index, memory in enumerate(memory_info):
-        #     MEMORY_ROW_TEMPLATE_ID = "ui_hardware_list_memory_container_row"
-        #     row_builder = Gtk.Builder()
-        #     row_builder.add_from_string(self.memory_template_row_xml)
-        #     new_row = row_builder.get_objects()[0]
-        #     memory_model = f"{memory['size']}GB {memory['type']} {memory['factor']}"
-        #     row_builder.get_object("ui_detail_memory_slot_label").set_text(f"#{_index + 1}")
-        #     row_builder.get_object("ui_detail_memory_vendor_label").set_text(memory["vendor"])
-        #     row_builder.get_object("ui_detail_memory_model_label").set_text(memory_model)
-        #     self.memory_container.pack_start(new_row, False, True, 0)
-        #     new_row.show_all()
+            # Clear previous children
+            for child in self.ui_hardware_list_storage_container.get_children():
+                self.ui_hardware_list_storage_container.remove(child)
+
+            # Helper to create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Size", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Type", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+
+            self.ui_hardware_list_storage_container.pack_start(header_box, False, False, 0)
+
+            # Filter: remove devices with type=None
+            valid_storage = [dev for dev in storage_list if dev.get("type")]
+
+            # No valid storage devices
+            if not valid_storage:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                self.ui_hardware_list_storage_container.pack_start(empty_box, False, False, 0)
+                self.ui_hardware_list_storage_container.show_all()
+                return
+
+            # Add each valid storage device
+            for device in valid_storage:
+                size = device.get("size", "")
+                stype = device.get("type", "")
+                model = device.get("model", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+
+                row_box.pack_start(make_label(size), True, True, 0)
+                row_box.pack_start(make_label(stype), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                self.ui_hardware_list_storage_container.pack_start(row_box, False, False, 0)
+
+            self.ui_hardware_list_storage_container.show_all()
+
+
+        populate_storage_list(hardware_info.get("storage", []))
+        # hardware details -storage screen END
+
+
+        # hardware details -graphics screen START
+        def populate_graphics_list(graphics_list):
+            """Populate ui_hardware_list_graphics_container with graphics device information."""
+
+            # Clear old rows
+            for child in self.ui_hardware_list_graphics_container.get_children():
+                self.ui_hardware_list_graphics_container.remove(child)
+
+            # Helper to create label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+
+            self.ui_hardware_list_graphics_container.pack_start(header_box, False, False, 0)
+
+            # No graphics
+            if not graphics_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                self.ui_hardware_list_graphics_container.pack_start(empty_box, False, False, 0)
+                self.ui_hardware_list_graphics_container.show_all()
+                return
+
+            # Add rows
+            for gpu in graphics_list:
+                vendor = gpu.get("vendor", "")
+                driver = gpu.get("driver", "")
+                model = gpu.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                self.ui_hardware_list_graphics_container.pack_start(row_box, False, False, 0)
+
+            self.ui_hardware_list_graphics_container.show_all()
+
+        populate_graphics_list(hardware_info.get("graphics", []))
+        # hardware details -graphics screen END
+
+        # hardware details -display screen START
+        def populate_display_list(container, display_list):
+            """Populate the given GTK container with display device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper to create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Resolution", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+
+            container.pack_start(header_box, False, False, 0)
+
+            # No displays
+            if not display_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Add display rows
+            for disp in display_list:
+                vendor = disp.get("vendor", "")
+                resolution = disp.get("resolution", "")
+                model = disp.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(resolution), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_display_list(self.ui_hardware_list_display_container, hardware_info.get("display", []))
+        # hardware details -display screen END
+
+        # hardware details -ethernet screen START
+        def populate_ethernet_list(container, ethernet_list):
+            """Populate the given GTK container with ethernet device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper to create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+
+            container.pack_start(header_box, False, False, 0)
+
+            # No Ethernet devices
+            if not ethernet_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Add rows
+            for eth in ethernet_list:
+                vendor = eth.get("vendor", "")
+                driver = eth.get("driver", "")
+                model = eth.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_ethernet_list(
+            self.ui_hardware_list_ethernet_container,
+            hardware_info.get("ethernet", [])
+        )
+        # hardware details -ethernet screen START
+
+
+        # hardware details -wifi screen START
+        def populate_wifi_list(container, wifi_list):
+            """Populate the given GTK container with WiFi device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # No WiFi adapters
+            if not wifi_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Add WiFi rows
+            for wifi in wifi_list:
+                vendor = wifi.get("vendor", "")
+                driver = wifi.get("driver", "")
+                model = wifi.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+        populate_wifi_list(
+            self.ui_hardware_list_wifi_container,
+            hardware_info.get("wifi", [])
+        )
+        # hardware details -wifi screen END
+
+        # hardware details -bluetooth screen START
+        def populate_bluetooth_list(container, bluetooth_list):
+            """Populate the given GTK container with Bluetooth device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # No Bluetooth adapters
+            if not bluetooth_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Add Bluetooth rows
+            for bt in bluetooth_list:
+                vendor = bt.get("vendor", "")
+                driver = bt.get("driver", "")
+                model = bt.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+        populate_bluetooth_list(
+            self.ui_hardware_list_bluetooth_container,
+            hardware_info.get("bluetooth", [])
+        )
+        # hardware details -bluetooth screen END
+
+        # hardware details -audio screen START
+        def populate_audio_list(container, audio_list):
+            """Populate the given GTK container with audio device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not audio_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in audio_list:
+                vendor = dev.get("vendor", "")
+                driver = dev.get("driver", "")
+                model = dev.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_audio_list(
+            self.ui_hardware_list_audio_container,
+            hardware_info.get("audio", [])
+        )
+        # hardware details -audio screen END
+
+
+        # hardware details -camera screen START
+        def populate_camera_list(container, camera_list):
+            """Populate the given GTK container with camera device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Model", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not camera_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in camera_list:
+                vendor = dev.get("vendor", "")
+                driver = dev.get("driver", "")
+                model = dev.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(model), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_camera_list(
+            self.ui_hardware_list_camera_container,
+            hardware_info.get("camera", [])
+        )
+        # hardware details -camera screen END
+        # hardware details -keyboard screen START
+        def populate_keyboard_list(container, keyboard_list):
+            """Populate the given GTK container with keyboard device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Name", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Connection", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not keyboard_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in keyboard_list:
+                name = dev.get("name", "")
+                driver = dev.get("driver", "")
+                connection = dev.get("bus", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(name), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(connection), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_keyboard_list(
+            self.ui_hardware_list_keyboard_container,
+            hardware_info.get("keyboard", [])
+        )
+        # hardware details -keyboard screen END
+        # hardware details -mouse screen START
+        def populate_mouse_list(container, mouse_list):
+            """Populate the given GTK container with mouse device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Name", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Driver", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Connection", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not mouse_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in mouse_list:
+                name = dev.get("name", "")
+                driver = dev.get("driver", "")
+                connection = dev.get("bus", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(name), True, True, 0)
+                row_box.pack_start(make_label(driver), True, True, 0)
+                row_box.pack_start(make_label(connection), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_mouse_list(
+            self.ui_hardware_list_mouse_container,
+            hardware_info.get("mouse", [])
+        )
+        # hardware details -mouse screen END
+        # hardware details -fingerprint screen START
+        def populate_fingerprint_list(container, fp_list):
+            """Populate the given GTK container with fingerprint device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Vendor", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Name", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not fp_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in fp_list:
+                vendor = dev.get("vendor", "")
+                name = dev.get("name", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(vendor), True, True, 0)
+                row_box.pack_start(make_label(name), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_fingerprint_list(
+            self.ui_hardware_list_fingerprint_container,
+            hardware_info.get("fingerprint", [])
+        )
+        # hardware details -fingerprint screen END
+
+        # hardware details -printer screen START
+        def populate_printer_list(container, printer_list):
+            """Populate the given GTK container with printer device information."""
+
+            # Clear previous children
+            for child in container.get_children():
+                container.remove(child)
+
+            # Helper: create left-aligned label
+            def make_label(text, bold=False):
+                text = str(text) if text is not None else ""
+                label = Gtk.Label()
+                if bold:
+                    label.set_markup(f"<b>{text}</b>")
+                else:
+                    label.set_text(text)
+                label.set_xalign(0.0)
+                return label
+
+            # Header row
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            header_box.pack_start(make_label("Name", bold=True), True, True, 0)
+            header_box.pack_start(make_label("Connection", bold=True), True, True, 0)
+            container.pack_start(header_box, False, False, 0)
+
+            # Empty case
+            if not printer_list:
+                empty_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                empty_box.pack_start(make_label(_("Device not found")), True, True, 0)
+                container.pack_start(empty_box, False, False, 0)
+                container.show_all()
+                return
+
+            # Rows
+            for dev in printer_list:
+                name = dev.get("name", "")
+                connection = dev.get("bus", "")
+
+                row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+                row_box.pack_start(make_label(name), True, True, 0)
+                row_box.pack_start(make_label(connection), True, True, 0)
+
+                container.pack_start(row_box, False, False, 0)
+
+            container.show_all()
+
+        populate_printer_list(
+            self.ui_hardware_list_printer_container,
+            hardware_info.get("printer", [])
+        )
+        # hardware details -printer screen END
 
         # Lazy Init PCI & USB devices information singleton
         hardware_info = HardwareDetector.get_hardware_info()
