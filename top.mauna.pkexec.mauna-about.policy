@@ -42,22 +42,9 @@
     <message xml:lang="zh_MO">創建系統報告需要身份驗證</message>
     <message xml:lang="zh_TW">創建系統報告需要身份驗證</message>
     <defaults>
-      <allow_any>auth_admin</allow_any>
-      <allow_inactive>auth_admin</allow_inactive>
-      <allow_active>auth_admin</allow_active>
-    </defaults>
-    <annotate key="org.freedesktop.policykit.exec.path">/usr/share/mauna/mauna-about/src/dump_logs.sh</annotate>
-    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
-  </action>
-
-  <action id="top.mauna.pkexec.mauna-about.action">
-    <description>Run system report creator.</description>
-    <message>Authentication is required to create system report</message>
-    <message xml:lang="tr">Sistem raporu oluşturmak için yetkilendirme gerekiyor</message>
-    <defaults>
-      <allow_any>auth_admin</allow_any>
-      <allow_inactive>auth_admin</allow_inactive>
-      <allow_active>auth_admin</allow_active>
+      <allow_any>yes</allow_any>
+      <allow_inactive>yes</allow_inactive>
+      <allow_active>yes</allow_active>
     </defaults>
     <annotate key="org.freedesktop.policykit.exec.path">/usr/share/mauna/mauna-about/src/Actions.py</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>

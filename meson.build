@@ -20,3 +20,7 @@ install_data('top.mauna.pkexec.mauna-about.policy', install_dir : '/usr/share/po
 # desktop files
 install_data('top.mauna.about.desktop', install_dir : '/usr/share/applications/')
 install_data('top.mauna.about-hardware.desktop', install_dir : '/usr/share/applications/')
+
+# command
+install_data('mauna-about.py', install_dir : '/usr/bin', rename: 'mauna-about')
+
