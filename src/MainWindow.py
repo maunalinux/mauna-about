@@ -213,18 +213,34 @@ class MainWindow:
         self.memory_container = UI("ui_hardware_list_memory_container")
 
         self.ui_hardware_list_memory_container = UI("ui_hardware_list_memory_container")
-        self.ui_hardware_list_storage_container = UI("ui_hardware_list_storage_container")
-        self.ui_hardware_list_graphics_container = UI("ui_hardware_list_graphics_container")
-        self.ui_hardware_list_display_container = UI("ui_hardware_list_display_container")
-        self.ui_hardware_list_ethernet_container = UI("ui_hardware_list_ethernet_container")
+        self.ui_hardware_list_storage_container = UI(
+            "ui_hardware_list_storage_container"
+        )
+        self.ui_hardware_list_graphics_container = UI(
+            "ui_hardware_list_graphics_container"
+        )
+        self.ui_hardware_list_display_container = UI(
+            "ui_hardware_list_display_container"
+        )
+        self.ui_hardware_list_ethernet_container = UI(
+            "ui_hardware_list_ethernet_container"
+        )
         self.ui_hardware_list_wifi_container = UI("ui_hardware_list_wifi_container")
-        self.ui_hardware_list_bluetooth_container = UI("ui_hardware_list_bluetooth_container")
+        self.ui_hardware_list_bluetooth_container = UI(
+            "ui_hardware_list_bluetooth_container"
+        )
         self.ui_hardware_list_audio_container = UI("ui_hardware_list_audio_container")
         self.ui_hardware_list_camera_container = UI("ui_hardware_list_camera_container")
-        self.ui_hardware_list_keyboard_container = UI("ui_hardware_list_keyboard_container")
+        self.ui_hardware_list_keyboard_container = UI(
+            "ui_hardware_list_keyboard_container"
+        )
         self.ui_hardware_list_mouse_container = UI("ui_hardware_list_mouse_container")
-        self.ui_hardware_list_fingerprint_container = UI("ui_hardware_list_fingerprint_container")
-        self.ui_hardware_list_printer_container = UI("ui_hardware_list_printer_container")
+        self.ui_hardware_list_fingerprint_container = UI(
+            "ui_hardware_list_fingerprint_container"
+        )
+        self.ui_hardware_list_printer_container = UI(
+            "ui_hardware_list_printer_container"
+        )
         self.ui_hardware_list_os_container = UI("ui_hardware_list_os_container")
 
         # Submit
@@ -232,6 +248,7 @@ class MainWindow:
         # prevent destroying the window on close clicked
         self.ui_submit_window.connect("delete-event", lambda w, e: w.hide() or True)
         self.ui_submit_lbl = UI("ui_submit_lbl")
+        self.ui_submit_stack = UI("ui_submit_stack")
 
     def define_variables(self):
         return
@@ -293,10 +310,8 @@ class MainWindow:
         # TODO FIXME
         self.ui_memory_label.set_text(memory_summary.replace("Unknown", ""))
 
-
         # Lazy Init PCI & USB devices information singleton
         hardware_info = HardwareDetector.get_hardware_info()
-
 
         # hardware details -memory screen START
         def populate_memory_list(memory_slots):
@@ -449,7 +464,6 @@ class MainWindow:
         populate_storage_list(hardware_info.get("storage", []))
         # hardware details -storage screen END
 
-
         # hardware details -graphics screen START
         def populate_graphics_list(graphics_list):
             """Populate ui_hardware_list_graphics_container with graphics device information using Gtk.Grid."""
@@ -567,7 +581,9 @@ class MainWindow:
 
             container.show_all()
 
-        populate_display_list(self.ui_hardware_list_display_container, hardware_info.get("display", []))
+        populate_display_list(
+            self.ui_hardware_list_display_container, hardware_info.get("display", [])
+        )
         # hardware details -display screen END
 
         # hardware details -ethernet screen START
@@ -626,11 +642,9 @@ class MainWindow:
             container.show_all()
 
         populate_ethernet_list(
-            self.ui_hardware_list_ethernet_container,
-            hardware_info.get("ethernet", [])
+            self.ui_hardware_list_ethernet_container, hardware_info.get("ethernet", [])
         )
         # hardware details -ethernet screen START
-
 
         # hardware details -wifi screen START
         def populate_wifi_list(container, wifi_list):
@@ -688,8 +702,7 @@ class MainWindow:
             container.show_all()
 
         populate_wifi_list(
-            self.ui_hardware_list_wifi_container,
-            hardware_info.get("wifi", [])
+            self.ui_hardware_list_wifi_container, hardware_info.get("wifi", [])
         )
         # hardware details -wifi screen END
 
@@ -750,7 +763,7 @@ class MainWindow:
 
         populate_bluetooth_list(
             self.ui_hardware_list_bluetooth_container,
-            hardware_info.get("bluetooth", [])
+            hardware_info.get("bluetooth", []),
         )
         # hardware details -bluetooth screen END
 
@@ -812,11 +825,9 @@ class MainWindow:
             container.show_all()
 
         populate_audio_list(
-            self.ui_hardware_list_audio_container,
-            hardware_info.get("audio", [])
+            self.ui_hardware_list_audio_container, hardware_info.get("audio", [])
         )
         # hardware details -audio screen END
-
 
         # hardware details -camera screen START
         def populate_camera_list(container, camera_list):
@@ -876,9 +887,9 @@ class MainWindow:
             container.show_all()
 
         populate_camera_list(
-            self.ui_hardware_list_camera_container,
-            hardware_info.get("camera", [])
+            self.ui_hardware_list_camera_container, hardware_info.get("camera", [])
         )
+
         # hardware details -camera screen END
         # hardware details -keyboard screen START
         def populate_keyboard_list(container, keyboard_list):
@@ -938,9 +949,9 @@ class MainWindow:
             container.show_all()
 
         populate_keyboard_list(
-            self.ui_hardware_list_keyboard_container,
-            hardware_info.get("keyboard", [])
+            self.ui_hardware_list_keyboard_container, hardware_info.get("keyboard", [])
         )
+
         # hardware details -keyboard screen END
         # hardware details -mouse screen START
         def populate_mouse_list(container, mouse_list):
@@ -1000,9 +1011,9 @@ class MainWindow:
             container.show_all()
 
         populate_mouse_list(
-            self.ui_hardware_list_mouse_container,
-            hardware_info.get("mouse", [])
+            self.ui_hardware_list_mouse_container, hardware_info.get("mouse", [])
         )
+
         # hardware details -mouse screen END
         # hardware details -fingerprint screen START
         def populate_fingerprint_list(container, fp_list):
@@ -1059,7 +1070,7 @@ class MainWindow:
 
         populate_fingerprint_list(
             self.ui_hardware_list_fingerprint_container,
-            hardware_info.get("fingerprint", [])
+            hardware_info.get("fingerprint", []),
         )
         # hardware details -fingerprint screen END
 
@@ -1116,11 +1127,9 @@ class MainWindow:
             container.show_all()
 
         populate_printer_list(
-            self.ui_hardware_list_printer_container,
-            hardware_info.get("printer", [])
+            self.ui_hardware_list_printer_container, hardware_info.get("printer", [])
         )
         # hardware details -printer screen END
-
 
         # hardware details -os screen START
         def populate_os_list(container, os_info):
@@ -1183,8 +1192,6 @@ class MainWindow:
         populate_os_list(self.ui_hardware_list_os_container, OSManager.get_os_info())
 
         # hardware details -os screen END
-
-
 
         def set_list_label(label, devices, fields, skip_if_type_none=False):
             """Builds text safely without trailing newline."""
@@ -1298,6 +1305,8 @@ class MainWindow:
     def send_hardware_data_completed(self, source, task):
         task_finished, data = task.propagate_value()
 
+        self.ui_submit_stack.set_visible_child_name("main")
+
         if task_finished:
             if isinstance(data, requests.Response):
                 if str(data.status_code)[0] == "2":
@@ -1310,10 +1319,8 @@ class MainWindow:
                         subtitle=_("You can find your submission here:")
                         + "\n"
                         + markup,
+                        use_markup=True,
                     )
-
-                    self.btn_last_submission.set_uri(url)
-                    self.btn_last_submission.set_visible(True)
 
                     self.gsettings.set_string("latest-submission-id", report_id)
                     self.is_hardware_data_submitted = True
@@ -1364,6 +1371,7 @@ class MainWindow:
     def on_display_report_button_clicked(self, btn):
         device_list = self.computerManager.get_all_device_info()
         print(json.dumps(device_list, indent=2))
+        self.ui_submit_stack.set_visible_child_name("main")
         self.ui_submit_lbl.set_text(json.dumps(device_list, indent=2))
         self.ui_submit_window.show_all()
 
@@ -1373,6 +1381,7 @@ class MainWindow:
         self.ui_notification_popover.popup()
 
     def on_submit_report_btn_clicked(self, btn):
+        self.ui_submit_stack.set_visible_child_name("spinner")
         task = Gio.Task.new(callback=self.send_hardware_data_completed)
         task.run_in_thread(self.send_hardware_data)
 

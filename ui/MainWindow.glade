@@ -136,6 +136,24 @@
       </packing>
     </child>
   </object>
+  <object class="GtkPopover" id="ui_notification_popover">
+    <property name="can-focus">False</property>
+    <property name="relative-to">ui_copy_report_btn</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">7</property>
+        <property name="margin-right">7</property>
+        <property name="margin-start">7</property>
+        <property name="margin-end">7</property>
+        <property name="margin-top">7</property>
+        <property name="margin-bottom">7</property>
+        <property name="label" translatable="yes">System Report has been copied to your clipboard!</property>
+        <property name="use-markup">True</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkPopover" id="ui_popover_menu">
     <property name="can-focus">False</property>
     <child>
@@ -4052,62 +4070,173 @@ Yusuf Düzgün &lt;yusuf.duzgun@pardus.org.tr&gt;</property>
   <object class="GtkWindow" id="ui_submit_window">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Submit</property>
-    <property name="default-width">800</property>
+    <property name="default-width">900</property>
     <property name="default-height">600</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkStack" id="ui_submit_stack">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-start">11</property>
-        <property name="margin-end">11</property>
-        <property name="margin-top">11</property>
-        <property name="margin-bottom">11</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">11</property>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="label" translatable="yes">The information shared will only be used for hardware compatibility statistics and to be able to troubleshoot compatibility issues in advance.
+            <property name="margin-start">11</property>
+            <property name="margin-end">11</property>
+            <property name="margin-top">11</property>
+            <property name="margin-bottom">11</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">11</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="label" translatable="yes">The information shared will only be used for hardware compatibility statistics and to be able to troubleshoot compatibility issues in advance.
 
 No personal data is collected.
 
 Hardware information is not shared with third parties and is only sent once during this process.</property>
-            <property name="wrap">True</property>
+                <property name="wrap">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Below is the data which will be sent:</property>
+                <style>
+                  <class name="heading"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <property name="min-content-height">200</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkLabel" id="ui_submit_lbl">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="valign">start</property>
+                            <property name="margin-start">11</property>
+                            <property name="margin-end">11</property>
+                            <property name="margin-top">11</property>
+                            <property name="margin-bottom">11</property>
+                            <property name="selectable">True</property>
+                            <style>
+                              <class name="monospace"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="card"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">24</property>
+                <property name="margin-right">24</property>
+                <property name="margin-start">24</property>
+                <property name="margin-end">24</property>
+                <property name="spacing">24</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkButton" id="ui_copy_report_btn">
+                    <property name="label" translatable="yes">Copy Report</property>
+                    <property name="width-request">200</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <signal name="clicked" handler="on_copy_report_btn_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="ui_submit_report_btn">
+                    <property name="label" translatable="yes">Send</property>
+                    <property name="width-request">200</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <signal name="clicked" handler="on_submit_report_btn_clicked" swapped="no"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Below is the data which will be sent:</property>
-            <style>
-              <class name="heading"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="name">main</property>
           </packing>
         </child>
         <child>
@@ -4116,118 +4245,27 @@ Hardware information is not shared with third parties and is only sent once duri
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkSpinner">
+                <property name="width-request">64</property>
+                <property name="height-request">64</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="shadow-type">in</property>
-                <property name="min-content-height">200</property>
-                <child>
-                  <object class="GtkViewport">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="ui_submit_lbl">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin-start">11</property>
-                        <property name="margin-end">11</property>
-                        <property name="margin-top">11</property>
-                        <property name="margin-bottom">11</property>
-                        <property name="selectable">True</property>
-                        <style>
-                          <class name="monospace"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="active">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <style>
-              <class name="card"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">24</property>
-            <property name="margin-end">24</property>
-            <property name="spacing">24</property>
-            <property name="homogeneous">True</property>
-            <child>
-              <object class="GtkButton" id="ui_copy_report_btn">
-                <property name="label" translatable="yes">Copy Report</property>
-                <property name="width-request">200</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <signal name="clicked" handler="on_copy_report_btn_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="ui_submit_report_btn">
-                <property name="label" translatable="yes">Send</property>
-                <property name="width-request">200</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <signal name="clicked" handler="on_submit_report_btn_clicked" swapped="no"/>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="name">spinner</property>
+            <property name="position">1</property>
           </packing>
         </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkPopover" id="ui_notification_popover">
-    <property name="can-focus">False</property>
-    <property name="relative-to">ui_copy_report_btn</property>
-    <child>
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-left">7</property>
-        <property name="margin-right">7</property>
-        <property name="margin-start">7</property>
-        <property name="margin-end">7</property>
-        <property name="margin-top">7</property>
-        <property name="margin-bottom">7</property>
-        <property name="label" translatable="yes">System Report has been copied to your clipboard!</property>
-        <property name="use-markup">True</property>
       </object>
     </child>
   </object>
