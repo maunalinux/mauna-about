@@ -1323,6 +1323,8 @@ class MainWindow:
                     url = f"{HARDWARE_API_DOMAIN}{report_id}"
                     markup = f'<a href="{url}">{report_id}</a>'
 
+                    self.ui_submit_window.hide()
+
                     self.show_info_dialog(
                         title=_("Thank you for your contribution."),
                         subtitle=_("You can find your submission here:")
