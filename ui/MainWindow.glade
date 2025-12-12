@@ -136,24 +136,6 @@
       </packing>
     </child>
   </object>
-  <object class="GtkPopover" id="ui_notification_popover">
-    <property name="can-focus">False</property>
-    <property name="relative-to">ui_copy_report_btn</property>
-    <child>
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-left">7</property>
-        <property name="margin-right">7</property>
-        <property name="margin-start">7</property>
-        <property name="margin-end">7</property>
-        <property name="margin-top">7</property>
-        <property name="margin-bottom">7</property>
-        <property name="label" translatable="yes">System Report has been copied to your clipboard!</property>
-        <property name="use-markup">True</property>
-      </object>
-    </child>
-  </object>
   <object class="GtkPopover" id="ui_popover_menu">
     <property name="can-focus">False</property>
     <child>
@@ -4070,8 +4052,11 @@ Yusuf Düzgün &lt;yusuf.duzgun@pardus.org.tr&gt;</property>
   <object class="GtkWindow" id="ui_submit_window">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Submit</property>
+    <property name="window-position">center-always</property>
     <property name="default-width">900</property>
     <property name="default-height">600</property>
+    <property name="transient-for">ui_main_window</property>
+    <property name="attached-to">ui_main_window</property>
     <child>
       <object class="GtkStack" id="ui_submit_stack">
         <property name="visible">True</property>
@@ -4266,6 +4251,24 @@ Hardware information is not shared with third parties and is only sent once duri
             <property name="position">1</property>
           </packing>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="ui_notification_popover">
+    <property name="can-focus">False</property>
+    <property name="relative-to">ui_copy_report_btn</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">7</property>
+        <property name="margin-right">7</property>
+        <property name="margin-start">7</property>
+        <property name="margin-end">7</property>
+        <property name="margin-top">7</property>
+        <property name="margin-bottom">7</property>
+        <property name="label" translatable="yes">System Report has been copied to your clipboard!</property>
+        <property name="use-markup">True</property>
       </object>
     </child>
   </object>
