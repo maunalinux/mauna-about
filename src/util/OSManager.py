@@ -27,12 +27,12 @@ def get_os_info():
     operating_system_info["hostname"] = hostname.capitalize()
 
     os_info = platform.freedesktop_os_release()
-    operating_system_info["os_pretty_name"] = os_info.get("PRETTY_NAME")
-    operating_system_info["os_name"] = os_info.get("NAME")
-    operating_system_info["os_id"] = os_info.get("ID")
-    operating_system_info["os_version"] = os_info.get("VERSION")
-    operating_system_info["os_version_id"] = os_info.get("VERSION_ID")
-    operating_system_info["os_codename"] = os_info.get("VERSION_CODENAME")
+    operating_system_info["os_pretty_name"] = str(os_info.get("PRETTY_NAME"))
+    operating_system_info["os_name"] = str(os_info.get("NAME"))
+    operating_system_info["os_id"] = str(os_info.get("ID"))
+    operating_system_info["os_version"] = str(os_info.get("VERSION"))
+    operating_system_info["os_version_id"] = str(os_info.get("VERSION_ID"))
+    operating_system_info["os_codename"] = str(os_info.get("VERSION_CODENAME"))
     operating_system_info["kernel"] = platform.release()
     operating_system_info["architecture"] = platform.machine()
 
