@@ -1322,7 +1322,6 @@ class MainWindow:
                         use_markup=True,
                     )
 
-                    self.gsettings.set_string("latest-submission-id", report_id)
                     self.is_hardware_data_submitted = True
                 else:
                     message = data.json()["message"]
