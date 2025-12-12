@@ -65,6 +65,15 @@ class MainWindow:
         task = Gio.Task.new(callback=self.on_read_hardware_info_finish)
         task.run_in_thread(self.read_hardware_info)
 
+        version = '0.0.0'
+        try:
+            with open(os.path.dirname(os.path.abspath(__file__)) + "/__version__") as f:
+                version = f.readline().strip()
+        except:
+            print("Failed to fetch verion")
+
+        self.ui_about_dialog.set_version(version)
+
         self.control_args()
 
         # Show Screen:
