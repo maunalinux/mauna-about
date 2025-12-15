@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 17:24-0300\n"
-"PO-Revision-Date: 2025-02-07 20:58-0300\n"
+"POT-Creation-Date: 2025-12-11 15:56-0300\n"
+"PO-Revision-Date: 2025-12-15 14:25-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -18,87 +18,478 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: ui/MainWindow.glade:7
-msgid "About Mauna About Application"
-msgstr "Mauna Hakkında Uygulama Hakkında"
+#: ui/MainWindow.glade:24 src/MainWindow.py:335
+msgid "Slot"
+msgstr "Yuva"
 
-#: ui/MainWindow.glade:14
-msgid "Get info about your Mauna system."
-msgstr "Mauna sisteminiz hakkında bilgi alın."
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:81 ui/MainWindow.glade:123
+#: ui/MainWindow.glade:581 ui/MainWindow.glade:661 ui/MainWindow.glade:741
+#: ui/MainWindow.glade:824 ui/MainWindow.glade:904 ui/MainWindow.glade:984
+#: ui/MainWindow.glade:1064 ui/MainWindow.glade:1145 ui/MainWindow.glade:1226
+#: ui/MainWindow.glade:1306 ui/MainWindow.glade:1386 ui/MainWindow.glade:1467
+#: ui/MainWindow.glade:1650 ui/MainWindow.glade:1695 ui/MainWindow.glade:1740
+#: ui/MainWindow.glade:2046 ui/MainWindow.glade:2091 ui/MainWindow.glade:2136
+#: src/MainWindow.py:352 src/MainWindow.py:1251 src/MainWindow.py:1269
+#: src/MainWindow.py:1276
+msgid "Unknown"
+msgstr "Bilinmeyen"
 
-#: ui/MainWindow.glade:16
-msgid "Website"
-msgstr "İnternet sitesi"
+#: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
+#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
+#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
+#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
+msgid "Vendor"
+msgstr "Üretici"
 
-#. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:19
-msgid "translator-credits"
-msgstr "Mauna Linux <dev@maunalinux.top>"
+#: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
+#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
+#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
+#: src/MainWindow.py:791 src/MainWindow.py:855
+msgid "Model"
+msgstr "Model"
 
-#: ui/MainWindow.glade:86
-msgid "Export System Report"
-msgstr "Sistem Raporunu Dışa Aktar"
-
-#: ui/MainWindow.glade:142
+#: ui/MainWindow.glade:174
 msgid "About App"
-msgstr "Uygulama hakkında"
+msgstr "Uygulama Hakkında"
 
-#: ui/MainWindow.glade:355
-msgid "<b>Kernel:</b>"
-msgstr "<b>Kernel:</b>"
+#: ui/MainWindow.glade:335
+msgid "Username"
+msgstr "Kullanıcı adı"
 
-#: ui/MainWindow.glade:401
-msgid "<b>Desktop:</b>"
-msgstr "<b>Masaüstü:</b>"
+#: ui/MainWindow.glade:376
+msgid "Hostname"
+msgstr "Makine adı"
 
-#: ui/MainWindow.glade:446
-msgid "<b>CPU:</b>"
-msgstr "<b>CPU:</b>"
+#: ui/MainWindow.glade:430 src/MainWindow.py:1385
+msgid "Show Hardware Details"
+msgstr "Donanım Ayrıntılarını Göster"
 
-#: ui/MainWindow.glade:491
-msgid "<b>GPU:</b>"
-msgstr "<b>GPU:</b>"
+#: ui/MainWindow.glade:444
+msgid "Show System Report"
+msgstr "Sistem Raporunu Göster"
 
-#: ui/MainWindow.glade:521
-msgid "GPU running as llvmpipe"
-msgstr "GPU llvmpipe olarak çalışıyor"
+#: ui/MainWindow.glade:490
+msgid "Gathering system logs..."
+msgstr "Sistem logları toplanıyor..."
 
-#: ui/MainWindow.glade:564
-msgid "<b>RAM:</b>"
-msgstr "<b>RAM:</b>"
+#: ui/MainWindow.glade:568
+msgid "<span size=\"small\">Computer</span>"
+msgstr "<span size=\"small\">Bilgisayar</span>"
 
-#: ui/MainWindow.glade:636
-msgid "<b>Public IP:</b>"
-msgstr "<b>Genel IP:</b>"
+#: ui/MainWindow.glade:648
+msgid "<span size=\"small\">Processor</span>"
+msgstr "<span size=\"small\">İşlemci</span>"
 
-#: ui/MainWindow.glade:699
-msgid "<b>Local IP:</b>"
-msgstr "<b>Yerel IP:</b>"
+#: ui/MainWindow.glade:728
+msgid "<span size=\"small\">Memory</span>"
+msgstr "<span size=\"small\">Hafıza</span>"
 
-#: ui/MainWindow.glade:803
+#: ui/MainWindow.glade:811
+msgid "<span size=\"small\">Storage</span>"
+msgstr "<span size=\"small\">Depolama</span>"
+
+#: ui/MainWindow.glade:891
+msgid "<span size=\"small\">Graphics</span>"
+msgstr "<span size=\"small\">Grafik</span>"
+
+#: ui/MainWindow.glade:971
+msgid "<span size=\"small\">Desktop</span>"
+msgstr "<span size=\"small\">Masaüstü</span>"
+
+#: ui/MainWindow.glade:1051
+msgid "<span size=\"small\">WiFi</span>"
+msgstr "<span size=\"small\">Kablosuz</span>"
+
+#: ui/MainWindow.glade:1132
+msgid "<span size=\"small\">Ethernet</span>"
+msgstr "<span size=\"small\">Kablolu</span>"
+
+#: ui/MainWindow.glade:1213
+msgid "<span size=\"small\">Bluetooth</span>"
+msgstr "<span size=\"small\">Bluetooth</span>"
+
+#: ui/MainWindow.glade:1293
+msgid "<span size=\"small\">Audio</span>"
+msgstr "<span size=\"small\">Ses</span>"
+
+#: ui/MainWindow.glade:1373
+msgid "<span size=\"small\">Private IP</span>"
+msgstr "<span size=\"small\">İç IP</span>"
+
+#: ui/MainWindow.glade:1454
+msgid "<span size=\"small\">Public IP</span>"
+msgstr "<span size=\"small\">Dış IP</span>"
+
+#: ui/MainWindow.glade:1558
+msgid "Computer Info"
+msgstr "Bilgisayar"
+
+#: ui/MainWindow.glade:1724
+msgid "Family"
+msgstr "Aile"
+
+#: ui/MainWindow.glade:1821
+msgid "Operating System"
+msgstr "İşletim Sistemi"
+
+#: ui/MainWindow.glade:1954
+msgid "Processor"
+msgstr "İşlemci"
+
+#: ui/MainWindow.glade:2120
+msgid "Cores / Threads"
+msgstr "Çekirdek / Parçacık"
+
+#: ui/MainWindow.glade:2217
+msgid "Memory"
+msgstr "Hafıza"
+
+#: ui/MainWindow.glade:2350
+msgid "Storage"
+msgstr "Depolama"
+
+#: ui/MainWindow.glade:2482
+msgid "Graphics"
+msgstr "Grafik"
+
+#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
+msgid "Display"
+msgstr "Görüntü"
+
+#: ui/MainWindow.glade:2746
+msgid "Ethernet"
+msgstr "Kablolu"
+
+#: ui/MainWindow.glade:2878
+msgid "Wifi"
+msgstr "Kablosuz"
+
+#: ui/MainWindow.glade:3010
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ui/MainWindow.glade:3142
+msgid "Audio"
+msgstr "Ses"
+
+#: ui/MainWindow.glade:3274
+msgid "Camera"
+msgstr "Kamera"
+
+#: ui/MainWindow.glade:3406
+msgid "Keyboard"
+msgstr "Klavye"
+
+#: ui/MainWindow.glade:3538
+msgid "Mouse"
+msgstr "Fare"
+
+#: ui/MainWindow.glade:3670
+msgid "Fingerprint"
+msgstr "Parmak izi"
+
+#: ui/MainWindow.glade:3802
+msgid "Printer"
+msgstr "Yazıcı"
+
+#: ui/MainWindow.glade:3900
+msgid "Details"
+msgstr "Detaylar"
+
+#: ui/MainWindow.glade:3965
+msgid "Mauna Info"
+msgstr "Mauna Hakkında"
+
+#: ui/MainWindow.glade:3974
 msgid "About This Computer"
 msgstr "Bu Bilgisayar Hakkında"
 
-#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
-msgid "Gathering system logs..."
-msgstr "Sistem günlükleri toplanıyor..."
+#: ui/MainWindow.glade:3998
+msgid "About Mauna About Application"
+msgstr "Mauna Hakkında Uygulaması Hakkında"
 
-#: ui/MainWindow.glade:897
-msgid "Your system report has been exported to the desktop."
-msgstr "Sistem raporunuz masaüstüne aktarıldı."
+#: ui/MainWindow.glade:4006
+msgid "Get info about your Mauna system."
+msgstr "Mauna sisteminiz hakkında bilgi alın."
 
-#: ui/MainWindow.glade:898
-msgid "~/Desktop/mauna_system_report.tar.gz"
-msgstr "~/masaüstü/mauna_sistem_raporu.tar.gz"
+#: ui/MainWindow.glade:4008
+msgid "Website"
+msgstr "Web Sitesi"
 
-#: src/MainWindow.py:102
-msgid "Mauna About"
+#: ui/MainWindow.glade:4009
+msgid ""
+"This program comes with absolutely no warranty.\n"
+"See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
+"Public License, version 3 or later</a> for details."
+msgstr ""
+"Bu program hiçbir garanti ile sunulmamaktadır.\n"
+"Ayrıntılar için <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU "
+"Genel Kamu Lisansı, sürüm 3 veya üstü</a>'na bakınız."
+
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:4016
+msgid "translator-credits"
+msgstr "Fatih Altun <fatih.altun@pardus.org.tr>"
+
+#: ui/MainWindow.glade:4054
+msgid "Submit"
+msgstr "Gönder"
+
+#: ui/MainWindow.glade:4073
+msgid ""
+"The information shared will only be used for hardware compatibility "
+"statistics and to be able to troubleshoot compatibility issues in advance.\n"
+"\n"
+"No personal data is collected.\n"
+"\n"
+"Hardware information is not shared with third parties and is only sent once "
+"during this process."
+msgstr ""
+"Paylaşılan bilgiler yalnızca donanım uyumluluk istatistikleri için ve "
+"uyumluluk sorunlarını önceden gidermek için kullanılacaktır.\n"
+"\n"
+"Kişisel veriler toplanmaz.\n"
+"\n"
+"Donanım bilgileri üçüncü taraflarla paylaşılmaz ve bu işlem sırasında "
+"yalnızca bir kez gönderilir."
+
+#: ui/MainWindow.glade:4102
+msgid "Below is the data which will be sent:"
+msgstr "Aşağıda gönderilecek veriler yer almaktadır:"
+
+#: ui/MainWindow.glade:4173
+msgid "Copy Report"
+msgstr "Raporu Kopyala"
+
+#: ui/MainWindow.glade:4189
+msgid "Send"
+msgstr "Gönder"
+
+#: ui/MainWindow.glade:4229
+msgid "System Report has been copied to your clipboard!"
+msgstr "Sistem Raporu panonuza kopyalandı!"
+
+#: src/MainWindow.py:63
+msgid "About Mauna"
 msgstr "Mauna Hakkında"
 
-#: src/MainWindow.py:106
-msgid "About Mauna About"
-msgstr "Mauna Hakkında Hakkında"
+#: src/MainWindow.py:337 src/MainWindow.py:421
+msgid "Size"
+msgstr "Boyut"
 
-#: src/MainWindow.py:191
-msgid "Physical RAM"
-msgstr "Fiziksel RAM"
+#: src/MainWindow.py:338 src/MainWindow.py:422
+msgid "Type"
+msgstr "Tip"
+
+#: src/MainWindow.py:339
+msgid "Speed"
+msgstr "Hız"
+
+#: src/MainWindow.py:343
+msgid "No memory information"
+msgstr "Hafıza bilgisi yok"
+
+#: src/MainWindow.py:362
+msgid "empty"
+msgstr "boş"
+
+#: src/MainWindow.py:430 src/MainWindow.py:491 src/MainWindow.py:551
+#: src/MainWindow.py:609 src/MainWindow.py:671 src/MainWindow.py:732
+#: src/MainWindow.py:795 src/MainWindow.py:859 src/MainWindow.py:921
+#: src/MainWindow.py:983 src/MainWindow.py:1044 src/MainWindow.py:1101
+#: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
+#: src/MainWindow.py:1220
+msgid "Device not found"
+msgstr "Aygıt bulunamadı"
+
+#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
+#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
+#: src/MainWindow.py:916 src/MainWindow.py:978
+msgid "Driver"
+msgstr "Sürücü"
+
+#: src/MainWindow.py:546
+msgid "Resolution"
+msgstr "Çözünürlük"
+
+#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
+#: src/MainWindow.py:1096 src/MainWindow.py:1155
+msgid "Name"
+msgstr "İsim"
+
+#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
+msgid "Connection"
+msgstr "Bağlantı"
+
+#: src/MainWindow.py:1156
+msgid "Version"
+msgstr "Versiyon"
+
+#: src/MainWindow.py:1157
+msgid "Kernel"
+msgstr "Çekirdek"
+
+#: src/MainWindow.py:1158
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: src/MainWindow.py:1309
+msgid "Thank you for your contribution."
+msgstr "Katkınız için teşekkürler."
+
+#: src/MainWindow.py:1310
+msgid "You can find your submission here:"
+msgstr "Gönderiminizi burada bulabilirsiniz:"
+
+#: src/MainWindow.py:1327
+msgid "An error occured while sending the data."
+msgstr "Veriler gönderilirken bir hata oluştu."
+
+#: src/MainWindow.py:1328
+msgid "Returned message from the server:"
+msgstr "Sunucudan gelen yanıt:"
+
+#: src/MainWindow.py:1334
+msgid "Connection Failed"
+msgstr "Bağlantı Başarısız"
+
+#: src/MainWindow.py:1336
+msgid ""
+"If you are connected to the internet, then our servers have some problem."
+msgstr "İnternete bağlıysanız, sunucularımızda bir sorun var demektir."
+
+#: src/MainWindow.py:1382
+msgid "Show Summary"
+msgstr "Özeti göster"
+
+#~ msgid "<b>Hardware:</b>"
+#~ msgstr "<b>Donanım:</b>"
+
+#~ msgid "Hardware has a Windows OEM key"
+#~ msgstr "Donanımın bir Windows OEM anahtarı var"
+
+#~ msgid "<b>Desktop:</b>"
+#~ msgstr "<b>Masaüstü:</b>"
+
+#~ msgid "<b>CPU:</b>"
+#~ msgstr "<b>İşlemci:</b>"
+
+#~ msgid "<b>GPU:</b>"
+#~ msgstr "<b>Ekran Kartı:</b>"
+
+#~ msgid "GPU running as llvmpipe"
+#~ msgstr "Ekran kartı, llvmpipe olarak çalışıyor"
+
+#~ msgid "<b>RAM:</b>"
+#~ msgstr "<b>Bellek:</b>"
+
+#~ msgid "<b>Public IP:</b>"
+#~ msgstr "<b>Dış IP:</b>"
+
+#~ msgid "<b>Local IP:</b>"
+#~ msgstr "<b>İç IP:</b>"
+
+#~ msgid "~/Desktop/mauna_system_report.tar.gz"
+#~ msgstr "~/Masaüstü/mauna_sistem_raporu.tar.gz"
+
+#~ msgid "Low Profile Desktop"
+#~ msgstr "Düşük Profil Masaüstü"
+
+#~ msgid "Pizza Box"
+#~ msgstr "Pizza Kutusu"
+
+#~ msgid "Mini Tower"
+#~ msgstr "Mini Kule"
+
+#~ msgid "Tower"
+#~ msgstr "Kule"
+
+#~ msgid "Portable"
+#~ msgstr "Taşınabilir"
+
+#~ msgid "Laptop"
+#~ msgstr "Laptop"
+
+#~ msgid "Notebook"
+#~ msgstr "Dizüstü"
+
+#~ msgid "Hand Held"
+#~ msgstr "El Tipi"
+
+#~ msgid "Docking Station"
+#~ msgstr "Bağlama Noktası"
+
+#~ msgid "All in One"
+#~ msgstr "Hepsi Bir Arada"
+
+#~ msgid "Sub Notebook"
+#~ msgstr "Alt Dizüstü"
+
+#~ msgid "Space-Saving"
+#~ msgstr "Yerden-Tasarruf"
+
+#~ msgid "Lunch Box"
+#~ msgstr "Beslenme Çantası"
+
+#~ msgid "Main System Chassis"
+#~ msgstr "Ana Sistem Şasisi"
+
+#~ msgid "Expansion Chassis"
+#~ msgstr "Genişletme Şasisi"
+
+#~ msgid "SubChassis"
+#~ msgstr "Alt Şasi"
+
+#~ msgid "Bus Expansion Chassis"
+#~ msgstr "Yol Genişlete Şasisi"
+
+#~ msgid "Peripheral Chassis"
+#~ msgstr "Çevresel Şasi"
+
+#~ msgid "RAID Chassis"
+#~ msgstr "RAIS Şasisi"
+
+#~ msgid "Rack Mount Chassis"
+#~ msgstr "Raf Montajlı Şasi"
+
+#~ msgid "Sealed-case PC"
+#~ msgstr "Mühürlü Kasa PC"
+
+#~ msgid "Multi-system chassis"
+#~ msgstr "Çoklu Sistem Şasisi"
+
+#~ msgid "Compact PCI"
+#~ msgstr "Kompakt PCI"
+
+#~ msgid "Advanced TCA"
+#~ msgstr "Gelişmiş TCA"
+
+#~ msgid "Blade"
+#~ msgstr "Bıçak"
+
+#~ msgid "Blade Enclosure"
+#~ msgstr "Bıçak Muhafazası"
+
+#~ msgid "Tablet"
+#~ msgstr "Tablet"
+
+#~ msgid "Convertible"
+#~ msgstr "Dönüştürülebilir"
+
+#~ msgid "Detachable"
+#~ msgstr "Çıkarılabilir"
+
+#~ msgid "IoT Gateway"
+#~ msgstr "IoT Geçidi"
+
+#~ msgid "Embedded PC"
+#~ msgstr "Gömülü PC"
+
+#~ msgid "Mini PC"
+#~ msgstr "Mini PC"
+
+#~ msgid "Stick PC"
+#~ msgstr "Çubuk PC"
+
+#~ msgid "Virtual Machine"
+#~ msgstr "Sanal Makine"

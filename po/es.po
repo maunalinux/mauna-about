@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 17:24-0300\n"
-"PO-Revision-Date: 2025-02-06 19:19-0300\n"
+"POT-Creation-Date: 2025-12-11 15:56-0300\n"
+"PO-Revision-Date: 2025-12-14 21:41-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -18,87 +18,373 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: ui/MainWindow.glade:7
-msgid "About Mauna About Application"
-msgstr "Acerca de Mauna Acerca de la aplicación"
+#: ui/MainWindow.glade:24 src/MainWindow.py:335
+msgid "Slot"
+msgstr "Ranura"
 
-#: ui/MainWindow.glade:14
-msgid "Get info about your Mauna system."
-msgstr "Obtenga información sobre su sistema Mauna."
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:81 ui/MainWindow.glade:123
+#: ui/MainWindow.glade:581 ui/MainWindow.glade:661 ui/MainWindow.glade:741
+#: ui/MainWindow.glade:824 ui/MainWindow.glade:904 ui/MainWindow.glade:984
+#: ui/MainWindow.glade:1064 ui/MainWindow.glade:1145 ui/MainWindow.glade:1226
+#: ui/MainWindow.glade:1306 ui/MainWindow.glade:1386 ui/MainWindow.glade:1467
+#: ui/MainWindow.glade:1650 ui/MainWindow.glade:1695 ui/MainWindow.glade:1740
+#: ui/MainWindow.glade:2046 ui/MainWindow.glade:2091 ui/MainWindow.glade:2136
+#: src/MainWindow.py:352 src/MainWindow.py:1251 src/MainWindow.py:1269
+#: src/MainWindow.py:1276
+msgid "Unknown"
+msgstr "Desconocido"
 
-#: ui/MainWindow.glade:16
-msgid "Website"
-msgstr "Sitio web"
+#: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
+#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
+#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
+#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
+msgid "Vendor"
+msgstr "Proveedor"
 
-#. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:19
-msgid "translator-credits"
-msgstr "Mauna Linux <dev@maunalinux.top>"
+#: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
+#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
+#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
+#: src/MainWindow.py:791 src/MainWindow.py:855
+msgid "Model"
+msgstr "Modelo"
 
-#: ui/MainWindow.glade:86
-msgid "Export System Report"
-msgstr "Exportar Informe del Sistema"
-
-#: ui/MainWindow.glade:142
+#: ui/MainWindow.glade:174
 msgid "About App"
 msgstr "Acerca de la Aplicación"
 
-#: ui/MainWindow.glade:355
-msgid "<b>Kernel:</b>"
-msgstr "<b>Kernel:</b>"
+#: ui/MainWindow.glade:335
+msgid "Username"
+msgstr "Nombre de usuario"
 
-#: ui/MainWindow.glade:401
-msgid "<b>Desktop:</b>"
-msgstr "<b>Escritorio:</b>"
+#: ui/MainWindow.glade:376
+msgid "Hostname"
+msgstr "Nombre de host"
 
-#: ui/MainWindow.glade:446
-msgid "<b>CPU:</b>"
-msgstr "<b>CPU:</b>"
+#: ui/MainWindow.glade:430 src/MainWindow.py:1385
+msgid "Show Hardware Details"
+msgstr "Mostrar detalles del hardware"
 
-#: ui/MainWindow.glade:491
-msgid "<b>GPU:</b>"
-msgstr "<b>GPU:</b>"
+#: ui/MainWindow.glade:444
+msgid "Show System Report"
+msgstr "Mostrar informe del sistema"
 
-#: ui/MainWindow.glade:521
-msgid "GPU running as llvmpipe"
-msgstr "GPU ejecutándose como llvmpipe"
-
-#: ui/MainWindow.glade:564
-msgid "<b>RAM:</b>"
-msgstr "<b>RAM:</b>"
-
-#: ui/MainWindow.glade:636
-msgid "<b>Public IP:</b>"
-msgstr "<b>IP Pública:</b>"
-
-#: ui/MainWindow.glade:699
-msgid "<b>Local IP:</b>"
-msgstr "<b>IP Local:</b>"
-
-#: ui/MainWindow.glade:803
-msgid "About This Computer"
-msgstr "Acerca de esta Computadora"
-
-#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
+#: ui/MainWindow.glade:490
 msgid "Gathering system logs..."
 msgstr "Recopilando registros del sistema..."
 
-#: ui/MainWindow.glade:897
-msgid "Your system report has been exported to the desktop."
-msgstr "El informe de su sistema se ha exportado al escritorio."
+#: ui/MainWindow.glade:568
+msgid "<span size=\"small\">Computer</span>"
+msgstr "<span size=\"small\">Computadora</span>"
 
-#: ui/MainWindow.glade:898
-msgid "~/Desktop/mauna_system_report.tar.gz"
-msgstr "~/Escritorio/informe_del_sistema_mauna.tar.gz"
+#: ui/MainWindow.glade:648
+msgid "<span size=\"small\">Processor</span>"
+msgstr "<span size=\"small\">Procesador</span>"
 
-#: src/MainWindow.py:102
-msgid "Mauna About"
+#: ui/MainWindow.glade:728
+msgid "<span size=\"small\">Memory</span>"
+msgstr "<span size=\"small\">Memoria</span>"
+
+#: ui/MainWindow.glade:811
+msgid "<span size=\"small\">Storage</span>"
+msgstr "<span size=\"small\">Almacenamiento</span>"
+
+#: ui/MainWindow.glade:891
+msgid "<span size=\"small\">Graphics</span>"
+msgstr "<span size=\"small\">Gráficos</span>"
+
+#: ui/MainWindow.glade:971
+msgid "<span size=\"small\">Desktop</span>"
+msgstr "<span size=\"small\">Escritorio</span>"
+
+#: ui/MainWindow.glade:1051
+msgid "<span size=\"small\">WiFi</span>"
+msgstr "<span size=\"small\">WiFi</span>"
+
+#: ui/MainWindow.glade:1132
+msgid "<span size=\"small\">Ethernet</span>"
+msgstr "<span size=\"small\">Ethernet</span>"
+
+#: ui/MainWindow.glade:1213
+msgid "<span size=\"small\">Bluetooth</span>"
+msgstr "<span size=\"small\">Bluetooth</span>"
+
+#: ui/MainWindow.glade:1293
+msgid "<span size=\"small\">Audio</span>"
+msgstr "<span size=\"small\">Audio</span>"
+
+#: ui/MainWindow.glade:1373
+msgid "<span size=\"small\">Private IP</span>"
+msgstr "<span size=\"small\">IP Privada</span>"
+
+#: ui/MainWindow.glade:1454
+msgid "<span size=\"small\">Public IP</span>"
+msgstr "<span size=\"small\">IP Pública</span>"
+
+#: ui/MainWindow.glade:1558
+msgid "Computer Info"
+msgstr "Información de la computadora"
+
+#: ui/MainWindow.glade:1724
+msgid "Family"
+msgstr "Familia"
+
+#: ui/MainWindow.glade:1821
+msgid "Operating System"
+msgstr "Sistema operativo"
+
+#: ui/MainWindow.glade:1954
+msgid "Processor"
+msgstr "Procesador"
+
+#: ui/MainWindow.glade:2120
+msgid "Cores / Threads"
+msgstr "Núcleos / Hilos"
+
+#: ui/MainWindow.glade:2217
+msgid "Memory"
+msgstr "Memoria"
+
+#: ui/MainWindow.glade:2350
+msgid "Storage"
+msgstr "Almacenamiento"
+
+#: ui/MainWindow.glade:2482
+msgid "Graphics"
+msgstr "Gráficos"
+
+#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
+msgid "Display"
+msgstr "Pantalla"
+
+#: ui/MainWindow.glade:2746
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ui/MainWindow.glade:2878
+msgid "Wifi"
+msgstr "Wifi"
+
+#: ui/MainWindow.glade:3010
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ui/MainWindow.glade:3142
+msgid "Audio"
+msgstr "Audio"
+
+#: ui/MainWindow.glade:3274
+msgid "Camera"
+msgstr "Cámara"
+
+#: ui/MainWindow.glade:3406
+msgid "Keyboard"
+msgstr "Teclado"
+
+#: ui/MainWindow.glade:3538
+msgid "Mouse"
+msgstr "Ratón"
+
+#: ui/MainWindow.glade:3670
+msgid "Fingerprint"
+msgstr "Huella dactilar"
+
+#: ui/MainWindow.glade:3802
+msgid "Printer"
+msgstr "Impresora"
+
+#: ui/MainWindow.glade:3900
+msgid "Details"
+msgstr "Detalles"
+
+#: ui/MainWindow.glade:3965
+msgid "Mauna Info"
+msgstr "Información de Mauna"
+
+#: ui/MainWindow.glade:3974
+msgid "About This Computer"
+msgstr "Acerca de esta Computadora"
+
+#: ui/MainWindow.glade:3998
+msgid "About Mauna About Application"
+msgstr "Acerca de Mauna Acerca de la aplicación"
+
+#: ui/MainWindow.glade:4006
+msgid "Get info about your Mauna system."
+msgstr "Obtenga información sobre su sistema Mauna."
+
+#: ui/MainWindow.glade:4008
+msgid "Website"
+msgstr "Sitio web"
+
+#: ui/MainWindow.glade:4009
+msgid ""
+"This program comes with absolutely no warranty.\n"
+"See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
+"Public License, version 3 or later</a> for details."
+msgstr ""
+"Este programa no cuenta con ninguna garantía.\n"
+"Consulte la <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">Licencia "
+"Pública General de GNU, versión 3 o posterior</a> para más detalles."
+
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:4016
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:4054
+msgid "Submit"
+msgstr "Enviar"
+
+#: ui/MainWindow.glade:4073
+msgid ""
+"The information shared will only be used for hardware compatibility "
+"statistics and to be able to troubleshoot compatibility issues in advance.\n"
+"\n"
+"No personal data is collected.\n"
+"\n"
+"Hardware information is not shared with third parties and is only sent once "
+"during this process."
+msgstr ""
+"La información compartida solo se utilizará para estadísticas de "
+"compatibilidad de hardware y para poder solucionar problemas de "
+"compatibilidad de manera anticipada.\n"
+"\n"
+"No se recopilan datos personales.\n"
+"\n"
+"La información del hardware no se comparte con terceros y solo se envía una "
+"vez durante este proceso."
+
+#: ui/MainWindow.glade:4102
+msgid "Below is the data which will be sent:"
+msgstr "A continuación se muestran los datos que serán enviados:"
+
+#: ui/MainWindow.glade:4173
+msgid "Copy Report"
+msgstr "Copiar informe"
+
+#: ui/MainWindow.glade:4189
+msgid "Send"
+msgstr "Enviar"
+
+#: ui/MainWindow.glade:4229
+msgid "System Report has been copied to your clipboard!"
+msgstr "¡El informe del sistema se ha copiado en tu portapapeles!"
+
+#: src/MainWindow.py:63
+msgid "About Mauna"
 msgstr "Acerca de Mauna"
 
-#: src/MainWindow.py:106
-msgid "About Mauna About"
-msgstr "Acerca de Mauna Acerca"
+#: src/MainWindow.py:337 src/MainWindow.py:421
+msgid "Size"
+msgstr "Tamaño"
 
-#: src/MainWindow.py:191
-msgid "Physical RAM"
-msgstr "RAM Física"
+#: src/MainWindow.py:338 src/MainWindow.py:422
+msgid "Type"
+msgstr "Tipo"
+
+#: src/MainWindow.py:339
+msgid "Speed"
+msgstr "Velocidad"
+
+#: src/MainWindow.py:343
+msgid "No memory information"
+msgstr "Sin información de memoria"
+
+#: src/MainWindow.py:362
+msgid "empty"
+msgstr "vacío"
+
+#: src/MainWindow.py:430 src/MainWindow.py:491 src/MainWindow.py:551
+#: src/MainWindow.py:609 src/MainWindow.py:671 src/MainWindow.py:732
+#: src/MainWindow.py:795 src/MainWindow.py:859 src/MainWindow.py:921
+#: src/MainWindow.py:983 src/MainWindow.py:1044 src/MainWindow.py:1101
+#: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
+#: src/MainWindow.py:1220
+msgid "Device not found"
+msgstr "Dispositivo no encontrado"
+
+#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
+#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
+#: src/MainWindow.py:916 src/MainWindow.py:978
+msgid "Driver"
+msgstr "Driver"
+
+#: src/MainWindow.py:546
+msgid "Resolution"
+msgstr "Resolución"
+
+#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
+#: src/MainWindow.py:1096 src/MainWindow.py:1155
+msgid "Name"
+msgstr "Nombre"
+
+#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
+msgid "Connection"
+msgstr "Conexión"
+
+#: src/MainWindow.py:1156
+msgid "Version"
+msgstr "Versión"
+
+#: src/MainWindow.py:1157
+msgid "Kernel"
+msgstr "Kernel"
+
+#: src/MainWindow.py:1158
+msgid "Desktop"
+msgstr "Escritorio"
+
+#: src/MainWindow.py:1309
+msgid "Thank you for your contribution."
+msgstr "Gracias por tu contribución."
+
+#: src/MainWindow.py:1310
+msgid "You can find your submission here:"
+msgstr "Puedes encontrar tu envío aquí:"
+
+#: src/MainWindow.py:1327
+msgid "An error occured while sending the data."
+msgstr "Ocurrió un error al enviar los datos."
+
+#: src/MainWindow.py:1328
+msgid "Returned message from the server:"
+msgstr "Mensaje devuelto desde el servidor:"
+
+#: src/MainWindow.py:1334
+msgid "Connection Failed"
+msgstr "Conexión fallida"
+
+#: src/MainWindow.py:1336
+msgid ""
+"If you are connected to the internet, then our servers have some problem."
+msgstr ""
+"Si estás conectado a internet, entonces nuestros servidores tienen algún "
+"problema."
+
+#: src/MainWindow.py:1382
+msgid "Show Summary"
+msgstr "Mostrar resumen"
+
+#~ msgid "<b>CPU:</b>"
+#~ msgstr "<b>CPU:</b>"
+
+#~ msgid "<b>GPU:</b>"
+#~ msgstr "<b>GPU:</b>"
+
+#~ msgid "GPU running as llvmpipe"
+#~ msgstr "GPU ejecutándose como llvmpipe"
+
+#~ msgid "<b>RAM:</b>"
+#~ msgstr "<b>RAM:</b>"
+
+#~ msgid "<b>Public IP:</b>"
+#~ msgstr "<b>IP Pública:</b>"
+
+#~ msgid "<b>Local IP:</b>"
+#~ msgstr "<b>IP Local:</b>"
+
+#~ msgid "~/Desktop/mauna_system_report.tar.gz"
+#~ msgstr "~/Escritorio/informe_del_sistema_mauna.tar.gz"
+
+#~ msgid "Physical RAM"
+#~ msgstr "RAM Física"

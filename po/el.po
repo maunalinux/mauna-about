@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 17:24-0300\n"
-"PO-Revision-Date: 2025-02-06 19:15-0300\n"
+"POT-Creation-Date: 2025-12-11 15:56-0300\n"
+"PO-Revision-Date: 2025-12-14 21:19-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: el\n"
@@ -18,87 +18,373 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: ui/MainWindow.glade:7
-msgid "About Mauna About Application"
-msgstr "Σχετικά με το Mauna Σχετικά με την εφαρμογή"
+#: ui/MainWindow.glade:24 src/MainWindow.py:335
+msgid "Slot"
+msgstr "Σχισμή"
 
-#: ui/MainWindow.glade:14
-msgid "Get info about your Mauna system."
-msgstr "Λάβετε πληροφορίες για το σύστημά σας Mauna."
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:81 ui/MainWindow.glade:123
+#: ui/MainWindow.glade:581 ui/MainWindow.glade:661 ui/MainWindow.glade:741
+#: ui/MainWindow.glade:824 ui/MainWindow.glade:904 ui/MainWindow.glade:984
+#: ui/MainWindow.glade:1064 ui/MainWindow.glade:1145 ui/MainWindow.glade:1226
+#: ui/MainWindow.glade:1306 ui/MainWindow.glade:1386 ui/MainWindow.glade:1467
+#: ui/MainWindow.glade:1650 ui/MainWindow.glade:1695 ui/MainWindow.glade:1740
+#: ui/MainWindow.glade:2046 ui/MainWindow.glade:2091 ui/MainWindow.glade:2136
+#: src/MainWindow.py:352 src/MainWindow.py:1251 src/MainWindow.py:1269
+#: src/MainWindow.py:1276
+msgid "Unknown"
+msgstr "Αγνωστος"
 
-#: ui/MainWindow.glade:16
-msgid "Website"
-msgstr "Δικτυακός τόπος"
+#: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
+#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
+#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
+#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
+msgid "Vendor"
+msgstr "Προμηθευτής"
 
-#. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:19
-msgid "translator-credits"
-msgstr "Mauna Linux <dev@maunalinux.top>"
+#: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
+#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
+#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
+#: src/MainWindow.py:791 src/MainWindow.py:855
+msgid "Model"
+msgstr "Μοντέλο"
 
-#: ui/MainWindow.glade:86
-msgid "Export System Report"
-msgstr "Εξαγωγή αναφοράς συστήματος"
-
-#: ui/MainWindow.glade:142
+#: ui/MainWindow.glade:174
 msgid "About App"
 msgstr "Σχετικά με την εφαρμογή"
 
-#: ui/MainWindow.glade:355
-msgid "<b>Kernel:</b>"
-msgstr "<b>Kernel:</b>"
+#: ui/MainWindow.glade:335
+msgid "Username"
+msgstr "Όνομα χρήστη"
 
-#: ui/MainWindow.glade:401
-msgid "<b>Desktop:</b>"
-msgstr "<b>Επιτραπέζιος υπολογιστής:</b>"
+#: ui/MainWindow.glade:376
+msgid "Hostname"
+msgstr "Όνομα κεντρικού υπολογιστή"
 
-#: ui/MainWindow.glade:446
-msgid "<b>CPU:</b>"
-msgstr "<b>CPU:</b>"
+#: ui/MainWindow.glade:430 src/MainWindow.py:1385
+msgid "Show Hardware Details"
+msgstr "Εμφάνιση λεπτομερειών υλικού"
 
-#: ui/MainWindow.glade:491
-msgid "<b>GPU:</b>"
-msgstr "<b>GPU:</b>"
+#: ui/MainWindow.glade:444
+msgid "Show System Report"
+msgstr "Εμφάνιση αναφοράς συστήματος"
 
-#: ui/MainWindow.glade:521
-msgid "GPU running as llvmpipe"
-msgstr "GPU που εκτελείται ως llvmpipe"
-
-#: ui/MainWindow.glade:564
-msgid "<b>RAM:</b>"
-msgstr "<b>RAM:</b>"
-
-#: ui/MainWindow.glade:636
-msgid "<b>Public IP:</b>"
-msgstr "<b>Δημόσια IP:</b>"
-
-#: ui/MainWindow.glade:699
-msgid "<b>Local IP:</b>"
-msgstr "<b>Τοπική IP:</b>"
-
-#: ui/MainWindow.glade:803
-msgid "About This Computer"
-msgstr "Σχετικά με αυτόν τον υπολογιστή"
-
-#: ui/MainWindow.glade:841 ui/MainWindow.glade:863
+#: ui/MainWindow.glade:490
 msgid "Gathering system logs..."
 msgstr "Συλλογή αρχείων καταγραφής συστήματος..."
 
-#: ui/MainWindow.glade:897
-msgid "Your system report has been exported to the desktop."
-msgstr "Η αναφορά του συστήματός σας έχει εξαχθεί στην επιφάνεια εργασίας."
+#: ui/MainWindow.glade:568
+msgid "<span size=\"small\">Computer</span>"
+msgstr "<span size=\"small\">Ηλεκτρονικός υπολογιστής</span>"
 
-#: ui/MainWindow.glade:898
-msgid "~/Desktop/mauna_system_report.tar.gz"
-msgstr "~/Επιφάνεια εργασίας/αναφορά_συστήματος_mauna.tar.gz"
+#: ui/MainWindow.glade:648
+msgid "<span size=\"small\">Processor</span>"
+msgstr "<span size=\"small\">Επεξεργαστής</span>"
 
-#: src/MainWindow.py:102
-msgid "Mauna About"
-msgstr "Mauna Σχετικά"
+#: ui/MainWindow.glade:728
+msgid "<span size=\"small\">Memory</span>"
+msgstr "<span size=\"small\">Μνήμη</span>"
 
-#: src/MainWindow.py:106
-msgid "About Mauna About"
-msgstr "Σχετικά με το Mauna Σχετικά με"
+#: ui/MainWindow.glade:811
+msgid "<span size=\"small\">Storage</span>"
+msgstr "<span size=\"small\">Αποθήκευση</span>"
 
-#: src/MainWindow.py:191
-msgid "Physical RAM"
-msgstr "Φυσική RAM"
+#: ui/MainWindow.glade:891
+msgid "<span size=\"small\">Graphics</span>"
+msgstr "<span size=\"small\">Γραφικά</span>"
+
+#: ui/MainWindow.glade:971
+msgid "<span size=\"small\">Desktop</span>"
+msgstr "<span size=\"small\">Επιφάνεια εργασίας</span>"
+
+#: ui/MainWindow.glade:1051
+msgid "<span size=\"small\">WiFi</span>"
+msgstr "<span size=\"small\">WiFi</span>"
+
+#: ui/MainWindow.glade:1132
+msgid "<span size=\"small\">Ethernet</span>"
+msgstr "<span size=\"small\">Ethernet</span>"
+
+#: ui/MainWindow.glade:1213
+msgid "<span size=\"small\">Bluetooth</span>"
+msgstr "<span size=\"small\">Bluetooth</span>"
+
+#: ui/MainWindow.glade:1293
+msgid "<span size=\"small\">Audio</span>"
+msgstr "<span size=\"small\">Ήχος</span>"
+
+#: ui/MainWindow.glade:1373
+msgid "<span size=\"small\">Private IP</span>"
+msgstr "<span size=\"small\">Ιδιωτική IP</span>"
+
+#: ui/MainWindow.glade:1454
+msgid "<span size=\"small\">Public IP</span>"
+msgstr "<span size=\"small\">Δημόσια IP</span>"
+
+#: ui/MainWindow.glade:1558
+msgid "Computer Info"
+msgstr "Πληροφορίες υπολογιστή"
+
+#: ui/MainWindow.glade:1724
+msgid "Family"
+msgstr "Οικογένεια"
+
+#: ui/MainWindow.glade:1821
+msgid "Operating System"
+msgstr "Λειτουργικό σύστημα"
+
+#: ui/MainWindow.glade:1954
+msgid "Processor"
+msgstr "Επεξεργαστής"
+
+#: ui/MainWindow.glade:2120
+msgid "Cores / Threads"
+msgstr "Πυρήνες / Νήματα"
+
+#: ui/MainWindow.glade:2217
+msgid "Memory"
+msgstr "Μνήμη"
+
+#: ui/MainWindow.glade:2350
+msgid "Storage"
+msgstr "Αποθήκευση"
+
+#: ui/MainWindow.glade:2482
+msgid "Graphics"
+msgstr "Γραφικά"
+
+#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
+msgid "Display"
+msgstr "Επίδειξη"
+
+#: ui/MainWindow.glade:2746
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ui/MainWindow.glade:2878
+msgid "Wifi"
+msgstr "Wifi"
+
+#: ui/MainWindow.glade:3010
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ui/MainWindow.glade:3142
+msgid "Audio"
+msgstr "Ήχος"
+
+#: ui/MainWindow.glade:3274
+msgid "Camera"
+msgstr "Κάμερα"
+
+#: ui/MainWindow.glade:3406
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
+
+#: ui/MainWindow.glade:3538
+msgid "Mouse"
+msgstr "Ποντίκι"
+
+#: ui/MainWindow.glade:3670
+msgid "Fingerprint"
+msgstr "Δακτυλικό αποτύπωμα"
+
+#: ui/MainWindow.glade:3802
+msgid "Printer"
+msgstr "Εκτυπωτής"
+
+#: ui/MainWindow.glade:3900
+msgid "Details"
+msgstr "Καθέκαστα"
+
+#: ui/MainWindow.glade:3965
+msgid "Mauna Info"
+msgstr "Πληροφορίες για τη Μάουνα"
+
+#: ui/MainWindow.glade:3974
+msgid "About This Computer"
+msgstr "Σχετικά με αυτόν τον υπολογιστή"
+
+#: ui/MainWindow.glade:3998
+msgid "About Mauna About Application"
+msgstr "Σχετικά με το Mauna Σχετικά με την εφαρμογή"
+
+#: ui/MainWindow.glade:4006
+msgid "Get info about your Mauna system."
+msgstr "Λάβετε πληροφορίες για το σύστημά σας Mauna."
+
+#: ui/MainWindow.glade:4008
+msgid "Website"
+msgstr "Δικτυακός τόπος"
+
+#: ui/MainWindow.glade:4009
+msgid ""
+"This program comes with absolutely no warranty.\n"
+"See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
+"Public License, version 3 or later</a> for details."
+msgstr ""
+"Αυτό το πρόγραμμα δεν συνοδεύεται από καμία απολύτως εγγύηση.\n"
+"Ανατρέξτε στην <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">Γενική "
+"Άδεια Δημόσιας Χρήσης GNU, έκδοση 3 ή νεότερη</a> για λεπτομέρειες."
+
+#. Name Surname <example@examplemail.com>
+#: ui/MainWindow.glade:4016
+msgid "translator-credits"
+msgstr "Mauna Linux <dev@maunalinux.top>"
+
+#: ui/MainWindow.glade:4054
+msgid "Submit"
+msgstr "Υποτάσσομαι"
+
+#: ui/MainWindow.glade:4073
+msgid ""
+"The information shared will only be used for hardware compatibility "
+"statistics and to be able to troubleshoot compatibility issues in advance.\n"
+"\n"
+"No personal data is collected.\n"
+"\n"
+"Hardware information is not shared with third parties and is only sent once "
+"during this process."
+msgstr ""
+"Οι πληροφορίες που κοινοποιούνται θα χρησιμοποιηθούν μόνο για στατιστικά "
+"στοιχεία συμβατότητας υλικού και για την εκ των προτέρων αντιμετώπιση "
+"προβλημάτων συμβατότητας.\n"
+"\n"
+"Δεν συλλέγονται προσωπικά δεδομένα.\n"
+"\n"
+"Hardware information is not shared with third parties and is only sent once "
+"during this process."
+
+#: ui/MainWindow.glade:4102
+msgid "Below is the data which will be sent:"
+msgstr "Παρακάτω παρατίθενται τα δεδομένα που θα αποσταλούν:"
+
+#: ui/MainWindow.glade:4173
+msgid "Copy Report"
+msgstr "Αντιγραφή αναφοράς"
+
+#: ui/MainWindow.glade:4189
+msgid "Send"
+msgstr "Στέλνω"
+
+#: ui/MainWindow.glade:4229
+msgid "System Report has been copied to your clipboard!"
+msgstr "Η αναφορά συστήματος έχει αντιγραφεί στο πρόχειρό σας!"
+
+#: src/MainWindow.py:63
+msgid "About Mauna"
+msgstr "Σχετικά με τη Μάουνα"
+
+#: src/MainWindow.py:337 src/MainWindow.py:421
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: src/MainWindow.py:338 src/MainWindow.py:422
+msgid "Type"
+msgstr "Τύπος"
+
+#: src/MainWindow.py:339
+msgid "Speed"
+msgstr "Ταχύτητα"
+
+#: src/MainWindow.py:343
+msgid "No memory information"
+msgstr "Δεν υπάρχουν πληροφορίες μνήμης"
+
+#: src/MainWindow.py:362
+msgid "empty"
+msgstr "αδειάζω"
+
+#: src/MainWindow.py:430 src/MainWindow.py:491 src/MainWindow.py:551
+#: src/MainWindow.py:609 src/MainWindow.py:671 src/MainWindow.py:732
+#: src/MainWindow.py:795 src/MainWindow.py:859 src/MainWindow.py:921
+#: src/MainWindow.py:983 src/MainWindow.py:1044 src/MainWindow.py:1101
+#: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
+#: src/MainWindow.py:1220
+msgid "Device not found"
+msgstr "Η συσκευή δεν βρέθηκε"
+
+#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
+#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
+#: src/MainWindow.py:916 src/MainWindow.py:978
+msgid "Driver"
+msgstr "Οδηγός"
+
+#: src/MainWindow.py:546
+msgid "Resolution"
+msgstr "Ψήφισμα"
+
+#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
+#: src/MainWindow.py:1096 src/MainWindow.py:1155
+msgid "Name"
+msgstr "Ονομα"
+
+#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
+msgid "Connection"
+msgstr "Σύνδεση"
+
+#: src/MainWindow.py:1156
+msgid "Version"
+msgstr "Εκδοχή"
+
+#: src/MainWindow.py:1157
+msgid "Kernel"
+msgstr "Kernel"
+
+#: src/MainWindow.py:1158
+msgid "Desktop"
+msgstr "Επιφάνεια εργασίας"
+
+#: src/MainWindow.py:1309
+msgid "Thank you for your contribution."
+msgstr "Σας ευχαριστώ για τη συμβολή σας."
+
+#: src/MainWindow.py:1310
+msgid "You can find your submission here:"
+msgstr "Μπορείτε να βρείτε την υποβολή σας εδώ:"
+
+#: src/MainWindow.py:1327
+msgid "An error occured while sending the data."
+msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή των δεδομένων."
+
+#: src/MainWindow.py:1328
+msgid "Returned message from the server:"
+msgstr "Επιστρεφόμενο μήνυμα από τον διακομιστή:"
+
+#: src/MainWindow.py:1334
+msgid "Connection Failed"
+msgstr "Η σύνδεση απέτυχε"
+
+#: src/MainWindow.py:1336
+msgid ""
+"If you are connected to the internet, then our servers have some problem."
+msgstr ""
+"Αν είστε συνδεδεμένοι στο διαδίκτυο, τότε οι διακομιστές μας έχουν κάποιο "
+"πρόβλημα."
+
+#: src/MainWindow.py:1382
+msgid "Show Summary"
+msgstr "Εμφάνιση σύνοψης"
+
+#~ msgid "<b>CPU:</b>"
+#~ msgstr "<b>CPU:</b>"
+
+#~ msgid "<b>GPU:</b>"
+#~ msgstr "<b>GPU:</b>"
+
+#~ msgid "GPU running as llvmpipe"
+#~ msgstr "GPU που εκτελείται ως llvmpipe"
+
+#~ msgid "<b>RAM:</b>"
+#~ msgstr "<b>RAM:</b>"
+
+#~ msgid "<b>Public IP:</b>"
+#~ msgstr "<b>Δημόσια IP:</b>"
+
+#~ msgid "<b>Local IP:</b>"
+#~ msgstr "<b>Τοπική IP:</b>"
+
+#~ msgid "~/Desktop/mauna_system_report.tar.gz"
+#~ msgstr "~/Επιφάνεια εργασίας/αναφορά_συστήματος_mauna.tar.gz"
+
+#~ msgid "Physical RAM"
+#~ msgstr "Φυσική RAM"
