@@ -34,7 +34,6 @@ debian/mauna-about/
 debian/*.lintian-overrides
 debian/*.substvars
 debian/debhelper-build-stamp
-src/__version__
 po/*/*/*.mo
 po/*.mo
 
@@ -145,4 +144,4 @@ dmypy.json
 __pycache__
 
 test/
-src/__version__
+
