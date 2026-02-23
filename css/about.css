@@ -2,3 +2,11 @@ frame border {
     /* Set the border radius for rounded corners */
     border-radius: 12px;
 }
+
+.p-7 {
+    padding: 7px;
+}
+
+.p-15 {
+    padding: 15px;
+}

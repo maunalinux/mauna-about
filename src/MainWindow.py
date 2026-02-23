@@ -1,15 +1,18 @@
+import json
 import os
+
 import gi
 import requests
-import json
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib, Gio, Gtk, Gdk
-
 import locale
 from locale import gettext as _
 
-from util import OSManager, ComputerManager, HardwareDetector, network
+from gi.repository import Gdk, Gio, GLib, Gtk
+
+from util import ComputerManager, HardwareDetector, OSManager, network
+from widget.HardwareDetailRow import HardwareDetailRow
+from widget.HardwareGridCell import HardwareGridCell
 
 # Translation Constants:
 APPNAME = "mauna-about"
@@ -31,7 +34,7 @@ class MainWindow:
     is_hardware_details_visible = False
 
     def __init__(self, application):
-        self.computerManager = None
+        self.define_variables()
 
         # Gtk Builder
         self.builder = Gtk.Builder()
@@ -55,33 +58,32 @@ class MainWindow:
         self.application = application
 
         # Global Definitions:
+
         self.define_components()
-        self.define_variables()
 
         self.read_mauna_info()
-
-        self.ui_main_window.set_title(_("About Mauna"))
 
         task = Gio.Task.new(callback=self.on_read_hardware_info_finish)
         task.run_in_thread(self.read_hardware_info)
 
-        version = "0.0.0"
-        try:
-            with open(os.path.dirname(os.path.abspath(__file__)) + "/../__version__") as f:
-                version = f.readline().strip()
-        except:
-            print("Failed to fetch verion")
-
-        self.ui_about_dialog.set_version(version)
+        self.define_version()
 
         self.control_args()
 
         # Show Screen:
         self.window.show_all()
 
-        # buttons will be visible after hardware info collected
-        self.ui_hardware_info_button.hide()
-        self.ui_display_report_button.hide()
+    def define_version(self):
+        version = "0.0.0"
+        try:
+            with open(
+                os.path.dirname(os.path.abspath(__file__)) + "/../__version__"
+            ) as f:
+                version = f.readline().strip()
+        except:
+            print("Failed to fetch version")
+
+        self.ui_about_dialog.set_version(version)
 
     @staticmethod
     def load_css(css_file_path):
@@ -106,10 +108,13 @@ class MainWindow:
         self.ui_main_window = UI("ui_main_window")
         self.ui_main_stack = UI("ui_main_stack")
         self.ui_info_stack = UI("ui_info_stack")
+        self.ui_report_box = UI("ui_report_box")
         self.ui_hardware_info_button = UI("ui_hardware_info_button")
         self.ui_display_report_button = UI("ui_display_report_button")
         self.ui_copy_report_btn = UI("ui_copy_report_btn")
         self.ui_submit_report_btn = UI("ui_submit_report_btn")
+        self.ui_hardware_grid = UI("ui_hardware_grid")
+        self.ui_hardware_details_box = UI("ui_hardware_details_box")
 
         self.ui_about_dialog = UI("ui_about_dialog")
         self.ui_popover_menu = UI("ui_popover_menu")
@@ -260,7 +265,7 @@ class MainWindow:
         self.ui_submit_stack = UI("ui_submit_stack")
 
     def define_variables(self):
-        return
+        self.computerManager = None
 
     def control_args(self):
         if "hardware" in self.application.args.keys():
@@ -285,929 +290,19 @@ class MainWindow:
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
-        # computer info
-        self.computerManager = ComputerManager.ComputerManager()
-
-        # Computer
-        computer_info = self.computerManager.get_computer_info()
-        self.ui_computer_label.set_text(computer_info["model"])
-        self.ui_detail_computer_vendor_label.set_text(computer_info["vendor"])
-        self.ui_detail_computer_model_label.set_text(computer_info["model"])
-        self.ui_detail_computer_family_label.set_text(computer_info["family"])
-
-        # OS
-        mauna_info = OSManager.get_os_info()
-        desktop_info = "{} {} ({})".format(
-            mauna_info["desktop"],
-            mauna_info["desktop_version"],
-            mauna_info["display"],
-        )
-        self.ui_desktop_label.set_text(desktop_info)
-
-        # CPU
-        processor_info = self.computerManager.get_processor_info()
-        self.ui_processor_label.set_text(processor_info["name"])
-        self.ui_detail_processor_vendor_label.set_text(processor_info["vendor"])
-        self.ui_detail_processor_model_label.set_text(processor_info["name"])
-        self.ui_detail_processor_core_label.set_text(
-            f"{processor_info['core_count']} / {processor_info['thread_count']}"
-        )
-
-        # Memory
-        memory_summary = self.computerManager.get_memory_summary()
-        # memory_summary = "32.0 GB Unknown Unknown"
-        # TODO FIXME
-        self.ui_memory_label.set_text(memory_summary.replace("Unknown", ""))
-
         # Lazy Init PCI & USB devices information singleton
-        hardware_info = HardwareDetector.get_hardware_info()
+        self.computerManager = ComputerManager.ComputerManager()
+        self.hardware_info = HardwareDetector.get_hardware_info()
 
-        # hardware details -memory screen START
-        def populate_memory_list(memory_slots):
-            """Populate ui_hardware_list_memory_container using Gtk.Grid for perfect alignment."""
+        task.return_boolean(True)
 
-            container = self.ui_hardware_list_memory_container
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Slot"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Vendor"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Size"), bold=True), 2, 0, 1, 1)
-            grid.attach(make_label(_("Type"), bold=True), 3, 0, 1, 1)
-            grid.attach(make_label(_("Speed"), bold=True), 4, 0, 1, 1)
-
-            # Empty case
-            if not memory_slots:
-                grid.attach(make_label(_("No memory information")), 0, 1, 5, 1)
-                container.show_all()
-                return
-
-            # Data rows
-            row = 1
-            for index, slot in enumerate(memory_slots, start=1):
-                size = slot.get("size", 0.0)
-                mem_type = slot.get("type", "Unknown")
-                vendor = slot.get("vendor", _("Unknown")) or _("Unknown")
-                speed = slot.get("speed", "") or ""
-
-                is_empty = (not size) or size == 0.0 or mem_type == "Unknown"
-
-                # Slot number
-                grid.attach(make_label(str(index)), 0, row, 1, 1)
-
-                if is_empty:
-                    # Show "empty" for blank slots
-                    grid.attach(make_label(_("empty")), 1, row, 1, 1)
-                    grid.attach(make_label(""), 2, row, 1, 1)
-                    grid.attach(make_label(""), 3, row, 1, 1)
-                    grid.attach(make_label(""), 4, row, 1, 1)
-
-                else:
-                    # Size formatting (16 -> "16 GB")
-                    if isinstance(size, (int, float)):
-                        if float(size).is_integer():
-                            size_text = f"{int(size)} GB"
-                        else:
-                            size_text = f"{size} GB"
-                    else:
-                        size_text = str(size)
-
-                    grid.attach(make_label(vendor), 1, row, 1, 1)
-                    grid.attach(make_label(size_text), 2, row, 1, 1)
-                    grid.attach(make_label(mem_type), 3, row, 1, 1)
-                    grid.attach(make_label(speed), 4, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_memory_list(self.computerManager.get_memory_info())
-        # hardware details -memory screen END
-
-        # hardware details -storage screen START
-        def populate_storage_list(storage_list):
-            """Populate ui_hardware_list_storage_container with storage device information using Gtk.Grid."""
-
-            container = self.ui_hardware_list_storage_container
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Size"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Type"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # Filter valid storage devices
-            valid_storage = [dev for dev in storage_list if dev.get("type")]
-
-            # No valid devices
-            if not valid_storage:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Add rows
-            row = 1
-            for device in valid_storage:
-                size = device.get("size", "")
-                stype = device.get("type", "")
-                model = device.get("model", "")
-
-                grid.attach(make_label(size), 0, row, 1, 1)
-                grid.attach(make_label(stype), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_storage_list(hardware_info.get("storage", []))
-        # hardware details -storage screen END
-
-        # hardware details -graphics screen START
-        def populate_graphics_list(graphics_list):
-            """Populate ui_hardware_list_graphics_container with graphics device information using Gtk.Grid."""
-
-            container = self.ui_hardware_list_graphics_container
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # No devices
-            if not graphics_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for gpu in graphics_list:
-                vendor = gpu.get("vendor", "")
-                driver = gpu.get("driver", "")
-                model = gpu.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_graphics_list(hardware_info.get("graphics", []))
-        # hardware details -graphics screen END
-
-        # hardware details -display screen START
-        def populate_display_list(container, display_list):
-            """Populate the given GTK container with display device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Resolution"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # No displays
-            if not display_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for disp in display_list:
-                vendor = disp.get("vendor", "")
-                resolution = disp.get("resolution", "")
-                model = disp.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(resolution), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_display_list(
-            self.ui_hardware_list_display_container, hardware_info.get("display", [])
-        )
-        # hardware details -display screen END
-
-        # hardware details -ethernet screen START
-        def populate_ethernet_list(container, ethernet_list):
-            """Populate the given GTK container with ethernet device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # No Ethernet devices
-            if not ethernet_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for eth in ethernet_list:
-                vendor = eth.get("vendor", "")
-                driver = eth.get("driver", "")
-                model = eth.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_ethernet_list(
-            self.ui_hardware_list_ethernet_container, hardware_info.get("ethernet", [])
-        )
-        # hardware details -ethernet screen START
-
-        # hardware details -wifi screen START
-        def populate_wifi_list(container, wifi_list):
-            """Populate the given GTK container with WiFi device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # No WiFi adapters
-            if not wifi_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Add WiFi rows
-            row = 1
-            for wifi in wifi_list:
-                vendor = wifi.get("vendor", "")
-                driver = wifi.get("driver", "")
-                model = wifi.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_wifi_list(
-            self.ui_hardware_list_wifi_container, hardware_info.get("wifi", [])
-        )
-        # hardware details -wifi screen END
-
-        # hardware details -bluetooth screen START
-        def populate_bluetooth_list(container, bluetooth_list):
-            """Populate the given GTK container with Bluetooth device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # No Bluetooth adapters
-            if not bluetooth_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Data rows
-            row = 1
-            for bt in bluetooth_list:
-                vendor = bt.get("vendor", "")
-                driver = bt.get("driver", "")
-                model = bt.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_bluetooth_list(
-            self.ui_hardware_list_bluetooth_container,
-            hardware_info.get("bluetooth", []),
-        )
-        # hardware details -bluetooth screen END
-
-        # hardware details -audio screen START
-        def populate_audio_list(container, audio_list):
-            """Populate the given GTK container with audio device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # Empty case
-            if not audio_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for dev in audio_list:
-                vendor = dev.get("vendor", "")
-                driver = dev.get("driver", "")
-                model = dev.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_audio_list(
-            self.ui_hardware_list_audio_container, hardware_info.get("audio", [])
-        )
-        # hardware details -audio screen END
-
-        # hardware details -camera screen START
-        def populate_camera_list(container, camera_list):
-            """Populate the given GTK container with camera device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Model"), bold=True), 2, 0, 1, 1)
-
-            # Empty case
-            if not camera_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for dev in camera_list:
-                vendor = dev.get("vendor", "")
-                driver = dev.get("driver", "")
-                model = dev.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(model), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_camera_list(
-            self.ui_hardware_list_camera_container, hardware_info.get("camera", [])
-        )
-
-        # hardware details -camera screen END
-        # hardware details -keyboard screen START
-        def populate_keyboard_list(container, keyboard_list):
-            """Populate the given GTK container with keyboard device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Connection"), bold=True), 2, 0, 1, 1)
-
-            # Empty case
-            if not keyboard_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for dev in keyboard_list:
-                name = dev.get("name", "")
-                driver = dev.get("driver", "")
-                connection = dev.get("bus", "")
-
-                grid.attach(make_label(name), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(connection), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_keyboard_list(
-            self.ui_hardware_list_keyboard_container, hardware_info.get("keyboard", [])
-        )
-
-        # hardware details -keyboard screen END
-        # hardware details -mouse screen START
-        def populate_mouse_list(container, mouse_list):
-            """Populate the given GTK container with mouse device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Driver"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Connection"), bold=True), 2, 0, 1, 1)
-
-            # Empty case
-            if not mouse_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 3, 1)
-                container.show_all()
-                return
-
-            # Rows
-            row = 1
-            for dev in mouse_list:
-                name = dev.get("name", "")
-                driver = dev.get("driver", "")
-                connection = dev.get("bus", "")
-
-                grid.attach(make_label(name), 0, row, 1, 1)
-                grid.attach(make_label(driver), 1, row, 1, 1)
-                grid.attach(make_label(connection), 2, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_mouse_list(
-            self.ui_hardware_list_mouse_container, hardware_info.get("mouse", [])
-        )
-
-        # hardware details -mouse screen END
-        # hardware details -fingerprint screen START
-        def populate_fingerprint_list(container, fp_list):
-            """Populate the given GTK container with fingerprint device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Vendor"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Name"), bold=True), 1, 0, 1, 1)
-
-            # Empty case
-            if not fp_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 2, 1)
-                container.show_all()
-                return
-
-            # Data rows
-            row = 1
-            for dev in fp_list:
-                vendor = dev.get("vendor", "")
-                name = dev.get("name", "")
-
-                grid.attach(make_label(vendor), 0, row, 1, 1)
-                grid.attach(make_label(name), 1, row, 1, 1)
-                row += 1
-
-            container.show_all()
-
-        populate_fingerprint_list(
-            self.ui_hardware_list_fingerprint_container,
-            hardware_info.get("fingerprint", []),
-        )
-        # hardware details -fingerprint screen END
-
-        # hardware details -printer screen START
-        def populate_printer_list(container, printer_list):
-            """Populate the given GTK container with printer device information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create and attach a grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)  # prevent equal column width
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: create left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row
-            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Connection"), bold=True), 1, 0, 1, 1)
-
-            # Empty case
-            if not printer_list:
-                grid.attach(make_label(_("Device not found")), 0, 1, 2, 1)
-                container.show_all()
-                return
-
-            # Data rows
-            row = 1
-            for dev in printer_list:
-                name = dev.get("name", "")
-                connection = dev.get("bus", "")
-
-                grid.attach(make_label(name), 0, row, 1, 1)
-                grid.attach(make_label(connection), 1, row, 1, 1)
-
-                row += 1
-
-            container.show_all()
-
-        populate_printer_list(
-            self.ui_hardware_list_printer_container, hardware_info.get("printer", [])
-        )
-        # hardware details -printer screen END
-
-        # hardware details -os screen START
-        def populate_os_list(container, os_info):
-            """Populate the given GTK container with operating system information using Gtk.Grid."""
-
-            # Clear previous children
-            for child in container.get_children():
-                container.remove(child)
-
-            # Create grid
-            grid = Gtk.Grid()
-            grid.set_row_spacing(6)
-            grid.set_column_spacing(20)
-            grid.set_column_homogeneous(False)
-            grid.set_hexpand(True)
-
-            container.pack_start(grid, True, True, 0)
-
-            # Helper: left-aligned label
-            def make_label(text, bold=False):
-                text = str(text) if text is not None else ""
-                label = Gtk.Label()
-                if bold:
-                    label.set_markup(f"<b>{text}</b>")
-                else:
-                    label.set_text(text)
-                label.set_xalign(0.0)
-                label.set_hexpand(True)
-                return label
-
-            # Header row (codename removed)
-            grid.attach(make_label(_("Name"), bold=True), 0, 0, 1, 1)
-            grid.attach(make_label(_("Version"), bold=True), 1, 0, 1, 1)
-            grid.attach(make_label(_("Kernel"), bold=True), 2, 0, 1, 1)
-            grid.attach(make_label(_("Desktop"), bold=True), 3, 0, 1, 1)
-            grid.attach(make_label(_("Display"), bold=True), 4, 0, 1, 1)
-
-            # Empty case
-            if not os_info:
-                grid.attach(make_label(_("Device not found")), 0, 1, 5, 1)
-                container.show_all()
-                return
-
-            # Extract OS fields (codename removed)
-            name = os_info.get("os_name", "")
-            version = os_info.get("os_version", "")
-            kernel = os_info.get("kernel", "")
-            desktop = f"{os_info.get('desktop', '')} {os_info.get('desktop_version', '')}".strip()
-            display = os_info.get("display", "")
-
-            # Row
-            grid.attach(make_label(name), 0, 1, 1, 1)
-            grid.attach(make_label(version), 1, 1, 1, 1)
-            grid.attach(make_label(kernel), 2, 1, 1, 1)
-            grid.attach(make_label(desktop), 3, 1, 1, 1)
-            grid.attach(make_label(display), 4, 1, 1, 1)
-
-            container.show_all()
-
-        populate_os_list(self.ui_hardware_list_os_container, OSManager.get_os_info())
-
-        # hardware details -os screen END
-
-        def set_list_label(label, devices, fields, skip_if_type_none=False):
+    # === Fill Pages ===
+    def fill_main_page(self):
+        def label_from_fields(devices, fields, skip_if_type_none=False):
             """Builds text safely without trailing newline."""
             try:
                 if not devices:
-                    label.set_text(_("Device not found"))
-                    return
+                    return _("Device not found")
 
                 items = []
 
@@ -1226,46 +321,134 @@ class MainWindow:
                         items.append(text)
 
                 if not items:
-                    label.set_text(_("Device not found"))
-                    return
+                    return _("Device not found")
 
-                label.set_text("\n".join(items))
+                return "\n".join(items)
 
             except Exception as e:
                 print("device summary error:", e)
-                label.set_text(_("Device not found"))
+                return _("Device not found")
 
-        set_list_label(
-            self.ui_graphics_label,
-            hardware_info.get("graphics", []),
-            ["vendor", "name"],
+        # grid loop indexes
+        ix = 0
+        iy = 0
+        max_x = 2
+
+        def add_to_grid(child):
+            nonlocal ix, iy, max_x
+            self.ui_hardware_grid.attach(child, ix, iy, 1, 1)
+
+            ix = ix + 1
+            if ix >= max_x:
+                iy = iy + 1
+                ix = 0
+
+        # Computer
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-computer",
+                _("Computer"),
+                self.computerManager.get_computer_info()["model"],
+            )
         )
-        set_list_label(
-            self.ui_ethernet_label, hardware_info.get("ethernet", []), ["name"]
-        )
-        set_list_label(self.ui_wifi_label, hardware_info.get("wifi", []), ["name"])
-        set_list_label(
-            self.ui_bluetooth_label,
-            hardware_info.get("bluetooth", []),
-            ["vendor", "name"],
-        )
-        set_list_label(
-            self.ui_audio_label, hardware_info.get("audio", []), ["vendor", "name"]
+        # Desktop
+        os_info = OSManager.get_os_info()
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-desktop",
+                _("Desktop"),
+                f"{os_info['desktop']} {os_info['desktop_version']} ({os_info['display']})",
+            )
         )
 
-        set_list_label(
-            self.ui_storage_label,
-            hardware_info.get("storage", []),
-            ["size", "model"],
-            skip_if_type_none=True,
+        # Processor
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-processor",
+                _("Processor"),
+                self.computerManager.get_processor_info()["name"],
+            )
         )
 
-        def set_ip_list_label(label, ip_list):
-            """Formats list of (ip, iface) tuples and sets into label."""
+        # Graphics
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-graphics",
+                _("Graphics"),
+                label_from_fields(
+                    self.hardware_info.get("graphics", []),
+                    ["vendor", "name"],
+                ),
+            )
+        )
+
+        # Memory
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-memory",
+                _("Memory"),
+                self.computerManager.get_memory_summary(),
+            )
+        )
+
+        # Storage
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-storage",
+                _("Storage"),
+                label_from_fields(
+                    self.hardware_info.get("storage", []),
+                    ["size", "model"],
+                    skip_if_type_none=True,
+                ),
+            )
+        )
+
+        # Bluetooth
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-bluetooth",
+                _("Bluetooth"),
+                label_from_fields(
+                    self.hardware_info.get("bluetooth", []), ["vendor", "name"]
+                ),
+            )
+        )
+
+        # Audio
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-audio",
+                _("Audio"),
+                label_from_fields(
+                    self.hardware_info.get("audio", []), ["vendor", "name"]
+                ),
+            )
+        )
+
+        # Wifi
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-wifi",
+                _("Wifi"),
+                label_from_fields(self.hardware_info.get("wifi", []), ["name"]),
+            )
+        )
+
+        # Ethernet
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-ethernet",
+                _("Ethernet"),
+                label_from_fields(self.hardware_info.get("ethernet", []), ["name"]),
+            )
+        )
+
+        def sanitize_local_ip(ip_list):
+            """Formats list of (ip, iface) tuples"""
             try:
                 if not ip_list:
-                    label.set_text(_("Unknown"))
-                    return
+                    return _("Unknown")
 
                 items = []
                 for ip, iface in ip_list:
@@ -1282,20 +465,348 @@ class MainWindow:
 
                 # If everything was filtered out → not found
                 if not items:
-                    label.set_text(_("Unknown"))
-                    return
+                    return _("Unknown")
 
-                label.set_text("\n".join(items))
+                    return _("Unknown")
 
             except Exception as e:
                 print("ip list error:", e)
-                label.set_text(_("Unknown"))
+                    return _("Unknown")
 
-        set_ip_list_label(self.ui_private_ip_label, network.get_local_ip())
+        # Private IP
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-ethernet",
+                _("Private IP"),
+                sanitize_local_ip(network.get_local_ip()),
+            )
+        )
 
-        self.ui_public_ip_label.set_text(network.get_wan_ip())
+        # Public IP
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-publicip", _("Public IP"), network.get_wan_ip()
+            )
+        )
 
-        task.return_boolean(True)
+        self.ui_hardware_grid.show_all()
+
+    def fill_details_page(self):
+        # === Computer ===
+        computer_info = self.computerManager.get_computer_info()
+        computer_info_row = HardwareDetailRow(
+            icon_name="mauna-about-computer",
+            title="Computer Info",
+            headers=["Vendor", "Model", "Family"],
+            table=[
+                [
+                    computer_info["vendor"],
+                    computer_info["model"],
+                    computer_info["family"],
+                ]
+            ],
+        )
+        self.ui_hardware_details_box.add(computer_info_row)
+
+        # === Operating System ===
+        os_info = OSManager.get_os_info()
+        os_info_row = HardwareDetailRow(
+            icon_name="mauna-about-symbolic",
+            title="Operating System",
+            headers=["Name", "Version", "Kernel", "Desktop", "Display"],
+            table=[
+                [
+                    os_info["os_name"],
+                    os_info["os_version"],
+                    os_info["kernel"],
+                    os_info["desktop"],
+                    os_info["display"],
+                ]
+            ],
+        )
+        self.ui_hardware_details_box.add(os_info_row)
+
+        # === Processor ===
+        processor_info = self.computerManager.get_processor_info()
+        processor_info_row = HardwareDetailRow(
+            icon_name="mauna-about-processor",
+            title="Processor",
+            headers=["Vendor", "Model", "Cores / Threads"],
+            table=[
+                [
+                    processor_info["vendor"],
+                    processor_info["name"],
+                    f"{processor_info['core_count']} / {processor_info['thread_count']}",
+                ]
+            ],
+        )
+        self.ui_hardware_details_box.add(processor_info_row)
+
+        # === Memory ===
+        memory_info = self.computerManager.get_memory_info()
+        memory_info_table = []
+        for i, slot in enumerate(memory_info, start=1):
+            size = slot.get("size", 0.0)
+
+            if int(size) == 0:
+                # Empty Slot
+                memory_info_table.append([i, _("Empty"), "", "", ""])
+            else:
+                # Size formatting (16 -> "16 GB")
+                size_text = f"{int(size)} GB"
+
+                mem_type = slot.get("type", _("Unknown"))
+                vendor = slot.get("vendor", _("Unknown"))
+                speed = slot.get("speed", "")
+
+                memory_info_table.append([i, vendor, size_text, mem_type, speed])
+
+        memory_info_row = HardwareDetailRow(
+            icon_name="mauna-about-memory",
+            title="Memory",
+            headers=["Slot", "Vendor", "Size", "Type", "Speed"],
+            table=memory_info_table,
+        )
+        self.ui_hardware_details_box.add(memory_info_row)
+
+        # === Storage ===
+        storage_info = self.hardware_info.get("storage", [])
+        valid_storage = [dev for dev in storage_info if dev.get("type")]
+
+        storage_info_table = [
+            [device.get("size", ""), device.get("type", ""), device.get("model", "")]
+            for device in valid_storage
+        ]
+
+        if storage_info_table == []:
+            storage_info_table = [[_("Device not found"), "", ""]]
+
+        storage_info_row = HardwareDetailRow(
+            icon_name="mauna-about-storage",
+            title="Storage",
+            headers=["Size", "Type", "Model"],
+            table=storage_info_table,
+        )
+        self.ui_hardware_details_box.add(storage_info_row)
+
+        # === Graphics ===
+        graphics_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("graphics", [])
+        ]
+
+        if graphics_info_table == []:
+            graphics_info_table = [[_("Device not found"), "", ""]]
+
+        graphics_info_row = HardwareDetailRow(
+            icon_name="mauna-about-graphics",
+            title="Graphics",
+            headers=["Vendor", "Driver", "Model"],
+            table=graphics_info_table,
+        )
+        self.ui_hardware_details_box.add(graphics_info_row)
+
+        # === Display ===
+        display_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("resolution", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("display", [])
+        ]
+
+        if display_info_table == []:
+            display_info_table = [[_("Device not found"), "", ""]]
+
+        display_info_row = HardwareDetailRow(
+            icon_name="mauna-about-monitor",
+            title="Display",
+            headers=["Vendor", "Resolution", "Model"],
+            table=display_info_table,
+        )
+        self.ui_hardware_details_box.add(display_info_row)
+
+        # === Ethernet ==
+        ethernet_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("ethernet", [])
+        ]
+        if ethernet_info_table == []:
+            ethernet_info_table = [[_("Device not found"), "", ""]]
+
+        ethernet_info_row = HardwareDetailRow(
+            icon_name="mauna-about-ethernet",
+            title="Ethernet",
+            headers=["Vendor", "Driver", "Model"],
+            table=ethernet_info_table,
+        )
+        self.ui_hardware_details_box.add(ethernet_info_row)
+
+        # === Wifi ==
+        wifi_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("wifi", [])
+        ]
+        if wifi_info_table == []:
+            wifi_info_table = [[_("Device not found"), "", ""]]
+
+        wifi_info_row = HardwareDetailRow(
+            icon_name="mauna-about-wifi",
+            title="Wifi",
+            headers=["Vendor", "Driver", "Model"],
+            table=wifi_info_table,
+        )
+        self.ui_hardware_details_box.add(wifi_info_row)
+
+        # === Bluetooth ==
+        bluetooth_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("bluetooth", [])
+        ]
+        if bluetooth_info_table == []:
+            bluetooth_info_table = [[_("Device not found"), "", ""]]
+        bluetooth_info_row = HardwareDetailRow(
+            icon_name="mauna-about-bluetooth",
+            title="Bluetooth",
+            headers=["Vendor", "Driver", "Model"],
+            table=bluetooth_info_table,
+        )
+        self.ui_hardware_details_box.add(bluetooth_info_row)
+
+        # === Audio ==
+        audio_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("audio", [])
+        ]
+        if audio_info_table == []:
+            audio_info_table = [[_("Device not found"), "", ""]]
+        audio_info_row = HardwareDetailRow(
+            icon_name="mauna-about-audio",
+            title="Audio",
+            headers=["Vendor", "Driver", "Model"],
+            table=audio_info_table,
+        )
+        self.ui_hardware_details_box.add(audio_info_row)
+
+        # === Camera ==
+        camera_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("driver", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("camera", [])
+        ]
+        if camera_info_table == []:
+            camera_info_table = [[_("Device not found"), "", ""]]
+        camera_info_row = HardwareDetailRow(
+            icon_name="mauna-about-camera",
+            title="Camera",
+            headers=["Vendor", "Driver", "Model"],
+            table=camera_info_table,
+        )
+        self.ui_hardware_details_box.add(camera_info_row)
+
+        # === Keyboard ==
+        keyboard_info_table = [
+            [
+                device.get("name", ""),
+                device.get("driver", ""),
+                device.get("bus", ""),
+            ]
+            for device in self.hardware_info.get("keyboard", [])
+        ]
+        if keyboard_info_table == []:
+            keyboard_info_table = [[_("Device not found"), "", ""]]
+
+        keyboard_info_row = HardwareDetailRow(
+            icon_name="mauna-about-keyboard",
+            title="Keyboard",
+            headers=["Name", "Driver", "Connection"],
+            table=keyboard_info_table,
+        )
+        self.ui_hardware_details_box.add(keyboard_info_row)
+
+        # === Mouse ==
+        mouse_info_table = [
+            [
+                device.get("name", ""),
+                device.get("driver", ""),
+                device.get("bus", ""),
+            ]
+            for device in self.hardware_info.get("mouse", [])
+        ]
+        if mouse_info_table == []:
+            mouse_info_table = [[_("Device not found"), "", ""]]
+
+        mouse_info_row = HardwareDetailRow(
+            icon_name="mauna-about-mouse",
+            title="Mouse",
+            headers=["Name", "Driver", "Connection"],
+            table=mouse_info_table,
+        )
+        self.ui_hardware_details_box.add(mouse_info_row)
+
+        # === fingerprint ==
+        fingerprint_info_table = [
+            [
+                device.get("vendor", ""),
+                device.get("name", ""),
+            ]
+            for device in self.hardware_info.get("fingerprint", [])
+        ]
+        if fingerprint_info_table == []:
+            fingerprint_info_table = [[_("Device not found"), "", ""]]
+
+        fingerprint_info_row = HardwareDetailRow(
+            icon_name="mauna-about-fingerprint",
+            title="Fingerprint",
+            headers=["Vendor", "Model"],
+            table=fingerprint_info_table,
+        )
+        self.ui_hardware_details_box.add(fingerprint_info_row)
+
+        # === Printer ==
+        printer_info_table = [
+            [
+                device.get("name", ""),
+                device.get("bus", ""),
+            ]
+            for device in self.hardware_info.get("printer", [])
+        ]
+        if printer_info_table == []:
+            printer_info_table = [[_("Device not found"), "", ""]]
+
+        printer_info_row = HardwareDetailRow(
+            icon_name="mauna-about-printer",
+            title="Printer",
+            headers=["Vendor", "Connection"],
+            table=printer_info_table,
+        )
+        self.ui_hardware_details_box.add(printer_info_row)
+
+        self.ui_hardware_details_box.show_all()
 
     # Send Hardware Report Tasks
     def send_hardware_data(self, task, source_object, task_data, cancellable):
@@ -1365,8 +876,11 @@ class MainWindow:
         dialog.hide()
 
     def on_read_hardware_info_finish(self, source, task):
-        self.ui_hardware_info_button.show()
-        self.ui_display_report_button.show()
+        self.ui_report_box.set_sensitive(True)
+
+        self.fill_main_page()
+        self.fill_details_page()
+
         self.toggle_hardware_details_pane()
 
     def on_menu_about_button_clicked(self, btn):

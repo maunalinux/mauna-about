@@ -125,9 +125,23 @@ class ComputerManager:
 
         # ACPI:
         p = subprocess.run(
-            ["pkexec", os.path.realpath(os.path.dirname(os.path.abspath(__file__))+"/../Actions.py"), "acpi"]
+            [
+                "pkexec",
+                os.path.realpath(
+                    os.path.dirname(os.path.abspath(__file__)) + "/../Actions.py"
+                ),
+                "acpi",
+            ]
         )
         self.computer_info["is_acpi_supported"] = p.returncode == 0
+
+        # Boot mode (Uefi or legacy)
+        self.computer_info["boot"] = "legacy"
+        if os.path.isdir("/sys/firmware/efi/"):
+            self.computer_info["boot"] = "UEFI"
+            with open("/sys/firmware/efi/fw_platform_size", "r") as f:
+                if "32" == f.readline().strip():
+                    self.computer_info["boot"] = "UEFI32"
 
     def prepare_cpu_info(self):
         with open("/proc/cpuinfo", "r") as f:
@@ -238,13 +252,20 @@ class ComputerManager:
             return "Unknown"
         for mem in self.memory_info:
             size += mem["size"]
-        return (
-            str(size)
-            + " GB "
-            + self.memory_info[0]["type"]
-            + " "
-            + self.memory_info[0]["factor"]
-        )
+
+        summary = f"{size} GB"
+        info = self.memory_info[0]
+        # Add type if exists (DDR5)
+        if info["type"] and info["type"] != "Unknown":
+            summary += " " + info["type"]
+
+        # Add factor if exists (SODIMM)
+        if info["factor"] and info["factor"] != "Unknown":
+            summary += " " + info["factor"]
+
+        summary = summary.strip()  # strip whitespace
+
+        return summary
 
     def get_all_device_info(self):
         pci_and_usb_devices = HardwareDetector.get_hardware_info()

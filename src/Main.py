@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 import sys
+
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gio, Gtk
+from gi.repository import Gio, GLib, Gtk
 
 from MainWindow import MainWindow
 
@@ -31,6 +32,11 @@ class Application(Gtk.Application):
         )
 
     def do_activate(self):
+        settings = Gtk.Settings.get_default()
+
+        # prevent label shows selected on startup
+        settings.set_property("gtk_label_select_on_focus", False)
+
         # We only allow a single window and raise any existing ones
         if not self.window:
             # Windows are associated with the application
