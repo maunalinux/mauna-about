@@ -5,8 +5,8 @@
 
 <policyconfig>
 
-  <vendor>Mauna Developers</vendor>
-  <vendor_url>http://maunalinux.top/</vendor_url>
+  <vendor>Mauna Linux</vendor>
+  <vendor_url>https://maunalinux.top/</vendor_url>
 
   <action id="top.mauna.pkexec.mauna-about">
     <description>Run system report creator.</description>
@@ -48,68 +48,5 @@
     </defaults>
     <annotate key="org.freedesktop.policykit.exec.path">/usr/share/mauna/mauna-about/src/Actions.py</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
-  </action>
-
-  <action id="org.freedesktop.hostname1.set-static-hostname">
-    <description>Change hostname.</description>
-    <message>Authentication is required to change the hostname</message>
-    <message xml:lang="de">Zur Änderung des Hostnamens ist eine Authentifizierung erforderlich.</message>
-    <message xml:lang="es">Se requiere autenticación para cambiar el nombre de host.</message>
-    <message xml:lang="pt_BR">É necessário autenticar-se para alterar o hostname.</message>
-    <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
-    <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
-    <defaults>
-      <allow_any>no</allow_any>
-      <allow_inactive>no</allow_inactive>
-      <allow_active>no</allow_active>
-    </defaults>
-
-    <rule action="auth_admin_interactive">
-      <matches>
-        <member group="sudo"/>
-      </matches>
-      <allow/>
-    </rule>
-
-    <rule action="auth_self_interactive">
-      <matches>
-        <not>
-          <member group="sudo"/>
-        </not>
-      </matches>
-      <allow/>
-    </rule>
-  </action>
-
-    <action id="org.freedesktop.hostname1.set-pretty-hostname">
-    <description>Change hostname.</description>
-    <message>Authentication is required to change the hostname</message>
-    <message xml:lang="de">Zur Änderung des Hostnamens ist eine Authentifizierung erforderlich.</message>
-    <message xml:lang="es">Se requiere autenticación para cambiar el nombre de host.</message>
-    <message xml:lang="pt_BR">É necessário autenticar-se para alterar o hostname.</message>
-    <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
-    <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
-
-    <defaults>
-      <allow_any>no</allow_any>
-      <allow_inactive>no</allow_inactive>
-      <allow_active>no</allow_active>
-    </defaults>
-
-    <rule action="auth_admin_interactive">
-      <matches>
-        <member group="sudo"/>
-      </matches>
-      <allow/>
-    </rule>
-
-    <rule action="auth_self_interactive">
-      <matches>
-        <not>
-          <member group="sudo"/>
-        </not>
-      </matches>
-      <allow/>
-    </rule>
   </action>
 </policyconfig>

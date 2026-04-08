@@ -16,7 +16,7 @@ install_data('mauna-about.svg', install_dir : '/usr/share/icons/hicolor/scalable
 install_data('mauna-about-symbolic.svg', install_dir : '/usr/share/icons/hicolor/scalable/apps')
 
 # polkit rule
-install_data('top.mauna.pkexec.mauna-about.policy', install_dir : '/usr/share/polkit-1/actions/')
+subdir('polkit')
 
 # desktop files
 install_data('top.mauna.about.desktop', install_dir : '/usr/share/applications/')
