@@ -23,6 +23,7 @@ Depends: ${misc:Depends},
          python3-cups,
          gir1.2-gudev-1.0,
          pkexec,
-         hwdata
+         hwdata,
+         dconf-cli
 Description: About Mauna
  Get info about your Mauna System.
