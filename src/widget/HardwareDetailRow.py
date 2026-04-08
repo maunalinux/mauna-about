@@ -16,7 +16,7 @@ class HardwareDetailRow(Gtk.Box):
         eventbox.connect("button-press-event", self.on_expand_clicked)
 
         # Header
-        header_box = Gtk.Box(spacing=11)
+        header_box = Gtk.Box(spacing=11, margin_top=3, margin_bottom=3)
 
         icon_img = Gtk.Image(icon_name=icon_name, margin_start=7, pixel_size=24)
         title_lbl = Gtk.Label(
