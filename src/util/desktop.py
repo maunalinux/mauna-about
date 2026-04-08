@@ -1,23 +1,36 @@
 import subprocess
 
-de_version_command = {"xfce": ["xfce4-session", "--version"],
-                      "gnome": ["gnome-shell", "--version"],
-                      "cinnamon": ["cinnamon", "--version"],
-                      "mate": ["mate-about", "--version"],
-                      "kde": ["plasmashell", "--version"],
-                      "lxqt": ["lxqt-about", "--version"],
-                      "budgie": ["budgie-desktop", "--version"]}
+de_version_command = {
+    "xfce": ["xfce4-session", "--version"],
+    "gnome": ["gnome-shell", "--version"],
+    "cinnamon": ["cinnamon", "--version"],
+    "mate": ["mate-about", "--version"],
+    "kde": ["plasmashell", "--version"],
+    "lxqt": ["lxqt-about", "--version"],
+    "budgie": ["budgie-desktop", "--version"],
+}
+
 
 def get_desktop_version(desktop):
     version = ""
     desktop = "{}".format(desktop.lower())
     try:
         if desktop in de_version_command:
-            output = (subprocess.run(de_version_command[desktop], shell=False, stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE)).stdout.decode().strip()
+            output = (
+                (
+                    subprocess.run(
+                        de_version_command[desktop],
+                        shell=False,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                    )
+                )
+                .stdout.decode()
+                .strip()
+            )
         else:
             return ""
-        print(output, desktop)
+        # print(output, desktop)
         if "xfce" in desktop:
             for line in output.split("\n"):
                 if line.startswith("xfce4-session "):
