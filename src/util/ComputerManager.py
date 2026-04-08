@@ -1,5 +1,6 @@
 import os
 import gi
+import json
 import subprocess
 
 from . import DBusManager
@@ -134,6 +135,23 @@ class ComputerManager:
             ]
         )
         self.computer_info["is_acpi_supported"] = p.returncode == 0
+
+        # Dual boot oses
+
+        p = subprocess.run(
+            [
+                "pkexec",
+                os.path.realpath(
+                    os.path.dirname(os.path.abspath(__file__)) + "/../Actions.py"
+                ),
+                "dualboot",
+            ],
+            capture_output=True
+        )
+        try:
+            self.computer_info["dualboot"] = json.loads(p.stdout.decode("utf-8"))
+        except:
+            self.computer_info["dualboot"] = {}
 
         # Boot mode (Uefi or legacy)
         self.computer_info["boot"] = "legacy"
