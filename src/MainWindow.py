@@ -379,8 +379,8 @@ class MainWindow:
         computer_info = self.computerManager.get_computer_info()
         computer_info_row = HardwareDetailRow(
             icon_name="mauna-about-computer",
-            title="Computer Info",
-            headers=["Vendor", "Model", "Family"],
+            title=_("Computer Info"),
+            headers=[_("Vendor"), _("Model"), _("Family")],
             table=[
                 [
                     computer_info["vendor"],
@@ -394,8 +394,8 @@ class MainWindow:
         # === Operating System ===
         os_info_row = HardwareDetailRow(
             icon_name="mauna-about-symbolic",
-            title="Operating System",
-            headers=["Name", "Version", "Kernel", "Desktop", "Display"],
+            title=_("Operating System"),
+            headers=[_("Name"), _("Version"), _("Kernel"), _("Desktop"), _("Display")],
             table=[
                 [
                     self.os_info["os_name"],
@@ -412,8 +412,8 @@ class MainWindow:
         processor_info = self.computerManager.get_processor_info()
         processor_info_row = HardwareDetailRow(
             icon_name="mauna-about-processor",
-            title="Processor",
-            headers=["Vendor", "Model", "Cores / Threads"],
+            title=_("Processor"),
+            headers=[_("Vendor"), _("Model"), _("Cores / Threads")],
             table=[
                 [
                     processor_info["vendor"],
@@ -445,8 +445,8 @@ class MainWindow:
 
         memory_info_row = HardwareDetailRow(
             icon_name="mauna-about-memory",
-            title="Memory",
-            headers=["Slot", "Vendor", "Size", "Type", "Speed"],
+            title=_("Memory"),
+            headers=[_("Slot"), _("Vendor"), _("Size"), _("Type"), _("Speed")],
             table=memory_info_table,
         )
         self.ui_hardware_details_box.add(memory_info_row)
@@ -465,8 +465,8 @@ class MainWindow:
 
         storage_info_row = HardwareDetailRow(
             icon_name="mauna-about-storage",
-            title="Storage",
-            headers=["Size", "Type", "Model"],
+            title=_("Storage"),
+            headers=[_("Size"), _("Type"), _("Model")],
             table=storage_info_table,
         )
         self.ui_hardware_details_box.add(storage_info_row)
@@ -486,8 +486,8 @@ class MainWindow:
 
         graphics_info_row = HardwareDetailRow(
             icon_name="mauna-about-graphics",
-            title="Graphics",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Graphics"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=graphics_info_table,
         )
         self.ui_hardware_details_box.add(graphics_info_row)
@@ -507,8 +507,8 @@ class MainWindow:
 
         display_info_row = HardwareDetailRow(
             icon_name="mauna-about-monitor",
-            title="Display",
-            headers=["Vendor", "Resolution", "Model"],
+            title=_("Display"),
+            headers=[_("Vendor"), _("Resolution"), _("Model")],
             table=display_info_table,
         )
         self.ui_hardware_details_box.add(display_info_row)
@@ -527,8 +527,8 @@ class MainWindow:
 
         ethernet_info_row = HardwareDetailRow(
             icon_name="mauna-about-ethernet",
-            title="Ethernet",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Ethernet"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=ethernet_info_table,
         )
         self.ui_hardware_details_box.add(ethernet_info_row)
@@ -547,8 +547,8 @@ class MainWindow:
 
         wifi_info_row = HardwareDetailRow(
             icon_name="mauna-about-wifi",
-            title="Wifi",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Wifi"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=wifi_info_table,
         )
         self.ui_hardware_details_box.add(wifi_info_row)
@@ -566,8 +566,8 @@ class MainWindow:
             bluetooth_info_table = [[_("Device not found"), "", ""]]
         bluetooth_info_row = HardwareDetailRow(
             icon_name="mauna-about-bluetooth",
-            title="Bluetooth",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Bluetooth"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=bluetooth_info_table,
         )
         self.ui_hardware_details_box.add(bluetooth_info_row)
@@ -585,8 +585,8 @@ class MainWindow:
             audio_info_table = [[_("Device not found"), "", ""]]
         audio_info_row = HardwareDetailRow(
             icon_name="mauna-about-audio",
-            title="Audio",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Audio"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=audio_info_table,
         )
         self.ui_hardware_details_box.add(audio_info_row)
@@ -604,8 +604,8 @@ class MainWindow:
             camera_info_table = [[_("Device not found"), "", ""]]
         camera_info_row = HardwareDetailRow(
             icon_name="mauna-about-camera",
-            title="Camera",
-            headers=["Vendor", "Driver", "Model"],
+            title=_("Camera"),
+            headers=[_("Vendor"), _("Driver"), _("Model")],
             table=camera_info_table,
         )
         self.ui_hardware_details_box.add(camera_info_row)
@@ -624,8 +624,8 @@ class MainWindow:
 
         keyboard_info_row = HardwareDetailRow(
             icon_name="mauna-about-keyboard",
-            title="Keyboard",
-            headers=["Name", "Driver", "Connection"],
+            title=_("Keyboard"),
+            headers=[_("Name"), _("Driver"), _("Connection")],
             table=keyboard_info_table,
         )
         self.ui_hardware_details_box.add(keyboard_info_row)
@@ -644,8 +644,8 @@ class MainWindow:
 
         mouse_info_row = HardwareDetailRow(
             icon_name="mauna-about-mouse",
-            title="Mouse",
-            headers=["Name", "Driver", "Connection"],
+            title=_("Mouse"),
+            headers=[_("Name"), _("Driver"), _("Connection")],
             table=mouse_info_table,
         )
         self.ui_hardware_details_box.add(mouse_info_row)
@@ -663,8 +663,8 @@ class MainWindow:
 
         fingerprint_info_row = HardwareDetailRow(
             icon_name="mauna-about-fingerprint",
-            title="Fingerprint",
-            headers=["Vendor", "Model"],
+            title=_("Fingerprint"),
+            headers=[_("Vendor"), _("Model")],
             table=fingerprint_info_table,
         )
         self.ui_hardware_details_box.add(fingerprint_info_row)
@@ -682,8 +682,8 @@ class MainWindow:
 
         printer_info_row = HardwareDetailRow(
             icon_name="mauna-about-printer",
-            title="Printer",
-            headers=["Vendor", "Connection"],
+            title=_("Printer"),
+            headers=[_("Vendor"), _("Connection")],
             table=printer_info_table,
         )
         self.ui_hardware_details_box.add(printer_info_row)

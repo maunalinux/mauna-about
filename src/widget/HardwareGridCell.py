@@ -1,7 +1,6 @@
 import gi
 
 gi.require_version("Gtk", "3.0")
-from locale import gettext as _
 
 from gi.repository import Gtk
 
@@ -24,14 +23,14 @@ class HardwareGridCell(Gtk.Box):
             valign=Gtk.Align.CENTER,
             halign=Gtk.Align.START,
         )
-        title_lbl = Gtk.Label(label=f"{_(title)}", halign=Gtk.Align.START)
+        title_lbl = Gtk.Label(label=f"{title}", halign=Gtk.Align.START)
         box.add(title_lbl)
 
         # Name + (Optional Hide Button)
         self.value = value  # store value
         value_box = Gtk.Box(spacing=7)
         self.value_lbl = Gtk.Label(
-            label=f"<b>{_(value)}</b>",
+            label=f"<b>{value}</b>",
             halign=Gtk.Align.START,
             use_markup=True,
             ellipsize="end",
@@ -75,13 +74,13 @@ class HardwareGridCell(Gtk.Box):
             self.value_lbl.set_label("{}".format(len(self.value) * "*"))
         else:
             btn.set_image(Gtk.Image(icon_name="view-reveal-symbolic"))
-            self.value_lbl.set_label(f"<b>{_(self.value)}</b>")
+            self.value_lbl.set_label(f"<b>{self.value}</b>")
 
         btn.revealed = not btn.revealed
 
     def set_value(self, value):
         self.value = value
-        self.value_lbl.set_label(f"<b>{_(self.value)}</b>")
+        self.value_lbl.set_label(f"<b>{self.value}</b>")
 
         if self.spinner:
             self.spinner.destroy()
