@@ -180,6 +180,11 @@
       </object>
     </child>
   </object>
+  <object class="GtkImage" id="ui_img_edit">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-edit-symbolic</property>
+  </object>
   <object class="GtkPopover" id="ui_popover_menu">
     <property name="can-focus">False</property>
     <child>
@@ -459,6 +464,7 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="spacing">7</property>
                                 <child>
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
@@ -475,18 +481,71 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="ui_hostname_label">
+                                  <object class="GtkStack" id="ui_edit_hostname_stack">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="label">tpx15</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="max-width-chars">11</property>
+                                    <property name="hhomogeneous">False</property>
+                                    <property name="vhomogeneous">False</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="spacing">3</property>
+                                        <child>
+                                          <object class="GtkButton" id="ui_edit_hostname_btn">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">True</property>
+                                            <property name="halign">end</property>
+                                            <property name="image">ui_img_edit</property>
+                                            <property name="relief">none</property>
+                                            <signal name="clicked" handler="on_ui_edit_hostname_btn_clicked" swapped="no"/>
+                                            <style>
+                                              <class name="flat"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">True</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="ui_hostname_label">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label">tpx15</property>
+                                            <property name="selectable">True</property>
+                                            <property name="max-width-chars">11</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="name">show</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="ui_edit_hostname_entry">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <signal name="activate" handler="on_ui_edit_hostname_entry_activate" swapped="no"/>
+                                        <signal name="key-release-event" handler="on_ui_edit_hostname_entry_key_release_event" swapped="no"/>
+                                      </object>
+                                      <packing>
+                                        <property name="name">edit</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">False</property>
+                                    <property name="expand">True</property>
                                     <property name="fill">True</property>
-                                    <property name="pack-type">end</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>

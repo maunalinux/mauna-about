@@ -49,4 +49,34 @@
     <annotate key="org.freedesktop.policykit.exec.path">/usr/share/mauna/mauna-about/src/Actions.py</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
   </action>
+
+  <action id="org.freedesktop.hostname1.set-static-hostname">
+    <description>Change hostname.</description>
+    <message>Authentication is required to change the hostname</message>
+    <message xml:lang="de">Zur Änderung des Hostnamens ist eine Authentifizierung erforderlich.</message>
+    <message xml:lang="es">Se requiere autenticación para cambiar el nombre de host.</message>
+    <message xml:lang="pt_BR">É necessário autenticar-se para alterar o hostname.</message>
+    <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
+    <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
+    <defaults>
+      <allow_any>yes</allow_any>
+      <allow_inactive>yes</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+  </action>
+
+    <action id="org.freedesktop.hostname1.set-pretty-hostname">
+    <description>Change hostname.</description>
+    <message>Authentication is required to change the hostname</message>
+    <message xml:lang="de">Zur Änderung des Hostnamens ist eine Authentifizierung erforderlich.</message>
+    <message xml:lang="es">Se requiere autenticación para cambiar el nombre de host.</message>
+    <message xml:lang="pt_BR">É necessário autenticar-se para alterar o hostname.</message>
+    <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
+    <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
+    <defaults>
+      <allow_any>yes</allow_any>
+      <allow_inactive>yes</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+  </action>
 </policyconfig>

@@ -15,6 +15,7 @@ from util import (
     OSManager,
     network,
     SystemReportManager,
+    HostnameManager,
 )
 from widget.HardwareDetailRow import HardwareDetailRow
 from widget.HardwareGridCell import HardwareGridCell
@@ -116,6 +117,10 @@ class MainWindow:
         self.ui_submit_report_btn = UI("ui_submit_report_btn")
         self.ui_hardware_grid = UI("ui_hardware_grid")
         self.ui_hardware_details_box = UI("ui_hardware_details_box")
+
+        # Hostname Edit
+        self.ui_edit_hostname_stack = UI("ui_edit_hostname_stack")
+        self.ui_edit_hostname_entry = UI("ui_edit_hostname_entry")
 
         self.ui_about_dialog = UI("ui_about_dialog")
         self.ui_popover_menu = UI("ui_popover_menu")
@@ -737,6 +742,28 @@ class MainWindow:
         )
         dialog.run()
         dialog.hide()
+
+    def on_ui_edit_hostname_btn_clicked(self, btn):
+        current_hostname = self.ui_hostname_label.get_text()
+
+        self.ui_edit_hostname_stack.set_visible_child_name("edit")
+        self.ui_edit_hostname_entry.set_text(current_hostname)
+
+    def on_ui_edit_hostname_entry_activate(self, entry):
+        new_hostname = entry.get_text()
+
+        if HostnameManager.set_hostname(new_hostname):
+            self.ui_hostname_label.set_text(new_hostname)
+        else:
+            print("Hostname change failed!")
+
+        self.ui_edit_hostname_stack.set_visible_child_name("show")
+
+    def on_ui_edit_hostname_entry_key_release_event(self, widget, event):
+        if event.keyval == Gdk.KEY_Escape:
+            self.ui_edit_hostname_stack.set_visible_child_name("show")
+
+        return False
 
     def on_read_hardware_info_finish(self, source, task):
         self.ui_report_box.set_sensitive(True)
