@@ -150,7 +150,9 @@ class ComputerManager:
         )
         try:
             self.computer_info["dualboot"] = json.loads(p.stdout.decode("utf-8"))
-        except:
+        except Exception as e:
+            print(e)
+            print(p.stdout)
             self.computer_info["dualboot"] = {}
 
         # Boot mode (Uefi or legacy)

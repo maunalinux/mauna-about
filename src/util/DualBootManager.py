@@ -1,4 +1,5 @@
 import os
+import subprocess
 import json
 def list_parts():
     ret = []
@@ -48,7 +49,8 @@ def get_dualboot_oses():
     for part in list_parts():
         if f"/dev/{part}" == root_part:
             continue
-        if 0 == os.system(f"mount -o ro /dev/{part} /run/winroot"):
+        sp = subprocess.run(["mount", "-o", "defaults,ro", f"/dev/{part}", "/run/winroot"], capture_output=True)
+        if 0 == sp.returncode:
             # Windows
             if os.path.exists("/run/winroot/Windows/System32/ntoskrnl.exe"):
                 dualboot[part] = "Windows " + get_windows_version()
