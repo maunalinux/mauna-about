@@ -1,11 +1,12 @@
 import os
 import gi
 import json
-import subprocess
 
 from . import DBusManager
 from . import HardwareDetector
 from . import OSManager
+
+import Actions
 
 gi.require_version("GUdev", "1.0")
 gi.require_version("GLib", "2.0")
@@ -50,8 +51,9 @@ class ComputerManager:
                 "HardwareModel",
                 0,
             )
-        except:
+        except Exception:
             pass
+
         if model:
             self.computer_info["model"] = model
         else:
@@ -69,7 +71,7 @@ class ComputerManager:
                 "HardwareVendor",
                 0,
             )
-        except:
+        except Exception:
             pass
         if vendor:
             self.computer_info["vendor"] = vendor
@@ -98,8 +100,9 @@ class ComputerManager:
             chassis = DBusManager.read_string_in_tuple(
                 "org.freedesktop.hostname1", "/org/freedesktop/hostname1", "Chassis", 0
             )
-        except:
+        except Exception:
             pass
+
         if chassis:
             self.computer_info["chassis"] = chassis
         else:
@@ -125,29 +128,12 @@ class ComputerManager:
             self.computer_info["mem_sleep_support"] = "deep" in f.read()
 
         # ACPI:
-        p = subprocess.run(
-            [
-                "pkexec",
-                os.path.realpath(
-                    os.path.dirname(os.path.abspath(__file__)) + "/../Actions.py"
-                ),
-                "acpi",
-            ]
-        )
+        p = Actions.run("acpi")
         self.computer_info["is_acpi_supported"] = p.returncode == 0
 
         # Dual boot oses
 
-        p = subprocess.run(
-            [
-                "pkexec",
-                os.path.realpath(
-                    os.path.dirname(os.path.abspath(__file__)) + "/../Actions.py"
-                ),
-                "dualboot",
-            ],
-            capture_output=True
-        )
+        p = Actions.run("dualboot", capture_output=True)
         try:
             self.computer_info["dualboot"] = json.loads(p.stdout.decode("utf-8"))
         except Exception as e:
@@ -213,7 +199,7 @@ class ComputerManager:
     def prepare_memory_info(self):
         client = GUdev.Client.new(["dmi"])
         device = client.query_by_sysfs_path("/sys/devices/virtual/dmi/id")
-        if device == None:
+        if device is None:
             return self.memory_info
 
         num_ram = device.get_property_as_uint64("MEMORY_ARRAY_NUM_DEVICES")
