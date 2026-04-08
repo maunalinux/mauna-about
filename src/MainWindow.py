@@ -752,6 +752,8 @@ class MainWindow:
         desktop_path = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP)
 
         p = Actions.run("report")
+        SystemReportManager.pkexec_user = os.environ["USER"]
+        SystemReportManager.generate_user_report()
 
         if p.returncode == 0:
             p2 = SystemReportManager.archive_and_copy_to_desktop(desktop_path)

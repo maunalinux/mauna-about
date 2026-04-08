@@ -8,6 +8,17 @@ import subprocess
 
 ARCHIVE_DIR = "/tmp/mauna_system_report"
 
+def detect_pkexec_user():
+    uid = "0"
+    if "PKEXEC_UID" in os.environ:
+        uid = os.environ["PKEXEC_UID"]
+    with open("/etc/passwd", "r") as f:
+        for line in f.read().strip().split("\n"):
+            if uid == line.split(":")[2]:
+                return line.split(":")[0];
+    return "root"
+
+pkexec_user = detect_pkexec_user()
 
 def run_and_save(command, command_name=None):
     """Usage: run_and_save(["journalctl", "-q", "-n", 1000]), it will be saved in /tmp/mauna_system_report/journalctl"""
@@ -19,12 +30,16 @@ def run_and_save(command, command_name=None):
         command_name = "_".join(command)
         command_name = command_name.replace("_/", "")
 
-    with open(f"{ARCHIVE_DIR}/{command_name}", "w") as f:
-        subprocess.run(command, stdout=f, stderr=f)
+    try:
+        with open(f"{ARCHIVE_DIR}/{pkexec_user}/{command_name}", "w") as f:
+            subprocess.run(command, stdout=f, stderr=f)
+    except:
+        # ignore fails
+        pass
 
 
 def copy(path):
-    new_path = Path(f"{ARCHIVE_DIR}/{path}")
+    new_path = Path(f"{ARCHIVE_DIR}/{pkexec_user}/{path}")
 
     if os.path.isfile(path):
         # Create parents
@@ -39,18 +54,18 @@ def copy(path):
 
 def generate_report():
     # Make dir
-    os.makedirs(ARCHIVE_DIR, exist_ok=True)
+    os.makedirs(f"{ARCHIVE_DIR}/{pkexec_user}", exist_ok=True)
 
     # General System Hardware Report
     hardware_info = json.dumps(
         ComputerManager.ComputerManager().get_all_device_info(), indent=2
     )
 
-    with open(f"{ARCHIVE_DIR}/system_info.json", "w") as f:
+    with open(f"{ARCHIVE_DIR}/{pkexec_user}/system_info.json", "w") as f:
         f.write(hardware_info)
 
     # Program outputs
-    run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"], command_name="env")
+    run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"], command_name="env_root")
     run_and_save(["dmesg"])
     run_and_save(["journalctl", "-q", "-n", "1000"])
     run_and_save(["timedatectl"])
@@ -92,9 +107,18 @@ def generate_report():
     copy("/etc/apt/sources.list")
     copy("/etc/apt/sources.list.d")
 
+    # set permission and owner
+    subprocess.run(["chown", pkexec_user, "-R", ARCHIVE_DIR])
+    subprocess.run(["chmod", "755", "-R", ARCHIVE_DIR])
+
+
+def generate_user_report():
+    run_and_save(["env"], command_name="env_user")
+    run_and_save(["dconf", "dump", "/"])
+    run_and_save(["flatpak", "list"])
 
 def archive_and_copy_to_desktop(desktop_path):
-    archive_name = "mauna_system_report.tar.gz"
+    archive_name = f"mauna_system_report_{pkexec_user}.tar.gz"
     return subprocess.run(
         [
             "tar",
