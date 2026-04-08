@@ -177,8 +177,6 @@ class MainWindow:
     def is_user_in_sudo_group(self):
         username = os.getlogin()
         groups = self.get_user_groups(username)
-        print("username:", username)
-        print("groups:", groups)
         return "sudo" in groups
 
     def read_mauna_info(self):
