@@ -25,5 +25,6 @@ Depends: ${misc:Depends},
          pkexec,
          hwdata,
          dconf-cli
+Recommends: libnss-myhostname
 Description: About Mauna
- Get info about your Mauna System.
+ Get detailed system information about your Mauna System.
