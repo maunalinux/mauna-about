@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 import sys
-
+import json
 import gi
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio, GLib, Gtk
 
 from MainWindow import MainWindow
+from util import ComputerManager
 
 
 class Application(Gtk.Application):
@@ -22,12 +23,26 @@ class Application(Gtk.Application):
         self.window = None
         GLib.set_prgname("top.mauna.about")
 
+        self.setup_options()
+
+    def setup_options(self):
+        # Open details page directly
         self.add_main_option(
             "hardware",
             ord("h"),
             GLib.OptionFlags(0),
             GLib.OptionArg(0),
             "Show Hardware Information",
+            None,
+        )
+
+        # Print only json, don't run gui
+        self.add_main_option(
+            "json",
+            ord("j"),
+            GLib.OptionFlags(0),
+            GLib.OptionArg(0),
+            "Print json report only without GUI",
             None,
         )
 
@@ -51,6 +66,15 @@ class Application(Gtk.Application):
         options = command_line.get_options_dict()
         options = options.end().unpack()
         self.args = options
+
+        if "json" in options.keys():
+            manager = ComputerManager.ComputerManager()
+
+            print(json.dumps(manager.get_all_device_info(), indent=2))
+
+            self.quit()
+            return 0
+
         self.activate()
         return 0
 
