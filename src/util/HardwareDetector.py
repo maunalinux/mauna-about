@@ -155,6 +155,8 @@ def get_hardware_info():
         "camera": [],
         "audio": [],
         "fingerprint": [],
+        "usb": [],
+        "pci": [],
         "display": displays,
         "printer": printers,
         "storage": disks,

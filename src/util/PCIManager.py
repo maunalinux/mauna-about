@@ -65,7 +65,7 @@ def get_pci_devices():
     for pci in dev_info:
         category = match_class_with_category(pci.get("class_id", ""))
         if not category:
-            continue
+            category = "pci"
 
         if category not in data:
             data[category] = []
