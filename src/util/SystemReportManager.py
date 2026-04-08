@@ -9,14 +9,15 @@ import subprocess
 ARCHIVE_DIR = "/tmp/mauna_system_report"
 
 
-def run_and_save(command):
+def run_and_save(command, command_name=None):
     """Usage: run_and_save(["journalctl", "-q", "-n", 1000]), it will be saved in /tmp/mauna_system_report/journalctl"""
 
     if not command:
         return
 
-    command_name = "_".join(command)
-    command_name = command_name.replace("_/", "")
+    if command_name is None:
+        command_name = "_".join(command)
+        command_name = command_name.replace("_/", "")
 
     with open(f"{ARCHIVE_DIR}/{command_name}", "w") as f:
         subprocess.run(command, stdout=f, stderr=f)
@@ -49,7 +50,7 @@ def generate_report():
         f.write(hardware_info)
 
     # Program outputs
-    run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"])
+    run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"], command_name="env")
     run_and_save(["dmesg"])
     run_and_save(["journalctl", "-q", "-n", "1000"])
     run_and_save(["timedatectl"])
