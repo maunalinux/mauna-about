@@ -1,0 +1,102 @@
+from util import ComputerManager
+from pathlib import Path
+import json
+import os
+import shutil
+import subprocess
+
+
+ARCHIVE_DIR = "/tmp/mauna_system_report"
+
+
+def run_and_save(command):
+    """Usage: run_and_save(["journalctl", "-q", "-n", 1000]), it will be saved in /tmp/mauna_system_report/journalctl"""
+
+    if not command:
+        return
+
+    command_name = "_".join(command)
+    command_name = command_name.replace("_/", "")
+
+    with open(f"{ARCHIVE_DIR}/{command_name}", "w") as f:
+        subprocess.run(command, stdout=f, stderr=f)
+
+
+def copy(path):
+    new_path = Path(f"{ARCHIVE_DIR}/{path}")
+
+    if os.path.isfile(path):
+        # Create parents
+        new_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, new_path, follow_symlinks=False)
+    elif os.path.isdir(path):
+        new_path.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(path, new_path, symlinks=False, dirs_exist_ok=True)
+    else:
+        print("Not a file, nor a directory:", path)
+
+
+def generate_report():
+    # Make dir
+    os.makedirs(ARCHIVE_DIR, exist_ok=True)
+
+    # General System Hardware Report
+    hardware_info = json.dumps(
+        ComputerManager.ComputerManager().get_all_device_info(), indent=2
+    )
+
+    with open(f"{ARCHIVE_DIR}/system_info.json", "w") as f:
+        f.write(hardware_info)
+
+    # Program outputs
+    run_and_save(["dmesg"])
+    run_and_save(["journalctl", "-q", "-n", "1000"])
+    run_and_save(["timedatectl"])
+    run_and_save(["df", "-al", "-x", "autofs"])
+    run_and_save(["dmidecode"])
+    run_and_save(["free"])
+    run_and_save(["hostname"])
+    run_and_save(["dpkg", "-l"])
+    run_and_save(["ip", "-o", "addr"])
+    run_and_save(["ip", "route", "show", "table", "all"])
+    run_and_save(["lsb_release"])
+    run_and_save(["lsusb"])
+    run_and_save(["lsmod"])
+    run_and_save(["lspci", "-nnvv"])
+    run_and_save(["mount", "-l"])
+    run_and_save(["netstat", "-W", "-neopa"])
+    run_and_save(["ps", "auxwwwm"])
+    run_and_save(["pstree", "-lp"])
+    run_and_save(["find", "/", "-maxdepth", "2", "-type", "l", "-ls"])
+    run_and_save(["uname", "-a"])
+    run_and_save(["uptime"])
+
+    # Copy Logs
+    copy("/var/log/apt")
+    copy("/var/log/auth.log")
+    copy("/var/log/boot.log")
+    copy("/var/log/daemon.log")
+    copy("/var/log/dpkg.log")
+    copy("/var/log/kern.log")
+    copy("/var/log/syslog")
+    copy("/var/log/user.log")
+
+    # Copy configs
+    copy("/etc/hosts")
+    copy("/etc/environment")
+    copy("/etc/apt/sources.list")
+    copy("/etc/apt/sources.list.d")
+
+
+def archive_and_copy_to_desktop(desktop_path):
+    archive_name = "mauna_system_report.tar.gz"
+    return subprocess.run(
+        [
+            "tar",
+            "-czf",
+            f"{desktop_path}/{archive_name}",
+            "--ignore-failed-read",
+            f"--directory={ARCHIVE_DIR}",
+            ".",
+        ]
+    )

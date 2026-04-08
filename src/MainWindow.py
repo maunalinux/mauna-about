@@ -9,9 +9,16 @@ from locale import gettext as _
 
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from util import ComputerManager, HardwareDetector, OSManager, network
+from util import (
+    ComputerManager,
+    HardwareDetector,
+    OSManager,
+    network,
+    SystemReportManager,
+)
 from widget.HardwareDetailRow import HardwareDetailRow
 from widget.HardwareGridCell import HardwareGridCell
+import Actions
 
 # Translation Constants:
 APPNAME = "mauna-about"
@@ -130,6 +137,13 @@ class MainWindow:
         self.ui_submit_window.connect("delete-event", lambda w, e: w.hide() or True)
         self.ui_submit_lbl = UI("ui_submit_lbl")
         self.ui_submit_stack = UI("ui_submit_stack")
+
+        # Gathering Logs Popup
+        self.ui_gathering_logs_popup = UI("ui_gathering_logs_popup")
+        self.ui_gathering_logs_popup.connect(
+            "delete-event", lambda w, e: w.hide() or True
+        )
+        self.ui_gathering_logs_stack = UI("ui_gathering_logs_stack")
 
     def define_variables(self):
         self.computerManager = None
@@ -733,6 +747,30 @@ class MainWindow:
                     ),
                 )
 
+    # Export System report tasks:
+    def export_system_report(self, task, source_object, task_data, cancellable):
+        desktop_path = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP)
+
+        p = Actions.run("report")
+
+        if p.returncode == 0:
+            p2 = SystemReportManager.archive_and_copy_to_desktop(desktop_path)
+            if p2.returncode == 0:
+                task.return_value(True)
+                return
+
+        task.return_value(False)
+
+    def export_system_report_completed(self, source, task):
+        result = task.propagate_boolean()
+
+        if result:
+            self.ui_gathering_logs_stack.set_visible_child_name("success")
+        else:
+            self.ui_gathering_logs_stack.set_visible_child_name("failed")
+
+        self.ui_gathering_logs_popup.show_all()
+
     def show_info_dialog(self, title, subtitle, use_markup=False):
         dialog = Gtk.MessageDialog(
             buttons=Gtk.ButtonsType.OK,
@@ -769,6 +807,15 @@ class MainWindow:
         self.ui_popover_menu.popdown()
         self.ui_about_dialog.run()
         self.ui_about_dialog.hide()
+
+    def on_menu_export_report_button_clicked(self, btn):
+        self.ui_popover_menu.popdown()
+
+        self.ui_gathering_logs_stack.set_visible_child_name("wait")
+        self.ui_gathering_logs_popup.show_all()
+
+        task = Gio.Task.new(callback=self.export_system_report_completed)
+        task.run_in_thread(self.export_system_report)
 
     def on_hardware_info_button_clicked(self, btn):
         self.is_hardware_details_visible = not self.is_hardware_details_visible
