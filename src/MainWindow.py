@@ -1,6 +1,5 @@
 import json
 import os
-
 import gi
 import requests
 
@@ -58,7 +57,6 @@ class MainWindow:
         self.application = application
 
         # Global Definitions:
-
         self.define_components()
 
         self.read_mauna_info()
@@ -274,19 +272,19 @@ class MainWindow:
         self.window.present()
 
     def read_mauna_info(self):
-        mauna_info = OSManager.get_os_info()
-        self.ui_distro_id_label.set_text(mauna_info["os_id"].title())
-        self.ui_distro_version_label.set_text(mauna_info["os_version_id"])
+        self.os_info = OSManager.get_os_info()
+        self.ui_distro_id_label.set_text(self.os_info["os_id"].title())
+        self.ui_distro_version_label.set_text(self.os_info["os_version_id"])
         codename_map = {
             "mauna": "Sirius",
             "polaris": "Polaris",
             # "orion": "Orion",
         }
-        raw_name = mauna_info.get("os_codename", "")
+        raw_name = self.os_info.get("os_codename", "")
         display_name = codename_map.get(raw_name, raw_name)
         self.ui_distro_codename_label.set_text(f"{display_name}")
         self.ui_username_label.set_text(f"{GLib.get_user_name()}")
-        self.ui_hostname_label.set_text(mauna_info["hostname"].lower())
+        self.ui_hostname_label.set_text(self.os_info["hostname"].lower())
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
@@ -296,38 +294,66 @@ class MainWindow:
 
         task.return_boolean(True)
 
-    # === Fill Pages ===
-    def fill_main_page(self):
-        def label_from_fields(devices, fields, skip_if_type_none=False):
-            """Builds text safely without trailing newline."""
+    def fetch_network_ips(self, task, source_object, task_data, cancellable):
+        def sanitize_local_ip(ip_list):
+            """Formats list of (ip, iface) tuples"""
             try:
-                if not devices:
-                    return _("Device not found")
+                if not ip_list:
+                    return _("Unknown")
 
                 items = []
-
-                for device in devices:
-                    if skip_if_type_none and device.get("type") is None:
+                for ip, iface in ip_list:
+                    # Skip loopback
+                    if iface == "lo":
                         continue
 
-                    values = []
-                    for f in fields:
-                        val = device.get(f)
-                        if val:
-                            values.append(str(val))
+                    iface_str = str(iface) if iface else ""
+                    ip_str = str(ip) if ip else ""
 
-                    text = " ".join(values).strip()
-                    if text:
-                        items.append(text)
+                    line = f"{iface_str} {ip_str}".strip()
+                    if line:
+                        items.append(line)
 
+                # If everything was filtered out → not found
                 if not items:
-                    return _("Device not found")
+                    return _("Unknown")
 
                 return "\n".join(items)
 
             except Exception as e:
-                print("device summary error:", e)
+                print("ip list error:", e)
+                return _("Unknown")
+
+        self.private_ip = sanitize_local_ip(network.get_local_ip())
+        self.public_ip = network.get_wan_ip()
+
+        task.return_boolean(True)
+
+    # === Fill Pages ===
+    def fill_main_page(self):
+        def label_from_fields(devices, fields, skip_if_type_none=False):
+            """Builds text safely without trailing newline."""
+            if not devices:
                 return _("Device not found")
+
+            items = []
+
+            for device in devices:
+                if skip_if_type_none and device.get("type") is None:
+                    continue
+
+                values = []
+                for f in fields:
+                    values.append(str(device.get(f, "")))
+
+                text = " ".join(values).strip()
+                if text:
+                    items.append(text)
+
+            if not items:
+                return _("Device not found")
+
+            return "\n".join(items)
 
         # grid loop indexes
         ix = 0
@@ -352,12 +378,11 @@ class MainWindow:
             )
         )
         # Desktop
-        os_info = OSManager.get_os_info()
         add_to_grid(
             HardwareGridCell(
                 "mauna-about-desktop",
                 _("Desktop"),
-                f"{os_info['desktop']} {os_info['desktop_version']} ({os_info['display']})",
+                f"{self.os_info['desktop']} {self.os_info['desktop_version']} ({self.os_info['display']})",
             )
         )
 
@@ -444,50 +469,26 @@ class MainWindow:
             )
         )
 
-        def sanitize_local_ip(ip_list):
-            """Formats list of (ip, iface) tuples"""
-            try:
-                if not ip_list:
-                    return _("Unknown")
-
-                items = []
-                for ip, iface in ip_list:
-                    # Skip loopback
-                    if iface == "lo":
-                        continue
-
-                    iface_str = str(iface) if iface else ""
-                    ip_str = str(ip) if ip else ""
-
-                    line = f"{iface_str} {ip_str}".strip()
-                    if line:
-                        items.append(line)
-
-                # If everything was filtered out → not found
-                if not items:
-                    return _("Unknown")
-
-                    return _("Unknown")
-
-            except Exception as e:
-                print("ip list error:", e)
-                    return _("Unknown")
-
         # Private IP
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-ethernet",
-                _("Private IP"),
-                sanitize_local_ip(network.get_local_ip()),
-            )
+        # Fill IP addresses later with: fetch_network_ips
+        self.private_ip_cell = HardwareGridCell(
+            "mauna-about-ethernet",
+            _("Private IP"),
+            _("Fetching..."),
+            can_hide=True,
+            value_loading=True,
         )
+        add_to_grid(self.private_ip_cell)
 
         # Public IP
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-publicip", _("Public IP"), network.get_wan_ip()
-            )
+        self.public_ip_cell = HardwareGridCell(
+            "mauna-about-publicip",
+            _("Public IP"),
+            _("Fetching..."),
+            can_hide=True,
+            value_loading=True,
         )
+        add_to_grid(self.public_ip_cell)
 
         self.ui_hardware_grid.show_all()
 
@@ -509,18 +510,17 @@ class MainWindow:
         self.ui_hardware_details_box.add(computer_info_row)
 
         # === Operating System ===
-        os_info = OSManager.get_os_info()
         os_info_row = HardwareDetailRow(
             icon_name="mauna-about-symbolic",
             title="Operating System",
             headers=["Name", "Version", "Kernel", "Desktop", "Display"],
             table=[
                 [
-                    os_info["os_name"],
-                    os_info["os_version"],
-                    os_info["kernel"],
-                    os_info["desktop"],
-                    os_info["display"],
+                    self.os_info["os_name"],
+                    self.os_info["os_version"],
+                    self.os_info["kernel"],
+                    self.os_info["desktop"],
+                    self.os_info["display"],
                 ]
             ],
         )
@@ -878,10 +878,25 @@ class MainWindow:
     def on_read_hardware_info_finish(self, source, task):
         self.ui_report_box.set_sensitive(True)
 
+        # Fill Main Page
         self.fill_main_page()
+
+        # Fetch network ip addresses after main page setup
+        ip_task = Gio.Task.new(callback=self.on_fetch_network_ips_finish)
+        ip_task.run_in_thread(self.fetch_network_ips)
+
+        self.ui_hardware_grid.show_all()
+
+        # Fill Hardware Details Page
         self.fill_details_page()
 
         self.toggle_hardware_details_pane()
+
+    def on_fetch_network_ips_finish(self, source, task):
+        self.private_ip_cell.set_value(self.private_ip)
+        self.public_ip_cell.set_value(self.public_ip)
+
+        self.ui_hardware_grid.show_all()
 
     def on_menu_about_button_clicked(self, btn):
         self.ui_popover_menu.popdown()
