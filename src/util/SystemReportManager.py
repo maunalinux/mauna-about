@@ -56,14 +56,6 @@ def generate_report():
     # Make dir
     os.makedirs(f"{ARCHIVE_DIR}/{pkexec_user}", exist_ok=True)
 
-    # General System Hardware Report
-    hardware_info = json.dumps(
-        ComputerManager.ComputerManager().get_all_device_info(), indent=2
-    )
-
-    with open(f"{ARCHIVE_DIR}/{pkexec_user}/system_info.json", "w") as f:
-        f.write(hardware_info)
-
     # Program outputs
     run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"], command_name="env_root")
     run_and_save(["dmesg"])
@@ -113,6 +105,15 @@ def generate_report():
 
 
 def generate_user_report():
+    # General System Hardware Report
+    hardware_info = json.dumps(
+        ComputerManager.ComputerManager().get_all_device_info(), indent=2
+    )
+
+    with open(f"{ARCHIVE_DIR}/{pkexec_user}/system_info.json", "w") as f:
+        f.write(hardware_info)
+
+    # Program outputs
     run_and_save(["env"], command_name="env_user")
     run_and_save(["dconf", "dump", "/"])
     run_and_save(["journalctl", "--user", "-q", "-n", "1000"], command_name="journal_user")
