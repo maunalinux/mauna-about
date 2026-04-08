@@ -285,6 +285,7 @@ def match_driver_with_category(driver):
     device_classes = {
         "btusb": "bluetooth",
         "uvcvideo": "camera",
+        "cdc_ether": "ethernet",
     }
 
     if driver in device_classes:
