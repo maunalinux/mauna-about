@@ -28,10 +28,6 @@ TRANSLATIONS_PATH = "/usr/share/locale"
 locale.bindtextdomain(APPNAME, TRANSLATIONS_PATH)
 locale.textdomain(APPNAME)
 
-computerManager = None
-pciManager = None
-usbManager = None
-
 HARDWARE_API_DOMAIN = "https://donanim.pardus.org.tr"
 HARDWARE_API = f"{HARDWARE_API_DOMAIN}/api/v1"
 
@@ -146,7 +142,7 @@ class MainWindow:
         self.ui_gathering_logs_stack = UI("ui_gathering_logs_stack")
 
     def define_variables(self):
-        self.computerManager = None
+        self.computer_manager = None
 
     def control_args(self):
         if "hardware" in self.application.args.keys():
@@ -172,7 +168,7 @@ class MainWindow:
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
         # Lazy Init PCI & USB devices information singleton
-        self.computerManager = ComputerManager.ComputerManager()
+        self.computer_manager = ComputerManager.ComputerManager()
         self.hardware_info = HardwareDetector.get_hardware_info()
 
         task.return_boolean(True)
@@ -208,120 +204,6 @@ class MainWindow:
 
             return "\n".join(items)
 
-        # grid loop indexes
-        ix = 0
-        iy = 0
-        max_x = 2
-
-        def add_to_grid(child):
-            nonlocal ix, iy, max_x
-            self.ui_hardware_grid.attach(child, ix, iy, 1, 1)
-
-            ix = ix + 1
-            if ix >= max_x:
-                iy = iy + 1
-                ix = 0
-
-        # Computer
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-computer",
-                _("Computer"),
-                self.computerManager.get_computer_info()["model"],
-            )
-        )
-        # Desktop
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-desktop",
-                _("Desktop"),
-                f"{self.os_info['desktop']} {self.os_info['desktop_version']} ({self.os_info['display']})",
-            )
-        )
-
-        # Processor
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-processor",
-                _("Processor"),
-                self.computerManager.get_processor_info()["name"],
-            )
-        )
-
-        # Graphics
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-graphics",
-                _("Graphics"),
-                label_from_fields(
-                    self.hardware_info.get("graphics", []),
-                    ["vendor", "name"],
-                ),
-            )
-        )
-
-        # Memory
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-memory",
-                _("Memory"),
-                self.computerManager.get_memory_summary(),
-            )
-        )
-
-        # Storage
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-storage",
-                _("Storage"),
-                label_from_fields(
-                    self.hardware_info.get("storage", []),
-                    ["size", "model"],
-                    skip_if_type_none=True,
-                ),
-            )
-        )
-
-        # Bluetooth
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-bluetooth",
-                _("Bluetooth"),
-                label_from_fields(
-                    self.hardware_info.get("bluetooth", []), ["vendor", "name"]
-                ),
-            )
-        )
-
-        # Audio
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-audio",
-                _("Audio"),
-                label_from_fields(
-                    self.hardware_info.get("audio", []), ["vendor", "name"]
-                ),
-            )
-        )
-
-        # Wifi
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-wifi",
-                _("Wifi"),
-                label_from_fields(self.hardware_info.get("wifi", []), ["name"]),
-            )
-        )
-
-        # Ethernet
-        add_to_grid(
-            HardwareGridCell(
-                "mauna-about-ethernet",
-                _("Ethernet"),
-                label_from_fields(self.hardware_info.get("ethernet", []), ["name"]),
-            )
-        )
-
         def sanitize_local_ip(ip_list):
             """Formats list of (ip, iface) tuples"""
             try:
@@ -351,6 +233,79 @@ class MainWindow:
                 print("ip list error:", e)
                 return _("Unknown")
 
+        # grid loop indexes
+        ix = 0
+        iy = 0
+        max_x = 2
+
+        def add_to_grid(child):
+            nonlocal ix, iy, max_x
+            self.ui_hardware_grid.attach(child, ix, iy, 1, 1)
+
+            ix = ix + 1
+            if ix >= max_x:
+                iy = iy + 1
+                ix = 0
+
+        hw = self.hardware_info
+        pc = self.computer_manager
+
+        cells = [
+            # Computer
+            ["mauna-about-computer", _("Computer"), pc.get_computer_info()["model"]],
+            # Desktop
+            [
+                "mauna-about-desktop",
+                _("Desktop"),
+                f"{self.os_info['desktop']} {self.os_info['desktop_version']} ({self.os_info['display']})",
+            ],
+            # Processor
+            ["mauna-about-processor", _("Processor"), pc.get_processor_info()["name"]],
+            # Graphics
+            [
+                "mauna-about-graphics",
+                _("Graphics"),
+                label_from_fields(hw.get("graphics", []), ["vendor", "name"]),
+            ],
+            # Memory
+            ["mauna-about-memory", _("Memory"), pc.get_memory_summary()],
+            # Storage
+            [
+                "mauna-about-storage",
+                _("Storage"),
+                label_from_fields(
+                    hw.get("storage", []), ["size", "model"], skip_if_type_none=True
+                ),
+            ],
+            # Bluetooth
+            [
+                "mauna-about-bluetooth",
+                _("Bluetooth"),
+                label_from_fields(hw.get("bluetooth", []), ["vendor", "name"]),
+            ],
+            # Audio
+            [
+                "mauna-about-audio",
+                _("Audio"),
+                label_from_fields(hw.get("audio", []), ["vendor", "name"]),
+            ],
+            # Wifi
+            [
+                "mauna-about-wifi",
+                _("Wifi"),
+                label_from_fields(hw.get("wifi", []), ["name"]),
+            ],
+            # Ethernet
+            [
+                "mauna-about-ethernet",
+                _("Ethernet"),
+                label_from_fields(hw.get("ethernet", []), ["name"]),
+            ],
+        ]
+
+        for i in cells:
+            add_to_grid(HardwareGridCell(i[0], i[1], i[2]))
+
         # Private IP
         add_to_grid(
             HardwareGridCell(
@@ -376,7 +331,7 @@ class MainWindow:
 
     def fill_details_page(self):
         # === Computer ===
-        computer_info = self.computerManager.get_computer_info()
+        computer_info = self.computer_manager.get_computer_info()
         computer_info_row = HardwareDetailRow(
             icon_name="mauna-about-computer",
             title=_("Computer Info"),
@@ -409,7 +364,7 @@ class MainWindow:
         self.ui_hardware_details_box.add(os_info_row)
 
         # === Processor ===
-        processor_info = self.computerManager.get_processor_info()
+        processor_info = self.computer_manager.get_processor_info()
         processor_info_row = HardwareDetailRow(
             icon_name="mauna-about-processor",
             title=_("Processor"),
@@ -425,7 +380,7 @@ class MainWindow:
         self.ui_hardware_details_box.add(processor_info_row)
 
         # === Memory ===
-        memory_info = self.computerManager.get_memory_info()
+        memory_info = self.computer_manager.get_memory_info()
         memory_info_table = []
         for i, slot in enumerate(memory_info, start=1):
             size = slot.get("size", 0.0)
@@ -693,7 +648,7 @@ class MainWindow:
     # Send Hardware Report Tasks
     def send_hardware_data(self, task, source_object, task_data, cancellable):
         try:
-            all_info = self.computerManager.get_all_device_info()
+            all_info = self.computer_manager.get_all_device_info()
             response = requests.post(HARDWARE_API, json=all_info, timeout=3)
 
             task.return_value(response)
@@ -824,7 +779,7 @@ class MainWindow:
         self.toggle_hardware_details_pane()
 
     def on_display_report_button_clicked(self, btn):
-        device_list = self.computerManager.get_all_device_info()
+        device_list = self.computer_manager.get_all_device_info()
         print(json.dumps(device_list, indent=2))
         self.ui_submit_stack.set_visible_child_name("main")
         self.ui_submit_lbl.set_text(json.dumps(device_list, indent=2))
