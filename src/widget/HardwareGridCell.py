@@ -11,6 +11,7 @@ class HardwareGridCell(Gtk.Box):
 
         self.get_style_context().add_class("card")
         self.get_style_context().add_class("p-7")
+        self.get_style_context().add_class("p-15-lr")
 
         # Icon
         main_box = Gtk.Box(spacing=7, halign=Gtk.Align.START, valign=Gtk.Align.CENTER)

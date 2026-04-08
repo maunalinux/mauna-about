@@ -7,6 +7,11 @@ frame border {
     padding: 7px;
 }
 
+.p-15-lr {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .p-15 {
     padding: 15px;
 }
