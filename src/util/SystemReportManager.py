@@ -115,6 +115,7 @@ def generate_report():
 def generate_user_report():
     run_and_save(["env"], command_name="env_user")
     run_and_save(["dconf", "dump", "/"])
+    run_and_save(["journalctl", "--user", "-q", "-n", "1000"], command_name="journal_user")
     run_and_save(["flatpak", "list"])
 
 def archive_and_copy_to_desktop(desktop_path):
