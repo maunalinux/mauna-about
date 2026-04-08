@@ -59,10 +59,26 @@
     <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
     <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
     <defaults>
-      <allow_any>yes</allow_any>
-      <allow_inactive>yes</allow_inactive>
-      <allow_active>yes</allow_active>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>no</allow_active>
     </defaults>
+
+    <rule action="auth_admin_interactive">
+      <matches>
+        <member group="sudo"/>
+      </matches>
+      <allow/>
+    </rule>
+
+    <rule action="auth_self_interactive">
+      <matches>
+        <not>
+          <member group="sudo"/>
+        </not>
+      </matches>
+      <allow/>
+    </rule>
   </action>
 
     <action id="org.freedesktop.hostname1.set-pretty-hostname">
@@ -73,10 +89,27 @@
     <message xml:lang="pt_BR">É necessário autenticar-se para alterar o hostname.</message>
     <message xml:lang="pt">É necessário autenticar-se para alterar o nome do host.</message>
     <message xml:lang="tr">Hostname değiştirmek için yetkilendirme gerekiyor</message>
+
     <defaults>
-      <allow_any>yes</allow_any>
-      <allow_inactive>yes</allow_inactive>
-      <allow_active>yes</allow_active>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>no</allow_active>
     </defaults>
+
+    <rule action="auth_admin_interactive">
+      <matches>
+        <member group="sudo"/>
+      </matches>
+      <allow/>
+    </rule>
+
+    <rule action="auth_self_interactive">
+      <matches>
+        <not>
+          <member group="sudo"/>
+        </not>
+      </matches>
+      <allow/>
+    </rule>
   </action>
 </policyconfig>

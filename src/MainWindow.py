@@ -2,6 +2,8 @@ import json
 import os
 import gi
 import requests
+import pwd
+import grp
 
 gi.require_version("Gtk", "3.0")
 import locale
@@ -121,6 +123,8 @@ class MainWindow:
         # Hostname Edit
         self.ui_edit_hostname_stack = UI("ui_edit_hostname_stack")
         self.ui_edit_hostname_entry = UI("ui_edit_hostname_entry")
+        self.ui_edit_hostname_btn = UI("ui_edit_hostname_btn")
+        self.ui_edit_hostname_btn.set_sensitive(self.is_user_in_sudo_group())
 
         self.ui_about_dialog = UI("ui_about_dialog")
         self.ui_popover_menu = UI("ui_popover_menu")
@@ -154,6 +158,28 @@ class MainWindow:
             self.is_hardware_details_visible = True
 
         self.window.present()
+
+    def get_user_groups(self, username):
+        try:
+            user_info = pwd.getpwnam(username)
+            primary_gid = user_info.pw_gid
+            group_ids = os.getgrouplist(username, primary_gid)
+            group_names = [grp.getgrgid(id).gr_name for id in group_ids]
+
+            return group_names
+        except KeyError:
+            print(f"User {username} not found")
+            return []
+        except PermissionError:
+            print("Permission denied")
+            return []
+
+    def is_user_in_sudo_group(self):
+        username = os.getlogin()
+        groups = self.get_user_groups(username)
+        print("username:", username)
+        print("groups:", groups)
+        return "sudo" in groups
 
     def read_mauna_info(self):
         self.os_info = OSManager.get_os_info()
