@@ -46,16 +46,21 @@ class HardwareGridCell(Gtk.Box):
             value_box.add(self.spinner)
 
         if can_hide:
-            hide_btn = Gtk.Button.new_from_icon_name(
+            self.hide_btn = Gtk.Button.new_from_icon_name(
                 "view-reveal-symbolic", Gtk.IconSize.BUTTON
             )
-            hide_btn.set_valign(Gtk.Align.START)
-            hide_btn.revealed = True
-            # hide_btn.get_style_context().add_class("flat")
+            self.hide_btn.set_valign(Gtk.Align.START)
+            self.hide_btn.revealed = True
+            # self.hide_btn.get_style_context().add_class("flat")
 
-            hide_btn.connect("clicked", self.on_hide_btn_clicked)
+            # Hide button if loading
+            if value_loading:
+                self.hide_btn.set_visible(False)
+                self.hide_btn.set_no_show_all(True)
 
-            value_box.add(hide_btn)
+            self.hide_btn.connect("clicked", self.on_hide_btn_clicked)
+
+            value_box.add(self.hide_btn)
 
         box.add(value_box)
 
@@ -80,3 +85,4 @@ class HardwareGridCell(Gtk.Box):
 
         if self.spinner:
             self.spinner.destroy()
+            self.hide_btn.set_visible(True)

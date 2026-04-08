@@ -163,37 +163,7 @@ class MainWindow:
 
         task.return_boolean(True)
 
-    def fetch_network_ips(self, task, source_object, task_data, cancellable):
-        def sanitize_local_ip(ip_list):
-            """Formats list of (ip, iface) tuples"""
-            try:
-                if not ip_list:
-                    return _("Unknown")
-
-                items = []
-                for ip, iface in ip_list:
-                    # Skip loopback
-                    if iface == "lo":
-                        continue
-
-                    iface_str = str(iface) if iface else ""
-                    ip_str = str(ip) if ip else ""
-
-                    line = f"{iface_str} {ip_str}".strip()
-                    if line:
-                        items.append(line)
-
-                # If everything was filtered out → not found
-                if not items:
-                    return _("Unknown")
-
-                return "\n".join(items)
-
-            except Exception as e:
-                print("ip list error:", e)
-                return _("Unknown")
-
-        self.private_ip = sanitize_local_ip(network.get_local_ip())
+    def fetch_public_ip(self, task, source_object, task_data, cancellable):
         self.public_ip = network.get_wan_ip()
 
         task.return_boolean(True)
@@ -338,22 +308,51 @@ class MainWindow:
             )
         )
 
+        def sanitize_local_ip(ip_list):
+            """Formats list of (ip, iface) tuples"""
+            try:
+                if not ip_list:
+                    return _("Unknown")
+
+                items = []
+                for ip, iface in ip_list:
+                    # Skip loopback
+                    if iface == "lo":
+                        continue
+
+                    iface_str = str(iface) if iface else ""
+                    ip_str = str(ip) if ip else ""
+
+                    line = f"{iface_str} {ip_str}".strip()
+                    if line:
+                        items.append(line)
+
+                # If everything was filtered out → not found
+                if not items:
+                    return _("Unknown")
+
+                return "\n".join(items)
+
+            except Exception as e:
+                print("ip list error:", e)
+                return _("Unknown")
+
         # Private IP
-        # Fill IP addresses later with: fetch_network_ips
-        self.private_ip_cell = HardwareGridCell(
-            "mauna-about-ethernet",
-            _("Private IP"),
-            _("Fetching..."),
-            can_hide=True,
-            value_loading=True,
+        add_to_grid(
+            HardwareGridCell(
+                "mauna-about-ethernet",
+                _("Private IP"),
+                sanitize_local_ip(network.get_local_ip()),
+                can_hide=True,
+            )
         )
-        add_to_grid(self.private_ip_cell)
 
         # Public IP
+        # Fill IP address later with: fetch_public_ip
         self.public_ip_cell = HardwareGridCell(
             "mauna-about-publicip",
             _("Public IP"),
-            _("Fetching..."),
+            "...",
             can_hide=True,
             value_loading=True,
         )
@@ -751,8 +750,8 @@ class MainWindow:
         self.fill_main_page()
 
         # Fetch network ip addresses after main page setup
-        ip_task = Gio.Task.new(callback=self.on_fetch_network_ips_finish)
-        ip_task.run_in_thread(self.fetch_network_ips)
+        ip_task = Gio.Task.new(callback=self.on_fetch_public_ip_finish)
+        ip_task.run_in_thread(self.fetch_public_ip)
 
         self.ui_hardware_grid.show_all()
 
@@ -761,8 +760,7 @@ class MainWindow:
 
         self.toggle_hardware_details_pane()
 
-    def on_fetch_network_ips_finish(self, source, task):
-        self.private_ip_cell.set_value(self.private_ip)
+    def on_fetch_public_ip_finish(self, source, task):
         self.public_ip_cell.set_value(self.public_ip)
 
         self.ui_hardware_grid.show_all()
