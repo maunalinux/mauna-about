@@ -80,6 +80,8 @@ def generate_report():
     run_and_save(["pstree", "-lp"])
     run_and_save(["find", "/", "-maxdepth", "2", "-type", "l", "-ls"])
     run_and_save(["uname", "-a"])
+    run_and_save(["sysctl", "--all"])
+    run_and_save(["docker", "ps", "-a"])
     run_and_save(["uptime"])
 
     # Copy Logs
@@ -91,9 +93,12 @@ def generate_report():
     copy("/var/log/kern.log")
     copy("/var/log/syslog")
     copy("/var/log/user.log")
+    copy("/var/log/mauna-installer.log")
 
     # Copy configs
     copy("/etc/hosts")
+    copy("/boot/grub/grub.cfg")
+    copy("/boot/config-{}".format(os.uname().release))
     copy("/etc/resolv.conf")
     copy("/etc/environment")
     copy("/etc/apt/sources.list")
