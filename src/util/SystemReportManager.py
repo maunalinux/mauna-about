@@ -49,6 +49,7 @@ def generate_report():
         f.write(hardware_info)
 
     # Program outputs
+    run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"])
     run_and_save(["dmesg"])
     run_and_save(["journalctl", "-q", "-n", "1000"])
     run_and_save(["timedatectl"])
