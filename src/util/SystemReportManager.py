@@ -62,6 +62,8 @@ def generate_report():
     run_and_save(["lsb_release"])
     run_and_save(["lsusb"])
     run_and_save(["lsmod"])
+    run_and_save(["blkid"])
+    run_and_save(["fdisk", "-l", "-x"])
     run_and_save(["lspci", "-nnvv"])
     run_and_save(["mount", "-l"])
     run_and_save(["netstat", "-W", "-neopa"])
@@ -83,6 +85,7 @@ def generate_report():
 
     # Copy configs
     copy("/etc/hosts")
+    copy("/etc/resolv.conf")
     copy("/etc/environment")
     copy("/etc/apt/sources.list")
     copy("/etc/apt/sources.list.d")
