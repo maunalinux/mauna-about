@@ -90,6 +90,8 @@ def get_pci_devices():
         bus_address = pci["pci_slot_name"]
 
         # Vendor renaming:
+        if vendor is None:
+            vendor = ""
         if "INTEL" in vendor.upper():
             vendor = "Intel"
 
