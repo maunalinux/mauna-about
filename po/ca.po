@@ -8,215 +8,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 15:56-0300\n"
-"PO-Revision-Date: 2025-12-13 17:00-0300\n"
+"POT-Creation-Date: 2026-04-08 16:26-0300\n"
+"PO-Revision-Date: 2026-04-08 16:41-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
-#: ui/MainWindow.glade:24 src/MainWindow.py:335
-msgid "Slot"
-msgstr "Ranura"
+#: ui/MainWindow.glade:7 ui/MainWindow.glade:778
+msgid "About Mauna"
+msgstr "Sobre Mauna"
 
-#: ui/MainWindow.glade:39 ui/MainWindow.glade:81 ui/MainWindow.glade:123
-#: ui/MainWindow.glade:581 ui/MainWindow.glade:661 ui/MainWindow.glade:741
-#: ui/MainWindow.glade:824 ui/MainWindow.glade:904 ui/MainWindow.glade:984
-#: ui/MainWindow.glade:1064 ui/MainWindow.glade:1145 ui/MainWindow.glade:1226
-#: ui/MainWindow.glade:1306 ui/MainWindow.glade:1386 ui/MainWindow.glade:1467
-#: ui/MainWindow.glade:1650 ui/MainWindow.glade:1695 ui/MainWindow.glade:1740
-#: ui/MainWindow.glade:2046 ui/MainWindow.glade:2091 ui/MainWindow.glade:2136
-#: src/MainWindow.py:352 src/MainWindow.py:1251 src/MainWindow.py:1269
-#: src/MainWindow.py:1276
-msgid "Unknown"
-msgstr "Desconegut"
-
-#: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
-#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
-#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
-#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
-msgid "Vendor"
-msgstr "Proveïdor"
-
-#: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
-#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
-#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
-#: src/MainWindow.py:791 src/MainWindow.py:855
-msgid "Model"
-msgstr "Model"
-
-#: ui/MainWindow.glade:174
-msgid "About App"
-msgstr "Sobre l'aplicació"
-
-#: ui/MainWindow.glade:335
-msgid "Username"
-msgstr "Nom d'usuari"
-
-#: ui/MainWindow.glade:376
-msgid "Hostname"
-msgstr "Nom d'amfitrió"
-
-#: ui/MainWindow.glade:430 src/MainWindow.py:1385
-msgid "Show Hardware Details"
-msgstr "Mostra els detalls del maquinari"
-
-#: ui/MainWindow.glade:444
-msgid "Show System Report"
-msgstr "Mostra l'informe del sistema"
-
-#: ui/MainWindow.glade:490
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:587
 msgid "Gathering system logs..."
 msgstr "S'estan recopilant els registres del sistema..."
 
-#: ui/MainWindow.glade:568
-msgid "<span size=\"small\">Computer</span>"
-msgstr "<span size=\"small\">Ordinador</span>"
+#: ui/MainWindow.glade:86
+msgid "Your system report has been exported to your desktop"
+msgstr "L'informe del sistema s'ha exportat a l'escriptori."
 
-#: ui/MainWindow.glade:648
-msgid "<span size=\"small\">Processor</span>"
-msgstr "<span size=\"small\">Processador</span>"
+#: ui/MainWindow.glade:148
+msgid "System report exporting failed"
+msgstr "L'exportació de l'informe del sistema ha fallat"
 
-#: ui/MainWindow.glade:728
-msgid "<span size=\"small\">Memory</span>"
-msgstr "<span size=\"small\">Memòria</span>"
+#: ui/MainWindow.glade:166
+msgid "Please run the app from terminal to see the error logs."
+msgstr ""
+"Executeu l'aplicació des del terminal per veure els registres d'errors."
 
-#: ui/MainWindow.glade:811
-msgid "<span size=\"small\">Storage</span>"
-msgstr "<span size=\"small\">Emmagatzematge</span>"
+#: ui/MainWindow.glade:218
+msgid "Export System Report..."
+msgstr "Exporta l'informe del sistema..."
 
-#: ui/MainWindow.glade:891
-msgid "<span size=\"small\">Graphics</span>"
-msgstr "<span size=\"small\">Gràfics</span>"
+#: ui/MainWindow.glade:263
+msgid "About App"
+msgstr "Sobre l'aplicació"
 
-#: ui/MainWindow.glade:971
-msgid "<span size=\"small\">Desktop</span>"
-msgstr "<span size=\"small\">Escriptori</span>"
+#: ui/MainWindow.glade:424
+msgid "Username"
+msgstr "Nom d'usuari"
 
-#: ui/MainWindow.glade:1051
-msgid "<span size=\"small\">WiFi</span>"
-msgstr "<span size=\"small\">WiFi</span>"
+#: ui/MainWindow.glade:466
+msgid "Hostname"
+msgstr "Nom d'amfitrió"
 
-#: ui/MainWindow.glade:1132
-msgid "<span size=\"small\">Ethernet</span>"
-msgstr "<span size=\"small\">Ethernet</span>"
+#: ui/MainWindow.glade:527 src/MainWindow.py:847
+msgid "Show Hardware Details"
+msgstr "Mostra els detalls del maquinari"
 
-#: ui/MainWindow.glade:1213
-msgid "<span size=\"small\">Bluetooth</span>"
-msgstr "<span size=\"small\">Bluetooth</span>"
+#: ui/MainWindow.glade:541
+msgid "Show System Report"
+msgstr "Mostra l'informe del sistema"
 
-#: ui/MainWindow.glade:1293
-msgid "<span size=\"small\">Audio</span>"
-msgstr "<span size=\"small\">Àudio</span>"
-
-#: ui/MainWindow.glade:1373
-msgid "<span size=\"small\">Private IP</span>"
-msgstr "<span size=\"small\">IP privada</span>"
-
-#: ui/MainWindow.glade:1454
-msgid "<span size=\"small\">Public IP</span>"
-msgstr "<span size=\"small\">IP pública</span>"
-
-#: ui/MainWindow.glade:1558
-msgid "Computer Info"
-msgstr "Informació de l'ordinador"
-
-#: ui/MainWindow.glade:1724
-msgid "Family"
-msgstr "Família"
-
-#: ui/MainWindow.glade:1821
-msgid "Operating System"
-msgstr "Sistema operatiu"
-
-#: ui/MainWindow.glade:1954
-msgid "Processor"
-msgstr "Processador"
-
-#: ui/MainWindow.glade:2120
-msgid "Cores / Threads"
-msgstr "Nuclis / Fils"
-
-#: ui/MainWindow.glade:2217
-msgid "Memory"
-msgstr "Memòria"
-
-#: ui/MainWindow.glade:2350
-msgid "Storage"
-msgstr "Emmagatzematge"
-
-#: ui/MainWindow.glade:2482
-msgid "Graphics"
-msgstr "Gràfics"
-
-#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
-msgid "Display"
-msgstr "Pantalla"
-
-#: ui/MainWindow.glade:2746
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ui/MainWindow.glade:2878
-msgid "Wifi"
-msgstr "Wifi"
-
-#: ui/MainWindow.glade:3010
-msgid "Bluetooth"
-msgstr "Bluetooth"
-
-#: ui/MainWindow.glade:3142
-msgid "Audio"
-msgstr "Àudio"
-
-#: ui/MainWindow.glade:3274
-msgid "Camera"
-msgstr "Càmera"
-
-#: ui/MainWindow.glade:3406
-msgid "Keyboard"
-msgstr "Teclat"
-
-#: ui/MainWindow.glade:3538
-msgid "Mouse"
-msgstr "Ratolí"
-
-#: ui/MainWindow.glade:3670
-msgid "Fingerprint"
-msgstr "Empremta digital"
-
-#: ui/MainWindow.glade:3802
-msgid "Printer"
-msgstr "Impressora"
-
-#: ui/MainWindow.glade:3900
+#: ui/MainWindow.glade:704
 msgid "Details"
 msgstr "Detalls"
 
-#: ui/MainWindow.glade:3965
+#: ui/MainWindow.glade:769
 msgid "Mauna Info"
 msgstr "Informació de Mauna"
 
-#: ui/MainWindow.glade:3974
-msgid "About This Computer"
-msgstr "Sobre aquest ordinador"
-
-#: ui/MainWindow.glade:3998
+#: ui/MainWindow.glade:802
 msgid "About Mauna About Application"
 msgstr "Sobre Mauna Sobre l'aplicació"
 
-#: ui/MainWindow.glade:4006
+#: ui/MainWindow.glade:810
 msgid "Get info about your Mauna system."
 msgstr "Obteniu informació sobre el vostre sistema Mauna."
 
-#: ui/MainWindow.glade:4008
+#: ui/MainWindow.glade:812
 msgid "Website"
 msgstr "Lloc web"
 
-#: ui/MainWindow.glade:4009
+#: ui/MainWindow.glade:813
 msgid ""
 "This program comes with absolutely no warranty.\n"
 "See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
@@ -227,15 +94,15 @@ msgstr ""
 "Pública General de GNU, versió 3 o posterior</a> per a més detalls."
 
 #. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:4016
+#: ui/MainWindow.glade:821
 msgid "translator-credits"
 msgstr "Mauna Linux <dev@maunalinux.top>"
 
-#: ui/MainWindow.glade:4054
+#: ui/MainWindow.glade:859
 msgid "Submit"
 msgstr "Enviar"
 
-#: ui/MainWindow.glade:4073
+#: ui/MainWindow.glade:885
 msgid ""
 "The information shared will only be used for hardware compatibility "
 "statistics and to be able to troubleshoot compatibility issues in advance.\n"
@@ -251,119 +118,258 @@ msgstr ""
 "\n"
 "No es recopilen dades personals.\n"
 "\n"
-"La informació del maquinari no es comparteix amb tercers i només s'envia "
-"una vegada durant aquest procés."
+"La informació del maquinari no es comparteix amb tercers i només s'envia una "
+"vegada durant aquest procés."
 
-#: ui/MainWindow.glade:4102
+#: ui/MainWindow.glade:914
 msgid "Below is the data which will be sent:"
 msgstr "A continuació es mostren les dades que s'enviaran:"
 
-#: ui/MainWindow.glade:4173
+#: ui/MainWindow.glade:987
 msgid "Copy Report"
 msgstr "Còpia de l'informe"
 
-#: ui/MainWindow.glade:4189
+#: ui/MainWindow.glade:1003
 msgid "Send"
 msgstr "Enviar"
 
-#: ui/MainWindow.glade:4229
+#: ui/MainWindow.glade:1075
 msgid "System Report has been copied to your clipboard!"
 msgstr "L'informe del sistema s'ha copiat al porta-retalls!"
 
-#: src/MainWindow.py:63
-msgid "About Mauna"
-msgstr "Sobre Mauna"
-
-#: src/MainWindow.py:337 src/MainWindow.py:421
-msgid "Size"
-msgstr "Mida"
-
-#: src/MainWindow.py:338 src/MainWindow.py:422
-msgid "Type"
-msgstr "Tipus"
-
-#: src/MainWindow.py:339
-msgid "Speed"
-msgstr "Velocitat"
-
-#: src/MainWindow.py:343
-msgid "No memory information"
-msgstr "Sense informació de memòria"
-
-#: src/MainWindow.py:362
-msgid "empty"
-msgstr "buit"
-
-#: src/MainWindow.py:430 src/MainWindow.py:491 src/MainWindow.py:551
-#: src/MainWindow.py:609 src/MainWindow.py:671 src/MainWindow.py:732
-#: src/MainWindow.py:795 src/MainWindow.py:859 src/MainWindow.py:921
-#: src/MainWindow.py:983 src/MainWindow.py:1044 src/MainWindow.py:1101
-#: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
-#: src/MainWindow.py:1220
+#: src/MainWindow.py:190 src/MainWindow.py:207 src/MainWindow.py:464
+#: src/MainWindow.py:485 src/MainWindow.py:506 src/MainWindow.py:526
+#: src/MainWindow.py:546 src/MainWindow.py:566 src/MainWindow.py:585
+#: src/MainWindow.py:604 src/MainWindow.py:623 src/MainWindow.py:643
+#: src/MainWindow.py:662 src/MainWindow.py:681
 msgid "Device not found"
 msgstr "No s'ha trobat el dispositiu"
 
-#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
-#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
-#: src/MainWindow.py:916 src/MainWindow.py:978
-msgid "Driver"
-msgstr "Driver"
+#: src/MainWindow.py:229
+msgid "Computer"
+msgstr "Ordinador"
 
-#: src/MainWindow.py:546
-msgid "Resolution"
-msgstr "Resolució"
-
-#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
-#: src/MainWindow.py:1096 src/MainWindow.py:1155
-msgid "Name"
-msgstr "Nom"
-
-#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
-msgid "Connection"
-msgstr "Connexió"
-
-#: src/MainWindow.py:1156
-msgid "Version"
-msgstr "Versió"
-
-#: src/MainWindow.py:1157
-msgid "Kernel"
-msgstr "Kernel"
-
-#: src/MainWindow.py:1158
+#: src/MainWindow.py:237 src/MainWindow.py:398
 msgid "Desktop"
 msgstr "Escriptori"
 
-#: src/MainWindow.py:1309
+#: src/MainWindow.py:246 src/MainWindow.py:415
+msgid "Processor"
+msgstr "Processador"
+
+#: src/MainWindow.py:255 src/MainWindow.py:489
+msgid "Graphics"
+msgstr "Gràfics"
+
+#: src/MainWindow.py:267 src/MainWindow.py:448
+msgid "Memory"
+msgstr "Memòria"
+
+#: src/MainWindow.py:276 src/MainWindow.py:468
+msgid "Storage"
+msgstr "Emmagatzematge"
+
+#: src/MainWindow.py:289 src/MainWindow.py:569
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: src/MainWindow.py:300 src/MainWindow.py:588
+msgid "Audio"
+msgstr "Àudio"
+
+#: src/MainWindow.py:311 src/MainWindow.py:550
+msgid "Wifi"
+msgstr "Wifi"
+
+#: src/MainWindow.py:320 src/MainWindow.py:530
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: src/MainWindow.py:329 src/MainWindow.py:346 src/MainWindow.py:352
+#: src/MainWindow.py:440 src/MainWindow.py:441
+msgid "Unknown"
+msgstr "Desconegut"
+
+#: src/MainWindow.py:358
+msgid "Private IP"
+msgstr "IP Privada"
+
+#: src/MainWindow.py:368
+msgid "Public IP"
+msgstr "IP Pública"
+
+#: src/MainWindow.py:382
+msgid "Computer Info"
+msgstr "Informació de l'ordinador"
+
+#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:449
+#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
+#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
+#: src/MainWindow.py:608 src/MainWindow.py:667 src/MainWindow.py:686
+msgid "Vendor"
+msgstr "Proveïdor"
+
+#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:469
+#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
+#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
+#: src/MainWindow.py:608 src/MainWindow.py:667
+msgid "Model"
+msgstr "Model"
+
+#: src/MainWindow.py:383
+msgid "Family"
+msgstr "Família"
+
+#: src/MainWindow.py:397
+msgid "Operating System"
+msgstr "Sistema operatiu"
+
+#: src/MainWindow.py:398 src/MainWindow.py:628 src/MainWindow.py:648
+msgid "Name"
+msgstr "Nom"
+
+#: src/MainWindow.py:398
+msgid "Version"
+msgstr "Versió"
+
+#: src/MainWindow.py:398
+msgid "Kernel"
+msgstr "Kernel"
+
+#: src/MainWindow.py:398 src/MainWindow.py:510
+msgid "Display"
+msgstr "Pantalla"
+
+#: src/MainWindow.py:416
+msgid "Cores / Threads"
+msgstr "Nuclis / Fils"
+
+#: src/MainWindow.py:435
+msgid "Empty"
+msgstr "Buit"
+
+#: src/MainWindow.py:449
+msgid "Slot"
+msgstr "Ranura"
+
+#: src/MainWindow.py:449 src/MainWindow.py:469
+msgid "Size"
+msgstr "Mida"
+
+#: src/MainWindow.py:449 src/MainWindow.py:469
+msgid "Type"
+msgstr "Tipus"
+
+#: src/MainWindow.py:449
+msgid "Speed"
+msgstr "Velocitat"
+
+#: src/MainWindow.py:490 src/MainWindow.py:531 src/MainWindow.py:551
+#: src/MainWindow.py:570 src/MainWindow.py:589 src/MainWindow.py:608
+#: src/MainWindow.py:628 src/MainWindow.py:648
+msgid "Driver"
+msgstr "Driver"
+
+#: src/MainWindow.py:511
+msgid "Resolution"
+msgstr "Resolució"
+
+#: src/MainWindow.py:607
+msgid "Camera"
+msgstr "Càmera"
+
+#: src/MainWindow.py:627
+msgid "Keyboard"
+msgstr "Teclat"
+
+#: src/MainWindow.py:628 src/MainWindow.py:648 src/MainWindow.py:686
+msgid "Connection"
+msgstr "Connexió"
+
+#: src/MainWindow.py:647
+msgid "Mouse"
+msgstr "Ratolí"
+
+#: src/MainWindow.py:666
+msgid "Fingerprint"
+msgstr "Empremta digital"
+
+#: src/MainWindow.py:685
+msgid "Printer"
+msgstr "Impressora"
+
+#: src/MainWindow.py:722
 msgid "Thank you for your contribution."
 msgstr "Gràcies per la teva contribució."
 
-#: src/MainWindow.py:1310
+#: src/MainWindow.py:723
 msgid "You can find your submission here:"
 msgstr "Podeu trobar la vostra proposta aquí:"
 
-#: src/MainWindow.py:1327
+#: src/MainWindow.py:737
 msgid "An error occured while sending the data."
 msgstr "S'ha produït un error en enviar les dades."
 
-#: src/MainWindow.py:1328
+#: src/MainWindow.py:738
 msgid "Returned message from the server:"
 msgstr "Missatge retornat del servidor:"
 
-#: src/MainWindow.py:1334
+#: src/MainWindow.py:744
 msgid "Connection Failed"
 msgstr "Connexió fallada"
 
-#: src/MainWindow.py:1336
+#: src/MainWindow.py:746
 msgid ""
 "If you are connected to the internet, then our servers have some problem."
 msgstr ""
 "Si esteu connectats a Internet, vol dir que els nostres servidors tenen "
 "algun problema."
 
-#: src/MainWindow.py:1382
+#: src/MainWindow.py:844
 msgid "Show Summary"
 msgstr "Mostra el resum"
+
+#~ msgid "<span size=\"small\">Computer</span>"
+#~ msgstr "<span size=\"small\">Ordinador</span>"
+
+#~ msgid "<span size=\"small\">Processor</span>"
+#~ msgstr "<span size=\"small\">Processador</span>"
+
+#~ msgid "<span size=\"small\">Memory</span>"
+#~ msgstr "<span size=\"small\">Memòria</span>"
+
+#~ msgid "<span size=\"small\">Storage</span>"
+#~ msgstr "<span size=\"small\">Emmagatzematge</span>"
+
+#~ msgid "<span size=\"small\">Graphics</span>"
+#~ msgstr "<span size=\"small\">Gràfics</span>"
+
+#~ msgid "<span size=\"small\">Desktop</span>"
+#~ msgstr "<span size=\"small\">Escriptori</span>"
+
+#~ msgid "<span size=\"small\">WiFi</span>"
+#~ msgstr "<span size=\"small\">WiFi</span>"
+
+#~ msgid "<span size=\"small\">Ethernet</span>"
+#~ msgstr "<span size=\"small\">Ethernet</span>"
+
+#~ msgid "<span size=\"small\">Bluetooth</span>"
+#~ msgstr "<span size=\"small\">Bluetooth</span>"
+
+#~ msgid "<span size=\"small\">Audio</span>"
+#~ msgstr "<span size=\"small\">Àudio</span>"
+
+#~ msgid "<span size=\"small\">Private IP</span>"
+#~ msgstr "<span size=\"small\">IP privada</span>"
+
+#~ msgid "<span size=\"small\">Public IP</span>"
+#~ msgstr "<span size=\"small\">IP pública</span>"
+
+#~ msgid "About This Computer"
+#~ msgstr "Sobre aquest ordinador"
+
+#~ msgid "No memory information"
+#~ msgstr "Sense informació de memòria"
 
 #~ msgid "<b>CPU:</b>"
 #~ msgstr "<b>CPU:</b>"
@@ -376,9 +382,6 @@ msgstr "Mostra el resum"
 
 #~ msgid "<b>RAM:</b>"
 #~ msgstr "<b>RAM:</b>"
-
-#~ msgid "<b>Public IP:</b>"
-#~ msgstr "<b>IP Pública:</b>"
 
 #~ msgid "<b>Local IP:</b>"
 #~ msgstr "<b>IP Local:</b>"

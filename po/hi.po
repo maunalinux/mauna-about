@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 15:56-0300\n"
-"PO-Revision-Date: 2025-12-15 12:54-0300\n"
+"POT-Creation-Date: 2026-04-08 16:26-0300\n"
+"PO-Revision-Date: 2026-04-09 12:33-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hi\n"
@@ -16,207 +16,73 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
-#: ui/MainWindow.glade:24 src/MainWindow.py:335
-msgid "Slot"
-msgstr ""
+#: ui/MainWindow.glade:7 ui/MainWindow.glade:778
+msgid "About Mauna"
+msgstr "मौन के बारे में"
 
-#: ui/MainWindow.glade:39 ui/MainWindow.glade:81 ui/MainWindow.glade:123
-#: ui/MainWindow.glade:581 ui/MainWindow.glade:661 ui/MainWindow.glade:741
-#: ui/MainWindow.glade:824 ui/MainWindow.glade:904 ui/MainWindow.glade:984
-#: ui/MainWindow.glade:1064 ui/MainWindow.glade:1145 ui/MainWindow.glade:1226
-#: ui/MainWindow.glade:1306 ui/MainWindow.glade:1386 ui/MainWindow.glade:1467
-#: ui/MainWindow.glade:1650 ui/MainWindow.glade:1695 ui/MainWindow.glade:1740
-#: ui/MainWindow.glade:2046 ui/MainWindow.glade:2091 ui/MainWindow.glade:2136
-#: src/MainWindow.py:352 src/MainWindow.py:1251 src/MainWindow.py:1269
-#: src/MainWindow.py:1276
-msgid "Unknown"
-msgstr ""
-
-#: ui/MainWindow.glade:66 ui/MainWindow.glade:1634 ui/MainWindow.glade:2030
-#: src/MainWindow.py:336 src/MainWindow.py:485 src/MainWindow.py:545
-#: src/MainWindow.py:603 src/MainWindow.py:665 src/MainWindow.py:726
-#: src/MainWindow.py:789 src/MainWindow.py:853 src/MainWindow.py:1039
-msgid "Vendor"
-msgstr ""
-
-#: ui/MainWindow.glade:108 ui/MainWindow.glade:1679 ui/MainWindow.glade:2075
-#: src/MainWindow.py:423 src/MainWindow.py:487 src/MainWindow.py:547
-#: src/MainWindow.py:605 src/MainWindow.py:667 src/MainWindow.py:728
-#: src/MainWindow.py:791 src/MainWindow.py:855
-msgid "Model"
-msgstr ""
-
-#: ui/MainWindow.glade:174
-msgid "About App"
-msgstr "ऐप के बारे में"
-
-#: ui/MainWindow.glade:335
-msgid "Username"
-msgstr ""
-
-#: ui/MainWindow.glade:376
-msgid "Hostname"
-msgstr ""
-
-#: ui/MainWindow.glade:430 src/MainWindow.py:1385
-msgid "Show Hardware Details"
-msgstr ""
-
-#: ui/MainWindow.glade:444
-msgid "Show System Report"
-msgstr "सिस्टम रिपोर्ट दिखाएँ"
-
-#: ui/MainWindow.glade:490
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:587
 msgid "Gathering system logs..."
 msgstr "सिस्टम लॉग एकत्रित कर रहा है..."
 
-#: ui/MainWindow.glade:568
-msgid "<span size=\"small\">Computer</span>"
+#: ui/MainWindow.glade:86
+msgid "Your system report has been exported to your desktop"
+msgstr "आपकी सिस्टम रिपोर्ट आपके डेस्कटॉप पर एक्सपोर्ट कर दी गई है"
+
+#: ui/MainWindow.glade:148
+msgid "System report exporting failed"
+msgstr "सिस्टम रिपोर्ट एक्सपोर्ट करना फेल हो गया"
+
+#: ui/MainWindow.glade:166
+msgid "Please run the app from terminal to see the error logs."
+msgstr "एरर लॉग देखने के लिए कृपया टर्मिनल से ऐप चलाएं।"
+
+#: ui/MainWindow.glade:218
+msgid "Export System Report..."
+msgstr "सिस्टम रिपोर्ट एक्सपोर्ट करें..."
+
+#: ui/MainWindow.glade:263
+msgid "About App"
+msgstr "ऐप के बारे में"
+
+#: ui/MainWindow.glade:424
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+#: ui/MainWindow.glade:466
+msgid "Hostname"
 msgstr ""
 
-#: ui/MainWindow.glade:648
-msgid "<span size=\"small\">Processor</span>"
-msgstr ""
+#: ui/MainWindow.glade:527 src/MainWindow.py:847
+msgid "Show Hardware Details"
+msgstr "हार्डवेयर विवरण दिखाएँ"
 
-#: ui/MainWindow.glade:728
-msgid "<span size=\"small\">Memory</span>"
-msgstr ""
+#: ui/MainWindow.glade:541
+msgid "Show System Report"
+msgstr "सिस्टम रिपोर्ट दिखाएँ"
 
-#: ui/MainWindow.glade:811
-msgid "<span size=\"small\">Storage</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:891
-msgid "<span size=\"small\">Graphics</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:971
-msgid "<span size=\"small\">Desktop</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1051
-msgid "<span size=\"small\">WiFi</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1132
-msgid "<span size=\"small\">Ethernet</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1213
-msgid "<span size=\"small\">Bluetooth</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1293
-msgid "<span size=\"small\">Audio</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1373
-msgid "<span size=\"small\">Private IP</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1454
-msgid "<span size=\"small\">Public IP</span>"
-msgstr ""
-
-#: ui/MainWindow.glade:1558
-msgid "Computer Info"
-msgstr ""
-
-#: ui/MainWindow.glade:1724
-msgid "Family"
-msgstr ""
-
-#: ui/MainWindow.glade:1821
-msgid "Operating System"
-msgstr ""
-
-#: ui/MainWindow.glade:1954
-msgid "Processor"
-msgstr ""
-
-#: ui/MainWindow.glade:2120
-msgid "Cores / Threads"
-msgstr ""
-
-#: ui/MainWindow.glade:2217
-msgid "Memory"
-msgstr ""
-
-#: ui/MainWindow.glade:2350
-msgid "Storage"
-msgstr ""
-
-#: ui/MainWindow.glade:2482
-msgid "Graphics"
-msgstr ""
-
-#: ui/MainWindow.glade:2614 src/MainWindow.py:1159
-msgid "Display"
-msgstr ""
-
-#: ui/MainWindow.glade:2746
-msgid "Ethernet"
-msgstr ""
-
-#: ui/MainWindow.glade:2878
-msgid "Wifi"
-msgstr ""
-
-#: ui/MainWindow.glade:3010
-msgid "Bluetooth"
-msgstr ""
-
-#: ui/MainWindow.glade:3142
-msgid "Audio"
-msgstr ""
-
-#: ui/MainWindow.glade:3274
-msgid "Camera"
-msgstr ""
-
-#: ui/MainWindow.glade:3406
-msgid "Keyboard"
-msgstr ""
-
-#: ui/MainWindow.glade:3538
-msgid "Mouse"
-msgstr ""
-
-#: ui/MainWindow.glade:3670
-msgid "Fingerprint"
-msgstr ""
-
-#: ui/MainWindow.glade:3802
-msgid "Printer"
-msgstr ""
-
-#: ui/MainWindow.glade:3900
+#: ui/MainWindow.glade:704
 msgid "Details"
-msgstr ""
+msgstr "विवरण"
 
-#: ui/MainWindow.glade:3965
+#: ui/MainWindow.glade:769
 msgid "Mauna Info"
 msgstr "मौन जानकारी"
 
-#: ui/MainWindow.glade:3974
-msgid "About This Computer"
-msgstr "इस कंप्यूटर के बारे में"
-
-#: ui/MainWindow.glade:3998
+#: ui/MainWindow.glade:802
 msgid "About Mauna About Application"
 msgstr "मौना के बारे में आवेदन के बारे में"
 
-#: ui/MainWindow.glade:4006
+#: ui/MainWindow.glade:810
 msgid "Get info about your Mauna system."
 msgstr "अपने मौना सिस्टम के बारे में जानकारी प्राप्त करें।"
 
-#: ui/MainWindow.glade:4008
+#: ui/MainWindow.glade:812
 msgid "Website"
 msgstr "वेबसाइट"
 
-#: ui/MainWindow.glade:4009
+#: ui/MainWindow.glade:813
 msgid ""
 "This program comes with absolutely no warranty.\n"
 "See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
@@ -224,15 +90,15 @@ msgid ""
 msgstr ""
 
 #. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:4016
+#: ui/MainWindow.glade:821
 msgid "translator-credits"
-msgstr "मौना लिनक्स <dev@mainalinux.top>"
+msgstr "मौना लिनक्स <dev@maunalinux.top>"
 
-#: ui/MainWindow.glade:4054
+#: ui/MainWindow.glade:859
 msgid "Submit"
 msgstr ""
 
-#: ui/MainWindow.glade:4073
+#: ui/MainWindow.glade:885
 msgid ""
 "The information shared will only be used for hardware compatibility "
 "statistics and to be able to troubleshoot compatibility issues in advance.\n"
@@ -243,114 +109,214 @@ msgid ""
 "during this process."
 msgstr ""
 
-#: ui/MainWindow.glade:4102
+#: ui/MainWindow.glade:914
 msgid "Below is the data which will be sent:"
 msgstr ""
 
-#: ui/MainWindow.glade:4173
+#: ui/MainWindow.glade:987
 msgid "Copy Report"
 msgstr ""
 
-#: ui/MainWindow.glade:4189
+#: ui/MainWindow.glade:1003
 msgid "Send"
 msgstr ""
 
-#: ui/MainWindow.glade:4229
+#: ui/MainWindow.glade:1075
 msgid "System Report has been copied to your clipboard!"
 msgstr "सिस्टम रिपोर्ट आपके क्लिपबोर्ड पर कॉपी कर दी गई है!"
 
-#: src/MainWindow.py:63
-msgid "About Mauna"
-msgstr "मौन के बारे में"
-
-#: src/MainWindow.py:337 src/MainWindow.py:421
-msgid "Size"
-msgstr ""
-
-#: src/MainWindow.py:338 src/MainWindow.py:422
-msgid "Type"
-msgstr ""
-
-#: src/MainWindow.py:339
-msgid "Speed"
-msgstr ""
-
-#: src/MainWindow.py:343
-msgid "No memory information"
-msgstr ""
-
-#: src/MainWindow.py:362
-msgid "empty"
-msgstr ""
-
-#: src/MainWindow.py:430 src/MainWindow.py:491 src/MainWindow.py:551
-#: src/MainWindow.py:609 src/MainWindow.py:671 src/MainWindow.py:732
-#: src/MainWindow.py:795 src/MainWindow.py:859 src/MainWindow.py:921
-#: src/MainWindow.py:983 src/MainWindow.py:1044 src/MainWindow.py:1101
-#: src/MainWindow.py:1163 src/MainWindow.py:1193 src/MainWindow.py:1213
-#: src/MainWindow.py:1220
+#: src/MainWindow.py:190 src/MainWindow.py:207 src/MainWindow.py:464
+#: src/MainWindow.py:485 src/MainWindow.py:506 src/MainWindow.py:526
+#: src/MainWindow.py:546 src/MainWindow.py:566 src/MainWindow.py:585
+#: src/MainWindow.py:604 src/MainWindow.py:623 src/MainWindow.py:643
+#: src/MainWindow.py:662 src/MainWindow.py:681
 msgid "Device not found"
 msgstr ""
 
-#: src/MainWindow.py:486 src/MainWindow.py:604 src/MainWindow.py:666
-#: src/MainWindow.py:727 src/MainWindow.py:790 src/MainWindow.py:854
-#: src/MainWindow.py:916 src/MainWindow.py:978
-msgid "Driver"
-msgstr ""
+#: src/MainWindow.py:229
+msgid "Computer"
+msgstr "कंप्यूटर"
 
-#: src/MainWindow.py:546
-msgid "Resolution"
-msgstr ""
-
-#: src/MainWindow.py:915 src/MainWindow.py:977 src/MainWindow.py:1040
-#: src/MainWindow.py:1096 src/MainWindow.py:1155
-msgid "Name"
-msgstr ""
-
-#: src/MainWindow.py:917 src/MainWindow.py:979 src/MainWindow.py:1097
-msgid "Connection"
-msgstr ""
-
-#: src/MainWindow.py:1156
-msgid "Version"
-msgstr ""
-
-#: src/MainWindow.py:1157
-msgid "Kernel"
-msgstr "Kernel"
-
-#: src/MainWindow.py:1158
+#: src/MainWindow.py:237 src/MainWindow.py:398
 msgid "Desktop"
 msgstr "डेस्कटॉप"
 
-#: src/MainWindow.py:1309
+#: src/MainWindow.py:246 src/MainWindow.py:415
+msgid "Processor"
+msgstr ""
+
+#: src/MainWindow.py:255 src/MainWindow.py:489
+msgid "Graphics"
+msgstr "ग्राफ़िक्स"
+
+#: src/MainWindow.py:267 src/MainWindow.py:448
+msgid "Memory"
+msgstr ""
+
+#: src/MainWindow.py:276 src/MainWindow.py:468
+msgid "Storage"
+msgstr ""
+
+#: src/MainWindow.py:289 src/MainWindow.py:569
+msgid "Bluetooth"
+msgstr ""
+
+#: src/MainWindow.py:300 src/MainWindow.py:588
+msgid "Audio"
+msgstr ""
+
+#: src/MainWindow.py:311 src/MainWindow.py:550
+msgid "Wifi"
+msgstr ""
+
+#: src/MainWindow.py:320 src/MainWindow.py:530
+msgid "Ethernet"
+msgstr ""
+
+#: src/MainWindow.py:329 src/MainWindow.py:346 src/MainWindow.py:352
+#: src/MainWindow.py:440 src/MainWindow.py:441
+msgid "Unknown"
+msgstr ""
+
+#: src/MainWindow.py:358
+msgid "Private IP"
+msgstr "निजी आईपी"
+
+#: src/MainWindow.py:368
+msgid "Public IP"
+msgstr "सार्वजनिक आईपी"
+
+#: src/MainWindow.py:382
+msgid "Computer Info"
+msgstr ""
+
+#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:449
+#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
+#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
+#: src/MainWindow.py:608 src/MainWindow.py:667 src/MainWindow.py:686
+msgid "Vendor"
+msgstr ""
+
+#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:469
+#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
+#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
+#: src/MainWindow.py:608 src/MainWindow.py:667
+msgid "Model"
+msgstr ""
+
+#: src/MainWindow.py:383
+msgid "Family"
+msgstr ""
+
+#: src/MainWindow.py:397
+msgid "Operating System"
+msgstr ""
+
+#: src/MainWindow.py:398 src/MainWindow.py:628 src/MainWindow.py:648
+msgid "Name"
+msgstr ""
+
+#: src/MainWindow.py:398
+msgid "Version"
+msgstr ""
+
+#: src/MainWindow.py:398
+msgid "Kernel"
+msgstr "Kernel"
+
+#: src/MainWindow.py:398 src/MainWindow.py:510
+msgid "Display"
+msgstr ""
+
+#: src/MainWindow.py:416
+msgid "Cores / Threads"
+msgstr ""
+
+#: src/MainWindow.py:435
+msgid "Empty"
+msgstr ""
+
+#: src/MainWindow.py:449
+msgid "Slot"
+msgstr ""
+
+#: src/MainWindow.py:449 src/MainWindow.py:469
+msgid "Size"
+msgstr ""
+
+#: src/MainWindow.py:449 src/MainWindow.py:469
+msgid "Type"
+msgstr ""
+
+#: src/MainWindow.py:449
+msgid "Speed"
+msgstr ""
+
+#: src/MainWindow.py:490 src/MainWindow.py:531 src/MainWindow.py:551
+#: src/MainWindow.py:570 src/MainWindow.py:589 src/MainWindow.py:608
+#: src/MainWindow.py:628 src/MainWindow.py:648
+msgid "Driver"
+msgstr ""
+
+#: src/MainWindow.py:511
+msgid "Resolution"
+msgstr ""
+
+#: src/MainWindow.py:607
+msgid "Camera"
+msgstr ""
+
+#: src/MainWindow.py:627
+msgid "Keyboard"
+msgstr ""
+
+#: src/MainWindow.py:628 src/MainWindow.py:648 src/MainWindow.py:686
+msgid "Connection"
+msgstr ""
+
+#: src/MainWindow.py:647
+msgid "Mouse"
+msgstr ""
+
+#: src/MainWindow.py:666
+msgid "Fingerprint"
+msgstr ""
+
+#: src/MainWindow.py:685
+msgid "Printer"
+msgstr ""
+
+#: src/MainWindow.py:722
 msgid "Thank you for your contribution."
 msgstr ""
 
-#: src/MainWindow.py:1310
+#: src/MainWindow.py:723
 msgid "You can find your submission here:"
 msgstr ""
 
-#: src/MainWindow.py:1327
+#: src/MainWindow.py:737
 msgid "An error occured while sending the data."
 msgstr ""
 
-#: src/MainWindow.py:1328
+#: src/MainWindow.py:738
 msgid "Returned message from the server:"
 msgstr ""
 
-#: src/MainWindow.py:1334
+#: src/MainWindow.py:744
 msgid "Connection Failed"
 msgstr ""
 
-#: src/MainWindow.py:1336
+#: src/MainWindow.py:746
 msgid ""
 "If you are connected to the internet, then our servers have some problem."
 msgstr ""
 
-#: src/MainWindow.py:1382
+#: src/MainWindow.py:844
 msgid "Show Summary"
 msgstr ""
+
+#~ msgid "About This Computer"
+#~ msgstr "इस कंप्यूटर के बारे में"
 
 #~ msgid "<b>CPU:</b>"
 #~ msgstr "<b>CPU:</b>"
@@ -363,9 +329,6 @@ msgstr ""
 
 #~ msgid "<b>RAM:</b>"
 #~ msgstr "<b>RAM:</b>"
-
-#~ msgid "<b>Public IP:</b>"
-#~ msgstr "<b>सार्वजनिक आईपी:</b>"
 
 #~ msgid "<b>Local IP:</b>"
 #~ msgstr "<b>स्थानीय आईपी:</b>"
