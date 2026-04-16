@@ -121,8 +121,6 @@ class MainWindow:
         self.ui_hardware_details_box = UI("ui_hardware_details_box")
 
         # Hostname Edit
-        self.ui_edit_hostname_stack = UI("ui_edit_hostname_stack")
-        self.ui_edit_hostname_entry = UI("ui_edit_hostname_entry")
         self.ui_edit_hostname_btn = UI("ui_edit_hostname_btn")
         self.ui_edit_hostname_btn.set_sensitive(self.is_user_in_sudo_group())
 
@@ -133,6 +131,7 @@ class MainWindow:
         self.ui_distro_id_label = UI("ui_distro_id_label")
         self.ui_distro_version_label = UI("ui_distro_version_label")
         self.ui_distro_codename_label = UI("ui_distro_codename_label")
+        self.ui_computer_name_label = UI("ui_computer_name_label")
         self.ui_username_label = UI("ui_username_label")
         self.ui_hostname_label = UI("ui_hostname_label")
 
@@ -149,6 +148,12 @@ class MainWindow:
             "delete-event", lambda w, e: w.hide() or True
         )
         self.ui_gathering_logs_stack = UI("ui_gathering_logs_stack")
+
+        # input dialog
+        self.ui_input_dialog = UI("ui_input_dialog")
+        self.ui_input_dialog_lbl = UI("ui_input_dialog_lbl")
+        self.ui_input_dialog_entry = UI("ui_input_dialog_entry")
+        self.ui_input_dialog_ok_btn = UI("ui_input_dialog_ok_btn")
 
     def define_variables(self):
         self.computer_manager = None
@@ -280,8 +285,9 @@ class MainWindow:
         pc = self.computer_manager
 
         cells = [
-            # Computer
-            ["mauna-about-computer", _("Computer"), pc.get_computer_info()["model"]],
+            # format: ["icon", "title", "value"]
+            # Kernel
+            ["tux", _("Kernel"), self.os_info["kernel"]],
             # Desktop
             [
                 "mauna-about-desktop",
@@ -355,6 +361,9 @@ class MainWindow:
             value_loading=True,
         )
         add_to_grid(self.public_ip_cell)
+
+        # Set computer name
+        self.ui_computer_name_label.set_label(pc.get_computer_info()["model"])
 
         self.ui_hardware_grid.show_all()
 
@@ -767,27 +776,28 @@ class MainWindow:
         dialog.run()
         dialog.hide()
 
+    def show_input_dialog(self, title, placeholder_value=""):
+        self.ui_input_dialog_lbl.set_text(title)
+        if placeholder_value:
+            self.ui_input_dialog_entry.set_text(placeholder_value)
+
+        response = self.ui_input_dialog.run()
+        self.ui_input_dialog.hide()
+        if response == Gtk.ResponseType.OK:
+            return self.ui_input_dialog_entry.get_text()
+        else:
+            return ""
+
     def on_ui_edit_hostname_btn_clicked(self, btn):
         current_hostname = self.ui_hostname_label.get_text()
 
-        self.ui_edit_hostname_stack.set_visible_child_name("edit")
-        self.ui_edit_hostname_entry.set_text(current_hostname)
+        new_hostname = self.show_input_dialog(_("New Hostname:"), current_hostname)
 
-    def on_ui_edit_hostname_entry_activate(self, entry):
-        new_hostname = entry.get_text()
-
-        if HostnameManager.set_hostname(new_hostname):
-            self.ui_hostname_label.set_text(new_hostname)
-        else:
-            print("Hostname change failed!")
-
-        self.ui_edit_hostname_stack.set_visible_child_name("show")
-
-    def on_ui_edit_hostname_entry_key_release_event(self, widget, event):
-        if event.keyval == Gdk.KEY_Escape:
-            self.ui_edit_hostname_stack.set_visible_child_name("show")
-
-        return False
+        if new_hostname and current_hostname != new_hostname:
+            if HostnameManager.set_hostname(new_hostname):
+                self.ui_hostname_label.set_text(new_hostname)
+            else:
+                print("Hostname change failed!")
 
     def on_read_hardware_info_finish(self, source, task):
         self.ui_report_box.set_sensitive(True)
@@ -983,3 +993,6 @@ class MainWindow:
         self.ui_hardware_list_printer_revealer_image.set_from_icon_name(
             icon, Gtk.IconSize.BUTTON
         )
+
+    def on_ui_input_dialog_entry_changed(self, entry):
+        self.ui_input_dialog_ok_btn.set_sensitive(len(entry.get_text()) != 0)
