@@ -59,8 +59,9 @@ def generate_report():
     # Program outputs
     run_and_save(["env", "-i", "/bin/bash", "-c", "source /etc/profile ; env"], command_name="env_root")
     run_and_save(["dmesg"])
-    run_and_save(["journalctl", "-q", "-n", "1000"])
+    run_and_save(["journalctl", "-q", "--since", "7 day ago"], command_name="journal_system")
     run_and_save(["timedatectl"])
+    run_and_save(["lsblk", "-J", "-f"])
     run_and_save(["df", "-al", "-x", "autofs"])
     run_and_save(["dmidecode"])
     run_and_save(["free"])
@@ -121,7 +122,7 @@ def generate_user_report():
     # Program outputs
     run_and_save(["env"], command_name="env_user")
     run_and_save(["dconf", "dump", "/"])
-    run_and_save(["journalctl", "--user", "-q", "-n", "1000"], command_name="journal_user")
+    run_and_save(["journalctl", "--user", "-q", "--since", "7 day ago"], command_name="journal_user")
     run_and_save(["flatpak", "list"])
 
 def archive_and_copy_to_desktop(desktop_path):
