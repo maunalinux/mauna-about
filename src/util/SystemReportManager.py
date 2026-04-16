@@ -5,7 +5,6 @@ import os
 import shutil
 import subprocess
 
-
 ARCHIVE_DIR = "/tmp/mauna_system_report"
 
 def detect_pkexec_user():
@@ -31,7 +30,10 @@ def run_and_save(command, command_name=None):
         command_name = command_name.replace("_/", "")
 
     try:
-        with open(f"{ARCHIVE_DIR}/{pkexec_user}/{command_name}", "w") as f:
+        target_file = f"{ARCHIVE_DIR}/{pkexec_user}/{command_name}"
+        if os.path.exists(target_file):
+            os.unlink(target_file)
+        with open(target_file, "w") as f:
             subprocess.run(command, stdout=f, stderr=f)
     except:
         # ignore fails
@@ -53,6 +55,11 @@ def copy(path):
 
 
 def generate_report():
+    # Erase dir
+    if os.path.islink(ARCHIVE_DIR):
+        os.unlink(ARCHIVE_DIR)
+    elif os.path.isdir(ARCHIVE_DIR):
+        shutil.rmtree(ARCHIVE_DIR)
     # Make dir
     os.makedirs(f"{ARCHIVE_DIR}/{pkexec_user}", exist_ok=True)
 
