@@ -8,21 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-08 16:26-0300\n"
-"PO-Revision-Date: 2026-04-08 17:09-0300\n"
+"POT-Creation-Date: 2026-04-15 22:27-0300\n"
+"PO-Revision-Date: 2026-04-15 22:46-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
-#: ui/MainWindow.glade:7 ui/MainWindow.glade:778
+#: ui/MainWindow.glade:7 ui/MainWindow.glade:192 ui/MainWindow.glade:932
 msgid "About Mauna"
 msgstr "Maunari buruz"
 
-#: ui/MainWindow.glade:39 ui/MainWindow.glade:587
+#: ui/MainWindow.glade:39 ui/MainWindow.glade:741
 msgid "Gathering system logs..."
 msgstr "Sistemaren erregistroak biltzen..."
 
@@ -39,51 +39,59 @@ msgid "Please run the app from terminal to see the error logs."
 msgstr ""
 "Mesedez, exekutatu aplikazioa terminaletik errore-erregistroak ikusteko."
 
+#: ui/MainWindow.glade:205
+msgid "Cancel"
+msgstr "Utzi"
+
 #: ui/MainWindow.glade:218
+msgid "Ok"
+msgstr "Ados"
+
+#: ui/MainWindow.glade:326
 msgid "Export System Report..."
 msgstr "Esportatu sistemaren txostena..."
 
-#: ui/MainWindow.glade:263
+#: ui/MainWindow.glade:371
 msgid "About App"
 msgstr "Aplikazioari buruz"
 
-#: ui/MainWindow.glade:424
+#: ui/MainWindow.glade:547
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: ui/MainWindow.glade:466
+#: ui/MainWindow.glade:590
 msgid "Hostname"
 msgstr "Ostalari-izena"
 
-#: ui/MainWindow.glade:527 src/MainWindow.py:847
+#: ui/MainWindow.glade:681 src/MainWindow.py:865
 msgid "Show Hardware Details"
 msgstr "Erakutsi hardwarearen xehetasunak"
 
-#: ui/MainWindow.glade:541
+#: ui/MainWindow.glade:695
 msgid "Show System Report"
 msgstr "Erakutsi Sistema Txostena"
 
-#: ui/MainWindow.glade:704
+#: ui/MainWindow.glade:858
 msgid "Details"
 msgstr "Xehetasunak"
 
-#: ui/MainWindow.glade:769
+#: ui/MainWindow.glade:923
 msgid "Mauna Info"
 msgstr "Mauna Informazioa"
 
-#: ui/MainWindow.glade:802
+#: ui/MainWindow.glade:956
 msgid "About Mauna About Application"
 msgstr "Maunari buruz aplikazioari buruz"
 
-#: ui/MainWindow.glade:810
+#: ui/MainWindow.glade:964
 msgid "Get info about your Mauna system."
 msgstr "Lortu zure Mauna sistemari buruzko informazioa."
 
-#: ui/MainWindow.glade:812
+#: ui/MainWindow.glade:966
 msgid "Website"
 msgstr "Webgunea"
 
-#: ui/MainWindow.glade:813
+#: ui/MainWindow.glade:967
 msgid ""
 "This program comes with absolutely no warranty.\n"
 "See the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General "
@@ -91,19 +99,18 @@ msgid ""
 msgstr ""
 "Programa honek ez du inolako bermerik.\n"
 "Ikusi xehetasunetarako <a href=\"https://www.gnu.org/licenses/"
-"gpl-3.0.html\">GNU Lizentzia Publiko Orokorra, 3. bertsioa edo berriagoa</"
-"a>."
+"gpl-3.0.html\">GNU Lizentzia Publiko Orokorra, 3. bertsioa edo berriagoa</a>."
 
 #. Name Surname <example@examplemail.com>
-#: ui/MainWindow.glade:821
+#: ui/MainWindow.glade:975
 msgid "translator-credits"
 msgstr "Mauna Linux <dev@maunalinux.top>"
 
-#: ui/MainWindow.glade:859
+#: ui/MainWindow.glade:1013
 msgid "Submit"
 msgstr "Bidali"
 
-#: ui/MainWindow.glade:885
+#: ui/MainWindow.glade:1039
 msgid ""
 "The information shared will only be used for hardware compatibility "
 "statistics and to be able to troubleshoot compatibility issues in advance.\n"
@@ -119,214 +126,217 @@ msgstr ""
 "\n"
 "Ez da datu pertsonalik biltzen.\n"
 "\n"
-"Hardwareari buruzko informazioa ez da hirugarrenekin partekatzen eta "
-"prozesu honetan behin bakarrik bidaltzen da."
+"Hardwareari buruzko informazioa ez da hirugarrenekin partekatzen eta prozesu "
+"honetan behin bakarrik bidaltzen da."
 
-#: ui/MainWindow.glade:914
+#: ui/MainWindow.glade:1068
 msgid "Below is the data which will be sent:"
 msgstr "Jarraian bidaliko diren datuak daude:"
 
-#: ui/MainWindow.glade:987
+#: ui/MainWindow.glade:1141
 msgid "Copy Report"
 msgstr "Txostena kopiatu"
 
-#: ui/MainWindow.glade:1003
+#: ui/MainWindow.glade:1157
 msgid "Send"
 msgstr "Bidali"
 
-#: ui/MainWindow.glade:1075
+#: ui/MainWindow.glade:1229
 msgid "System Report has been copied to your clipboard!"
 msgstr "Sistemaren txostena zure arbelera kopiatu da!"
 
-#: src/MainWindow.py:190 src/MainWindow.py:207 src/MainWindow.py:464
-#: src/MainWindow.py:485 src/MainWindow.py:506 src/MainWindow.py:526
-#: src/MainWindow.py:546 src/MainWindow.py:566 src/MainWindow.py:585
-#: src/MainWindow.py:604 src/MainWindow.py:623 src/MainWindow.py:643
-#: src/MainWindow.py:662 src/MainWindow.py:681
+#: src/MainWindow.py:220 src/MainWindow.py:237 src/MainWindow.py:457
+#: src/MainWindow.py:478 src/MainWindow.py:499 src/MainWindow.py:519
+#: src/MainWindow.py:539 src/MainWindow.py:559 src/MainWindow.py:578
+#: src/MainWindow.py:597 src/MainWindow.py:616 src/MainWindow.py:636
+#: src/MainWindow.py:655 src/MainWindow.py:674
 msgid "Device not found"
 msgstr "Gailua ez da aurkitu"
 
-#: src/MainWindow.py:229
-msgid "Computer"
-msgstr "Ordenagailua"
-
-#: src/MainWindow.py:237 src/MainWindow.py:398
-msgid "Desktop"
-msgstr "Mahaigaina"
-
-#: src/MainWindow.py:246 src/MainWindow.py:415
-msgid "Processor"
-msgstr "Prozesadorea"
-
-#: src/MainWindow.py:255 src/MainWindow.py:489
-msgid "Graphics"
-msgstr "Grafikoak"
-
-#: src/MainWindow.py:267 src/MainWindow.py:448
-msgid "Memory"
-msgstr "Memoria"
-
-#: src/MainWindow.py:276 src/MainWindow.py:468
-msgid "Storage"
-msgstr "Biltegiratzea"
-
-#: src/MainWindow.py:289 src/MainWindow.py:569
-msgid "Bluetooth"
-msgstr "Bluetooth"
-
-#: src/MainWindow.py:300 src/MainWindow.py:588
-msgid "Audio"
-msgstr "Audioa"
-
-#: src/MainWindow.py:311 src/MainWindow.py:550
-msgid "Wifi"
-msgstr "Wifia"
-
-#: src/MainWindow.py:320 src/MainWindow.py:530
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: src/MainWindow.py:329 src/MainWindow.py:346 src/MainWindow.py:352
-#: src/MainWindow.py:440 src/MainWindow.py:441
+#: src/MainWindow.py:245 src/MainWindow.py:262 src/MainWindow.py:268
+#: src/MainWindow.py:433 src/MainWindow.py:434
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: src/MainWindow.py:358
-msgid "Private IP"
-msgstr "IP Pribatua"
-
-#: src/MainWindow.py:368
-msgid "Public IP"
-msgstr "IP Publikoa"
-
-#: src/MainWindow.py:382
-msgid "Computer Info"
-msgstr "Ordenagailuaren informazioa"
-
-#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:449
-#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
-#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
-#: src/MainWindow.py:608 src/MainWindow.py:667 src/MainWindow.py:686
-msgid "Vendor"
-msgstr "Saltzailea"
-
-#: src/MainWindow.py:383 src/MainWindow.py:416 src/MainWindow.py:469
-#: src/MainWindow.py:490 src/MainWindow.py:511 src/MainWindow.py:531
-#: src/MainWindow.py:551 src/MainWindow.py:570 src/MainWindow.py:589
-#: src/MainWindow.py:608 src/MainWindow.py:667
-msgid "Model"
-msgstr "Modeloa"
-
-#: src/MainWindow.py:383
-msgid "Family"
-msgstr "Familia"
-
-#: src/MainWindow.py:397
-msgid "Operating System"
-msgstr "Sistema eragilea"
-
-#: src/MainWindow.py:398 src/MainWindow.py:628 src/MainWindow.py:648
-msgid "Name"
-msgstr "Izena"
-
-#: src/MainWindow.py:398
-msgid "Version"
-msgstr "Bertsioa"
-
-#: src/MainWindow.py:398
+#: src/MainWindow.py:290 src/MainWindow.py:391
 msgid "Kernel"
 msgstr "Kernel"
 
-#: src/MainWindow.py:398 src/MainWindow.py:510
+#: src/MainWindow.py:294 src/MainWindow.py:391
+msgid "Desktop"
+msgstr "Mahaigaina"
+
+#: src/MainWindow.py:298 src/MainWindow.py:408
+msgid "Processor"
+msgstr "Prozesadorea"
+
+#: src/MainWindow.py:302 src/MainWindow.py:482
+msgid "Graphics"
+msgstr "Grafikoak"
+
+#: src/MainWindow.py:306 src/MainWindow.py:441
+msgid "Memory"
+msgstr "Memoria"
+
+#: src/MainWindow.py:310 src/MainWindow.py:461
+msgid "Storage"
+msgstr "Biltegiratzea"
+
+#: src/MainWindow.py:318 src/MainWindow.py:562
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: src/MainWindow.py:324 src/MainWindow.py:581
+msgid "Audio"
+msgstr "Audioa"
+
+#: src/MainWindow.py:330 src/MainWindow.py:543
+msgid "Wifi"
+msgstr "Wifia"
+
+#: src/MainWindow.py:336 src/MainWindow.py:523
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: src/MainWindow.py:348
+msgid "Private IP"
+msgstr "IP Pribatua"
+
+#: src/MainWindow.py:358
+msgid "Public IP"
+msgstr "IP Publikoa"
+
+#: src/MainWindow.py:375
+msgid "Computer Info"
+msgstr "Ordenagailuaren informazioa"
+
+#: src/MainWindow.py:376 src/MainWindow.py:409 src/MainWindow.py:442
+#: src/MainWindow.py:483 src/MainWindow.py:504 src/MainWindow.py:524
+#: src/MainWindow.py:544 src/MainWindow.py:563 src/MainWindow.py:582
+#: src/MainWindow.py:601 src/MainWindow.py:660 src/MainWindow.py:679
+msgid "Vendor"
+msgstr "Saltzailea"
+
+#: src/MainWindow.py:376 src/MainWindow.py:409 src/MainWindow.py:462
+#: src/MainWindow.py:483 src/MainWindow.py:504 src/MainWindow.py:524
+#: src/MainWindow.py:544 src/MainWindow.py:563 src/MainWindow.py:582
+#: src/MainWindow.py:601 src/MainWindow.py:660
+msgid "Model"
+msgstr "Modeloa"
+
+#: src/MainWindow.py:376
+msgid "Family"
+msgstr "Familia"
+
+#: src/MainWindow.py:390
+msgid "Operating System"
+msgstr "Sistema eragilea"
+
+#: src/MainWindow.py:391 src/MainWindow.py:621 src/MainWindow.py:641
+msgid "Name"
+msgstr "Izena"
+
+#: src/MainWindow.py:391
+msgid "Version"
+msgstr "Bertsioa"
+
+#: src/MainWindow.py:391 src/MainWindow.py:503
 msgid "Display"
 msgstr "Erakutsi"
 
-#: src/MainWindow.py:416
+#: src/MainWindow.py:409
 msgid "Cores / Threads"
 msgstr "Nukleoak / Hariak"
 
-#: src/MainWindow.py:435
+#: src/MainWindow.py:428
 msgid "Empty"
 msgstr "Hutsik"
 
-#: src/MainWindow.py:449
+#: src/MainWindow.py:442
 msgid "Slot"
 msgstr "Zirrikitua"
 
-#: src/MainWindow.py:449 src/MainWindow.py:469
+#: src/MainWindow.py:442 src/MainWindow.py:462
 msgid "Size"
 msgstr "Tamaina"
 
-#: src/MainWindow.py:449 src/MainWindow.py:469
+#: src/MainWindow.py:442 src/MainWindow.py:462
 msgid "Type"
 msgstr "Mota"
 
-#: src/MainWindow.py:449
+#: src/MainWindow.py:442
 msgid "Speed"
 msgstr "Abiadura"
 
-#: src/MainWindow.py:490 src/MainWindow.py:531 src/MainWindow.py:551
-#: src/MainWindow.py:570 src/MainWindow.py:589 src/MainWindow.py:608
-#: src/MainWindow.py:628 src/MainWindow.py:648
+#: src/MainWindow.py:483 src/MainWindow.py:524 src/MainWindow.py:544
+#: src/MainWindow.py:563 src/MainWindow.py:582 src/MainWindow.py:601
+#: src/MainWindow.py:621 src/MainWindow.py:641
 msgid "Driver"
 msgstr "Gidaria"
 
-#: src/MainWindow.py:511
+#: src/MainWindow.py:504
 msgid "Resolution"
 msgstr "Bereizmena"
 
-#: src/MainWindow.py:607
+#: src/MainWindow.py:600
 msgid "Camera"
 msgstr "Camera"
 
-#: src/MainWindow.py:627
+#: src/MainWindow.py:620
 msgid "Keyboard"
 msgstr "Teklatua"
 
-#: src/MainWindow.py:628 src/MainWindow.py:648 src/MainWindow.py:686
+#: src/MainWindow.py:621 src/MainWindow.py:641 src/MainWindow.py:679
 msgid "Connection"
 msgstr "Konexioa"
 
-#: src/MainWindow.py:647
+#: src/MainWindow.py:640
 msgid "Mouse"
 msgstr "Sagua"
 
-#: src/MainWindow.py:666
+#: src/MainWindow.py:659
 msgid "Fingerprint"
 msgstr "Hatz-marka"
 
-#: src/MainWindow.py:685
+#: src/MainWindow.py:678
 msgid "Printer"
 msgstr "Inprimagailua"
 
-#: src/MainWindow.py:722
+#: src/MainWindow.py:715
 msgid "Thank you for your contribution."
 msgstr "Eskerrik asko zure ekarpenagatik."
 
-#: src/MainWindow.py:723
+#: src/MainWindow.py:716
 msgid "You can find your submission here:"
 msgstr "Zure bidalketa hemen aurki dezakezu:"
 
-#: src/MainWindow.py:737
+#: src/MainWindow.py:730
 msgid "An error occured while sending the data."
 msgstr "Errore bat gertatu da datuak bidaltzean."
 
-#: src/MainWindow.py:738
+#: src/MainWindow.py:731
 msgid "Returned message from the server:"
 msgstr "Zerbitzariak itzulitako mezua:"
 
-#: src/MainWindow.py:744
+#: src/MainWindow.py:737
 msgid "Connection Failed"
 msgstr "Konexioa huts egin du"
 
-#: src/MainWindow.py:746
+#: src/MainWindow.py:739
 msgid ""
 "If you are connected to the internet, then our servers have some problem."
 msgstr "Internetera konektatuta bazaude, gure zerbitzariek arazoren bat dute."
 
-#: src/MainWindow.py:844
+#: src/MainWindow.py:794
+msgid "New Hostname:"
+msgstr "Ostalari-izen berria:"
+
+#: src/MainWindow.py:862
 msgid "Show Summary"
 msgstr "Erakutsi laburpena"
+
+#~ msgid "Computer"
+#~ msgstr "Ordenagailua"
 
 #~ msgid "About This Computer"
 #~ msgstr "Ordenagailu honi buruz"
