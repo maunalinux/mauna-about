@@ -1,6 +1,7 @@
 import json
 import os
 import gi
+import re
 import requests
 import pwd
 import grp
@@ -121,7 +122,13 @@ class MainWindow:
         self.ui_hardware_details_box = UI("ui_hardware_details_box")
 
         # Hostname Edit
+        self.ui_edit_hostname_popover_title_label = UI(
+            "ui_edit_hostname_popover_title_label"
+        )
+        self.ui_edit_hostname_popover = UI("ui_edit_hostname_popover")
+        self.ui_edit_hostname_entry = UI("ui_edit_hostname_entry")
         self.ui_edit_hostname_btn = UI("ui_edit_hostname_btn")
+        self.ui_edit_hostname_ok_btn = UI("ui_edit_hostname_ok_btn")
         self.ui_edit_hostname_btn.set_sensitive(self.is_user_in_sudo_group())
 
         self.ui_about_dialog = UI("ui_about_dialog")
@@ -148,12 +155,6 @@ class MainWindow:
             "delete-event", lambda w, e: w.hide() or True
         )
         self.ui_gathering_logs_stack = UI("ui_gathering_logs_stack")
-
-        # input dialog
-        self.ui_input_dialog = UI("ui_input_dialog")
-        self.ui_input_dialog_lbl = UI("ui_input_dialog_lbl")
-        self.ui_input_dialog_entry = UI("ui_input_dialog_entry")
-        self.ui_input_dialog_ok_btn = UI("ui_input_dialog_ok_btn")
 
     def define_variables(self):
         self.computer_manager = None
@@ -196,8 +197,12 @@ class MainWindow:
         raw_name = self.os_info.get("os_codename", "")
         display_name = codename_map.get(raw_name, raw_name)
         self.ui_distro_codename_label.set_text(f"{display_name}")
+
         self.ui_username_label.set_text(f"{GLib.get_user_name()}")
+        self.ui_username_label.set_tooltip_text(f"{GLib.get_user_name()}")
+
         self.ui_hostname_label.set_text(self.os_info["hostname"].lower())
+        self.ui_hostname_label.set_tooltip_text(self.os_info["hostname"].lower())
         return
 
     def read_hardware_info(self, task, source_object, task_data, cancellable):
@@ -211,6 +216,20 @@ class MainWindow:
         self.public_ip = network.get_wan_ip()
 
         task.return_boolean(True)
+
+    def validate_hostname(self, old_hostname, new_hostname):
+        # is empty or unchanged
+        if not new_hostname or old_hostname == new_hostname:
+            return False
+
+        # is valid hostname
+        if (
+            not re.match(r"^[A-Za-z0-9][A-Za-z0-9-]*$", new_hostname)
+            or len(new_hostname) > 64
+        ):
+            return False
+
+        return True
 
     # === Fill Pages ===
     def fill_main_page(self):
@@ -364,6 +383,7 @@ class MainWindow:
 
         # Set computer name
         self.ui_computer_name_label.set_label(pc.get_computer_info()["model"])
+        self.ui_computer_name_label.set_tooltip_text(pc.get_computer_info()["model"])
 
         self.ui_hardware_grid.show_all()
 
@@ -776,28 +796,12 @@ class MainWindow:
         dialog.run()
         dialog.hide()
 
-    def show_input_dialog(self, title, placeholder_value=""):
-        self.ui_input_dialog_lbl.set_text(title)
-        if placeholder_value:
-            self.ui_input_dialog_entry.set_text(placeholder_value)
-
-        response = self.ui_input_dialog.run()
-        self.ui_input_dialog.hide()
-        if response == Gtk.ResponseType.OK:
-            return self.ui_input_dialog_entry.get_text()
-        else:
-            return ""
-
     def on_ui_edit_hostname_btn_clicked(self, btn):
         current_hostname = self.ui_hostname_label.get_text()
 
-        new_hostname = self.show_input_dialog(_("New Hostname:"), current_hostname)
-
-        if new_hostname and current_hostname != new_hostname:
-            if HostnameManager.set_hostname(new_hostname):
-                self.ui_hostname_label.set_text(new_hostname)
-            else:
-                print("Hostname change failed!")
+        self.ui_edit_hostname_entry.set_text(current_hostname)
+        self.ui_edit_hostname_popover_title_label.set_text(_("Change Hostname:"))
+        self.ui_edit_hostname_popover.popup()
 
     def on_read_hardware_info_finish(self, source, task):
         self.ui_report_box.set_sensitive(True)
@@ -994,5 +998,39 @@ class MainWindow:
             icon, Gtk.IconSize.BUTTON
         )
 
-    def on_ui_input_dialog_entry_changed(self, entry):
-        self.ui_input_dialog_ok_btn.set_sensitive(len(entry.get_text()) != 0)
+    def on_ui_edit_hostname_entry_changed(self, entry):
+        current_hostname = self.ui_hostname_label.get_text()
+        value = entry.get_text()
+
+        is_sensitive = self.validate_hostname(current_hostname, value)
+        self.ui_edit_hostname_ok_btn.set_sensitive(is_sensitive)
+
+    def on_ui_edit_hostname_ok_btn_clicked(self, btn):
+        current_hostname = self.ui_hostname_label.get_text()
+        new_hostname = self.ui_edit_hostname_entry.get_text()
+
+        if not self.validate_hostname(current_hostname, new_hostname):
+            if current_hostname == new_hostname:
+                return  # wrote this again to prevent the next false error message show to the user
+
+            self.ui_edit_hostname_popover_title_label.set_text(
+                _("Hostname is invalid. Use only letters, numbers and '-'.")
+            )
+            return
+
+        # Change
+        if HostnameManager.set_hostname(new_hostname):
+            self.ui_hostname_label.set_text(new_hostname)
+            self.ui_hostname_label.set_tooltip_text(new_hostname)
+            self.ui_edit_hostname_popover.popdown()
+        else:
+            self.ui_edit_hostname_popover_title_label.set_text(
+                _("Hostname change failed! Please check the terminal output.")
+            )
+            print("Hostname change failed!")
+
+    def on_ui_edit_hostname_entry_activate(self, entry):
+        self.on_ui_edit_hostname_ok_btn_clicked(None)
+
+    def on_ui_edit_hostname_cancel_btn_clicked(self, btn):
+        self.ui_edit_hostname_popover.popdown()
