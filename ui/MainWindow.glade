@@ -405,6 +405,7 @@
                             <property name="margin-start">7</property>
                             <property name="margin-end">7</property>
                             <property name="label">---</property>
+                            <property name="selectable">True</property>
                             <property name="ellipsize">end</property>
                             <property name="max-width-chars">21</property>
                           </object>
